@@ -37,6 +37,11 @@ class FragmentHome: Fragment() {
         binding.viewPager.adapter=bannerAdapter
         binding.viewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
 
+        binding.imageView6.setOnClickListener {
+            // Fragment에서 Activity로 이동
+            startActivity(Intent(requireContext(), MatchingActivity::class.java))
+        }
+
         return binding.root
     }
 
