@@ -7,6 +7,10 @@ android {
     namespace 'com.example.zipfront'
     compileSdk 33
 
+    viewBinding{
+        enable = true
+    }
+
     defaultConfig {
         applicationId "com.example.zipfront"
         minSdk 28
