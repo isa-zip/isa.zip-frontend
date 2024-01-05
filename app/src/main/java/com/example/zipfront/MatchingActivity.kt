@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zipfront.databinding.MatchingActivityBinding
@@ -18,6 +19,10 @@ class MatchingActivity: AppCompatActivity() {
 
         binding.imageButton3.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+        }
+
+        binding.imageView10.setOnClickListener {
+            finish()
         }
 
         initViewPager()
