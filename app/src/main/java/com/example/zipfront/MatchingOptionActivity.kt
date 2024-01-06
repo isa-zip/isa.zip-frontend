@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.zipfront.databinding.MatchingOptionBinding
@@ -12,11 +14,11 @@ import com.example.zipfront.databinding.MatchingOptionBinding
 
 class MatchingOptionActivity: AppCompatActivity() {
     lateinit var binding: MatchingOptionBinding
-    val checkArray = BooleanArray(11)
+    val checkArray = BooleanArray(42)
     // 각 버튼에 대한 원래 값 저장 배열
-    var originalWidthArray = IntArray(11)
-    var originalBackgroundArray = arrayOfNulls<Drawable>(11)
-    var originalTextColorArray = IntArray(11)
+    var originalWidthArray = IntArray(42)
+    var originalBackgroundArray = arrayOfNulls<Drawable>(42)
+    var originalTextColorArray = IntArray(42)
 
     val checkArray2 = BooleanArray(3)
     // 각 버튼에 대한 원래 값 저장 배열
@@ -33,10 +35,17 @@ class MatchingOptionActivity: AppCompatActivity() {
         binding.constraintLayout4.visibility = View.GONE
         binding.constraintLayout5.visibility = View.GONE
 
+        binding.imageButton7.setOnClickListener{
+            showCustomDialog()
+        }
+
+        binding.imageView10.setOnClickListener{
+            finish()
+        }
         val clickedColor = ContextCompat.getColor(this, R.color.zipblue01)
 
         // 각 버튼에 대한 원래 값 추출
-        for (i in 0 until 11) {
+        for (i in 0 until 42) {
             val buttonId = resources.getIdentifier("myButton${i + 1}", "id", packageName)
             val button = findViewById<Button>(buttonId)
 
@@ -181,5 +190,38 @@ class MatchingOptionActivity: AppCompatActivity() {
 
         // 토글 상태 변경
         checkArray2[index] = !isChecked
+    }
+
+    private fun showCustomDialog() {
+        // 다이얼로그 레이아웃을 inflate
+        val dialogView = layoutInflater.inflate(R.layout.option_dialogview, null)
+
+        // AlertDialog.Builder를 사용하여 다이얼로그 생성
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        // AlertDialog 생성
+        val alertDialog: AlertDialog = builder.create()
+
+        // 다이얼로그 내부의 ImageButton 참조
+        val cancelButton = dialogView.findViewById<ImageButton>(R.id.imageButton8)
+        val confirmButton = dialogView.findViewById<ImageButton>(R.id.imageButton9)
+
+        // 취소 버튼 클릭 리스너 설정
+        cancelButton.setOnClickListener {
+            // 취소 버튼을 눌렀을 때 수행할 동작
+            alertDialog.dismiss() // 다이얼로그 닫기
+            // 추가적인 작업 수행 가능
+        }
+
+        // 확인 버튼 클릭 리스너 설정
+        confirmButton.setOnClickListener {
+            // 확인 버튼을 눌렀을 때 수행할 동작
+            finish()
+            alertDialog.dismiss() // 다이얼로그 닫기
+            // 추가적인 작업 수행 가능
+        }
+
+        // AlertDialog 표시
+        alertDialog.show()
     }
 }
