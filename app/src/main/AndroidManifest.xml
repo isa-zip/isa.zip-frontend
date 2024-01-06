@@ -26,6 +26,9 @@
         <activity
             android:name=".MatchingActivity"
             android:exported="false"/>
+        <activity
+            android:name=".MatchingOptionActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

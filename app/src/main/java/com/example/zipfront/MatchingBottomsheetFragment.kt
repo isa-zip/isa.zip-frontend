@@ -1,6 +1,7 @@
 package com.example.zipfront
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +26,7 @@ class MatchingBottomsheetFragment(context: Context) : BottomSheetDialogFragment(
         val btnClose: ImageButton = view.findViewById(R.id.imageButton5)
 
         btnOK.setOnClickListener {
+            startActivity(Intent(requireContext(), MatchingOptionActivity::class.java))
             Toast.makeText(mContext, "확인", Toast.LENGTH_SHORT).show()
             dismiss()
         }
