@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.app.Activity
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.os.Bundle
@@ -216,6 +217,7 @@ class MatchingOptionActivity: AppCompatActivity() {
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
             // 확인 버튼을 눌렀을 때 수행할 동작
+            setResult(Activity.RESULT_OK)
             finish()
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능
