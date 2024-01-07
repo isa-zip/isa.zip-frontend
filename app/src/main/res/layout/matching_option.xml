@@ -712,7 +712,7 @@
 
             <android.widget.Button
                 android:id="@+id/myButton25"
-                android:layout_width="60dp"
+                android:layout_width="66dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"

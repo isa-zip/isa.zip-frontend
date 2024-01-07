@@ -22,14 +22,12 @@
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="271dp"
+            android:layout_marginStart="18dp"
             android:text="상도동"
             android:textColor="@color/Gray900"
             android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="0건"
+            android:textStyle="bold"
             android:textColor="@color/zipblue01"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
@@ -59,11 +58,9 @@
             android:id="@+id/imageView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="206dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView23"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView23"
             app:layout_constraintTop_toTopOf="@+id/textView23"
             app:srcCompat="@drawable/ic_right" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -76,23 +73,22 @@
         android:background="@drawable/rounded_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible">
 
 
         <TextView
             android:id="@+id/titletext4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="18dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="271dp"
             android:layout_marginBottom="165dp"
             android:text="상도동"
             android:textColor="@color/Gray900"
             android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="5건"
+            android:textStyle="bold"
             android:textColor="@color/zipblue01"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/titletext4"
@@ -122,11 +119,9 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="206dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/titletext5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/titletext5"
             app:layout_constraintTop_toTopOf="@+id/titletext5"
             app:srcCompat="@drawable/ic_right" />
 
@@ -134,7 +129,9 @@
             android:id="@+id/pose_rv"
             android:layout_width="match_parent"
             android:layout_height="141dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="12dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

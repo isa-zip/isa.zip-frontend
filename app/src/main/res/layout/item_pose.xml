@@ -6,7 +6,7 @@
     android:layout_height="85dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_background"
-    android:layout_marginLeft="20dp">
+    android:layout_marginLeft="8dp">
 
     <ImageView
         android:id="@+id/imageView9"
