@@ -52,11 +52,10 @@
         android:layout_marginStart="143dp"
         android:clickable="true"
         android:switchMinWidth="60dp"
-        android:textOff=""
-        android:textOn=""
         android:thumb="@drawable/switch_thumb"
         android:thumbTextPadding="15dp"
         android:track="@drawable/selector_switch"
+        tools:ignore="UseSwitchCompatOrMaterialXml"
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
         app:layout_constraintStart_toEndOf="@+id/textView21"
         app:layout_constraintTop_toTopOf="@+id/textView21" />
@@ -361,6 +360,19 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="60dp"
+        android:layout_height="24dp"
+        android:text="ToggleButton"
+        android:background="@drawable/selector_toggle"
+        android:checked="false"
+        android:textOff="구하기"
+        android:textOn="올리기"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notShowing3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
