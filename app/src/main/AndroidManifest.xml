@@ -29,6 +29,9 @@
         <activity
             android:name=".MatchingOptionActivity"
             android:exported="false"/>
+        <activity
+            android:name=".MatchingSecondOptionActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

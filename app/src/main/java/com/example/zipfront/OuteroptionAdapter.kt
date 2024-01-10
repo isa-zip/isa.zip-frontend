@@ -1,10 +1,16 @@
 package com.example.zipfront
 
+import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.OuterItem>) : RecyclerView.Adapter<OuteroptionAdapter.ViewHolder>() {
@@ -17,7 +23,7 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val outerItem = outerItemList[position]
-        holder.bind(outerItem)
+        holder.bind(outerItem, holder.itemView.context)
     }
 
     override fun getItemCount(): Int {
@@ -31,13 +37,20 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
         private val textView: TextView = itemView.findViewById(R.id.titletext4)
         private val textView2: TextView = itemView.findViewById(R.id.textView22)
         private val titletext5: TextView = itemView.findViewById(R.id.titletext5)
+        private val imageView: ImageView = itemView.findViewById(R.id.imageView2)
 
-        fun bind(outerItem: MatchingStillFragment.OuterItem) {
+        fun bind(outerItem: MatchingStillFragment.OuterItem, context: Context) {
             if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
                 // 내부 아이템이 없는 경우
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
                 textView2.text = outerItem.title
+                imageView.setOnClickListener {
+                    val intent = Intent(context, MatchingSecondOptionActivity::class.java)
+                    intent.putExtra("title", outerItem.title)
+                    context.startActivity(intent)
+                    Log.d("MatchingSecondOption", "no inner")
+                }
             } else {
                 // 내부 아이템이 있는 경우
                 layout1.visibility = View.GONE
@@ -50,6 +63,14 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
                 // titletext5에 아이템 개수 표시
                 titletext5.text = "${outerItem.getItemCount()}건"
                 textView.text = outerItem.title
+
+                imageView.setOnClickListener {
+                    val intent = Intent(context, MatchingSecondOptionActivity::class.java)
+                    intent.putExtra("title", outerItem.title)
+                    // You can put the list of items as a Serializable or Parcelable Extra
+                    intent.putStringArrayListExtra("innerItems", ArrayList(outerItem.innerItemList))
+                    context.startActivity(intent)
+                }
             }
         }
     }
