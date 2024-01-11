@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                     binding.AmainToolbar.visibility = View.VISIBLE
                     supportFragmentManager
                         .beginTransaction()
-                        .replace(binding.AmainFrame.id, FragmentHome()) // Replace with your fragment
+                        .replace(binding.AmainFrame.id, FragmentProperty()) // Replace with your fragment
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }
