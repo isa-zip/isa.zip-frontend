@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <!-- 외부 테두리를 그리기 위한 stroke -->
+            <stroke
+                android:width="1dp"
+                android:color="@color/zipblue02"/> <!-- 외부 테두리 색상 -->
+            <corners android:radius="5dp"/>
+        </shape>
+    </item>
+
+    <item
+        android:left="2dp"
+        android:right="2dp"
+        android:top="2dp"
+        android:bottom="2dp">
+        <shape>
+            <!-- 내부 배경을 그리기 위한 shape -->
+            <solid android:color="#FFFFFF"/> <!-- 내부 배경 색상 -->
+            <corners android:radius="5dp"/> <!-- 내부 배경의 둥근 테두리 반지름 지정 -->
+        </shape>
+    </item>
+</layer-list>
