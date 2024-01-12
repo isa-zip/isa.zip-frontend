@@ -26,6 +26,16 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="tvvyxke9zj" />
+        <activity
+            android:name=".MatchingActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MatchingOptionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MatchingSecondOptionActivity"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
