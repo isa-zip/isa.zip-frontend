@@ -3,10 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="296dp"
-    android:layout_height="149dp"
+    android:layout_height="170dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_background"
-    android:layout_marginLeft="20dp">
+    tools:ignore="MissingDefaultResource">
 
 
     <TextView
@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="109dp"
-        android:text="현재 화면에서 나가시나요?"
+        android:layout_marginBottom="130dp"
+        android:text="매칭을 완료할까요?"
         android:textColor="@color/Gray800"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -29,7 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="선택한 옵션은 저장되지 않아요"
+        android:gravity="center"
+        android:text="매칭하지 않은 매물은 삭제되며 \n다시 복구할 수 없어요"
         android:textColor="@color/Gray700"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
@@ -64,6 +65,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButton8"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:srcCompat="@drawable/btn_complete2" />
+        app:srcCompat="@drawable/btn_complete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

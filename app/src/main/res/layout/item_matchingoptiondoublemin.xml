@@ -54,12 +54,13 @@
 
     <TextView
         android:id="@+id/textView28"
-        android:layout_width="wrap_content"
+        android:layout_width="164dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
         android:text="숭실대입구 4번출구 바로 앞 가..."
+        android:maxLines="1"
+        android:ellipsize="end"
         android:textColor="@color/Gray600"
         android:textSize="12dp"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintStart_toStartOf="@+id/textView27" />
 </androidx.constraintlayout.widget.ConstraintLayout>

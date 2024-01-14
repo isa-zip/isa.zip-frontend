@@ -1,7 +1,10 @@
 package com.example.zipfront
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zipfront.databinding.ActivityMainBinding
@@ -31,6 +34,10 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         binding.imageView10.setOnClickListener{
             finish()
         }
+
+        binding.imageView17.setOnClickListener{
+            showCustomDialog()
+        }
         setContentView(binding.root)
     }
 
@@ -47,5 +54,36 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         fun getItemCount(): Int {
             return innerItemList?.size ?: 0
         }
+    }
+    private fun showCustomDialog() {
+        // 다이얼로그 레이아웃을 inflate
+        val dialogView = layoutInflater.inflate(R.layout.option_seconddialogview, null)
+
+        // AlertDialog.Builder를 사용하여 다이얼로그 생성
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        // AlertDialog 생성
+        val alertDialog: AlertDialog = builder.create()
+
+        // 다이얼로그 내부의 ImageButton 참조
+        val cancelButton = dialogView.findViewById<ImageButton>(R.id.imageButton8)
+        val confirmButton = dialogView.findViewById<ImageButton>(R.id.imageButton9)
+
+        // 취소 버튼 클릭 리스너 설정
+        cancelButton.setOnClickListener {
+            // 취소 버튼을 눌렀을 때 수행할 동작
+            alertDialog.dismiss() // 다이얼로그 닫기
+            // 추가적인 작업 수행 가능
+        }
+
+        // 확인 버튼 클릭 리스너 설정
+        confirmButton.setOnClickListener {
+            finish()
+            alertDialog.dismiss() // 다이얼로그 닫기
+            // 추가적인 작업 수행 가능
+        }
+
+        // AlertDialog 표시
+        alertDialog.show()
     }
 }

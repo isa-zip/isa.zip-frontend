@@ -23,7 +23,7 @@ class MatchingCompleteFragment: Fragment() {
         outerItemList = listOf(
             OuterItem2(
                 "성수동",
-                listOf("내부 아이템 1-1", "내부 아이템 1-2", "내부 아이템 1-3")
+                listOf("숭실대입구 4번출구 바로 앞 가성비 좋지않냐? 아닌가? 나도 모름", "내부 아이템 1-2", "내부 아이템 1-3")
             ),
             OuterItem2(
                 "동선동",

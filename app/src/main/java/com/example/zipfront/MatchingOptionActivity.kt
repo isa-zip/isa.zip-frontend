@@ -65,6 +65,12 @@ class MatchingOptionActivity: AppCompatActivity() {
                     button,
                     i
                 )
+                // 하나라도 버튼이 눌리면 imageButton7의 이미지 변경
+                if (checkArray.any { it }) {
+                    binding.imageButton7.setImageResource(R.drawable.btn__apply_active)
+                } else {
+                    binding.imageButton7.setImageResource(R.drawable.btn__apply_disabled)
+                }
             }
         }
 
