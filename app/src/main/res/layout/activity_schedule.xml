@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:textStyle="bold"
+        android:text="일정등록"
+        android:textSize="18dp"
+        android:textColor="@color/Gray900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:srcCompat="@drawable/ic_left2" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="@drawable/frame_10000_background"
+        app:layout_constraintBottom_toTopOf="@+id/frame_10000_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <RelativeLayout
+        android:id="@+id/frame_10000_background"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:background="@drawable/frame_10000_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
+        tools:layout_editor_absoluteX="0dp">
+
+        <RelativeLayout
+            android:id="@+id/searchbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/frame_10000">
+
+            <TextView
+                android:id="@+id/textViewInside"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="11.5dp"
+                android:fontFamily="@font/suit_variable"
+                android:fontWeight="600"
+                android:lineSpacingExtra="7sp"
+                android:text="이사 일정을 선택해 주세요"
+                android:textColor="#7C7C7C"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/searchbar"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="24dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="Register Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/btn_register"
+            tools:ignore="MissingConstraints" />
+
+
+    </RelativeLayout>
+
+
+
+    <!--<RelativeLayout
+        android:id="@+id/searchbar"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_below="@id/textView4"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/search">
+
+        <TextView
+            android:id="@+id/textViewInside"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="11.5dp"
+            android:fontFamily="@font/suit_variable"
+            android:fontWeight="600"
+            android:lineSpacingExtra="7sp"
+            android:text="장소를 검색해 주세요"
+            android:textColor="#5A5A5A"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

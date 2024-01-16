@@ -4,4 +4,8 @@
         parent="Widget.Design.BottomNavigationView">
         <item name="fontFamily">@font/suit_variable</item>
     </style>
+    <style name="some_id">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#F60808</item>
+    </style>
 </resources>

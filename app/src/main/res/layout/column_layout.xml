@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/calendar"
+        android:layout_width="324dp"
+        android:layout_height="1081dp"
+        android:layout_marginTop="-38dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/day_variant"
+        android:layout_width="306dp"
+        android:layout_height="205dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/frame_6"
+        android:layout_width="306dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/some_id_1_1"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="1"
+            android:textSize="14sp"
+            android:textColor="#F60808"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_1_2"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_1_1"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="2"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_1_3"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_1_2"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="3"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_1_4"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_1_3"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="4"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_1_5"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_1_4"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="5"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_1_6"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_1_5"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="6"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_1_7"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_1_6"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="7"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_7"
+        android:layout_width="306dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_6">
+
+        <TextView
+            android:id="@+id/some_id_2_1"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="1"
+            android:textSize="14sp"
+            android:textColor="#F60808"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_2_2"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_2_1"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="2"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_2_3"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_2_2"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="3"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_2_4"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_2_3"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="4"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_2_5"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_2_4"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="5"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_2_6"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_2_5"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="6"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_2_7"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_2_6"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="7"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_8"
+        android:layout_width="306dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_7">
+
+        <TextView
+            android:id="@+id/some_id_3_1"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="1"
+            android:textSize="14sp"
+            android:textColor="#F60808"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/some_id_3_2"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_3_1"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="2"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_3_3"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_3_2"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="3"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_3_4"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_3_3"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="4"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_3_5"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_3_4"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="5"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_3_6"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_3_5"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="6"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_3_7"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_3_6"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="7"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_9"
+        android:layout_width="306dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_8">
+
+        <TextView
+            android:id="@+id/some_id_4_1"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="1"
+            android:textSize="14sp"
+            android:textColor="#F60808"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/some_id_4_2"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_4_1"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="2"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_4_3"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_4_2"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="3"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_4_4"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_4_3"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="4"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_4_5"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_4_4"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="5"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_4_6"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_4_5"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="6"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_4_7"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_4_6"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="7"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frame_10"
+        android:layout_width="306dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frame_9">
+
+        <TextView
+            android:id="@+id/some_id_5_1"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="1"
+            android:textSize="14sp"
+            android:textColor="#F60808"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_5_2"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_5_1"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="2"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_5_3"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_5_2"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="3"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_5_4"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_5_3"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="4"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_5_5"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_5_4"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="5"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_5_6"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_5_5"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="6"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/some_id_5_7"
+            android:layout_width="30dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/some_id_5_6"
+            android:gravity="center_horizontal|top"
+            android:lineSpacingExtra="4sp"
+            android:text="7"
+            android:textAppearance="@style/some_id"
+            android:translationY="-1.76sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </RelativeLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
