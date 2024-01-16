@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class InnerSecondoptionAdapter(private val itemList: List<String>) : RecyclerView.Adapter<InnerSecondoptionAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_matchingoptiondoublemin, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_matchingoptiondoubleact, parent, false)
         return ViewHolder(view)
     }
 

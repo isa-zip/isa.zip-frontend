@@ -1,10 +1,13 @@
 package com.example.zipfront
 
 import android.app.Activity
+import android.graphics.Color
 import android.graphics.PorterDuff
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
@@ -208,6 +211,14 @@ class MatchingOptionActivity: AppCompatActivity() {
         builder.setView(dialogView)
         // AlertDialog 생성
         val alertDialog: AlertDialog = builder.create()
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Window 속성을 사용하여 크기 조절
+        val params =  alertDialog.window?.attributes
+        params?.width = 296
+        params?.height = 149
+        alertDialog.window?.attributes = params
 
         // 다이얼로그 내부의 ImageButton 참조
         val cancelButton = dialogView.findViewById<ImageButton>(R.id.imageButton8)
