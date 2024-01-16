@@ -46,6 +46,7 @@ class MatchingStillFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        Log.d("MatchingStill3", "onViewCreated")
         // 뷰가 생성된 후에 레이아웃 상태를 설정
         // 여기에서 onActivityResult를 직접 호출하지 않습니다.
     }
@@ -55,12 +56,16 @@ class MatchingStillFragment : Fragment() {
 
         Log.d("MatchingStillFragment", "requestCode: $requestCode, resultCode: $resultCode")
 
-        if (requestCode == REQUEST_CODE_OPTION && resultCode == Activity.RESULT_OK) {
-            binding.textView10.visibility = View.GONE
-            binding.notShowing2.visibility = View.VISIBLE
-        } else {
-            binding.textView10.visibility = View.VISIBLE
-            binding.notShowing2.visibility = View.GONE
+        activity?.runOnUiThread {
+            if (requestCode == REQUEST_CODE_OPTION && resultCode == Activity.RESULT_OK) {
+                Log.d("MatchingStill", "Inside runOnUiThread - Updating UI for RESULT_OK")
+                binding.textView10.visibility = View.GONE
+                binding.notShowing2.visibility = View.VISIBLE
+            } else {
+                Log.d("MatchingStill2", "Inside runOnUiThread - Updating UI for other result codes")
+                binding.textView10.visibility = View.VISIBLE
+                binding.notShowing2.visibility = View.GONE
+            }
         }
     }
 
