@@ -12,7 +12,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_background"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible">
+        android:visibility="gone">
 
 
         <TextView

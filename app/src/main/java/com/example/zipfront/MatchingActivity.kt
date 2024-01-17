@@ -11,17 +11,20 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MatchingActivity: AppCompatActivity() {
     lateinit var binding: MatchingActivityBinding
-    private val information = arrayListOf("매칭 중", "매칭 완료")
+    private val information = arrayListOf("매칭 요청", "매칭 완료")
     val REQUEST_CODE_OPTION = 1
+    private val REQUEST_CODE_CLOSE = 2
     private lateinit var viewPager: ViewPager2
-    private lateinit var matchingAdapter: MatchingAdapter
+    internal val matchingAdapter: MatchingAdapter by lazy {
+        MatchingAdapter(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MatchingActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bottomSheetFragment = MatchingBottomsheetFragment(applicationContext)
+        val bottomSheetFragment = MatchingBottomsheetFragment(applicationContext, matchingAdapter)
 
         binding.imageButton3.setOnClickListener {
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
@@ -36,18 +39,29 @@ class MatchingActivity: AppCompatActivity() {
     }
 
     private fun initViewPager() {
-        matchingAdapter = MatchingAdapter(this)
-        // 어댑터 초기화 메서드 호출
         matchingAdapter.initFragments()
 
         viewPager = binding.fragmentContainer
         viewPager.adapter = matchingAdapter
 
+        // Check if the adapter is up to date
+        val currentAdapter = viewPager.adapter
+        if (currentAdapter == matchingAdapter) {
+            Log.d("ViewPagerUpdate", "Adapter is up to date.")
+        } else {
+            Log.d("ViewPagerUpdate", "Adapter needs to be updated.")
+        }
+
         TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
             tab.text = information[position]
         }.attach()
     }
-
+    // MatchingActivity 내부
+    internal fun updateFragmentAndViewPager() {
+        matchingAdapter.restoreFragment(viewPager.currentItem, REQUEST_CODE_OPTION)
+//        matchingAdapter.notifyDataSetChanged()
+        initViewPager()
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d("MatchingStillFragment2", "requestCode: $requestCode, resultCode: $resultCode")
@@ -64,6 +78,22 @@ class MatchingActivity: AppCompatActivity() {
                     data
                 )
             }
+        }
+    }
+    // "btnClose"를 눌렀을 때 requestCode를 MatchingAdapter로 전달하는 메서드
+    fun closeBottomSheetWithCode(requestCode: Int) {
+        // 현재 표시 중인 Fragment의 위치에 따라 처리
+        Log.d("MatchingAct", "$requestCode")
+
+        val currentItem = viewPager.currentItem
+        when (currentItem) {
+            0 -> {
+                // "매칭 요청" Fragment인 경우
+                matchingAdapter.closeBottomSheetWithCode(currentItem, requestCode)
+
+                viewPager.adapter = matchingAdapter
+            }
+            // 여기에 다른 Fragment에 대한 처리를 추가할 수 있습니다.
         }
     }
 }

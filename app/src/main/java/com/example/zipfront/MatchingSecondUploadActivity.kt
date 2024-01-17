@@ -12,15 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zipfront.databinding.ActivityMainBinding
 import com.example.zipfront.databinding.ActivityMatchingoptionselectBinding
+import com.example.zipfront.databinding.ActivityMatchinguploadselectBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MatchingSecondOptionActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMatchingoptionselectBinding
-    private lateinit var adapter: OuterSecondoptionAdapter
-    private lateinit var outerItemList2: List<OuterItem2>
+class MatchingSecondUploadActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMatchinguploadselectBinding
+    private lateinit var adapter: OuterSeconduploadAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMatchingoptionselectBinding.inflate(layoutInflater)
+        binding = ActivityMatchinguploadselectBinding.inflate(layoutInflater)
 
         val title = intent.getStringExtra("title")
         if (!title.isNullOrBlank()) {
@@ -49,15 +49,10 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         binding.optionRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         // RecyclerView의 어댑터 설정
-        adapter = OuterSecondoptionAdapter(innerItems)
+        adapter = OuterSeconduploadAdapter(innerItems)
         binding.optionRv.adapter = adapter
     }
 
-    data class OuterItem2(val title: String, val innerItemList: List<String>? = null) {
-        fun getItemCount(): Int {
-            return innerItemList?.size ?: 0
-        }
-    }
     private fun showCustomDialog() {
         // 다이얼로그 레이아웃을 inflate
         val dialogView = layoutInflater.inflate(R.layout.option_seconddialogview, null)

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="292dp"
+    android:layout_width="360dp"
     android:layout_height="112dp">
 
     <ImageView
@@ -56,7 +56,7 @@
         android:id="@+id/textView28"
         android:layout_width="164dp"
         android:layout_height="wrap_content"
-        android:text="숭실대입구 4번출구 바로 앞 가..."
+        android:text="숭실대입구 4번출구 바로 앞 가성비 좋..."
         android:maxLines="1"
         android:ellipsize="end"
         android:textColor="@color/Gray600"

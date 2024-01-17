@@ -16,13 +16,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class MatchingBottomsheetFragment(context: Context) : BottomSheetDialogFragment() {
+class MatchingBottomsheetFragment(context: Context, private val matchingAdapter: MatchingAdapter) : BottomSheetDialogFragment() {
 
     private val mContext: Context = context
     val REQUEST_CODE_OPTION = 1
+    private val REQUEST_CODE_CLOSE = 2
     private lateinit var requestOptionLauncher: ActivityResultLauncher<Intent>
     private lateinit var viewPager: ViewPager2
-    private lateinit var matchingAdapter: MatchingAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,10 +37,12 @@ class MatchingBottomsheetFragment(context: Context) : BottomSheetDialogFragment(
         btnOK.setOnClickListener {
             val intent = Intent(requireContext(), MatchingOptionActivity::class.java)
             requestOptionLauncher.launch(intent)
+            (activity as? MatchingActivity)?.updateFragmentAndViewPager()
             dismiss()
         }
 
         btnClose.setOnClickListener {
+            (activity as? MatchingActivity)?.closeBottomSheetWithCode(REQUEST_CODE_CLOSE)
             dismiss()
         }
 
@@ -57,8 +59,10 @@ class MatchingBottomsheetFragment(context: Context) : BottomSheetDialogFragment(
                 val resultCode = result.resultCode
                 val data = result.data
 
-                Log.d("MatchingStillFragment3", "requestCode: $REQUEST_CODE_OPTION, resultCode: $resultCode")
-
+                Log.d(
+                    "MatchingStillFragment3",
+                    "requestCode: $REQUEST_CODE_OPTION, resultCode: $resultCode"
+                )
 
                 if (resultCode == Activity.RESULT_OK) {
                     // MatchingOptionActivity에서 돌아왔을 때의 처리
