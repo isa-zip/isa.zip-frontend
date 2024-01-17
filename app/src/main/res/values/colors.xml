@@ -21,4 +21,6 @@
     <color name="Gray300">#DBDBDB</color>
     <color name="Gray200">#F0F0F0</color>
     <color name="Gray100">#F8F8F8</color>
+
+    <color name="Error">#f44336</color>
 </resources>
