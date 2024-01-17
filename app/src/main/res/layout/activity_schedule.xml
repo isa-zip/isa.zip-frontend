@@ -34,6 +34,7 @@
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#F8F8F8"
         android:layout_marginEnd="@drawable/frame_10000_background"
         app:layout_constraintBottom_toTopOf="@+id/frame_10000_background"
         app:layout_constraintEnd_toEndOf="parent"
