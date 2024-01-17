@@ -63,7 +63,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView20" />
 
             <Switch
-                android:id="@+id/switch1"
+                android:id="@+id/switch2"
                 android:layout_width="60dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="143dp"
@@ -77,7 +77,8 @@
                 android:track="@drawable/selector_switch"
                 app:layout_constraintBottom_toBottomOf="@+id/textView21"
                 app:layout_constraintStart_toEndOf="@+id/textView21"
-                app:layout_constraintTop_toTopOf="@+id/textView21" />
+                app:layout_constraintTop_toTopOf="@+id/textView21"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/option_rv"
@@ -86,8 +87,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/switch1"
-                tools:listitem="@layout/item_matchingoption_layout" />
+                app:layout_constraintTop_toBottomOf="@+id/switch2"
+                tools:listitem="@layout/item_matchingupload_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -39,6 +39,10 @@
         <activity
             android:name=".MatchingSecondOptionActivity"
             android:exported="false"/>
+        <activity
+            android:name=".MatchingSecondUploadActivity"
+            android:exported="false"/>
+
 
     </application>
 
