@@ -19,9 +19,9 @@ class ScheduleActivity : AppCompatActivity() {
         binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        /*val navView: BottomNavigationView = binding.imageButton5
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_schedule)
+        val navController = findNavController(R.id.nav_host_fragment_activity_schedule)*/
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
@@ -29,7 +29,7 @@ class ScheduleActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
             )
         )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        /*setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setupWithNavController(navController)*/
     }
 }
