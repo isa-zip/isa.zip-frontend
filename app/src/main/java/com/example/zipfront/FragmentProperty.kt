@@ -45,8 +45,6 @@ class FragmentProperty: Fragment() {
 
 
 
-
-
         // 텍스트 파란색으로 변환
         val textData: String = binding.propertyNum.text.toString()
         val builder = SpannableStringBuilder(textData)

@@ -54,7 +54,17 @@
         app:layout_constraintTop_toTopOf="@id/search_toolbar"
         app:srcCompat="@drawable/ic_filter" />
 
-    <net.daum.mf.map.api.MapView
+<!--    <net.daum.mf.map.api.MapView-->
+<!--        android:id="@+id/map_fragment"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="397dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/layout_constraint"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/search_toolbar"-->
+<!--        tools:ignore="MissingClass" />-->
+
+    <TextView
         android:id="@+id/map_fragment"
         android:layout_width="match_parent"
         android:layout_height="397dp"
