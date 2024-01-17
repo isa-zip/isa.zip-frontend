@@ -69,4 +69,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/btn_registration"
         tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,5 +8,6 @@ data class PropertyData(
     var info1: String,
     var info2: String,
     var info3: String,
+    var info4: String,
     val tv: String
 )
