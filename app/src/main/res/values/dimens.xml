@@ -4,4 +4,7 @@
     <dimen name="design_bottom_navigation_text_size" tools:override="true">20dp</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">20dp</dimen>
     <dimen name="button_expanded_width">61dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>

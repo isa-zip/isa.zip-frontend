@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:textStyle="bold"
-        android:text="매물 매칭"
+        android:text="이사 일정"
         android:textSize="18dp"
         android:textColor="@color/Gray900"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,44 +30,51 @@
         app:layout_constraintTop_toTopOf="@+id/textView9"
         app:srcCompat="@drawable/ic_left2" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_marginTop="14dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        app:tabIndicatorColor="@color/zipblue01"
-        app:tabRippleColor="@color/zipblue01"
-        app:tabSelectedTextColor="@color/zipblue01" />
-
-
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="12dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+        android:background="#F8F8F8"
+        android:layout_marginEnd="@drawable/frame_10000_background"
+        app:layout_constraintBottom_toTopOf="@+id/frame_10000_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabs">
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
-    </androidx.viewpager2.widget.ViewPager2>
-
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#00FFFFFF"
+    <RelativeLayout
+        android:id="@+id/frame_background"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:background="@drawable/frame_10000_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/btn_registration"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
+        tools:layout_editor_absoluteX="0dp"/>
+
+    <RelativeLayout
+        android:id="@+id/frame_10000_background"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:background="@drawable/frame_10000_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageButton
+            android:id="@+id/btn_registr"
+            android:layout_width="324dp"
+            android:layout_height="56dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/btn_registration_option"
+            android:contentDescription="Register Button"
+            app:srcCompat="@android:color/transparent" />
+
+
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

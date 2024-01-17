@@ -2,4 +2,11 @@
     <string name="app_name">ZIPfront</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_schedule">ScheduleActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="some_id_month">10월</string>
+    <string name="some_id_month_2">11월</string>
+    <string name="some_id_month_3">12월</string>
 </resources>
