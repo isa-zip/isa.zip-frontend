@@ -5,8 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
@@ -18,6 +20,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class OuterSeconduploadAdapter(private val innerItems: List<String>) : RecyclerView.Adapter<OuterSeconduploadAdapter.ViewHolder>() {
+
+    // UploadBottomsheetFragment 객체를 멤버 변수로 선언
+    private val bottomSheetFragment = UploadBottomsheetFragment()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -40,7 +45,7 @@ class OuterSeconduploadAdapter(private val innerItems: List<String>) : RecyclerV
         private val textView2: TextView = itemView.findViewById(R.id.textView22)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView16)
         private val imageView2: ImageView = itemView.findViewById(R.id.imageView17)
-
+        private val imageButton: ImageButton = itemView.findViewById(R.id.imageButton10)
         fun bind(innerItem: String, context: Context) {
             // 여기서 innerItem 사용하여 필요한 작업 수행
             layout1.visibility = View.VISIBLE
@@ -55,6 +60,10 @@ class OuterSeconduploadAdapter(private val innerItems: List<String>) : RecyclerV
             imageView2.setOnClickListener{
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
+            }
+
+            imageButton.setOnClickListener {
+                bottomSheetFragment.show((context as AppCompatActivity).supportFragmentManager, bottomSheetFragment.tag)
             }
         }
     }
