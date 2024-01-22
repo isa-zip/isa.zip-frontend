@@ -20,5 +20,10 @@ class MenuFirstActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.arrowbutton3.setOnClickListener {
+            val intent = Intent(this, MenuCertifyActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }

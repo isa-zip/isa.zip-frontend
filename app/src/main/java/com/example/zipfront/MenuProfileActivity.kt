@@ -34,6 +34,7 @@ class MenuProfileActivity : AppCompatActivity() {
                 false
             }
         }
+
     }
 
     private fun togglePasswordVisibility(editText: EditText) {

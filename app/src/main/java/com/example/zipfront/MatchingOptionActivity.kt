@@ -129,7 +129,7 @@ class MatchingOptionActivity: AppCompatActivity() {
     ) {
         if (!isChecked) {
             // 클릭 시 아이콘 추가
-            val icon = resources.getDrawable(R.drawable.plus_circle)
+            val icon = resources.getDrawable(R.drawable.plus_circle_blue)
             button.setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null)
 
             // 클릭 시 버튼의 넓이를 기존 넓이에서 16 추가
