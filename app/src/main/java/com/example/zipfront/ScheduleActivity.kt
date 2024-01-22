@@ -1,12 +1,11 @@
 package com.example.zipfront
 
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.zipfront.CalendarAdapter
-import com.example.zipfront.CalendarItem
-import com.example.zipfront.R
+import java.util.*
 
 class ScheduleActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -17,12 +16,27 @@ class ScheduleActivity : AppCompatActivity() {
         setContentView(R.layout.activity_schedule)
 
         recyclerView = findViewById(R.id.calendarRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-        val calendarItems = mutableListOf<CalendarItem>()
-        // 캘린더 항목을 추가하거나 적절한 데이터를 가져와서 calendarItems에 추가
+        recyclerView.layoutManager = GridLayoutManager(this, 7)
+        val calendarItems = generateCalendarData()
 
         adapter = CalendarAdapter(calendarItems)
         recyclerView.adapter = adapter
+    }
+
+    private fun generateCalendarData(): List<CalendarItem> {
+        val calendarItems = mutableListOf<CalendarItem>()
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+
+        val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+        for (day in 1..daysInMonth) {
+            calendarItems.add(CalendarItem(day, month, year))
+            calendar.add(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        return calendarItems
     }
 }

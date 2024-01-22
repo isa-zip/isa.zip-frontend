@@ -2,7 +2,7 @@ package com.example.zipfront
 
 import java.util.Date
 
-class CalendarItem(val month: String, val day: Int, val dayOfWeek: String) {
+class CalendarItem(val day: Int, val month: Int, val year: Int) {
     private var date: Date
     var title: String = ""
     var description: String = ""
@@ -19,4 +19,3 @@ class CalendarItem(val month: String, val day: Int, val dayOfWeek: String) {
         this.date = date
     }
 }
-

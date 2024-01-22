@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ScheduleActivity">
 
     <TextView
         android:id="@+id/textView9"
@@ -30,8 +31,19 @@
         app:layout_constraintTop_toTopOf="@+id/textView9"
         app:srcCompat="@drawable/ic_left2" />
 
-    <androidx.viewpager2.widget.ViewPager2
+    <!--<androidx.viewpager2.widget.ViewPager2
         android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#F8F8F8"
+        android:layout_marginTop="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/frame_10000_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendarRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#F8F8F8"
@@ -41,18 +53,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame_10000_background"
         android:layout_width="match_parent"
         android:layout_height="148dp"
         android:background="@drawable/frame_10000_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
+        app:layout_constraintTop_toBottomOf="@+id/calendarRecyclerView"
         tools:layout_editor_absoluteX="0dp">
 
         <TextView

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/calendarItemText1"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+
+    <TextView
+        android:id="@+id/calendarItemText2"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+
+    <TextView
+        android:id="@+id/calendarItemText3"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+
+    <TextView
+        android:id="@+id/calendarItemText4"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+
+    <TextView
+        android:id="@+id/calendarItemText5"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+
+    <TextView
+        android:id="@+id/calendarItemText6"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+
+    <TextView
+        android:id="@+id/calendarItemText7"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_weight="1"
+        android:layout_marginStart="16dp"
+        android:gravity="center_horizontal|top"
+        android:lineSpacingExtra="4sp"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#F60808"
+        android:textAppearance="@style/some_id"
+        android:translationY="-1.76sp"/>
+</LinearLayout>
