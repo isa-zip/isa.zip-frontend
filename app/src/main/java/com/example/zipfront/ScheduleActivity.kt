@@ -1,35 +1,28 @@
 package com.example.zipfront
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.example.zipfront.databinding.ActivityScheduleBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.zipfront.CalendarAdapter
+import com.example.zipfront.CalendarItem
+import com.example.zipfront.R
 
 class ScheduleActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityScheduleBinding
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: CalendarAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_schedule)
 
-        binding = ActivityScheduleBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        recyclerView = findViewById(R.id.calendarRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        /*val navView: BottomNavigationView = binding.imageButton5
+        val calendarItems = mutableListOf<CalendarItem>()
+        // 캘린더 항목을 추가하거나 적절한 데이터를 가져와서 calendarItems에 추가
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_schedule)*/
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        /*setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)*/
+        adapter = CalendarAdapter(calendarItems)
+        recyclerView.adapter = adapter
     }
 }

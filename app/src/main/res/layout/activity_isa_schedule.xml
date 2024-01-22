@@ -42,16 +42,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
-    <RelativeLayout
-        android:id="@+id/frame_background"
-        android:layout_width="match_parent"
-        android:layout_height="92dp"
-        android:background="@drawable/frame_10000_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_container"
-        tools:layout_editor_absoluteX="0dp"/>
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame_10000_background"
         android:layout_width="match_parent"
         android:layout_height="92dp"
@@ -61,20 +52,18 @@
         tools:layout_editor_absoluteX="0dp">
 
         <ImageButton
-            android:id="@+id/btn_registr"
-            android:layout_width="324dp"
-            android:layout_height="56dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="18dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/btn_registration_option"
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#00FFFFFF"
             android:contentDescription="Register Button"
-            app:srcCompat="@android:color/transparent" />
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/frame_10000_background"
+            app:srcCompat="@drawable/btn_registration_option" />
 
-
-
-    </RelativeLayout>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

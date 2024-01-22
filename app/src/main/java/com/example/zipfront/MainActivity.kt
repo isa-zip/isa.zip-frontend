@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import com.example.zipfront.Help
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
