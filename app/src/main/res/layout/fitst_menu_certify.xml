@@ -163,7 +163,11 @@
             android:id="@+id/certify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
             android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profiletext5">
 
             <ImageButton
@@ -180,10 +184,6 @@
                 android:id="@+id/imageupload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginEnd="18dp"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/imgbed"
                 android:visibility="gone"
