@@ -1,14 +1,15 @@
-import android.location.Location
+package com.example.zipfront
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.zipfront.R
 
 interface OnItemClick {
     fun onClick(location: Int)
 }
+
 class LocationAdapter(private var locationSet: List<Location>, private var onItemClick: OnItemClick) : RecyclerView.Adapter<LocationAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val location: TextView = view.findViewById(R.id.location_tv)
@@ -25,10 +26,10 @@ class LocationAdapter(private var locationSet: List<Location>, private var onIte
 
     override fun getItemCount(): Int = locationSet.size
 
-    fun filterList(filteredList: List<Location>) {
-        locationSet = filteredList
-        notifyDataSetChanged()
-    }
+//    fun filterList(filteredList: List<Location>) {
+//        locationSet = filteredList
+//        notifyDataSetChanged()
+//    }
 
     private fun <T: RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
         itemView.setOnClickListener { event.invoke(adapterPosition, itemViewType) }
