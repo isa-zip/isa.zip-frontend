@@ -376,10 +376,28 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout7"
             android:layout_width="match_parent"
-            android:layout_height="146dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notShowing">
+
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:checked="false"
+                android:clickable="true"
+                android:switchMinWidth="43dp"
+                android:textOff=""
+                android:textOn=""
+                android:thumb="@drawable/switch_thumb"
+                android:thumbTextPadding="15dp"
+                android:track="@drawable/selector_switch2"
+                app:layout_constraintBottom_toBottomOf="@+id/title1"
+                app:layout_constraintStart_toEndOf="@+id/title1"
+                app:layout_constraintTop_toTopOf="@+id/title1"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
 
             <TextView
                 android:id="@+id/title1"
@@ -394,101 +412,220 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/myButton5"
-                android:layout_width="51dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="~5평"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/title1"
-                app:layout_constraintTop_toBottomOf="@+id/title1" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sizeofroom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title1">
 
-            <android.widget.Button
-                android:id="@+id/myButton6"
-                android:layout_width="58dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="10평대"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton5"
-                app:layout_constraintTop_toBottomOf="@+id/title1" />
 
-            <android.widget.Button
-                android:id="@+id/myButton7"
-                android:layout_width="60dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="20평대"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton6"
-                app:layout_constraintTop_toBottomOf="@+id/title1" />
+                <android.widget.Button
+                    android:id="@+id/myButton5"
+                    android:layout_width="51dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="~5평"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/myButton8"
-                android:layout_width="60dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="30평대"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton7"
-                app:layout_constraintTop_toBottomOf="@+id/title1" />
+                <android.widget.Button
+                    android:id="@+id/myButton6"
+                    android:layout_width="58dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="10평대"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton5"
+                    app:layout_constraintTop_toTopOf="@+id/myButton5" />
 
-            <android.widget.Button
-                android:id="@+id/myButton9"
-                android:layout_width="60dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="40평대"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton8"
-                app:layout_constraintTop_toBottomOf="@+id/title1" />
+                <android.widget.Button
+                    android:id="@+id/myButton7"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="20평대"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton6"
+                    app:layout_constraintTop_toTopOf="@+id/myButton6" />
 
-            <android.widget.Button
-                android:id="@+id/myButton10"
-                android:layout_width="60dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="50평대"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton5"
-                app:layout_constraintTop_toBottomOf="@+id/myButton5" />
+                <android.widget.Button
+                    android:id="@+id/myButton8"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="30평대"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton7"
+                    app:layout_constraintTop_toTopOf="@+id/myButton7" />
 
-            <android.widget.Button
-                android:id="@+id/myButton11"
-                android:layout_width="69dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="60평대~"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton10"
-                app:layout_constraintTop_toBottomOf="@+id/myButton5" />
+                <android.widget.Button
+                    android:id="@+id/myButton9"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="40평대"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="@+id/myButton5"
+                    app:layout_constraintTop_toBottomOf="@+id/myButton5" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton10"
+                    android:layout_width="60dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="50평대"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton9"
+                    app:layout_constraintTop_toBottomOf="@+id/myButton5" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton11"
+                    android:layout_width="69dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="60평대~"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton10"
+                    app:layout_constraintTop_toBottomOf="@+id/myButton5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sizeofroom2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title1"
+                android:visibility="gone">
+
+
+                <android.widget.Button
+                    android:id="@+id/myButton43"
+                    android:layout_width="59dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="~ 17㎡"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton44"
+                    android:layout_width="73dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="33~66㎡"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton43"
+                    app:layout_constraintTop_toTopOf="@+id/myButton43" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton45"
+                    android:layout_width="74dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="66~99㎡"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton44"
+                    app:layout_constraintTop_toTopOf="@+id/myButton44" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton46"
+                    android:layout_width="78dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="99~132㎡"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="@+id/myButton43"
+                    app:layout_constraintTop_toTopOf="@+id/myButton47" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton47"
+                    android:layout_width="82dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="132~165㎡"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton46"
+                    app:layout_constraintTop_toBottomOf="@+id/myButton43" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton48"
+                    android:layout_width="83dp"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="165~198㎡"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="@+id/myButton46"
+                    app:layout_constraintTop_toBottomOf="@+id/myButton46" />
+
+                <android.widget.Button
+                    android:id="@+id/myButton12"
+                    android:layout_width="67dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_roundcircle"
+                    android:paddingEnd="8dp"
+                    android:text="198㎡ ~"
+                    android:textColor="@color/Gray800"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/myButton48"
+                    app:layout_constraintTop_toTopOf="@+id/myButton48" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -513,31 +650,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/myButton12"
-                android:layout_width="45dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_roundcircle"
-                android:paddingEnd="8dp"
-                android:text="전체"
-                android:textColor="@color/Gray800"
-                android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/title2"
-                app:layout_constraintTop_toBottomOf="@+id/title2" />
 
             <android.widget.Button
                 android:id="@+id/myButton13"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="1층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton12"
+                app:layout_constraintStart_toStartOf="@+id/title2"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
 
             <android.widget.Button
@@ -604,8 +728,8 @@
                 android:text="6층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton12"
-                app:layout_constraintTop_toBottomOf="@+id/myButton12" />
+                app:layout_constraintStart_toStartOf="@+id/myButton13"
+                app:layout_constraintTop_toBottomOf="@+id/myButton13" />
 
             <android.widget.Button
                 android:id="@+id/myButton19"
@@ -651,7 +775,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout9"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="146dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
@@ -714,29 +838,27 @@
                 android:id="@+id/myButton25"
                 android:layout_width="66dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="주차여부"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton24"
-                app:layout_constraintTop_toBottomOf="@+id/title3" />
+                app:layout_constraintStart_toStartOf="@+id/myButton22"
+                app:layout_constraintTop_toBottomOf="@+id/myButton22" />
 
             <android.widget.Button
                 android:id="@+id/myButton26"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="수도세"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton25"
-                app:layout_constraintTop_toBottomOf="@+id/title3" />
+                app:layout_constraintTop_toTopOf="@+id/myButton25" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -785,7 +907,7 @@
                 android:text="냉장고"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton27"
+                app:layout_constraintStart_toEndOf="@+id/myButton33"
                 app:layout_constraintTop_toBottomOf="@+id/title4" />
 
             <android.widget.Button
@@ -806,41 +928,39 @@
                 android:id="@+id/myButton30"
                 android:layout_width="77dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="전자레인지"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton29"
-                app:layout_constraintTop_toBottomOf="@+id/title4" />
+                app:layout_constraintStart_toStartOf="@+id/myButton27"
+                app:layout_constraintTop_toTopOf="@+id/myButton31" />
 
             <android.widget.Button
                 android:id="@+id/myButton31"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="옷장"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton30"
-                app:layout_constraintTop_toBottomOf="@+id/title4" />
+                app:layout_constraintTop_toTopOf="@+id/myButton32" />
 
             <android.widget.Button
                 android:id="@+id/myButton32"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="책상"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton27"
+                app:layout_constraintStart_toEndOf="@+id/myButton31"
                 app:layout_constraintTop_toBottomOf="@+id/myButton27" />
 
             <android.widget.Button
@@ -853,8 +973,8 @@
                 android:text="TV"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton32"
-                app:layout_constraintTop_toTopOf="@+id/myButton32" />
+                app:layout_constraintStart_toEndOf="@+id/myButton27"
+                app:layout_constraintTop_toTopOf="@+id/myButton28" />
 
             <android.widget.Button
                 android:id="@+id/myButton34"
@@ -866,7 +986,7 @@
                 android:text="침대"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton33"
+                app:layout_constraintStart_toEndOf="@+id/myButton32"
                 app:layout_constraintTop_toTopOf="@+id/myButton32" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -957,7 +1077,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout12"
             android:layout_width="match_parent"
-            android:layout_height="146dp"
+            android:layout_height="192dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
@@ -1020,27 +1140,26 @@
                 android:id="@+id/myButton38"
                 android:layout_width="77dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="엘리베이터"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton37"
-                app:layout_constraintTop_toBottomOf="@+id/title6" />
+                app:layout_constraintStart_toStartOf="@+id/myButton35"
+                app:layout_constraintTop_toTopOf="@+id/myButton39" />
 
             <android.widget.Button
                 android:id="@+id/myButton39"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="12dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="베란다"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton35"
+                app:layout_constraintStart_toEndOf="@+id/myButton38"
                 app:layout_constraintTop_toBottomOf="@+id/myButton35" />
 
             <android.widget.Button
@@ -1061,14 +1180,14 @@
                 android:id="@+id/myButton41"
                 android:layout_width="70dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginTop="12dp"
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="360°VR"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton40"
-                app:layout_constraintTop_toTopOf="@+id/myButton40" />
+                app:layout_constraintStart_toStartOf="@+id/myButton38"
+                app:layout_constraintTop_toBottomOf="@+id/myButton38" />
 
             <android.widget.Button
                 android:id="@+id/myButton42"
@@ -1081,7 +1200,7 @@
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton41"
-                app:layout_constraintTop_toTopOf="@+id/myButton40" />
+                app:layout_constraintTop_toTopOf="@+id/myButton41" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.AmainBnv.setItemIconTintList(null);
+        binding.imageView5.setOnClickListener {
+            val intent = Intent(this, MenuFirstActivity::class.java)
+            startActivity(intent)
+        }
         initBottomNavigation()
         //getKakaoMapHashKey(this)
     }
