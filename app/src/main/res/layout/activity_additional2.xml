@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:textStyle="bold"
+        android:text="매물 추가"
+        android:textSize="18dp"
+        android:textColor="@color/Gray900"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:srcCompat="@drawable/ic_left2" />
+
+    <RelativeLayout
+        android:id="@+id/progressbar"
+        android:layout_width="360dp"
+        android:layout_height="4dp"
+        android:background="#DBDBDB"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="14dp" />
+
+    <RelativeLayout
+        android:id="@+id/progress"
+        android:layout_width="240dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="14dp"
+        android:background="#67C8F9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <RelativeLayout
+        android:id="@+id/filter1"
+        android:layout_width="324dp"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar">
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="100dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/some_id1"
+                android:layout_width="57dp"
+                android:layout_height="24dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4sp"
+                android:text="사진추가"
+                android:textAppearance="@style/some_id"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ellipse_97"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="11dp"
+                android:layout_toRightOf="@id/some_id1"
+                android:src="@drawable/ellipse_97" />
+
+            <TextView
+                android:id="@+id/some_id"
+                android:layout_width="34dp"
+                android:layout_height="21dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="1.3dp"
+                android:layout_toRightOf="@id/ellipse_97"
+                android:gravity="center"
+                android:lineSpacingExtra="4sp"
+                android:text="0 / 10"
+                android:textColor="#7C7C7C"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_upload">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:src="@drawable/ic_image" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/thin_line"
+        app:layout_constraintTop_toBottomOf="@+id/filter1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/filter2"
+        android:layout_width="324dp"
+        android:layout_height="134dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter1"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/some_id2"
+            android:layout_width="324dp"
+            android:layout_height="24dp"
+            android:text="간단소개"
+            android:textAppearance="@style/some_id"
+            android:textColor="#1A1A1A"
+            android:lineSpacingExtra="4sp"
+            android:translationY="-2.02sp"
+            android:gravity="top"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/some_id2"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/contents"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/ex_1_"
+                android:layout_width="300dp"
+                android:layout_height="21dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="top"
+                android:lineSpacingExtra="4sp"
+                android:text="@string/ex_1_"
+                android:textAppearance="@style/ex_1_"
+                android:textStyle="bold"
+                android:translationY="-1.76sp"
+                android:textColor="#5A5A5A"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/thin_line"
+        app:layout_constraintTop_toBottomOf="@+id/filter2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/filter3"
+        android:layout_width="324dp"
+        android:layout_height="226dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filter2">
+
+        <TextView
+            android:id="@+id/some_id3"
+            android:layout_width="324dp"
+            android:layout_height="24dp"
+            android:text="상세설명"
+            android:textAppearance="@style/some_id"
+            android:textColor="#1A1A1A"
+            android:lineSpacingExtra="4sp"
+            android:translationY="-2.02sp"
+            android:gravity="top"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/some_id3"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/contents2"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/ex_2_"
+                android:layout_width="300dp"
+                android:layout_height="21dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="top"
+                android:lineSpacingExtra="4sp"
+                android:text="설명을 입력해 주세요"
+                android:textAppearance="@style/ex_1_"
+                android:textStyle="bold"
+                android:translationY="-1.76sp"
+                android:textColor="#5A5A5A"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frame_10000_background"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:background="@drawable/frame_10000_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="12dp"
+            android:background="#00FFFFFF"
+            android:contentDescription="Register Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/frame_10000_background"
+            app:srcCompat="@drawable/btn_next_di" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
