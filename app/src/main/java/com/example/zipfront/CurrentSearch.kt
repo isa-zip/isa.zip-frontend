@@ -1,3 +1,3 @@
 package com.example.zipfront
 
-class current_search(val location: String)
+class CurrentSearch(val location: String, val delete: Int)

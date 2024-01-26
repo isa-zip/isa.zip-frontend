@@ -9,13 +9,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class MessageBottomsheetDialogFragment : BottomSheetDialogFragment() {
+class CallBottomsheetDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.messagebottomsheetdialog, container, false)
+        return inflater.inflate(R.layout.callbottomsheetdialog, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -24,7 +24,7 @@ class MessageBottomsheetDialogFragment : BottomSheetDialogFragment() {
         val button: Button = view.findViewById(R.id.phone_number_btn)
         button.setOnClickListener() {
             requireContext()!!.startActivity(
-                Intent(Intent.ACTION_VIEW, Uri.parse("smsto:${button.text}"))
+                Intent(Intent.ACTION_DIAL, Uri.parse("tel:${button.text}"))
             )
         }
     }
