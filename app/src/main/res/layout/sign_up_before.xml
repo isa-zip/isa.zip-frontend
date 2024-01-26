@@ -39,4 +39,225 @@
         app:layout_constraintTop_toTopOf="@+id/textView9"
         app:srcCompat="@drawable/ic_left2" />
 
+    <TextView
+        android:id="@+id/zip_"
+        android:layout_width="324dp"
+        android:layout_height="54dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="top"
+        android:lineHeight="27dp"
+        android:lineSpacingExtra="5sp"
+        android:text="이사.zip 서비스의\n이용약관에 동의해주세요. "
+        android:textColor="#1A1A1A"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:translationY="-2.27sp"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/list1"
+        android:layout_width="324dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="86dp"
+        app:layout_constraintStart_toStartOf="@+id/zip_"
+        app:layout_constraintTop_toBottomOf="@+id/zip_">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/check_gray" />
+
+        <TextView
+            android:id="@+id/some_id"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@+id/imageButton"
+            android:layout_marginStart="8dp"
+            android:gravity="start|center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:text="네, 모두 동의하겠습니다."
+            android:textStyle="bold"
+            android:translationY="-2.02sp" />
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line"
+        android:layout_width="324dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/thin_line"
+        app:layout_constraintEnd_toEndOf="@+id/list1"
+        app:layout_constraintStart_toStartOf="@+id/list1"
+        app:layout_constraintTop_toBottomOf="@+id/list1" />
+
+    <RelativeLayout
+        android:id="@+id/list2"
+        android:layout_width="324dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/zip_"
+        app:layout_constraintTop_toBottomOf="@+id/line">
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/check_gray" />
+
+        <TextView
+            android:id="@+id/some_id2"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@+id/imageButton2"
+            android:layout_marginStart="8dp"
+            android:gravity="start|center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:textStyle="bold"
+            android:text="[필수] 만 14세 이상입니다."
+            android:translationY="-2.02sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/list3"
+        android:layout_width="324dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/zip_"
+        app:layout_constraintTop_toBottomOf="@+id/list2">
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/check_gray" />
+
+        <TextView
+            android:id="@+id/some_id3"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@+id/imageButton3"
+            android:layout_marginStart="8dp"
+            android:gravity="start|center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:textStyle="bold"
+            android:text="[필수] 이사.zip 서비스 이용약관 동의"
+            android:translationY="-2.02sp" />
+
+        <ImageView
+            android:id="@+id/image_right"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toEndOf="@+id/some_id3"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@drawable/ic_right" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/list4"
+        android:layout_width="324dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/zip_"
+        app:layout_constraintTop_toBottomOf="@+id/list3">
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/check_gray" />
+
+        <TextView
+            android:id="@+id/some_id4"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@+id/imageButton4"
+            android:layout_marginStart="8dp"
+            android:gravity="start|center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:textStyle="bold"
+            android:text="[필수] 개인정보 수집 및 이용 동의"
+            android:translationY="-2.02sp" />
+
+        <ImageView
+            android:id="@+id/image_right2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toEndOf="@+id/some_id4"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@drawable/ic_right" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/list5"
+        android:layout_width="324dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/zip_"
+        app:layout_constraintTop_toBottomOf="@+id/list4">
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/check_gray" />
+
+        <TextView
+            android:id="@+id/some_id5"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_toEndOf="@+id/imageButton5"
+            android:layout_marginStart="8dp"
+            android:gravity="start|center_vertical"
+            android:lineSpacingExtra="4sp"
+            android:textStyle="bold"
+            android:text="[선택] 마케팅 정보 수신에 대한 동의"
+            android:translationY="-2.02sp" />
+
+        <ImageView
+            android:id="@+id/image_right3"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_toEndOf="@+id/some_id5"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@drawable/ic_right" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/some_id6"
+        android:layout_width="305dp"
+        android:layout_height="42dp"
+        android:text="만 14세 이상 회원 가입 가능합니다.\n해당 내용은 이용약관 및 정책에서도 확인이 가능합니다."
+        android:lineSpacingExtra="4sp"
+        android:translationY="-1.76sp"
+        android:gravity="top"
+        android:textColor="#5A5A5A"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/zip_"
+        app:layout_constraintTop_toBottomOf="@+id/list5"/>
+    <!--이용약관 및 정책은 #2FACEB 이 색깔-->
+
+    <ImageButton
+        android:id="@+id/imageButton1_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="Register Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/btn_choice" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
