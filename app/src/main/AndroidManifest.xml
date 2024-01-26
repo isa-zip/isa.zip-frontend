@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -16,14 +15,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ZIPfront"
-        tools:targetApi="31"
-        android:usesCleartextTraffic = "true" >
-      
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".IsaScheduleActivity"
+            android:exported="false">
+        </activity>
+
         <activity
             android:name=".ScheduleActivity"
             android:exported="false"
             android:label="@string/title_activity_schedule" />
-
         <activity
             android:name=".Search"
             android:exported="false" />
@@ -43,10 +46,9 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="tvvyxke9zj" />
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="026a7ddd525715ea8e569994eaa0170d"/>
+            android:value="026a7ddd525715ea8e569994eaa0170d" />
 
         <activity
             android:name=".MatchingActivity"
@@ -56,17 +58,16 @@
             android:exported="false" />
         <activity
             android:name=".MatchingSecondOptionActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MatchingSecondUploadActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".SearchLocationActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".PropertyInfoActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
     </application>
 
 </manifest>
