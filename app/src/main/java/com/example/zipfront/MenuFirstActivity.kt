@@ -25,5 +25,9 @@ class MenuFirstActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.imageView10.setOnClickListener {
+            finish()
+        }
+
     }
 }

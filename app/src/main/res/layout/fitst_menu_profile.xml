@@ -163,13 +163,13 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/anotherprofileroudradius"
         android:gravity="center|start"
+        android:inputType="textPassword"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:fontFamily="@font/suit_semibold"
         android:text="123456"
         android:textColor="@color/Gray900"
         android:textSize="12dp"
-        android:drawableEnd="@drawable/eye_off"
         app:layout_constraintStart_toStartOf="@+id/profiletext3"
         app:layout_constraintTop_toBottomOf="@+id/profiletext3" />
 
@@ -179,9 +179,9 @@
         android:layout_height="34dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/anotherprofileroudradius"
-        android:drawableEnd="@drawable/eye_off"
         android:fontFamily="@font/suit_semibold"
         android:gravity="center|start"
+        android:inputType="textPassword"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:hint="비밀번호 확인"
@@ -217,5 +217,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/textPassword"
+        app:layout_constraintTop_toTopOf="@+id/textPassword"
+        app:srcCompat="@drawable/eye_off" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textPasswordcheck"
+        app:layout_constraintEnd_toEndOf="@+id/textPasswordcheck"
+        app:layout_constraintTop_toTopOf="@+id/textPasswordcheck"
+        app:srcCompat="@drawable/eye_off" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

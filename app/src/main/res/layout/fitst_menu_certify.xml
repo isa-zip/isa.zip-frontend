@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:fontFamily="@font/suit_medium"
-            android:text="프로필 수정"
+            android:text="공인중개사 인증"
             android:textSize="18dp"
             android:textColor="@color/Gray900"
             app:layout_constraintEnd_toEndOf="parent"

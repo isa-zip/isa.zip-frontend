@@ -33,6 +33,9 @@ class MenuCertifyActivity : AppCompatActivity() {
         binding.button3.setOnClickListener {
             showCustomDialog()
         }
+        binding.imageView10.setOnClickListener {
+            finish()
+        }
 //        binding.imageupload.setOnClickListener {
 //            openGallery()
 //        }
