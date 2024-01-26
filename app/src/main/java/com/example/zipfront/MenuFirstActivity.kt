@@ -3,9 +3,7 @@ package com.example.zipfront
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.zipfront.databinding.ActivityMainBinding
 import com.example.zipfront.databinding.FitstMenuLayoutBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MenuFirstActivity : AppCompatActivity() {
     lateinit var binding: FitstMenuLayoutBinding
