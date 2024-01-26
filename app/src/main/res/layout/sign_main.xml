@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_x"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17.77dp"
+        android:layout_marginTop="19.13dp"
+        android:background="@drawable/ic_x"
+        android:clipToOutline="true"
+        app:layout_constraintStart_toStartOf="@+id/search_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/search_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/tip"
+        android:layout_width="116dp"
+        android:layout_height="116dp"
+        android:layout_marginTop="80dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/group" />
+
+        <TextView
+            android:id="@+id/zip"
+            android:layout_width="107.2dp"
+            android:layout_height="26.4dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="87.99dp"
+            android:background="@drawable/___zip_blue"
+            android:gravity="top" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/some_id"
+        android:layout_width="324dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="44dp"
+        android:gravity="center_horizontal|top"
+        android:lineHeight="27sp"
+        android:lineSpacingExtra="5sp"
+        android:text="로그인 하시고\n다양한 서비스를 이용하세요."
+        android:textColor="#1A1A1A"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:translationY="-2.27sp"
+        app:layout_constraintTop_toBottomOf="@+id/tip"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="43dp" />
+
+    <!--<ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_login_kakao"
+        app:layout_constraintEnd_toEndOf="@+id/some_id"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/some_id"
+        app:layout_constraintTop_toBottomOf="@+id/some_id">
+
+    </ImageButton>-->
+
+    <ImageButton
+        android:id="@+id/login_kakao"
+        android:layout_width="324dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_login_kakao"
+        app:layout_constraintEnd_toEndOf="@+id/some_id"
+        app:layout_constraintStart_toStartOf="@+id/some_id"
+        app:layout_constraintTop_toBottomOf="@+id/some_id" />
+<!--
+    android:drawableLeft="@drawable/kakao_login_large_wide"
+-->
+    <ImageButton
+        android:id="@+id/login_email"
+        android:layout_width="324dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/btn_login_email"
+        app:layout_constraintEnd_toEndOf="@+id/login_kakao"
+        app:layout_constraintStart_toStartOf="@+id/login_kakao"
+        app:layout_constraintTop_toBottomOf="@+id/login_kakao" />
+
+    <RelativeLayout
+        android:id="@+id/frame_10000"
+        android:layout_width="235dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_email">
+
+        <TextView
+            android:layout_width="118dp"
+            android:layout_height="18dp"
+            android:text="아직 회원이 아니신가요?"
+            android:textSize="12sp"
+            android:textColor="@color/black"
+            android:lineHeight="18sp"
+            android:lineSpacingExtra="3sp"
+            android:translationY="-1.51sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="88dp"
+            android:layout_height="18dp"
+            android:layout_toLeftOf="@id/image_button"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="2dp"
+            android:lineHeight="18sp"
+            android:lineSpacingExtra="3sp"
+            android:text="이메일로 가입하기"
+            android:textColor="#2FACEB"
+            android:textSize="12sp"
+            android:translationY="-1.51sp"
+            android:gravity="start|center_vertical"/>
+
+        <ImageButton
+            android:id="@+id/image_button"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_right_blue" />
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

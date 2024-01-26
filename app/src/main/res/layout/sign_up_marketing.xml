@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="마케팅 정보 수신에 대한 동의(선택)"
+        android:textSize="18dp"
+        android:textColor="@color/Gray900"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="18dp" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_left2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar">
+
+        <RelativeLayout
+            android:id="@+id/some_id"
+            android:layout_width="109dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/some_id1_1">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="72dp"
+                android:layout_height="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="17.5dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="수집·이용 항목"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id2"
+            android:layout_width="109dp"
+            android:layout_height="78dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_white"
+            app:layout_constraintStart_toStartOf="@+id/some_id"
+            app:layout_constraintTop_toBottomOf="@+id/some_id">
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="64dp"
+                android:layout_height="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="23dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="휴대전화번호"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id3"
+            android:layout_width="109dp"
+            android:layout_height="78dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_white"
+            app:layout_constraintStart_toStartOf="@+id/some_id2"
+            app:layout_constraintTop_toBottomOf="@+id/some_id2">
+
+            <TextView
+                android:id="@+id/text3"
+                android:layout_width="56dp"
+                android:layout_height="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="25.5dp"
+                android:layout_marginTop="30dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="이메일 주소"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id1_1"
+            android:layout_width="109dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_gray"
+            android:paddingStart="10dp"
+            android:paddingTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/some_id"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text1_1"
+                android:layout_width="72dp"
+                android:layout_height="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="17.5dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="수집·이용 목적"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id1_2"
+            android:layout_width="109dp"
+            android:layout_height="78dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_white"
+            app:layout_constraintStart_toStartOf="@+id/some_id1_1"
+            app:layout_constraintTop_toBottomOf="@+id/some_id1_1">
+
+            <TextView
+                android:id="@+id/text1_2"
+                android:layout_width="91dp"
+                android:layout_height="54dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8.5dp"
+                android:layout_marginTop="12dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="회원의 SMS을\n이용하여 이벤트 및\n혜택 정보 안내"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id1_3"
+            android:layout_width="109dp"
+            android:layout_height="78dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_white"
+            app:layout_constraintStart_toEndOf="@+id/some_id3"
+            app:layout_constraintTop_toBottomOf="@+id/some_id1_2">
+
+            <TextView
+                android:id="@+id/text1_3"
+                android:layout_width="91dp"
+                android:layout_height="54dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="8.5dp"
+                android:layout_marginTop="12dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="회원의 이메일을\n이용하여 이벤트 및\n혜택 정보 안내"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id2_1"
+            android:layout_width="108dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_gray"
+            app:layout_constraintStart_toEndOf="@+id/some_id1_1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text2_1"
+                android:layout_width="43dp"
+                android:layout_height="18dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="33dp"
+                android:layout_marginTop="11dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="보유기간"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/some_id2_2"
+            android:layout_width="108dp"
+            android:layout_height="155dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/square_white"
+            app:layout_constraintStart_toStartOf="@+id/some_id2_1"
+            app:layout_constraintTop_toBottomOf="@+id/some_id2_1">
+
+            <TextView
+                android:id="@+id/text2_2"
+                android:layout_width="80dp"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="59.5dp"
+                android:layout_marginEnd="13.5dp"
+                android:gravity="top"
+                android:lineHeight="18sp"
+                android:lineSpacingExtra="3sp"
+                android:text="회원탈퇴 및 동의\n철회 시 까지"
+                android:textColor="#373737"
+                android:textSize="12sp"
+                android:translationY="-1.51sp" />
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/some_id6"
+        android:layout_width="324dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/suit_variable"
+        android:gravity="top"
+        android:lineHeight="21sp"
+        android:lineSpacingExtra="4sp"
+        android:text="본 동의를 거부하실 수 있습니다. 다만 거부 시 동의를 통해 제공 가능한 이벤트 및 혜택 정보, 신규매물, 분양정보등의 안내를 받아 보실 수 없습니다."
+        android:textColor="#5A5A5A"
+        android:textSize="14sp"
+        android:translationY="-1.76sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/a"
+        app:layout_constraintTop_toBottomOf="@+id/a" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
