@@ -1,6 +1,7 @@
 package com.example.zipfront
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -23,18 +25,19 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zipfront.databinding.ActivitySearchlocationBinding
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 
 class SearchLocationActivity :AppCompatActivity(), OnItemClick{
     lateinit var binding : ActivitySearchlocationBinding
     private val gson = Gson()
 
+    private lateinit var mPrefs : SharedPreferences
+    private lateinit var mEditPrefs: SharedPreferences.Editor
+
     //최근 검색기록
-    private var searchLocationList = arrayListOf<CurrentSearch>(
-    CurrentSearch("테스트1", R.drawable.plus_circle),
-    CurrentSearch("테스트2", R.drawable.plus_circle),
-    CurrentSearch("테스트3", R.drawable.plus_circle)
-    )
+    private var searchLocationList = ArrayList<CurrentSearch>()
+    private var stringPrefs : String? = null
 
 
 
@@ -44,11 +47,12 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
 
         setContentView(binding.root)
 
+        //searchLocationList 불러오기
+        loadList()
 
         //레이아웃 바꾸기
         changeLayout()
 
-        //searchLocationList = loadList()
 
         //자동으로 포커싱, 키보드 올리기
         binding.searchEt.requestFocus()
@@ -60,6 +64,7 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
         binding.searchEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //구현 필요시 구현
+                changeLayout()
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -116,10 +121,20 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
                     // UI 업데이트 코드
                     searchLocationList.removeAt(position)
                     (binding.currentSearchLv.adapter as CurrentSearchAdapter).notifyDataSetChanged()
-                    //saveList(searchLocationList)
+                    saveList(searchLocationList)
                 }
             }
 
+        }
+
+        // EditText 키보드 이벤트
+        binding.searchEt.setOnEditorActionListener { textView, actionId, _ ->
+            // 키보드에서 완료 버튼이 눌렸을 때 처리
+            if(actionId == EditorInfo.IME_ACTION_DONE){
+                searchLocationList.add(CurrentSearch(textView.text.toString(), R.drawable.plus_circle))
+                saveList(searchLocationList)
+            }
+            false // false로 해야 키패드가 닫힘
         }
 
 
@@ -128,18 +143,27 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
     //Shared Preferences
     // SharedPreferences에 데이터 저장하는 함수
 
-    private fun saveList(userList: ArrayList<CurrentSearch>) {
-        val json = gson.toJson(userList)
-        MyPref.prefs.setString("searchLocationList", json)
+    private fun saveList(locationList: ArrayList<CurrentSearch>) {
+        stringPrefs = GsonBuilder().create().toJson(
+            locationList,
+            object : TypeToken<ArrayList<CurrentSearch>>() {}.type
+        )
+        mEditPrefs.putString("searchLocationList", stringPrefs) // SharedPreferences에 push
+        mEditPrefs.apply() // SharedPreferences 적용
     }
 
-    private fun loadList(): ArrayList<CurrentSearch> {
-        val json = MyPref.prefs.getString("searchLocationList", "")
-        return if (json.isNullOrBlank()) {
-            ArrayList()
-        } else {
-            val type = object : TypeToken<ArrayList<CurrentSearch>>() {}.type
-            gson.fromJson(json, type)
+    private fun loadList() {
+
+        mPrefs = getSharedPreferences("pref_file", MODE_PRIVATE) // SharedPreferences 불러오기
+        mEditPrefs = mPrefs.edit() // SharedPreferences Edit 선언
+        stringPrefs = mPrefs.getString("searchLocationList", null)
+
+        // SharedPreferences 데이터가 있으면 String을 ArrayList로 변환
+        // fromJson → json 형태의 문자열을 명시한 객체로 변환(두번째 인자)
+        if(stringPrefs != null && stringPrefs != "[]") {
+            searchLocationList = GsonBuilder().create().fromJson(
+                stringPrefs, object : TypeToken<ArrayList<CurrentSearch>>() {}.type
+            )
         }
     }
 
