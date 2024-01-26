@@ -66,6 +66,15 @@
         <activity
             android:name=".PropertyInfoActivity"
             android:exported="false"/>
+        <activity
+            android:name=".MenuFirstActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MenuProfileActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MenuCertifyActivity"
+            android:exported="false"/>
 
     </application>
 
