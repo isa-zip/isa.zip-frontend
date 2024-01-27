@@ -16,6 +16,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 class FragmentHome: Fragment() {
     lateinit var binding: HomeFragmentBinding
     private lateinit var adapter: PoseAdapter
+    internal val matchingAdapter: MatchingAdapter by lazy {
+        MatchingAdapter(requireActivity())
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +29,8 @@ class FragmentHome: Fragment() {
 
         // RecyclerView에 사용할 아이템 리스트 생성
         val itemList = listOf("아이템 1", "아이템 2", "아이템 3")
+
+        val bottomSheetFragment = MatchingBottomsheetFragment(requireContext().applicationContext, matchingAdapter)
 
         // RecyclerView에 아이템 리스트 설정
         setupRecyclerView(itemList)
@@ -38,8 +43,7 @@ class FragmentHome: Fragment() {
         binding.viewPager.orientation= ViewPager2.ORIENTATION_HORIZONTAL
 
         binding.imageView6.setOnClickListener {
-            // Fragment에서 Activity로 이동
-            startActivity(Intent(requireContext(), MatchingActivity::class.java))
+            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
         }
 
         return binding.root

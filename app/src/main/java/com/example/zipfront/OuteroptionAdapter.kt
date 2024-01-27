@@ -23,7 +23,7 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val outerItem = outerItemList[position]
-        holder.bind(outerItem, holder.itemView.context)
+        holder.bind(outerItem, position, holder.itemView.context)
     }
 
     override fun getItemCount(): Int {
@@ -39,15 +39,16 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
         private val titletext5: TextView = itemView.findViewById(R.id.titletext5)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView2)
         private val imageView2: ImageView = itemView.findViewById(R.id.imageView16)
-        fun bind(outerItem: MatchingStillFragment.OuterItem, context: Context) {
+        fun bind(outerItem: MatchingStillFragment.OuterItem, position: Int, context: Context) {
             if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
                 // 내부 아이템이 없는 경우
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
-                textView2.text = outerItem.title
+                textView2.text = "${position + 1} ${outerItem.title}"
                 imageView2.setOnClickListener {
                     val intent = Intent(context, MatchingSecondOptionActivity::class.java)
                     intent.putExtra("title", outerItem.title)
+                    intent.putExtra("position", position)
                     context.startActivity(intent)
                     Log.d("MatchingSecondOption", "no inner")
                 }
@@ -62,11 +63,12 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
 
                 // titletext5에 아이템 개수 표시
                 titletext5.text = "${outerItem.getItemCount()}건"
-                textView.text = outerItem.title
+                textView.text = "${position + 1} ${outerItem.title}"
 
                 imageView.setOnClickListener {
                     val intent = Intent(context, MatchingSecondOptionActivity::class.java)
                     intent.putExtra("title", outerItem.title)
+                    intent.putExtra("position", position)
                     // You can put the list of items as a Serializable or Parcelable Extra
                     intent.putStringArrayListExtra("innerItems", ArrayList(outerItem.innerItemList))
                     context.startActivity(intent)

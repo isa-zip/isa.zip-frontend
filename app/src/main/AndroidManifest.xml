@@ -79,6 +79,13 @@
         <activity
             android:name=".MenuCertifyActivity"
             android:exported="false"/>
+        <activity
+            android:name=".MenuSecessionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".NewMatchinguploadActivity"
+            android:exported="false"/>
+
 
     </application>
 

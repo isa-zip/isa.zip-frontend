@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_medium"
             android:text="상도동"
             android:textSize="18dp"
             android:textColor="@color/Gray900"
@@ -62,7 +62,7 @@
                 android:text="매칭된 매물"
                 android:textColor="@color/Gray900"
                 android:textSize="14dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView16"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
                 android:text="0건"
                 android:textColor="@color/zipblue01"
                 android:textSize="14dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView22"
                 app:layout_constraintStart_toEndOf="@+id/imageView15"
                 app:layout_constraintTop_toTopOf="@+id/textView22" />

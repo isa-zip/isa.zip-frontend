@@ -1,11 +1,13 @@
 package com.example.zipfront
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
@@ -185,7 +187,7 @@ class MatchingOptionActivity: AppCompatActivity() {
     ) {
         if (!isChecked) {
             // 클릭 시 아이콘 추가
-            val icon = resources.getDrawable(R.drawable.plus_circle)
+            val icon = resources.getDrawable(R.drawable.plus_circle_blue)
             button.setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null)
 
             // 클릭 시 버튼의 넓이를 기존 넓이에서 16 추가
@@ -247,8 +249,9 @@ class MatchingOptionActivity: AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            // 확인 버튼을 눌렀을 때 수행할 동작
-            setResult(Activity.RESULT_OK)
+            val intent = Intent()
+            intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity!")
+            setResult(Activity.RESULT_OK, intent)
             finish()
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능

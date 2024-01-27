@@ -31,7 +31,10 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
         val innerItems = intent.getStringArrayListExtra("innerItems")
         if (innerItems.isNullOrEmpty()) {
             binding.optionRv.visibility = View.GONE
+            binding.notshwoingtext.visibility = View.VISIBLE
         } else {
+            binding.optionRv.visibility = View.VISIBLE
+            binding.notshwoingtext.visibility = View.GONE
             setupRecyclerView(innerItems)
         }
         binding.imageView10.setOnClickListener{

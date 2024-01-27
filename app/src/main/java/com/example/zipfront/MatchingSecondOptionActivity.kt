@@ -23,8 +23,10 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         binding = ActivityMatchingoptionselectBinding.inflate(layoutInflater)
 
         val title = intent.getStringExtra("title")
-        if (!title.isNullOrBlank()) {
-            binding.textView9.text = title
+        val position = intent.getIntExtra("position", -1)
+
+        if (!title.isNullOrBlank() && position != -1) {
+            binding.textView9.text =  "${position + 1} $title"
         }
 
         // innerItems를 받아서 RecyclerView 설정

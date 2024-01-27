@@ -23,6 +23,11 @@ class MenuFirstActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.arrowbutton5.setOnClickListener {
+            val intent = Intent(this, MenuSecessionActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.imageView10.setOnClickListener {
             finish()
         }
