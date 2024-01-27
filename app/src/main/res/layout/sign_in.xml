@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:textStyle="bold"
-        android:text="매물 추가"
+        android:text="이메일 로그인"
         android:textSize="18dp"
         android:textColor="@color/Gray900"
         app:layout_constraintEnd_toEndOf="parent"
@@ -347,7 +347,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/btn_sign_up_setting_gray" />
+            app:srcCompat="@drawable/btn_login" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

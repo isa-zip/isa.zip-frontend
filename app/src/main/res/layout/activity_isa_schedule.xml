@@ -140,55 +140,6 @@
             android:onClick="onRoundTab2WeekClicked"
             android:contentDescription="Round Tab 2 Week" />
 
-
-        <!--<ImageButton
-            android:id="@+id/roundtab3"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/roundtab_3"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/roundtab2"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/roundtab3"
-            android:src="@drawable/roundtab_2"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/roundtab1"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/roundtab2"
-            android:src="@drawable/roundtab_blue_1"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/roundtab_2week"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/roundtab1"
-            android:src="@drawable/roundtab_2week"
-            android:background="@android:color/transparent"/>-->
-
-        <!--<Button
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/tip2"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundtab_3"
-            android:text="3개월"/>-->
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -270,43 +221,58 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <!--매물 옵션 선택하기 바-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ffff"
         android:layout_width="match_parent"
         android:layout_height="338dp"
         android:background="@drawable/frame_10000_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="-53dp">
 
         <ImageView
+            android:id="@+id/line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/list3"/>
+            android:background="@drawable/vector_67"
+            app:layout_constraintEnd_toStartOf="@+id/option_rv"
+            app:layout_constraintTop_toTopOf="@+id/option_rv" />
 
-    </RelativeLayout>
-
-    <!--매물 옵션 선택하기 바-->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frame_10000_background"
-        android:layout_width="match_parent"
-        android:layout_height="92dp"
-        android:background="@drawable/frame_10000_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/imageButton5"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/option_rv"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="12dp"
-            android:background="#00FFFFFF"
-            android:contentDescription="Register Button"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/frame_10000_background"
-            app:srcCompat="@drawable/btn_registration_option" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/schedule_recyclerview" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frame_10000_background"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:background="@drawable/frame_10000_background"
+            app:layout_constraintBottom_toBottomOf="@+id/option_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="12dp"
+                android:background="#00FFFFFF"
+                android:contentDescription="Register Button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/frame_10000_background"
+                app:srcCompat="@drawable/btn_registration_option" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

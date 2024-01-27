@@ -56,6 +56,12 @@ class IsaScheduleActivity : AppCompatActivity() {
 
             // 계산된 날짜로 선택한 캘린더에 날짜 설정
             selectedCalendar = newCalendar_3
+
+            // 버튼 누르면 색 변경
+            roundtab_1_Button.setImageResource(R.drawable.roundtab_1)
+            roundtab_2_Button.setImageResource(R.drawable.roundtab_2)
+            roundtab_3_Button.setImageResource(R.drawable.roundtab_blue_3)
+            roundtab_2week_Button.setImageResource(R.drawable.roundtab_2week)
         }
 
         // 2개월(roundtab2) 버튼 참조
@@ -71,6 +77,12 @@ class IsaScheduleActivity : AppCompatActivity() {
 
             // 계산된 날짜로 선택한 캘린더에 날짜 설정
             selectedCalendar = newCalendar_2
+
+            // 버튼 누르면 색 변경
+            roundtab_1_Button.setImageResource(R.drawable.roundtab_1)
+            roundtab_2_Button.setImageResource(R.drawable.roundtab_blue_2)
+            roundtab_3_Button.setImageResource(R.drawable.roundtab_3)
+            roundtab_2week_Button.setImageResource(R.drawable.roundtab_2week)
         }
 
         // 1개월(roundtab1) 버튼 참조
@@ -86,6 +98,12 @@ class IsaScheduleActivity : AppCompatActivity() {
 
             // 계산된 날짜로 선택한 캘린더에 날짜 설정
             selectedCalendar = newCalendar_1
+
+            // 버튼 누르면 색 변경
+            roundtab_1_Button.setImageResource(R.drawable.roundtab_blue_1)
+            roundtab_2_Button.setImageResource(R.drawable.roundtab_2)
+            roundtab_3_Button.setImageResource(R.drawable.roundtab_3)
+            roundtab_2week_Button.setImageResource(R.drawable.roundtab_2week)
         }
 
         // 2주(roundtab_2week) 버튼 참조
@@ -101,7 +119,14 @@ class IsaScheduleActivity : AppCompatActivity() {
 
             // 계산된 날짜로 선택한 캘린더에 날짜 설정
             selectedCalendar = newCalendar_2week
+
+            // 버튼 누르면 색 변경
+            roundtab_1_Button.setImageResource(R.drawable.roundtab_1)
+            roundtab_2_Button.setImageResource(R.drawable.roundtab_2)
+            roundtab_3_Button.setImageResource(R.drawable.roundtab_3)
+            roundtab_2week_Button.setImageResource(R.drawable.roundtab_blue_2week)
         }
+
     }
 
     private fun setCalendarDate(selectedDate: String) {
