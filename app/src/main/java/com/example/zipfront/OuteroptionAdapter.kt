@@ -62,7 +62,7 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
                 innerRecyclerView.adapter = innerAdapter
 
                 // titletext5에 아이템 개수 표시
-                titletext5.text = "${outerItem.getItemCount()}건"
+                titletext5.text = "${outerItem.getItemCount()}개"
                 textView.text = "${position + 1} ${outerItem.title}"
 
                 imageView.setOnClickListener {

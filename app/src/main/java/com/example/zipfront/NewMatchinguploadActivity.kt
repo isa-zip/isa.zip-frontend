@@ -42,7 +42,7 @@ class NewMatchinguploadActivity : AppCompatActivity() {
         )
         setupRecyclerView(outeruploadItemList)
 
-        binding.textView20.text = "${outeruploadItemList.size}개"
+        binding.textView20.text = "${outeruploadItemList.size}건"
     }
 
     private fun setupRecyclerView(outerItemList: List<OuterUploadItem>) {

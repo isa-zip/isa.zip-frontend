@@ -38,7 +38,7 @@ class MatchingStillFragment : Fragment() {
         setupRecyclerView(outerItemList)
 
         // OuterItem의 개수를 textView20에 설정
-        binding.textView20.text = "${outerItemList.size}개"
+        binding.textView20.text = "${outerItemList.size}건"
 
         return binding.root
     }

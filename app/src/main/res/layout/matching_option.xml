@@ -27,7 +27,7 @@
                 android:text="방 종류"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,6 +40,7 @@
                 android:paddingEnd="8dp"
                 android:text="원룸"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/textView13"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -53,6 +54,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="투 쓰리룸"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton1"
@@ -67,6 +69,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="오피스텔"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton2"
@@ -81,6 +84,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="아파트"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton3"
@@ -96,6 +100,7 @@
             android:textStyle="bold"
             android:text="매물 요청 옵션"
             android:textSize="18dp"
+            android:fontFamily="@font/suit_bold"
             android:textColor="@color/Gray900"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +135,7 @@
                 android:text="거래유형"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,6 +147,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="전세"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/textView14"
@@ -156,6 +162,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="매매"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/tradeButton1"
@@ -170,6 +177,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="월세"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/tradeButton2"
@@ -408,7 +416,7 @@
                 android:text="방크기"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -433,6 +441,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="~5평"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -446,6 +455,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="10평대"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton5"
@@ -459,6 +469,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="20평대"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton6"
@@ -472,6 +483,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="30평대"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton7"
@@ -485,6 +497,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="40평대"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="@+id/myButton5"
@@ -499,6 +512,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="50평대"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton9"
@@ -513,6 +527,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="60평대~"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton10"
@@ -541,6 +556,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="~ 17㎡"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -554,6 +570,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="33~66㎡"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton43"
@@ -567,6 +584,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="66~99㎡"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton44"
@@ -579,6 +597,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="99~132㎡"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="@+id/myButton43"
@@ -593,6 +612,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="132~165㎡"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton46"
@@ -606,6 +626,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="165~198㎡"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="@+id/myButton46"
@@ -619,6 +640,7 @@
                     android:background="@drawable/button_roundcircle"
                     android:paddingEnd="8dp"
                     android:text="198㎡ ~"
+                    android:fontFamily="@font/suit_medium"
                     android:textColor="@color/Gray800"
                     android:textSize="12dp"
                     app:layout_constraintStart_toEndOf="@+id/myButton48"
@@ -646,7 +668,7 @@
                 android:text="층수"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -660,6 +682,7 @@
                 android:paddingEnd="8dp"
                 android:text="1층"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/title2"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
@@ -673,6 +696,7 @@
                 android:paddingEnd="8dp"
                 android:text="2층"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton13"
                 app:layout_constraintTop_toTopOf="@+id/myButton13" />
@@ -687,6 +711,7 @@
                 android:paddingEnd="8dp"
                 android:text="3층"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton14"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
@@ -702,6 +727,7 @@
                 android:text="4층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
+                android:fontFamily="@font/suit_medium"
                 app:layout_constraintStart_toEndOf="@+id/myButton15"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
 
@@ -714,6 +740,7 @@
                 android:paddingEnd="8dp"
                 android:text="5층"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton16"
                 app:layout_constraintTop_toTopOf="@+id/myButton16" />
@@ -727,6 +754,7 @@
                 android:paddingEnd="8dp"
                 android:text="6층"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/myButton13"
                 app:layout_constraintTop_toBottomOf="@+id/myButton13" />
@@ -740,6 +768,7 @@
                 android:paddingEnd="8dp"
                 android:text="7층 이상"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton18"
                 app:layout_constraintTop_toTopOf="@+id/myButton18" />
@@ -753,6 +782,7 @@
                 android:paddingEnd="8dp"
                 android:text="반지층"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton19"
                 app:layout_constraintTop_toTopOf="@+id/myButton19" />
@@ -766,6 +796,7 @@
                 android:paddingEnd="8dp"
                 android:text="옥탑방"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton20"
                 app:layout_constraintTop_toTopOf="@+id/myButton20" />
@@ -789,7 +820,7 @@
                 android:text="관리비"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -801,6 +832,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="전기세"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/title3"
@@ -816,6 +848,7 @@
                 android:paddingEnd="8dp"
                 android:text="가스비"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton22"
                 app:layout_constraintTop_toBottomOf="@+id/title3" />
@@ -829,6 +862,7 @@
                 android:background="@drawable/button_roundcircle"
                 android:paddingEnd="8dp"
                 android:text="인터넷"
+                android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton23"
@@ -843,6 +877,7 @@
                 android:paddingEnd="8dp"
                 android:text="주차여부"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/myButton22"
                 app:layout_constraintTop_toBottomOf="@+id/myButton22" />
@@ -856,6 +891,7 @@
                 android:paddingEnd="8dp"
                 android:text="수도세"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton25"
                 app:layout_constraintTop_toTopOf="@+id/myButton25" />
@@ -879,7 +915,7 @@
                 android:text="내부 시설"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -892,6 +928,7 @@
                 android:paddingEnd="8dp"
                 android:text="에어컨"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/title4"
                 app:layout_constraintTop_toBottomOf="@+id/title4" />
@@ -906,6 +943,7 @@
                 android:paddingEnd="8dp"
                 android:text="냉장고"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton33"
                 app:layout_constraintTop_toBottomOf="@+id/title4" />
@@ -920,6 +958,7 @@
                 android:paddingEnd="8dp"
                 android:text="세탁기"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton28"
                 app:layout_constraintTop_toBottomOf="@+id/title4" />
@@ -932,6 +971,7 @@
                 android:paddingEnd="8dp"
                 android:text="전자레인지"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/myButton27"
                 app:layout_constraintTop_toTopOf="@+id/myButton31" />
@@ -945,6 +985,7 @@
                 android:paddingEnd="8dp"
                 android:text="옷장"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton30"
                 app:layout_constraintTop_toTopOf="@+id/myButton32" />
@@ -959,6 +1000,7 @@
                 android:paddingEnd="8dp"
                 android:text="책상"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton31"
                 app:layout_constraintTop_toBottomOf="@+id/myButton27" />
@@ -972,6 +1014,7 @@
                 android:paddingEnd="8dp"
                 android:text="TV"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton27"
                 app:layout_constraintTop_toTopOf="@+id/myButton28" />
@@ -985,6 +1028,7 @@
                 android:paddingEnd="8dp"
                 android:text="침대"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton32"
                 app:layout_constraintTop_toTopOf="@+id/myButton32" />
@@ -1008,7 +1052,7 @@
                 android:text="사용승인일"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -1022,52 +1066,64 @@
                 app:layout_constraintStart_toStartOf="@+id/title5"
                 app:layout_constraintTop_toBottomOf="@+id/title5">
 
-                <RadioButton
+                <android.widget.RadioButton
                     android:id="@+id/radioButton_total"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:buttonTint="@color/zipblue01"
+                    android:button="@drawable/radiobutton_radiobutton01"
                     android:text="전체"
+                    android:paddingLeft="8dp"
+                    android:fontFamily="@font/suit_medium"
                     android:textSize="12dp" />
 
-                <RadioButton
+                <android.widget.RadioButton
                     android:id="@+id/radioButton_1"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:buttonTint="@color/zipblue01"
+                    android:button="@drawable/radiobutton_radiobutton01"
                     android:text="1년이내"
+                    android:paddingLeft="8dp"
+                    android:fontFamily="@font/suit_medium"
                     android:textSize="12dp" />
 
-                <RadioButton
+                <android.widget.RadioButton
                     android:id="@+id/radioButton_2"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:buttonTint="@color/zipblue01"
+                    android:button="@drawable/radiobutton_radiobutton01"
                     android:text="5년이내"
+                    android:paddingLeft="8dp"
+                    android:fontFamily="@font/suit_medium"
                     android:textSize="12dp" />
 
-                <RadioButton
+                <android.widget.RadioButton
                     android:id="@+id/radioButton_3"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:buttonTint="@color/zipblue01"
+                    android:button="@drawable/radiobutton_radiobutton01"
                     android:text="10년이내"
+                    android:paddingLeft="8dp"
+                    android:fontFamily="@font/suit_medium"
                     android:textSize="12dp" />
 
-                <RadioButton
+                <android.widget.RadioButton
                     android:id="@+id/radioButton_4"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:buttonTint="@color/zipblue01"
+                    android:button="@drawable/radiobutton_radiobutton01"
                     android:text="15년이내"
+                    android:paddingLeft="8dp"
+                    android:fontFamily="@font/suit_medium"
                     android:textSize="12dp" />
 
-                <RadioButton
+                <android.widget.RadioButton
                     android:id="@+id/radioButton_5"
                     android:layout_width="wrap_content"
                     android:layout_height="42dp"
-                    android:buttonTint="@color/zipblue01"
+                    android:button="@drawable/radiobutton_radiobutton01"
                     android:text="15년이상"
+                    android:paddingLeft="8dp"
+                    android:fontFamily="@font/suit_medium"
                     android:textSize="12dp" />
             </RadioGroup>
 
@@ -1091,7 +1147,7 @@
                 android:text="내부 시설"
                 android:textColor="@color/Gray900"
                 android:textSize="16dp"
-                android:textStyle="bold"
+                android:fontFamily="@font/suit_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -1104,6 +1160,7 @@
                 android:paddingEnd="8dp"
                 android:text="주차기능"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/title6"
                 app:layout_constraintTop_toBottomOf="@+id/title6" />
@@ -1118,6 +1175,7 @@
                 android:paddingEnd="8dp"
                 android:text="단기임대"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton35"
                 app:layout_constraintTop_toBottomOf="@+id/title6" />
@@ -1132,6 +1190,7 @@
                 android:paddingEnd="8dp"
                 android:text="풀옵션"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton36"
                 app:layout_constraintTop_toBottomOf="@+id/title6" />
@@ -1144,6 +1203,7 @@
                 android:paddingEnd="8dp"
                 android:text="엘리베이터"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/myButton35"
                 app:layout_constraintTop_toTopOf="@+id/myButton39" />
@@ -1158,6 +1218,7 @@
                 android:paddingEnd="8dp"
                 android:text="베란다"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton38"
                 app:layout_constraintTop_toBottomOf="@+id/myButton35" />
@@ -1172,6 +1233,7 @@
                 android:paddingEnd="8dp"
                 android:text="보안/안전시설"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton39"
                 app:layout_constraintTop_toBottomOf="@+id/myButton35" />
@@ -1185,6 +1247,7 @@
                 android:paddingEnd="8dp"
                 android:text="360°VR"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toStartOf="@+id/myButton38"
                 app:layout_constraintTop_toBottomOf="@+id/myButton38" />
@@ -1198,6 +1261,7 @@
                 android:paddingEnd="8dp"
                 android:text="비대면계약"
                 android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/myButton41"
                 app:layout_constraintTop_toTopOf="@+id/myButton41" />

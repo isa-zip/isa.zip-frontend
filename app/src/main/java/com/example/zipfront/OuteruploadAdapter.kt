@@ -51,7 +51,7 @@ class OuteruploadAdapter(private val outerItemList: List<NewMatchinguploadActivi
 //                innerRecyclerView.adapter = innerAdapter
 
                 // titletext5에 아이템 개수 표시
-                textView2.text = "${outerItem.getItemCount()}건"
+                textView2.text = "${outerItem.getItemCount()}개"
                 textView.text = outerItem.title
 
                 imageView.setOnClickListener {

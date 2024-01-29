@@ -105,42 +105,46 @@
             app:layout_constraintStart_toStartOf="@+id/textView53"
             app:layout_constraintTop_toBottomOf="@+id/textView53">
 
-            <RadioButton
+            <android.widget.RadioButton
                 android:id="@+id/radioButton_total"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
-                android:buttonTint="@color/zipblue01"
+                android:button="@drawable/radiobutton_radiobutton01"
                 android:text="더 이상 이용하지 않음"
+                android:paddingLeft="8dp"
                 android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp" />
 
-            <RadioButton
+            <android.widget.RadioButton
                 android:id="@+id/radioButton_1"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
-                android:buttonTint="@color/zipblue01"
+                android:button="@drawable/radiobutton_radiobutton01"
                 android:text="탈퇴 후 재가입"
+                android:paddingLeft="8dp"
                 android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp" />
 
-            <RadioButton
+            <android.widget.RadioButton
                 android:id="@+id/radioButton_2"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
-                android:buttonTint="@color/zipblue01"
+                android:button="@drawable/radiobutton_radiobutton01"
                 android:text="사용하기 불편함"
+                android:paddingLeft="8dp"
                 android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp" />
 
-            <RadioButton
+            <android.widget.RadioButton
                 android:id="@+id/radioButton_3"
                 android:layout_width="wrap_content"
                 android:layout_height="42dp"
-                android:buttonTint="@color/zipblue01"
+                android:button="@drawable/radiobutton_radiobutton01"
                 android:text="원하는 정보가 없음"
+                android:paddingLeft="8dp"
                 android:fontFamily="@font/suit_medium"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp" />

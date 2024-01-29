@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="0건"
+            android:text="0개"
             android:textStyle="bold"
             android:textColor="@color/zipblue01"
             android:textSize="14dp"
