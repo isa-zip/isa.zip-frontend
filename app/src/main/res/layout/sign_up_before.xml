@@ -20,6 +20,7 @@
         android:textStyle="bold"
         android:text="약관동의"
         android:textSize="18dp"
+        android:fontFamily="@font/suit_medium"
         android:textColor="@color/Gray900"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
         android:text="이사.zip 서비스의\n이용약관에 동의해주세요. "
         android:textColor="#1A1A1A"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/suit_bold"
         android:translationY="-2.27sp"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
@@ -79,6 +80,7 @@
             android:layout_marginStart="8dp"
             android:gravity="start|center_vertical"
             android:lineSpacingExtra="4sp"
+            android:fontFamily="@font/suit_bold"
             android:text="네, 모두 동의하겠습니다."
             android:textStyle="bold"
             android:translationY="-2.02sp" />
@@ -117,7 +119,7 @@
             android:layout_marginStart="8dp"
             android:gravity="start|center_vertical"
             android:lineSpacingExtra="4sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_bold"
             android:text="[필수] 만 14세 이상입니다."
             android:translationY="-2.02sp" />
 
@@ -145,7 +147,7 @@
             android:layout_marginStart="8dp"
             android:gravity="start|center_vertical"
             android:lineSpacingExtra="4sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_bold"
             android:text="[필수] 이사.zip 서비스 이용약관 동의"
             android:translationY="-2.02sp" />
 
@@ -182,7 +184,7 @@
             android:layout_marginStart="8dp"
             android:gravity="start|center_vertical"
             android:lineSpacingExtra="4sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_bold"
             android:text="[필수] 개인정보 수집 및 이용 동의"
             android:translationY="-2.02sp" />
 
@@ -220,7 +222,7 @@
             android:layout_marginStart="8dp"
             android:gravity="start|center_vertical"
             android:lineSpacingExtra="4sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_bold"
             android:text="[선택] 마케팅 정보 수신에 대한 동의"
             android:translationY="-2.02sp" />
 
@@ -237,17 +239,59 @@
 
     <TextView
         android:id="@+id/some_id6"
-        android:layout_width="305dp"
-        android:layout_height="42dp"
-        android:text="만 14세 이상 회원 가입 가능합니다.\n해당 내용은 이용약관 및 정책에서도 확인이 가능합니다."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="만 14세 이상 회원 가입 가능합니다."
         android:lineSpacingExtra="4sp"
         android:translationY="-1.76sp"
         android:gravity="top"
         android:textColor="#5A5A5A"
+        android:fontFamily="@font/suit_medium"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="@+id/zip_"
         app:layout_constraintTop_toBottomOf="@+id/list5"/>
-    <!--이용약관 및 정책은 #2FACEB 이 색깔-->
+
+    <TextView
+        android:id="@+id/some_id7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:lineSpacingExtra="4sp"
+        android:text="해당 내용은 "
+        android:fontFamily="@font/suit_medium"
+        android:layout_marginTop="10dp"
+        android:textColor="#5A5A5A"
+        android:translationY="-1.76sp"
+        app:layout_constraintStart_toStartOf="@+id/some_id6"
+        app:layout_constraintTop_toBottomOf="@+id/some_id6" />
+
+    <TextView
+        android:id="@+id/some_id8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:lineSpacingExtra="4sp"
+        android:text="이용약관 및 정책"
+        android:textColor="#2FACEB"
+        android:fontFamily="@font/suit_medium"
+        android:translationY="-1.76sp"
+        app:layout_constraintStart_toEndOf="@+id/some_id7"
+        app:layout_constraintTop_toBottomOf="@+id/some_id6" />
+
+    <TextView
+        android:id="@+id/some_id9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="top"
+        android:lineSpacingExtra="4sp"
+        android:text="에서도 확인이 가능합니다."
+        android:textColor="#5A5A5A"
+        android:fontFamily="@font/suit_medium"
+        android:translationY="-1.76sp"
+        app:layout_constraintStart_toEndOf="@+id/some_id8"
+        app:layout_constraintTop_toBottomOf="@+id/some_id6" />
 
     <ImageButton
         android:id="@+id/imageButton1_1"
