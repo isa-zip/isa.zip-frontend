@@ -2,12 +2,16 @@ package com.example.zipfront
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
+import android.text.SpannableStringBuilder
+import android.text.Spanned
 import android.text.TextWatcher
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,30 +19,49 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.databinding.ActivitySearchlocationBinding
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
 
-class SearchLocationActivity :AppCompatActivity(), OnItemClick{
-    lateinit var binding : ActivitySearchlocationBinding
+class SearchLocationActivity :AppCompatActivity(), OnItemClick {
+    lateinit var binding: ActivitySearchlocationBinding
     private val gson = Gson()
 
-    private lateinit var mPrefs : SharedPreferences
+    private lateinit var mPrefs: SharedPreferences
     private lateinit var mEditPrefs: SharedPreferences.Editor
 
     //최근 검색기록
     private var searchLocationList = ArrayList<CurrentSearch>()
-    private var stringPrefs : String? = null
+    private var stringPrefs: String? = null
 
+
+    //위치 검색 구현
+    private lateinit var retrofit: Retrofit
+    private lateinit var locationService: LocationService
+    private var locationList = mutableListOf<Location>()
+    private lateinit var locationAdapter: LocationAdapter
+
+    //현재 검색
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +79,8 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
 
         //자동으로 포커싱, 키보드 올리기
         binding.searchEt.requestFocus()
-        val inputMethodManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         WindowInsetsControllerCompat(window, window.decorView).show(WindowInsetsCompat.Type.ime())
 
 
@@ -74,13 +98,11 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
             }
 
             override fun afterTextChanged(s: Editable?) {
-                if (binding.searchEt.length() == 0){
+                if (binding.searchEt.length() == 0) {
                     changeLayout()
                 }
             }
         })
-
-
 
 
         //뒤로가기 버튼 구현
@@ -88,55 +110,47 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
             finish()
         }
 
-
-        //리사이클러뷰와 연결 - 동까지 뜨도록
-        val location1 = Location(id = 1, sido = "Seoul", sigun = "Gangnam", dongmyeon = "A-dong", li = "B-li")
-        val location2 = Location(id = 2, sido = "Busan", sigun = "Haeundae", dongmyeon = "C-dong", li = "D-li")
-
-        // ArrayList 생성 및 데이터 추가
-        val locationList: ArrayList<Location> = ArrayList()
-        locationList.add(location1)
-        locationList.add(location2)
-
-        binding.locationListRv.layoutManager = LinearLayoutManager(this)
-        binding.locationListRv.adapter = LocationAdapter(locationList, this)
-        binding.locationListRv.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
-
+        init()
 
 
         //최근 검색 기록 - 리스트뷰 이용
-
         val currentSearchAdapter = CurrentSearchAdapter(this, searchLocationList)
         binding.currentSearchLv.adapter = currentSearchAdapter
 
 
         //아이템 클릭시
-        binding.currentSearchLv.onItemClickListener = AdapterView.OnItemClickListener{ parent, view, position, id ->
-            val selectItem = parent.getItemAtPosition(position) as CurrentSearch
-            val imageView = view.findViewById<ImageView>(R.id.delete_iv)
+        binding.currentSearchLv.onItemClickListener =
+            AdapterView.OnItemClickListener { parent, view, position, id ->
+                val selectItem = parent.getItemAtPosition(position) as CurrentSearch
+                val imageView = view.findViewById<ImageView>(R.id.delete_iv)
 
-            val handler = Handler(Looper.getMainLooper())
-            imageView.setOnClickListener {
-                handler.post {
-                    // UI 업데이트 코드
-                    searchLocationList.removeAt(position)
-                    (binding.currentSearchLv.adapter as CurrentSearchAdapter).notifyDataSetChanged()
-                    saveList(searchLocationList)
+                val handler = Handler(Looper.getMainLooper())
+                imageView.setOnClickListener {
+                    handler.post {
+                        // UI 업데이트 코드
+                        searchLocationList.removeAt(position)
+                        (binding.currentSearchLv.adapter as CurrentSearchAdapter).notifyDataSetChanged()
+                        saveList(searchLocationList)
+                        changeLayout()
+                    }
                 }
-            }
 
-        }
+            }
 
         // EditText 키보드 이벤트
         binding.searchEt.setOnEditorActionListener { textView, actionId, _ ->
             // 키보드에서 완료 버튼이 눌렸을 때 처리
-            if(actionId == EditorInfo.IME_ACTION_DONE){
-                searchLocationList.add(CurrentSearch(textView.text.toString(), R.drawable.plus_circle))
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                searchLocationList.add(
+                    CurrentSearch(
+                        textView.text.toString(),
+                        R.drawable.plus_circle
+                    )
+                )
                 saveList(searchLocationList)
             }
             false // false로 해야 키패드가 닫힘
         }
-
 
 
     }
@@ -160,7 +174,7 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
 
         // SharedPreferences 데이터가 있으면 String을 ArrayList로 변환
         // fromJson → json 형태의 문자열을 명시한 객체로 변환(두번째 인자)
-        if(stringPrefs != null && stringPrefs != "[]") {
+        if (stringPrefs != null && stringPrefs != "[]") {
             searchLocationList = GsonBuilder().create().fromJson(
                 stringPrefs, object : TypeToken<ArrayList<CurrentSearch>>() {}.type
             )
@@ -172,14 +186,12 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
             binding.searchImageLayout.visibility = View.VISIBLE
             binding.currentSearchLayout.visibility = View.GONE
             binding.locationListRv.visibility = View.GONE
-        }
-        else {
+        } else {
             binding.searchImageLayout.visibility = View.GONE
             binding.currentSearchLayout.visibility = View.VISIBLE
             binding.locationListRv.visibility = View.GONE
         }
     }
-
 
 
     override fun onClick(locationId: Int) {
@@ -191,5 +203,135 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick{
             signUp(email, nick, password, locationId)
         }*/
     }
+
+
+    //위치 검색 구현
+    private fun init() {
+        //initRetrofit()
+        initSearch()
+        getAllLocation()
+        initRecyclerView()
+    }
+
+    private fun initRetrofit() {
+        retrofit = RetrofitClient.getInstance()
+        locationService = retrofit.create(LocationService::class.java)
+    }
+
+    private fun initSearch() {
+        val search = this.findViewById<EditText>(R.id.search_et)
+        search.addTextChangedListener(DynamicTextWatcher(
+            afterChanged = { s ->
+                val editTextValue = binding.searchEt.text.toString()
+                locationAdapter.setEditTextValue(editTextValue)
+                filter(s.toString())
+            }
+        ))
+    }
+
+    private fun initRecyclerView() {
+        val rvLocation = this.findViewById<RecyclerView>(R.id.location_list_rv)
+        locationAdapter = LocationAdapter(mutableListOf(), this)
+        rvLocation.adapter = locationAdapter
+    }
+
+    private fun getAllLocation() {
+        val id: Int
+        val sido: String
+        val sigun: String
+        val dongmyeon: String
+        val li: String
+        var line: String?
+        val doList: List<Int> = listOf(
+            R.raw.gangwondo,
+            R.raw.gyeonggido,
+            R.raw.gyeongsangnamdo,
+            R.raw.gyeongsangbukdo,
+            R.raw.gwangju,
+            R.raw.daegu,
+            R.raw.daejeon,
+            R.raw.busan,
+            R.raw.seoul,
+            R.raw.sejong,
+            R.raw.ulsan,
+            R.raw.incheon,
+            R.raw.jeollanamdo,
+            R.raw.jeollabukdo,
+            R.raw.jeju,
+            R.raw.chungcheongnamdo,
+            R.raw.chungcheongnamdo
+        )
+
+
+        try {
+            // assets 폴더에 있는 locations.txt 파일 열기
+            var inputStream: InputStream
+            var reader: BufferedReader
+
+
+            // 파일에서 한 줄씩 읽어와서 처리
+            for (doName in doList) {
+                inputStream = resources.openRawResource(doName)
+                reader = BufferedReader(InputStreamReader(inputStream))
+
+                line = reader.readLine()
+                var id = 1
+
+                while (line != null) {
+                    // "|"를 기준으로 분리
+                    val parts = line.split("|")
+
+                    // LocationItem 객체 생성
+                    val location = Location(
+                        id = id++,
+                        sido = parts.getOrNull(0) ?: "",
+                        sigun = parts.getOrNull(1) ?: "",
+                        dongmyeon = parts.getOrNull(2) ?: "",
+                        li = parts.getOrNull(3) ?: ""
+                    )
+
+                    locationList.add(location)
+                    line = reader.readLine()
+                }
+
+                // 파일 닫기
+                reader.close()
+                inputStream.close()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    // 지역 검색 filter
+    private fun filter(keyword: String) {
+        var filteredList = mutableListOf<Location>()
+        Log.d("filter()", keyword + "/" + locationList.size.toString())
+
+        val view: View = layoutInflater.inflate(R.layout.item_location, null)
+        val textView: TextView = view.findViewById(R.id.location_tv)
+
+        if (keyword.isNotBlank()) {
+            for (location in locationList) {
+                // 일치하는 부분이 있으면
+                if (location.sido.contains(keyword) || location.sigun.contains(keyword) || location.dongmyeon.contains(
+                        keyword
+                    ) || location.li.contains(keyword) || (location.sido + location.sigun + location.dongmyeon + location.li).contains(
+                        keyword
+                    ) || (location.sido + " " + location.sigun + " " + location.dongmyeon + " " + location.li).contains(
+                        keyword
+                    )
+                ) {
+                    filteredList.add(location)
+                }
+            }
+        }
+
+        locationAdapter.filterList(filteredList)
+
+
+    }
+
+
 
 }

@@ -79,6 +79,13 @@
         <activity
             android:name=".MenuCertifyActivity"
             android:exported="false"/>
+        <activity
+            android:name=".OptionActivity"
+            android:exported="false"/>
+        <activity
+        android:name=".MenuManagementActivity"
+        android:exported="false"/>
+
 
     </application>
 

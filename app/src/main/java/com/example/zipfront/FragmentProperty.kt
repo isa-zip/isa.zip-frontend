@@ -43,6 +43,12 @@ class FragmentProperty: Fragment() {
 
         }
 
+        //필터적용
+        binding.filterImage.setOnClickListener {
+            val intent = Intent(requireContext(), OptionActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
 
@@ -74,9 +80,6 @@ class FragmentProperty: Fragment() {
         binding.propertyRv.layoutManager = LinearLayoutManager(requireContext())
         binding.propertyRv.adapter = PropertyAdapter(list)
         binding.propertyRv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
-
-        //리사이클러뷰 아이템 클릭시
-        var propertyAdapter = PropertyAdapter(list)
 
 
         //터치 이벤트 처리
