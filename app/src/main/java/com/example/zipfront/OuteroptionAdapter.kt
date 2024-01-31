@@ -39,6 +39,7 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
         private val titletext5: TextView = itemView.findViewById(R.id.titletext5)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView2)
         private val imageView2: ImageView = itemView.findViewById(R.id.imageView16)
+
         fun bind(outerItem: MatchingStillFragment.OuterItem, position: Int, context: Context) {
             if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
                 // 내부 아이템이 없는 경우

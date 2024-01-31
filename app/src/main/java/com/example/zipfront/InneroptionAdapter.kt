@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,15 @@ class InneroptionAdapter(private val itemList: List<String>) : RecyclerView.Adap
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textView: TextView = itemView.findViewById(R.id.textView7)
 
+        init {
+            // 아이템 전체에 대한 클릭 리스너 설정
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, ZItmeInfoActivity1::class.java)
+
+                // ZItemInfoActivity1로 이동
+                itemView.context.startActivity(intent)
+            }
+        }
         fun bind(item: String) {
             textView.text = item
         }

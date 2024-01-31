@@ -85,6 +85,12 @@
         <activity
             android:name=".NewMatchinguploadActivity"
             android:exported="false"/>
+        <activity
+            android:name=".ZItmeInfoActivity1"
+            android:exported="false"/>
+        <activity
+            android:name=".ZItmeInfoActivity2"
+            android:exported="false"/>
 
 
     </application>
