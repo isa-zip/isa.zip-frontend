@@ -11,9 +11,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
-        maven {
-            url 'https://naver.jfrog.io/artifactory/maven/'
-        }
+        
+        maven { url 'https://devrepo.kakao.com/nexus/repository/kakaomap-releases/' }
+
     }
 }
 rootProject.name = "ZIPfront"

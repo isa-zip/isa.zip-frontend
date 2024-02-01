@@ -15,8 +15,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -24,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.databinding.PropertyFragmentBinding
+import net.daum.mf.map.api.MapView
 
 class FragmentProperty: Fragment() {
     lateinit var binding: PropertyFragmentBinding
@@ -36,11 +35,20 @@ class FragmentProperty: Fragment() {
     ): View? {
         binding = PropertyFragmentBinding.inflate(inflater, container, false)
 
+
+
+
         //지도 검색했을 때 검색 액티비티로 넘어가도록
         binding.searchImage.setOnClickListener {
             val intent = Intent(requireContext(), SearchLocationActivity::class.java)
             startActivity(intent)
 
+        }
+
+        //필터적용
+        binding.filterImage.setOnClickListener {
+            val intent = Intent(requireContext(), OptionActivity::class.java)
+            startActivity(intent)
         }
 
 
@@ -74,9 +82,6 @@ class FragmentProperty: Fragment() {
         binding.propertyRv.layoutManager = LinearLayoutManager(requireContext())
         binding.propertyRv.adapter = PropertyAdapter(list)
         binding.propertyRv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
-
-        //리사이클러뷰 아이템 클릭시
-        var propertyAdapter = PropertyAdapter(list)
 
 
         //터치 이벤트 처리
