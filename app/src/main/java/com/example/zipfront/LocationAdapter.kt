@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.content.Intent
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
@@ -10,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.SearchLocationActivity
@@ -35,23 +37,28 @@ class LocationAdapter(private var locationSet: List<Location>, private var onIte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.location.text = "${locationSet[position].sido} ${locationSet[position].sigun} ${locationSet[position].dongmyeon} ${locationSet[position].li}"
 
-
+        //글씨 색 변경
         val spannableString = SpannableString(holder.location.text)
-
         Log.d("글씨", editTextValue)
-
         // 중간 글자의 시작 위치
         val start = holder.location.text.indexOf(editTextValue, ignoreCase = true)
         // 중간 글자의 끝 위치
         val end = start + editTextValue.length
-
         // ForegroundColorSpan을 사용하여 특정 범위의 글자 색상 변경
         val colorSpan = ForegroundColorSpan(ContextCompat.getColor(holder.itemView.context, R.color.zipblue01))
         spannableString.setSpan(colorSpan, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-
         // SpannableString을 텍스트뷰에 설정
         holder.location.text = spannableString
 
+
+        //아이템 클릭시
+        val listener = View.OnClickListener { it ->
+            Toast.makeText(it.context, "Clicked -> ID : ${holder.location.text}", Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView?.context, SearchMapActivity::class.java)
+            intent.putExtra("location", holder.location.text.toString())
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
+        }
+        holder.itemView.setOnClickListener(listener)
     }
 
     override fun getItemCount(): Int = locationSet.size
@@ -64,7 +71,9 @@ class LocationAdapter(private var locationSet: List<Location>, private var onIte
     }
 
     private fun <T: RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
-        itemView.setOnClickListener { event.invoke(adapterPosition, itemViewType) }
+        itemView.setOnClickListener {
+            event.invoke(adapterPosition, itemViewType)
+        }
         return this
     }
 

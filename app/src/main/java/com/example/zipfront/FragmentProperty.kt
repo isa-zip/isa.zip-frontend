@@ -15,8 +15,6 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -24,6 +22,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.databinding.PropertyFragmentBinding
+import net.daum.mf.map.api.MapView
 
 class FragmentProperty: Fragment() {
     lateinit var binding: PropertyFragmentBinding
@@ -35,6 +34,9 @@ class FragmentProperty: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = PropertyFragmentBinding.inflate(inflater, container, false)
+
+
+
 
         //지도 검색했을 때 검색 액티비티로 넘어가도록
         binding.searchImage.setOnClickListener {

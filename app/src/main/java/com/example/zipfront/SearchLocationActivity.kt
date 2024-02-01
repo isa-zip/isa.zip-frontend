@@ -95,6 +95,7 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
                 binding.searchImageLayout.visibility = View.GONE
                 binding.currentSearchLayout.visibility = View.GONE
                 binding.locationListRv.visibility = View.VISIBLE
+                binding.deleteSearchIv.visibility = View.VISIBLE
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -136,6 +137,13 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
                 }
 
             }
+
+        //검색중인 지역 x 버튼 누를때 처리
+        binding.deleteSearchIv.setOnClickListener {
+            binding.searchEt.text.clear()
+            changeLayout()
+        }
+
 
         // EditText 키보드 이벤트
         binding.searchEt.setOnEditorActionListener { textView, actionId, _ ->
@@ -186,10 +194,12 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
             binding.searchImageLayout.visibility = View.VISIBLE
             binding.currentSearchLayout.visibility = View.GONE
             binding.locationListRv.visibility = View.GONE
+            binding.deleteSearchIv.visibility = View.GONE
         } else {
             binding.searchImageLayout.visibility = View.GONE
             binding.currentSearchLayout.visibility = View.VISIBLE
             binding.locationListRv.visibility = View.GONE
+            binding.deleteSearchIv.visibility = View.GONE
         }
     }
 
@@ -330,6 +340,11 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
         locationAdapter.filterList(filteredList)
 
 
+    }
+
+    fun clearEt() {
+        binding.searchEt.text.clear()
+        changeLayout()
     }
 
 
