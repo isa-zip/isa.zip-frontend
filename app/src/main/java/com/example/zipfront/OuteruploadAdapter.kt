@@ -13,7 +13,7 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class OuteruploadAdapter(private val outerItemList: List<MatchingStillUploadFragment.OuterUploadItem>) : RecyclerView.Adapter<OuteruploadAdapter.ViewHolder>() {
+class OuteruploadAdapter(private val outerItemList: List<NewMatchinguploadActivity.OuterUploadItem>) : RecyclerView.Adapter<OuteruploadAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -34,7 +34,7 @@ class OuteruploadAdapter(private val outerItemList: List<MatchingStillUploadFrag
         private val textView: TextView = itemView.findViewById(R.id.textView22)
         private val textView2: TextView = itemView.findViewById(R.id.textView23)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView16)
-        fun bind(outerItem: MatchingStillUploadFragment.OuterUploadItem, context: Context) {
+        fun bind(outerItem: NewMatchinguploadActivity.OuterUploadItem, context: Context) {
             if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
 
                 textView.text = outerItem.title
@@ -51,7 +51,7 @@ class OuteruploadAdapter(private val outerItemList: List<MatchingStillUploadFrag
 //                innerRecyclerView.adapter = innerAdapter
 
                 // titletext5에 아이템 개수 표시
-                textView2.text = "${outerItem.getItemCount()}건"
+                textView2.text = "${outerItem.getItemCount()}개"
                 textView.text = outerItem.title
 
                 imageView.setOnClickListener {

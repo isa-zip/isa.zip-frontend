@@ -105,15 +105,26 @@
             android:name=".MenuCertifyActivity"
             android:exported="false"/>
         <activity
+            android:name=".MenuSecessionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".NewMatchinguploadActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ZItmeInfoActivity1"
+            android:exported="false"/>
+        <activity
+            android:name=".ZItmeInfoActivity2"
+            android:exported="false"/>
+        <activity
             android:name=".OptionActivity"
             android:exported="false"/>
         <activity
-        android:name=".MenuManagementActivity"
-        android:exported="false"/>
+            android:name=".MenuManagementActivity"
+            android:exported="false"/>
         <activity
             android:name=".SearchMapActivity"
             android:exported="false"/>
-
 
     </application>
 

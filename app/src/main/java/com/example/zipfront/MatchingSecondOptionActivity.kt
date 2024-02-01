@@ -4,9 +4,11 @@ import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,20 +20,58 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
     lateinit var binding: ActivityMatchingoptionselectBinding
     private lateinit var adapter: OuterSecondoptionAdapter
     private lateinit var outerItemList2: List<OuterItem2>
+    private lateinit var thirdAdapter: ThirdoptionAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchingoptionselectBinding.inflate(layoutInflater)
 
         val title = intent.getStringExtra("title")
-        if (!title.isNullOrBlank()) {
-            binding.textView9.text = title
+        val position = intent.getIntExtra("position", -1)
+
+        binding.profilelayout1.visibility=View.VISIBLE
+        binding.layout3.visibility=View.GONE
+
+        // profileimage 클릭 시
+        binding.profileimage.setOnClickListener {
+            binding.profilelayout1.visibility = View.GONE
+            binding.layout3.visibility = View.VISIBLE
+        }
+
+        // dropdowmimage 클릭 시
+        binding.dropdowmimage.setOnClickListener {
+            binding.profilelayout1.visibility = View.VISIBLE
+            binding.layout3.visibility = View.GONE
+        }
+
+        binding.layout1.visibility=View.VISIBLE
+        binding.layout2.visibility=View.GONE
+
+        // profileimage 클릭 시
+        binding.imageView16.setOnClickListener {
+            binding.layout1.visibility = View.GONE
+            binding.layout2.visibility = View.VISIBLE
+        }
+
+        // dropdowmimage 클릭 시
+        binding.imageshow2.setOnClickListener {
+            binding.layout1.visibility = View.VISIBLE
+            binding.layout2.visibility = View.GONE
+        }
+
+        if (!title.isNullOrBlank() && position != -1) {
+            binding.textView9.text =  "${position + 1} $title"
+            binding.textView30.text =  "${position + 1} $title"
+            binding.profiletext.text =  "${position + 1} $title"
         }
 
         // innerItems를 받아서 RecyclerView 설정
         val innerItems = intent.getStringArrayListExtra("innerItems")
         if (innerItems.isNullOrEmpty()) {
             binding.optionRv.visibility = View.GONE
+            binding.textView58.visibility = View.VISIBLE
         } else {
+            binding.optionRv.visibility = View.VISIBLE
+            binding.textView58.visibility = View.GONE
             setupRecyclerView(innerItems)
         }
         binding.imageView10.setOnClickListener{
@@ -41,15 +81,32 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         binding.imageView17.setOnClickListener{
             showCustomDialog()
         }
+        binding.imageshow3.setOnClickListener{
+            showCustomDialog()
+        }
         setContentView(binding.root)
     }
 
     private fun setupRecyclerView(innerItems: List<String>) {
         // RecyclerView의 레이아웃 매니저 설정
         binding.optionRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.optionRv2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        // RecyclerView의 어댑터 설정
-        adapter = OuterSecondoptionAdapter(innerItems)
+        // thirdAdapter를 초기화
+        thirdAdapter = ThirdoptionAdapter(mutableListOf())
+
+        adapter = OuterSecondoptionAdapter(innerItems) { selectedItems ->
+            Log.d("ThirdoptionAdapter2", "${selectedItems}")
+            // ThirdoptionAdapter에 아이템 추가
+
+            // ThirdoptionAdapter에 아이템 추가
+            thirdAdapter.addItems(selectedItems.toMutableList())
+            Log.d("ThirdoptionAdapter3", "${thirdAdapter.itemCount}")
+            binding.optionRv2.adapter = thirdAdapter
+
+            // 데이터가 변경될 때마다 RecyclerView에 알리기
+            thirdAdapter.notifyDataSetChanged()
+        }
         binding.optionRv.adapter = adapter
     }
 

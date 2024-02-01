@@ -35,14 +35,19 @@ class MatchingBottomsheetFragment(context: Context, private val matchingAdapter:
         val btnClose: ImageButton = view.findViewById(R.id.imageButton5)
 
         btnOK.setOnClickListener {
-            val intent = Intent(requireContext(), MatchingOptionActivity::class.java)
+//            val intent = Intent(requireContext(), MatchingOptionActivity::class.java)
+//            requestOptionLauncher.launch(intent)
+//            (activity as? MatchingActivity)?.updateFragmentAndViewPager
+            val intent = Intent(requireContext(), MatchingActivity::class.java)
+            intent.putExtra("EXTRA_FROM_ACTIVITY", "MatchingActivity")
             requestOptionLauncher.launch(intent)
-            (activity as? MatchingActivity)?.updateFragmentAndViewPager()
             dismiss()
         }
 
         btnClose.setOnClickListener {
-            (activity as? MatchingActivity)?.closeBottomSheetWithCode(REQUEST_CODE_CLOSE)
+            val intent = Intent(requireContext(), NewMatchinguploadActivity::class.java)
+            intent.putExtra("EXTRA_FROM_ACTIVITY", "MatchingActivity")
+            requestOptionLauncher.launch(intent)
             dismiss()
         }
 

@@ -12,7 +12,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/rounded_background"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
             android:text="상도동"
             android:textColor="@color/Gray900"
             android:textSize="14dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:text="0건"
-            android:textStyle="bold"
+            android:text="0개"
             android:textColor="@color/zipblue01"
             android:textSize="14dp"
+            android:fontFamily="@font/suit_bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView22"
             app:layout_constraintStart_toEndOf="@+id/imageView15"
             app:layout_constraintTop_toTopOf="@+id/textView22" />
@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
+        android:visibility="visible">
 
 
         <TextView
@@ -87,6 +87,7 @@
             android:text="상도동"
             android:textColor="@color/Gray900"
             android:textSize="14dp"
+            android:fontFamily="@font/suit_bold"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -101,6 +102,7 @@
             android:textStyle="bold"
             android:textColor="@color/zipblue01"
             android:textSize="14dp"
+            android:fontFamily="@font/suit_bold"
             app:layout_constraintBottom_toBottomOf="@+id/titletext4"
             app:layout_constraintStart_toEndOf="@+id/imageView1"
             app:layout_constraintTop_toTopOf="@+id/titletext4" />

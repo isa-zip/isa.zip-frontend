@@ -34,6 +34,20 @@
             app:layout_constraintTop_toTopOf="@+id/textView9"
             app:srcCompat="@drawable/ic_left2" />
 
+        <TextView
+            android:id="@+id/notshwoingtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="380dp"
+            android:fontFamily="@font/suit_medium"
+            android:text="아직 매칭 요청이 없어요"
+            android:textColor="@color/Gray600"
+            android:textSize="14dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/notShowing"
         android:layout_width="wrap_content"
@@ -190,10 +204,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageshow3"
                 tools:listitem="@layout/item_matchingoptiondoublemin" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/option_rv"
             android:layout_width="wrap_content"
@@ -202,9 +213,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/notShowing"
-            tools:listitem="@layout/item_uploaduser_layout" />
-
+            tools:listitem="@layout/item_uploaduser_layout"
+            android:visibility="visible"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
@@ -17,8 +18,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OuterSecondoptionAdapter(private val innerItems: List<String>) : RecyclerView.Adapter<OuterSecondoptionAdapter.ViewHolder>() {
+class OuterSecondoptionAdapter(private val innerItems: List<String>,
+                               private val onInnerItemSelected: (List<String>) -> Unit // Callback for inner item selected
+) : RecyclerView.Adapter<OuterSecondoptionAdapter.ViewHolder>() {
 
+    private var thirdAdapter: ThirdoptionAdapter? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_matchingselectactivity, parent, false)
@@ -51,7 +55,13 @@ class OuterSecondoptionAdapter(private val innerItems: List<String>) : RecyclerV
 
                 withContext(Dispatchers.Main) {
                     // UI 업데이트는 Main 스레드에서 수행
-                    val innerAdapter = InnerSecondoptionAdapter(innerItemList)
+                    val innerAdapter = InnerSecondoptionAdapter(innerItemList) { selectedItem ->
+                        // This lambda function is the onImageViewClick parameter
+                        // You can handle the ImageView click event here
+                        Toast.makeText(context, "ImageView Clicked: $selectedItem", Toast.LENGTH_SHORT).show()
+
+                        onInnerItemSelected.invoke(listOf(selectedItem))
+                    }
                     innerRecyclerView.layoutManager = LinearLayoutManager(context)
                     innerRecyclerView.adapter = innerAdapter
                 }

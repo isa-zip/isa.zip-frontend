@@ -38,7 +38,7 @@ class MatchingStillFragment : Fragment() {
         setupRecyclerView(outerItemList)
 
         // OuterItem의 개수를 textView20에 설정
-        binding.textView20.text = "${outerItemList.size}개"
+        binding.textView20.text = "${outerItemList.size}건"
 
         return binding.root
     }
@@ -69,6 +69,18 @@ class MatchingStillFragment : Fragment() {
         }
     }
 
+    fun handleActivityResult(resultCode: Int) {
+        Log.d("MatchingStill6", "resultCode: $resultCode")
+        activity?.runOnUiThread {
+            if (resultCode == Activity.RESULT_OK) {
+                binding.textView10.visibility = View.GONE
+                binding.notShowing2.visibility = View.VISIBLE
+            } else {
+                binding.textView10.visibility = View.VISIBLE
+                binding.notShowing2.visibility = View.GONE
+            }
+        }
+    }
 
     private fun setupRecyclerView(outerItemList: List<OuterItem>) {
         // RecyclerView의 레이아웃 매니저 설정

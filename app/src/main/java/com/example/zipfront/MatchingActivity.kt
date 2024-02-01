@@ -24,10 +24,12 @@ class MatchingActivity: AppCompatActivity() {
         binding = MatchingActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val bottomSheetFragment = MatchingBottomsheetFragment(applicationContext, matchingAdapter)
+//        val bottomSheetFragment = MatchingBottomsheetFragment(applicationContext, matchingAdapter)
 
         binding.imageButton3.setOnClickListener {
-            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+//            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+            val intent = Intent(this, MatchingOptionActivity::class.java)
+            startActivityForResult(intent, REQUEST_CODE_OPTION)
         }
 
         binding.imageView10.setOnClickListener {
@@ -64,10 +66,12 @@ class MatchingActivity: AppCompatActivity() {
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.d("MatchingStillFragment2", "requestCode: $requestCode, resultCode: $resultCode")
 
+        Log.d("MatchingStillFragment3", "$resultCode")
         if (resultCode == Activity.RESULT_OK) {
             // MatchingOptionActivity에서 돌아왔을 때의 처리
+            val customData = data?.getStringExtra("EXTRA_CUSTOM_DATA")
+            Log.d("MatchingStillFragment2", "Received custom data from MatchingOptionActivity: $customData")
             // 여기서 필요한 작업을 수행합니다.
             val fragment = matchingAdapter.fragments[viewPager.currentItem]
 

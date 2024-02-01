@@ -73,9 +73,9 @@ class OuterCompleteAdapter(private val outerItemList: List<MatchingCompleteFragm
                 innerRecyclerView.layoutManager = LinearLayoutManager(context)  // 레이아웃 관리자 설정
                 innerRecyclerView.adapter = innerAdapter
 
-                textView3.text = "${outerItem.getItemCount()}건"
+                textView3.text = "${outerItem.getItemCount()}개"
                 // titletext5에 아이템 개수 표시
-                titletext5.text = "${outerItem.getItemCount()}건"
+                titletext5.text = "${outerItem.getItemCount()}개"
                 textView2.text = outerItem.title
                 textView.text = outerItem.title
             }
