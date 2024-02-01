@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/ic_x"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -63,7 +63,7 @@
         android:text="로그인 하시고\n다양한 서비스를 이용하세요."
         android:textColor="#1A1A1A"
         android:textSize="18sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/suit_bold"
         android:translationY="-2.27sp"
         app:layout_constraintTop_toBottomOf="@+id/tip"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +82,9 @@
 
     </ImageButton>-->
 
+    <!--
+    android:drawableLeft="@drawable/kakao_login_large_wide"
+-->
     <ImageButton
         android:id="@+id/login_kakao"
         android:layout_width="324dp"
@@ -89,11 +92,10 @@
         android:layout_marginTop="12dp"
         android:background="@drawable/btn_login_kakao"
         app:layout_constraintEnd_toEndOf="@+id/some_id"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/some_id"
         app:layout_constraintTop_toBottomOf="@+id/some_id" />
-<!--
-    android:drawableLeft="@drawable/kakao_login_large_wide"
--->
+
     <ImageButton
         android:id="@+id/login_email"
         android:layout_width="324dp"
@@ -114,17 +116,18 @@
         app:layout_constraintTop_toBottomOf="@+id/login_email">
 
         <TextView
-            android:layout_width="118dp"
+            android:layout_width="wrap_content"
             android:layout_height="18dp"
             android:text="아직 회원이 아니신가요?"
             android:textSize="12sp"
             android:textColor="@color/black"
             android:lineHeight="18sp"
+            android:fontFamily="@font/suit_medium"
             android:lineSpacingExtra="3sp"
-            android:translationY="-1.51sp"
-            android:gravity="center"/>
+            android:translationY="-1.51sp"/>
 
         <TextView
+            android:id="@+id/text_email"
             android:layout_width="88dp"
             android:layout_height="18dp"
             android:layout_toLeftOf="@id/image_button"
@@ -133,6 +136,7 @@
             android:lineHeight="18sp"
             android:lineSpacingExtra="3sp"
             android:text="이메일로 가입하기"
+            android:fontFamily="@font/suit_medium"
             android:textColor="#2FACEB"
             android:textSize="12sp"
             android:translationY="-1.51sp"
@@ -144,7 +148,8 @@
             android:layout_height="12dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@drawable/ic_right_blue" />
+            android:background="@drawable/ic_right_blue"
+            android:onClick="onSignUpClicked" />
     </RelativeLayout>
 
 

@@ -20,7 +20,35 @@
         android:usesCleartextTraffic = "true" >
 
         <activity
+            android:name=".SignInActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpSettingActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpMarketingActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpPersonalActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpServiceActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".IsaScheduleActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpBeforeActivity"
             android:exported="false"/>
 
         <activity
