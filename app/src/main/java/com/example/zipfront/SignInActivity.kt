@@ -18,12 +18,16 @@ class SignInActivity : AppCompatActivity() {
         binding = SignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // EditText를 binding으로 참조
         val writePassword = binding.writePassword
         val eyeImageView = binding.imageView24
 
         val imageButton5 = binding.imageButton5
         val text2 = binding.text2
         val imageButton1_1 = binding.imageButton
+
+        // 초기에 비밀번호를 가리도록 설정
+        writePassword.transformationMethod = PasswordTransformationMethod.getInstance()
 
         binding.imageView10.setOnClickListener {
             finish()
@@ -52,6 +56,13 @@ class SignInActivity : AppCompatActivity() {
         // imageButton1_1를 클릭했을 때 SignUpSettingActivity로 화면 전환
         imageButton1_1.setOnClickListener {
             val intent = Intent(this, SignUpSettingActivity::class.java)
+            startActivity(intent)
+        }
+
+        // imageView10을 클릭했을 때 SignMainActivity 화면 전환
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }

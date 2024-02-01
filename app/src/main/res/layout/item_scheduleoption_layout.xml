@@ -2,17 +2,25 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="74dp"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/point_gray"
+        android:id="@+id/line"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/vector_67"
+        app:layout_constraintEnd_toEndOf="@+id/point_gray"
+        app:layout_constraintStart_toStartOf="@+id/point_gray" />
+
+    <ImageView
+        android:id="@+id/point_gray"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_marginStart="18dp"
         android:src="@drawable/point_gray"
         app:layout_constraintBottom_toBottomOf="@+id/layout1"
-        app:layout_constraintEnd_toStartOf="@+id/layout1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/layout1" />
 
@@ -21,20 +29,20 @@
         android:layout_width="300dp"
         android:layout_height="66dp"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/list4"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/point_gray"
         app:layout_constraintTop_toTopOf="parent">
 
 
-    <TextView
+        <TextView
             android:id="@+id/textView22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/suit_regular"
             android:text="2023.11.7"
             android:textColor="#1A1A1A"
             android:textSize="12dp"
@@ -47,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
+            android:fontFamily="@font/suit_semibold"
             android:text="방 확정"
             android:textColor="#1A1A1A"
             android:textSize="16dp"

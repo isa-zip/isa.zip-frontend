@@ -2,7 +2,6 @@ package com.example.zipfront
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -29,12 +28,14 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SignUpBeforeActivity::class.java)
             startActivity(intent)
         }
-    }
 
-    // 이 메서드는 ImageButton이나 TextView가 클릭되었을 때 호출됩니다.
-    fun onSignUpClicked(view: View) {
-        // Sign Up 화면으로 전환하는 인텐트를 생성합니다.
-        val intent = Intent(this, SignUpBeforeActivity::class.java)
-        startActivity(intent)
+        val loginEmailButton: ImageButton = findViewById(R.id.login_email)
+
+        // login_email ImageButton 클릭 리스너 설정
+        loginEmailButton.setOnClickListener {
+            // SignInActivity로 이동하는 인텐트 생성
+            val intent = Intent(this, SignInActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

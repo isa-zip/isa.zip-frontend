@@ -12,6 +12,8 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.example.zipfront.R
+import com.example.zipfront.SignInActivity
 
 class SignUpSettingActivity : AppCompatActivity() {
     private lateinit var binding: SignUpSettingBinding
@@ -30,6 +32,10 @@ class SignUpSettingActivity : AppCompatActivity() {
         val eyeCheckImageView = binding.imageView24
 
         val imageButton5 = binding.imageButton5
+
+        // 초기에 비밀번호를 가리도록 설정
+        writePassword.transformationMethod = PasswordTransformationMethod.getInstance()
+        checkPassword.transformationMethod = PasswordTransformationMethod.getInstance()
 
         binding.imageView10.setOnClickListener {
             finish()
@@ -65,6 +71,13 @@ class SignUpSettingActivity : AppCompatActivity() {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
+
+        // imageView10을 클릭했을 때 SignMainActivity 화면 전환
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            val intent = Intent(this, SignUpBeforeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun updateButtonBackground(editText: EditText, button: ImageButton) {
@@ -81,29 +94,28 @@ class SignUpSettingActivity : AppCompatActivity() {
         if (editText == binding.writePassword) {
             isWritePasswordVisible = !isWritePasswordVisible
             if (isWritePasswordVisible) {
-                // 비밀번호를 보이도록 변경
-                editText.transformationMethod = PasswordTransformationMethod.getInstance()
-                imageView.setImageResource(R.drawable.eye_off)
-            } else {
                 // 비밀번호를 감추도록 변경
                 editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 imageView.setImageResource(R.drawable.eye_on)
+            } else {
+                // 비밀번호를 보이도록 변경
+                editText.transformationMethod = PasswordTransformationMethod.getInstance()
+                imageView.setImageResource(R.drawable.eye_off)
             }
         } else if (editText == binding.checkPassword) {
             isCheckPasswordVisible = !isCheckPasswordVisible
             if (isCheckPasswordVisible) {
-                // 비밀번호를 보이도록 변경
-                editText.transformationMethod = PasswordTransformationMethod.getInstance()
-                imageView.setImageResource(R.drawable.eye_off)
-            } else {
                 // 비밀번호를 감추도록 변경
                 editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 imageView.setImageResource(R.drawable.eye_on)
+            } else {
+                // 비밀번호를 보이도록 변경
+                editText.transformationMethod = PasswordTransformationMethod.getInstance()
+                imageView.setImageResource(R.drawable.eye_off)
             }
         }
 
         // 커서를 마지막으로 이동하여 비밀번호 글자가 보이도록 함
         editText.setSelection(editText.text.length)
     }
-
 }

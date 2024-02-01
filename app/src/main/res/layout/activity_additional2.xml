@@ -50,12 +50,65 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/filter"
+        android:layout_width="324dp"
+        android:layout_height="103dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressbar">
+
+        <TextView
+            android:id="@+id/some_id_"
+            android:layout_width="324dp"
+            android:layout_height="24dp"
+            android:fontFamily="@font/suit_bold"
+            android:gravity="top"
+            android:lineSpacingExtra="4sp"
+            android:text="주소"
+            android:textAppearance="@style/some_id"
+            android:textColor="#1A1A1A"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:translationY="-2.02sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/text"
+            android:layout_width="324dp"
+            android:layout_height="37dp"
+            android:layout_below="@+id/some_id_"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/contents"
+            android:fontFamily="@font/suit_medium"
+            android:gravity="clip_horizontal"
+            android:hint="서울 동작구 상도 지하 378(7호선 숭실대 입구역)"
+            android:padding="12dp"
+            android:textColor="#5A5A5A"
+            android:textSize="12dp"
+            android:translationY="-1.51sp"
+            app:layout_constraintStart_toStartOf="@+id/some_id_"
+            app:layout_constraintTop_toBottomOf="@+id/some_id_" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/thin_line"
+        app:layout_constraintTop_toBottomOf="@+id/filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/filter1"
         android:layout_width="324dp"
         android:layout_height="150dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar">
+        app:layout_constraintTop_toBottomOf="@+id/line">
 
         <TextView
             android:id="@+id/some_id1"
@@ -131,12 +184,10 @@
                 android:layout_marginTop="24dp"
                 android:src="@drawable/ic_image" />
         </RelativeLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/line"
+        android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@drawable/thin_line"
