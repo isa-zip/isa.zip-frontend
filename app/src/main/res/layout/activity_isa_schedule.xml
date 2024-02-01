@@ -22,6 +22,7 @@
         android:textStyle="bold"
         android:text="이사 일정"
         android:textSize="18dp"
+        android:fontFamily="@font/suit_medium"
         android:textColor="@color/Gray900"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_toRightOf="@id/ic_alert"
-                android:fontFamily="@font/suit_variable"
+                android:fontFamily="@font/suit_regular"
                 android:lineSpacingExtra="6sp"
                 android:text="이사까지 남은 기간과 가장 가까운 상단 탭을 눌러보세요"
                 android:textColor="#7C7C7C"
@@ -140,77 +141,20 @@
             android:onClick="onRoundTab2WeekClicked"
             android:contentDescription="Round Tab 2 Week" />
 
-
-        <!--<ImageButton
-            android:id="@+id/roundtab3"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/roundtab_3"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/roundtab2"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/roundtab3"
-            android:src="@drawable/roundtab_2"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/roundtab1"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/roundtab2"
-            android:src="@drawable/roundtab_blue_1"
-            android:background="@android:color/transparent"/>
-
-        <ImageButton
-            android:id="@+id/roundtab_2week"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="4dp"
-            android:layout_toEndOf="@+id/roundtab1"
-            android:src="@drawable/roundtab_2week"
-            android:background="@android:color/transparent"/>-->
-
-        <!--<Button
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/tip2"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundtab_3"
-            android:text="3개월"/>-->
     </RelativeLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout6"
-        android:layout_width="match_parent"
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/tip"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@+id/asdf"
-        app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintVertical_weight="1"
-        tools:layout_editor_absoluteX="0dp">
-
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tip" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/asdf"
@@ -219,7 +163,6 @@
         android:background="@drawable/frame_10000_background"
         app:layout_constraintBottom_toTopOf="@+id/ffff">
 
-
         <TextView
             android:id="@+id/some_id"
             android:layout_width="60dp"
@@ -227,7 +170,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
-            android:fontFamily="@font/suit_variable"
+            android:fontFamily="@font/suit_semibold"
             android:gravity="center"
             android:lineHeight="24dp"
             android:lineSpacingExtra="4sp"
@@ -239,7 +182,7 @@
             android:translationY="-2.02sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -250,42 +193,45 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="18dp"
             android:layout_marginBottom="12dp"
+            android:fontFamily="@font/suit_medium"
             android:gravity="center"
+            android:onClick="onEditClicked"
             android:text="편집"
             android:textAppearance="@style/some_id"
             android:textColor="#5A5A5A"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/some_id"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="onEditClicked"/>
-        <!--원래
-            android:layout_width="25dp"
-            android:layout_height="21dp"
-            android:textSize="14sp"-->
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <RelativeLayout
+    <!--매물 옵션 선택하기 바-->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ffff"
         android:layout_width="match_parent"
         android:layout_height="338dp"
         android:background="@drawable/frame_10000_background"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="-53dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/option_rv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/list3"/>
+            android:layout_marginEnd="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/schedule_recyclerview" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </RelativeLayout>
-
-    <!--매물 옵션 선택하기 바-->
+    <!--맨 아래 매물 옵션 선택하기 파란색 버튼-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame_10000_background"
         android:layout_width="match_parent"
@@ -309,5 +255,4 @@
             app:srcCompat="@drawable/btn_registration_option" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
