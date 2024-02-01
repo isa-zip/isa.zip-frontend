@@ -56,10 +56,7 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
         binding.imageView10.setOnClickListener{
             finish()
         }
-
-        binding.imageView17.setOnClickListener{
-            showCustomDialog()
-        }
+        
         setContentView(binding.root)
     }
 
