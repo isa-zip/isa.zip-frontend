@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.zipfront.databinding.FitstMenuLayoutBinding
 import com.example.zipfront.databinding.FitstMenuProfileBinding
+import java.util.regex.Pattern
 
 class MenuProfileActivity : AppCompatActivity() {
     lateinit var binding: FitstMenuProfileBinding
@@ -29,6 +30,7 @@ class MenuProfileActivity : AppCompatActivity() {
         binding = FitstMenuProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.textchecking.visibility = View.GONE
         // EditText를 binding으로 참조
         val textPassword = binding.textPassword
         val textPasswordCheck = binding.textPasswordcheck
@@ -51,11 +53,37 @@ class MenuProfileActivity : AppCompatActivity() {
         eyeCheckImageView.setOnClickListener {
             togglePasswordVisibility(textPasswordCheck, eyeCheckImageView)
         }
+
+        textPassword.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // 입력된 비밀번호가 조건을 만족하는지 확인
+                val isValidPassword = isPasswordValid(textPassword.text.toString())
+
+                // 비밀번호가 조건을 만족하지 않으면 textchecking의 visibility를 View.VISIBLE로 설정
+                if (!isValidPassword) {
+                    binding.textchecking.visibility = View.VISIBLE
+                } else {
+                    // 비밀번호가 조건을 만족하면 textchecking의 visibility를 View.GONE으로 설정
+                    binding.textchecking.visibility = View.GONE
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
         // textPasswordCheck의 텍스트 변경 감지
         textPasswordCheck.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                // 텍스트가 변경될 때마다 버튼 배경 업데이트
-                updateButtonBackground(textPasswordCheck, button2)
+                // textPassword와 textPasswordCheck의 값이 같을 때 배경을 업데이트
+                if (textPassword.text.toString() == textPasswordCheck.text.toString()) {
+                    button2.setBackgroundResource(R.drawable.profileroudradius_blue)
+                }
+                else {
+                    button2.setBackgroundResource(R.drawable.profileroudradius_gray)
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -77,6 +105,13 @@ class MenuProfileActivity : AppCompatActivity() {
         } else {
             button.setBackgroundResource(R.drawable.profileroudradius_gray)
         }
+    }
+
+    private fun isPasswordValid(password: String): Boolean {
+        // 비밀번호가 8자리 이상이며 영문, 숫자, 특수문자를 포함하는지 확인하는 로직
+        val pattern = Pattern.compile("(?=.*[a-zA-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za-z\\d@$!%*?&]{8,}")
+        val matcher = pattern.matcher(password)
+        return matcher.matches()
     }
 
     private fun togglePasswordVisibility(editText: EditText, imageView: ImageView) {
@@ -106,8 +141,6 @@ class MenuProfileActivity : AppCompatActivity() {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null) {
             val selectedImageUri: Uri = data.data!!
-            // button2의 view를 gone으로 설정
-            binding.soldoutlayout.visibility = View.GONE
 
             // 이제 selectedImageUri를 사용하여 이미지를 처리하고, ImageView에 설정할 수 있습니다.
             // 예시로 Glide 사용하는 방법:

@@ -13,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -22,13 +23,16 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BottomSheetAdapter
+    private var adapter: BottomSheetAdapter? = null
     private lateinit var btnClose: ImageButton
     lateinit var binding: UploadbottomsheetdialogBinding
+    lateinit var onItemSelected: (List<String>) -> Unit
 
     // 선택된 아이템을 반환하는 메소드
-    fun getSelectedItem(): String? {
-        return adapter.getSelectedItem()
+    private val selectedItems = mutableListOf<String>()
+
+    fun getSelectedItems(): List<String> {
+        return adapter?.getSelectedItems() ?: emptyList()
     }
 
     private fun getBinding(view: View): UploadbottomsheetdialogBinding {
@@ -38,14 +42,16 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
     // Adapter에서 호출할 메소드
     fun updateBtnCloseBackground() {
         Log.d("UpdateBtnCloseBackground", "Method called")
-        val selectedItem = getSelectedItem()
-        Log.d("SelectedItem", "Selected Item: $selectedItem")
+        val selectedItems = getSelectedItems()
+        Log.d("SelectedItems", "Selected Items: $selectedItems, Type: ${selectedItems.javaClass}")
 
         activity?.runOnUiThread {
-            if (selectedItem != null) {
-                binding.imageButton5.setBackgroundResource(R.drawable.btn_agent_blue)
+            if (selectedItems.isNotEmpty()) {
+                Log.d("UpdateBtnCloseBackground1", "blue")
+                binding.imageButton5.setImageResource(R.drawable.btn_agent_blue)
             } else {
-                binding.imageButton5.setBackgroundResource(R.drawable.btn_agent_gray)
+                Log.d("UpdateBtnCloseBackground2", "gray")
+                binding.imageButton5.setImageResource(R.drawable.btn_agent_gray)
             }
         }
 
@@ -56,7 +62,6 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.uploadbottomsheetdialog, container, false)
         binding = getBinding(view)
         val btnOK: ImageButton = view.findViewById(R.id.imageButton4)
@@ -74,9 +79,16 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
         }
 
         btnClose.setOnClickListener {
+            val selectedItemList = getSelectedItems()
+
+            val selectedItemString = selectedItemList.joinToString(",")
+            Log.d("SelectedItemFromAdapter2", "Selected Item from Adapter: $selectedItemString")
+
+            onItemSelected.invoke(selectedItemList)
             dismiss()
         }
 
         return view
     }
+
 }
