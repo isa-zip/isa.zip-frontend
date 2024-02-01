@@ -1,7 +1,6 @@
 package com.example.zipfront
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.CalendarView
@@ -11,7 +10,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class ScheduleActivity : AppCompatActivity() {
 
@@ -46,20 +47,17 @@ class ScheduleActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // 년도를 클릭하면 bottom sheet 표시
-        selectedDateTextView.setOnClickListener {
-            showBottomSheetCalendar()
-        }
-
-        // 오류
-        // imageView10을 클릭했을 때 Help Fragment를 보여주기
+        // imageView10을 클릭했을 때 액티비티 종료
         val imageView10: ImageView = findViewById(R.id.imageView10)
         imageView10.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, Help.newInstance("", ""))
-                .commit()
+            finish()
         }
 
+        // 년도 텍스트뷰 클릭 시 bottom sheet 표시
+        val yearTextView: TextView = findViewById(R.id.year_text)
+        yearTextView.setOnClickListener {
+            showBottomSheetCalendar()
+        }
     }
 
     private fun formatSelectedDate(year: Int, month: Int, dayOfMonth: Int): String {
@@ -227,5 +225,4 @@ class ScheduleActivity : AppCompatActivity() {
         bottomSheetDialog.setContentView(bottomSheetView)
         bottomSheetDialog.show()
     }
-
 }

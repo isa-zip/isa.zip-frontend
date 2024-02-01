@@ -146,7 +146,7 @@
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
-        android:layout_height="225dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textSize="10sp"
@@ -154,6 +154,14 @@
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tip" />
+
+    <TextView
+        android:id="@+id/year_text"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/calendarView"
+        app:layout_constraintTop_toTopOf="@+id/calendarView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/asdf"

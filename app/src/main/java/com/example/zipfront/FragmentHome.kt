@@ -46,6 +46,15 @@ class FragmentHome: Fragment() {
             bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
         }
 
+        // imageView7 또는 imageButton2 클릭 시 ScheduleActivity로 이동
+        binding.imageView7.setOnClickListener {
+            startActivity(Intent(requireContext(), ScheduleActivity::class.java))
+        }
+
+        binding.imageButton2.setOnClickListener {
+            startActivity(Intent(requireContext(), ScheduleActivity::class.java))
+        }
+
         return binding.root
     }
 
