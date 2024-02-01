@@ -146,11 +146,10 @@
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="225dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textSize="10sp"
-        app:layout_constraintBottom_toTopOf="@+id/asdf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +160,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/frame_10000_background"
-        app:layout_constraintBottom_toTopOf="@+id/ffff">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView">
 
         <TextView
             android:id="@+id/some_id"
@@ -214,10 +215,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ffff"
         android:layout_width="match_parent"
-        android:layout_height="338dp"
+        android:layout_height="243dp"
         android:background="@drawable/frame_10000_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-53dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/asdf">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/option_rv"
@@ -228,6 +230,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/schedule_recyclerview" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
