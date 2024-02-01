@@ -28,6 +28,12 @@ class MenuFirstActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //매물관리
+        binding.arrowbutton4.setOnClickListener {
+            val intent = Intent(this, MenuManagementActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.imageView10.setOnClickListener {
             finish()
         }

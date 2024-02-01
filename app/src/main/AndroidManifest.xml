@@ -20,7 +20,35 @@
         android:usesCleartextTraffic = "true" >
 
         <activity
+            android:name=".SignInActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpSettingActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpMarketingActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpPersonalActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpServiceActivity"
+            android:exported="false"/>
+
+        <activity
             android:name=".IsaScheduleActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".SignUpBeforeActivity"
             android:exported="false"/>
 
         <activity
@@ -44,13 +72,10 @@
             android:name=".MainActivity"
             android:exported="false" />
 
-        <meta-data
-            android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="tvvyxke9zj" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="026a7ddd525715ea8e569994eaa0170d"/>
+            android:value="3deebf4ff507fe924f4283403ea64c1b"/>
 
         <activity
             android:name=".MatchingActivity"
@@ -91,7 +116,15 @@
         <activity
             android:name=".ZItmeInfoActivity2"
             android:exported="false"/>
-
+        <activity
+            android:name=".OptionActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MenuManagementActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SearchMapActivity"
+            android:exported="false"/>
 
     </application>
 

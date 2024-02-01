@@ -20,12 +20,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:fontFamily="@font/suit_variable"
             android:lineHeight="27sp"
             android:text="정태연님, 어디로 이사 가시나요?"
             android:textColor="#1A1A1A"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:fontFamily="@font/suit_bold" />
 
         <RelativeLayout
             android:id="@+id/searchbar"
@@ -42,7 +41,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="38dp"
                 android:layout_marginTop="11.5dp"
-                android:fontFamily="@font/suit_variable"
+                android:fontFamily="@font/suit_semibold"
                 android:fontWeight="600"
                 android:lineSpacingExtra="7sp"
                 android:text="장소를 검색해 주세요"
@@ -70,7 +69,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/ic_alert"
-            android:fontFamily="@font/suit_variable"
+            android:fontFamily="@font/suit_regular"
             android:lineSpacingExtra="6sp"
             android:text="장소와 일정을 입력하면 자동으로 이사를 계획해 드려요"
             android:textColor="#7C7C7C"
