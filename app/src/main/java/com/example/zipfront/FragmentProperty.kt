@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zipfront.databinding.PropertyFragmentBinding
+import com.kakao.util.maps.helper.Utility
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
 import com.kakao.vectormap.MapLifeCycleCallback
@@ -44,6 +45,7 @@ class FragmentProperty: Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = PropertyFragmentBinding.inflate(inflater, container, false)
+
 
 
         //Map
