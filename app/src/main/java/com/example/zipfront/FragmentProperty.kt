@@ -11,6 +11,7 @@ import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -51,14 +52,17 @@ class FragmentProperty: Fragment() {
         mapView.start(object : MapLifeCycleCallback() {
             override fun onMapDestroy() {
                 // 지도 API 가 정상적으로 종료될 때 호출됨
+                Log.d("MapActivity1", "onMapDestroy called")
             }
 
             override fun onMapError(error: Exception) {
                 // 인증 실패 및 지도 사용 중 에러가 발생할 때 호출됨
+                Log.e("MapActivity2", "onMapError called with error: $error")
             }
         }, object : KakaoMapReadyCallback() {
             override fun onMapReady(kakaoMap: KakaoMap) {
                 // 인증 후 API 가 정상적으로 실행될 때 호출됨
+                Log.d("MapActivity3", "onMapReady called")
             }
         })
 
