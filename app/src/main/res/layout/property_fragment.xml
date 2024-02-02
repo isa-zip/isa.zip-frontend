@@ -54,24 +54,27 @@
         app:layout_constraintTop_toTopOf="@id/search_toolbar"
         app:srcCompat="@drawable/ic_filter" />
 
-    <net.daum.mf.map.api.MapView
-        android:id="@+id/map_fragment"
+    <com.kakao.vectormap.MapView
+        android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="397dp"
-        app:layout_constraintBottom_toTopOf="@id/layout_constraint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_toolbar"
-        tools:ignore="MissingClass" />
-<!--
-    <TextView
-        android:id="@+id/map_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="397dp"
-        app:layout_constraintBottom_toTopOf="@id/layout_constraint"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_toolbar" />-->
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_constraint"
+        tools:ignore="MissingClass"/>
+
+    <ImageView
+        android:id="@+id/current_location_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_constraint"
+        android:src = "@drawable/currentlocation" />
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_constraint"
@@ -80,7 +83,7 @@
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/map_fragment">
+        app:layout_constraintTop_toBottomOf="@id/map_view">
 
 
         <ImageView
