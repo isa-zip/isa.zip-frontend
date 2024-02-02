@@ -1,41 +1,79 @@
 package com.example.zipfront
 
-import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.graphics.Color
+import android.content.pm.PackageManager
+import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.databinding.PropertyFragmentBinding
-import net.daum.mf.map.api.MapView
+import com.kakao.vectormap.KakaoMap
+import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.MapLifeCycleCallback
+import com.kakao.vectormap.MapView
+
 
 class FragmentProperty: Fragment() {
-    lateinit var binding: PropertyFragmentBinding
+    private lateinit var binding: PropertyFragmentBinding
     private var initialY = 0f
-    @SuppressLint("ClickableViewAccessibility")
+
+    private val ACCESS_FINE_LOCATION = 1000
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = PropertyFragmentBinding.inflate(inflater, container, false)
 
 
+        //Map
+        val mapView :MapView = binding.mapView
+
+        mapView.start(object : MapLifeCycleCallback() {
+            override fun onMapDestroy() {
+                // 지도 API 가 정상적으로 종료될 때 호출됨
+            }
+
+            override fun onMapError(error: Exception) {
+                // 인증 실패 및 지도 사용 중 에러가 발생할 때 호출됨
+            }
+        }, object : KakaoMapReadyCallback() {
+            override fun onMapReady(kakaoMap: KakaoMap) {
+                // 인증 후 API 가 정상적으로 실행될 때 호출됨
+            }
+        })
+
+        //현재위치
+        // 위치추적 버튼
+        binding.currentLocationBtn.setOnClickListener {
+            if (checkLocationService()) {
+                // GPS가 켜져있을 경우
+                permissionCheck()
+                Toast.makeText(requireContext(), "GPS가 켜져있습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                // GPS가 꺼져있을 경우
+                Toast.makeText(requireContext(), "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
         //지도 검색했을 때 검색 액티비티로 넘어가도록
@@ -86,7 +124,7 @@ class FragmentProperty: Fragment() {
 
         //터치 이벤트 처리
         binding.statusImage.setOnTouchListener { v: View, event: MotionEvent ->
-            if (isTouchInsideView(event, binding.searchToolbar, binding.mapFragment)) {
+            if (isTouchInsideView(event, binding.searchToolbar, binding.mapView)) {
                 true // 이벤트 소비
             } else {
                 when (event.action) {
@@ -156,6 +194,79 @@ class FragmentProperty: Fragment() {
         return (y < view1Y && y < view2Y)
     }
 
+    // GPS가 켜져있는지 확인
+    private fun checkLocationService(): Boolean {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
 
+
+    // 위치 권한 확인
+    private fun permissionCheck() {
+        val preference = requireContext().getSharedPreferences("isFirstPermissionCheck", Context.MODE_PRIVATE)
+        val isFirstCheck = preference.getBoolean("isFirstPermissionCheck", true)
+        if (ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // 권한이 없는 상태
+            if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                // 권한 거절 (다시 한 번 물어봄)
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setMessage("현재 위치를 확인하시려면 위치 권한을 허용해주세요.")
+                builder.setPositiveButton("확인") { dialog, which ->
+                    ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
+                }
+                builder.setNegativeButton("취소") { dialog, which ->
+
+                }
+                builder.show()
+            } else {
+                if (isFirstCheck) {
+                    // 최초 권한 요청
+                    preference.edit().putBoolean("isFirstPermissionCheck", false).apply()
+                    ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
+                } else {
+                    // 다시 묻지 않음 클릭 (앱 정보 화면으로 이동)
+                    val builder = AlertDialog.Builder(requireContext())
+                    builder.setMessage("현재 위치를 확인하시려면 설정에서 위치 권한을 허용해주세요.")
+                    builder.setPositiveButton("설정으로 이동") { dialog, which ->
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:com.example.zipfront"))
+                        startActivity(intent)
+                    }
+                    builder.setNegativeButton("취소") { dialog, which ->
+
+                    }
+                    builder.show()
+                }
+            }
+        } else {
+            // 권한이 있는 상태
+            //startTracking()
+        }
+    }
+
+    // 위치추적 시작
+    private fun startTracking() {
+        //mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+
+
+    }
+
+
+    // 권한 요청 후 행동
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == ACCESS_FINE_LOCATION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한 요청 후 승인됨 (추적 시작)
+                Toast.makeText(requireContext(), "위치 권한이 승인되었습니다", Toast.LENGTH_SHORT).show()
+                startTracking()
+            } else {
+                // 권한 요청 후 거절됨 (다시 요청 or 토스트)
+                Toast.makeText(requireContext(), "위치 권한이 거절되었습니다", Toast.LENGTH_SHORT).show()
+                permissionCheck()
+            }
+        }
+
+
+    }
 
 }
