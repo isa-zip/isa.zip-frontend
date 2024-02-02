@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableListOf()) : RecyclerView.Adapter<ThirdprofileAdapter2.ViewHolder>() {
 
     private val selectedItems = mutableListOf<Boolean>()
+    private var onItemCountChangeListener: OnItemCountChangeListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_matchingprofilenew, parent, false)
         return ViewHolder(view)
@@ -22,6 +24,33 @@ class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableLi
     interface OnButtonClickListener {
         fun onButtonClick(position: Int)
     }
+    interface OnItemCountChangeListener {
+        fun onItemCountChanged(itemCount: Int)
+    }
+
+    private val itemCountChangeListenerList = mutableListOf<OnItemCountChangeListener>()
+
+    fun addOnItemCountChangeListener(listener: OnItemCountChangeListener) {
+        itemCountChangeListenerList.add(listener)
+    }
+
+   fun notifyItemCountChanged() {
+        val selectedItemCount = getSelectedItemCount()
+        Log.d("MyApp32", "Selected Item Count: $selectedItemCount")
+        onItemCountChangeListener?.onItemCountChanged(selectedItemCount)
+        itemCountChangeListenerList.forEach { it.onItemCountChanged(selectedItemCount) }
+    }
+
+    fun setOnItemCountChangeListener(listener: OnItemCountChangeListener) {
+        this.onItemCountChangeListener = listener
+    }
+
+    private fun getSelectedItemCount(): Int {
+        val count = itemList.size
+        Log.d("MyApp33", "$count")
+        return count
+    }
+
     var onButtonClickListener: OnButtonClickListener? = null
 
     // 선택한 아이템의 위치 저장
@@ -29,14 +58,16 @@ class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableLi
 
     fun setSelectedItemPosition(position: Int) {
         selectedItemPosition = position
-        Log.d("MyApp2", "$selectedItemPosition")
         notifyDataSetChanged()
+        notifyItemCountChanged()
     }
+
 
     fun addItems(items: MutableList<String>) {
         itemList.addAll(items)
-        selectedItems.addAll(List(items.size) { false }) // 초기에 모든 아이템을 선택되지 않은 상태로 초기화
+        selectedItems.addAll(List(items.size) { false })
         notifyDataSetChanged()
+        notifyItemCountChanged()
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
@@ -62,6 +93,7 @@ class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableLi
             imageView.setOnClickListener {
                 onButtonClickListener?.onButtonClick(adapterPosition)
                 selectedItems[adapterPosition] = !selectedItems[adapterPosition]
+                notifyItemCountChanged()
             }
         }
 

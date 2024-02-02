@@ -56,7 +56,7 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
         binding.imageView10.setOnClickListener{
             finish()
         }
-        
+
         setContentView(binding.root)
     }
 
@@ -72,6 +72,15 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
                 clickedItemPosition=position
             }
         }
+
+        thirdAdapter.setOnItemCountChangeListener(object : ThirdprofileAdapter2.OnItemCountChangeListener {
+            override fun onItemCountChanged(itemCount: Int) {
+                Log.d("MyApp22", "$itemCount")
+                binding.textView23.text = "${itemCount}개"
+                binding.texttitle2.text = "${itemCount}개"
+            }
+        })
+
         adapter = OuterSeconduploadAdapter(innerItems) { selectedItemList ->
             // Remove null values and convert to List<String>
             val selectedItems = selectedItemList.filterNotNull().map { it.orEmpty() }
@@ -87,10 +96,15 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
 
             // 데이터가 변경될 때마다 RecyclerView에 알리기
             thirdAdapter.notifyDataSetChanged()
+            thirdAdapter.notifyItemCountChanged()
         }
 //        // RecyclerView의 어댑터 설정
 //        adapter = OuterSeconduploadAdapter(innerItems)
         binding.optionRv.adapter = adapter
+
+        val itemCount = thirdAdapter.getItemCount()
+        Log.d("ThirdprofileAdapter22", "$itemCount")
+
     }
 
     private fun showCustomDialog() {
@@ -136,4 +150,9 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
         // AlertDialog 표시
         alertDialog.show()
     }
+//    override fun onItemCountChanged(itemCount: Int) {
+//        Log.d("MyApp22", "$itemCount")
+//        binding.textView23.text = "${itemCount + 1}개"
+//        binding.texttitle2.text = "${itemCount + 1}개"
+//    }
 }
