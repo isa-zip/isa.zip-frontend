@@ -6,7 +6,7 @@
     android:layout_height="85dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_background"
-    android:layout_marginLeft="8dp">
+    android:layout_marginRight="8dp">
 
     <ImageView
         android:id="@+id/imageView9"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="14dp"
-        android:textStyle="bold"
+        android:fontFamily="@font/suit_semibold"
         android:textColor="@color/Gray800"
         android:text="포장이사 업체명"
         app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -38,6 +38,7 @@
         android:layout_marginTop="2dp"
         android:textSize="12dp"
         android:textColor="@color/Gray700"
+        android:fontFamily="@font/suit_semibold"
         android:text="소형~대형 - 동작구 상도동"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -49,6 +50,7 @@
         android:layout_marginTop="2dp"
         android:text="소개글을 작성해 주세요"
         android:textSize="12dp"
+        android:fontFamily="@font/suit_regular"
         android:textColor="@color/Gray700"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

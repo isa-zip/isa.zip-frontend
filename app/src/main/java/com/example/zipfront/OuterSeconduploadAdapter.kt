@@ -2,6 +2,7 @@ package com.example.zipfront
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OuterSeconduploadAdapter(private val innerItems: List<String>) : RecyclerView.Adapter<OuterSeconduploadAdapter.ViewHolder>() {
+class OuterSeconduploadAdapter(private val innerItems: List<String>,  private val onItemSelected: (List<String>) -> Unit) : RecyclerView.Adapter<OuterSeconduploadAdapter.ViewHolder>() {
 
     // UploadBottomsheetFragment 객체를 멤버 변수로 선언
     private val bottomSheetFragment = UploadBottomsheetFragment()
@@ -61,10 +62,10 @@ class OuterSeconduploadAdapter(private val innerItems: List<String>) : RecyclerV
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
             }
-
             imageButton.setOnClickListener {
                 bottomSheetFragment.show((context as AppCompatActivity).supportFragmentManager, bottomSheetFragment.tag)
             }
+            bottomSheetFragment.onItemSelected = onItemSelected
         }
     }
 }

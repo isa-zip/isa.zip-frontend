@@ -114,6 +114,9 @@
             android:name=".ZItmeInfoActivity2"
             android:exported="false"/>
         <activity
+            android:name=".ZItmeInfoActivity3"
+            android:exported="false"/>
+        <activity
             android:name=".OptionActivity"
             android:exported="false"/>
         <activity

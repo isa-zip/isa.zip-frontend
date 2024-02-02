@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): RecyclerView.Adapter<BottomSheetAdapter.ViewHolder>() {
 
     private val items = listOf("Item 1", "Item 2")
-    private var selectedItem: String? = null
+    private val selectedItems = mutableListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -26,8 +26,8 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
         return items.size
     }
 
-    fun getSelectedItem(): String? {
-        return selectedItem
+    fun getSelectedItems(): List<String> {
+        return selectedItems.toList()
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -38,16 +38,16 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
         fun bind(item: String) {
             textView.text = item
             itemView.setOnClickListener {
-                isChecked = !isChecked // 토글
-
-                // 아이템을 클릭했을 때 배경 변경
-                if (isChecked) {
-                    bottomSheetLayout.setBackgroundResource(R.drawable.rounded_background_blue)
-                    selectedItem = item // 선택한 아이템 정보 저장
-                } else {
+                if (selectedItems.contains(item)) {
+                    // 이미 선택된 아이템이면 제거
+                    selectedItems.remove(item)
                     bottomSheetLayout.setBackgroundResource(R.drawable.rounded_background)
-                    selectedItem = null // 선택 취소 시에는 null로 설정
+                } else {
+                    // 선택되지 않은 아이템이면 추가
+                    selectedItems.add(item)
+                    bottomSheetLayout.setBackgroundResource(R.drawable.rounded_background_blue)
                 }
+
                 fragment.updateBtnCloseBackground()
             }
         }

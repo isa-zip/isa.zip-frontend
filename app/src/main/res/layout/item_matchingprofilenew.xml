@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="292dp"
+    android:layout_height="156dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imageView18"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btn_image_bed"
+        app:civ_border_overlay="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/imgbed" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="14dp"
+       android:fontFamily="@font/suit_bold"
+        android:textColor="@color/Gray800"
+        android:text="월세 1000/75"
+        app:layout_constraintStart_toEndOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="37.29m² , 3층, 관리비 3만"
+        android:textColor="@color/Gray800"
+        android:textSize="12dp"
+        android:fontFamily="@font/suit_semibold"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="동작구 상도동"
+        android:textColor="@color/Gray800"
+        android:fontFamily="@font/suit_semibold"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="숭실대입구 4번출구 바로 앞 가..."
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:fontFamily="@font/suit_medium"
+        android:textColor="@color/Gray600"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+        app:layout_constraintStart_toStartOf="@+id/textView27" />
+
+    <TextView
+        android:id="@+id/textView59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="정태연"
+        android:textSize="14dp"
+        android:fontFamily="@font/suit_bold"
+        android:textColor="@color/Gray800"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+        app:layout_constraintStart_toEndOf="@+id/imageView18"
+        app:layout_constraintTop_toTopOf="@+id/imageView18" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView18"
+        app:srcCompat="@drawable/btn_add__1_" />
+</androidx.constraintlayout.widget.ConstraintLayout>

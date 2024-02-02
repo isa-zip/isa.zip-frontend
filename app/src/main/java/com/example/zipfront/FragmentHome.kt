@@ -15,7 +15,9 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class FragmentHome: Fragment() {
     lateinit var binding: HomeFragmentBinding
+    private lateinit var outerItemList: List<OuterItem>
     private lateinit var adapter: PoseAdapter
+    private lateinit var adapter2: OuterhomeAdapter
     internal val matchingAdapter: MatchingAdapter by lazy {
         MatchingAdapter(requireActivity())
     }
@@ -30,10 +32,19 @@ class FragmentHome: Fragment() {
         // RecyclerView에 사용할 아이템 리스트 생성
         val itemList = listOf("아이템 1", "아이템 2", "아이템 3")
 
+        outerItemList = listOf(
+            OuterItem(
+                "상도동",
+                listOf("내부 아이템 1-1", "내부 아이템 1-2", "내부 아이템 1-3")
+            )
+        )
+
         val bottomSheetFragment = MatchingBottomsheetFragment(requireContext().applicationContext, matchingAdapter)
 
         // RecyclerView에 아이템 리스트 설정
         setupRecyclerView(itemList)
+
+        setupRecyclerView2(outerItemList)
 
         val bannerAdapter = BannerAdapter(this)
         bannerAdapter.addFragment(BannerFragment(R.drawable.banner))
@@ -66,4 +77,19 @@ class FragmentHome: Fragment() {
         adapter = PoseAdapter(itemList)
         binding.poseRv.adapter = adapter
     }
+
+    private fun setupRecyclerView2(outerItemList: List<OuterItem>) {
+        // RecyclerView의 레이아웃 매니저 설정
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+        // RecyclerView의 어댑터 설정
+        adapter2 = OuterhomeAdapter(outerItemList)
+        binding.recyclerView.adapter = adapter2
+    }
+    data class OuterItem(val title: String, val innerItemList: List<String>? = null) {
+        fun getItemCount(): Int {
+            return innerItemList?.size ?: 0
+        }
+    }
+
 }

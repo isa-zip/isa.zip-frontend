@@ -178,6 +178,15 @@
                 app:layout_constraintTop_toTopOf="@+id/textView57"
                 app:srcCompat="@drawable/ic_right" />
 
+            <ImageView
+                android:id="@+id/imageView26"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="#FEE500"
+                app:layout_constraintBottom_toBottomOf="@+id/profiletext"
+                app:layout_constraintEnd_toStartOf="@+id/profiletext"
+                app:layout_constraintTop_toTopOf="@+id/profiletext"
+                app:srcCompat="@drawable/kakao_svgrepo_com" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,6 +19,7 @@
             android:layout_marginTop="261dp"
             android:text="아직 매물 매칭 기록이 없어요"
             android:textColor="@color/Gray600"
+            android:fontFamily="@font/suit_medium"
             android:textSize="14dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"

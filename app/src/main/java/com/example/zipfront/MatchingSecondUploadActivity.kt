@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
@@ -18,9 +19,24 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MatchingSecondUploadActivity : AppCompatActivity() {
     lateinit var binding: ActivityMatchinguploadselectBinding
     private lateinit var adapter: OuterSeconduploadAdapter
+    private lateinit var thirdAdapter: ThirdprofileAdapter2
+    private var clickedItemPosition: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchinguploadselectBinding.inflate(layoutInflater)
+
+        binding.layout1.visibility = View.VISIBLE
+        binding.layout2.visibility = View.GONE
+
+        binding.imageView16.setOnClickListener {
+            binding.layout1.visibility = View.GONE
+            binding.layout2.visibility = View.VISIBLE
+        }
+
+        binding.imageshow2.setOnClickListener {
+            binding.layout1.visibility = View.VISIBLE
+            binding.layout2.visibility = View.GONE
+        }
 
         val title = intent.getStringExtra("title")
         if (!title.isNullOrBlank()) {
@@ -41,19 +57,54 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.imageView17.setOnClickListener{
-            showCustomDialog()
-        }
         setContentView(binding.root)
     }
 
     private fun setupRecyclerView(innerItems: List<String>) {
         // RecyclerView의 레이아웃 매니저 설정
         binding.optionRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.optionRv2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        // RecyclerView의 어댑터 설정
-        adapter = OuterSeconduploadAdapter(innerItems)
+        thirdAdapter = ThirdprofileAdapter2(mutableListOf())
+        thirdAdapter.onButtonClickListener = object : ThirdprofileAdapter2.OnButtonClickListener {
+            override fun onButtonClick(position: Int) {
+                showCustomDialog()
+                clickedItemPosition=position
+            }
+        }
+
+        thirdAdapter.setOnItemCountChangeListener(object : ThirdprofileAdapter2.OnItemCountChangeListener {
+            override fun onItemCountChanged(itemCount: Int) {
+                Log.d("MyApp22", "$itemCount")
+                binding.textView23.text = "${itemCount}개"
+                binding.texttitle2.text = "${itemCount}개"
+            }
+        })
+
+        adapter = OuterSeconduploadAdapter(innerItems) { selectedItemList ->
+            // Remove null values and convert to List<String>
+            val selectedItems = selectedItemList.filterNotNull().map { it.orEmpty() }
+
+            Log.d("ThirdprofileAdapter2", selectedItems.toString())
+
+            // ThirdoptionAdapter에 아이템 추가
+            thirdAdapter.addItems(selectedItems.toMutableList())
+
+            Log.d("ThirdprofileAdapter3", "${thirdAdapter.itemCount}")
+
+            binding.optionRv2.adapter = thirdAdapter
+
+            // 데이터가 변경될 때마다 RecyclerView에 알리기
+            thirdAdapter.notifyDataSetChanged()
+            thirdAdapter.notifyItemCountChanged()
+        }
+//        // RecyclerView의 어댑터 설정
+//        adapter = OuterSeconduploadAdapter(innerItems)
         binding.optionRv.adapter = adapter
+
+        val itemCount = thirdAdapter.getItemCount()
+        Log.d("ThirdprofileAdapter22", "$itemCount")
+
     }
 
     private fun showCustomDialog() {
@@ -87,7 +138,11 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            finish()
+//            finish()
+            if (clickedItemPosition != -1) {
+                thirdAdapter.setSelectedItemPosition(clickedItemPosition)
+                Log.d("MyApp", "$clickedItemPosition")
+            }
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능
         }
@@ -95,4 +150,9 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
         // AlertDialog 표시
         alertDialog.show()
     }
+//    override fun onItemCountChanged(itemCount: Int) {
+//        Log.d("MyApp22", "$itemCount")
+//        binding.textView23.text = "${itemCount + 1}개"
+//        binding.texttitle2.text = "${itemCount + 1}개"
+//    }
 }

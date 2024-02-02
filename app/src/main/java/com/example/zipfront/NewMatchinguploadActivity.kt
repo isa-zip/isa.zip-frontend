@@ -28,16 +28,16 @@ class NewMatchinguploadActivity : AppCompatActivity() {
         outeruploadItemList = listOf(
             OuterUploadItem(
                 "상도동",
-                listOf("내부 아이템 1-1", "내부 아이템 1-2", "내부 아이템 1-3")
+                listOf("정태연", "한승연", "김가연")
             ),
             OuterUploadItem(
                 "동선동",
-                listOf("내부 아이템 2-1", "내부 아이템 2-2", "내부 아이템 2-3", "내부 아이템 2-4")
+                listOf("강바다", "강다희", "유미라", "한수찬")
             ),
             OuterUploadItem("오목교"),
             OuterUploadItem(
                 "성신여대",
-                listOf("내부 아이템 4-1", "내부 아이템 4-2", "내부 아이템 4-3", "내부 아이템 4-4", "내부 아이템 4-5")
+                listOf("차현수", "장은진", "메로나", "배고파", "집갈래")
             )
         )
         setupRecyclerView(outeruploadItemList)
