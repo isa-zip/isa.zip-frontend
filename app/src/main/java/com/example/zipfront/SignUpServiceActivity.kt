@@ -13,10 +13,8 @@ class SignUpServiceActivity : AppCompatActivity() {
         binding = SignUpServiceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // imageView10을 클릭했을 때 SignUpBeforeActivity로 화면 전환
         binding.imageView10.setOnClickListener {
-            val intent = Intent(this, SignUpBeforeActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

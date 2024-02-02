@@ -73,22 +73,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     //카카오맵 해시 키 구하기
-/*    fun getKakaoMapHashKey(context: Context) {
-        try {
-            val packageName = context.packageName
-            val packageInfo = context.packageManager.getPackageInfo(
-                packageName,
-                PackageManager.GET_SIGNATURES
-            )
-            for (signature in packageInfo.signatures) {
-                val md = MessageDigest.getInstance("SHA")
-                md.update(signature.toByteArray())
-                val hashKey = Base64.encodeToString(md.digest(), Base64.NO_WRAP)
-                Log.d("KakaoMap Hash Key", hashKey)
+    /*    fun getKakaoMapHashKey(context: Context) {
+            try {
+                val packageName = context.packageName
+                val packageInfo = context.packageManager.getPackageInfo(
+                    packageName,
+                    PackageManager.GET_SIGNATURES
+                )
+                for (signature in packageInfo.signatures) {
+                    val md = MessageDigest.getInstance("SHA")
+                    md.update(signature.toByteArray())
+                    val hashKey = Base64.encodeToString(md.digest(), Base64.NO_WRAP)
+                    Log.d("KakaoMap Hash Key", hashKey)
+                }
+            } catch (e: Exception) {
+                Log.e("KakaoMap Hash Key", "Error: ${e.message}")
             }
-        } catch (e: Exception) {
-            Log.e("KakaoMap Hash Key", "Error: ${e.message}")
-        }
-    }*/
+        }*/
 
 }

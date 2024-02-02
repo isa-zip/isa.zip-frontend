@@ -2,6 +2,7 @@ package com.example.zipfront
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,15 +11,6 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.sign_main)
-
-        // ImageButton 참조
-        val closeButton: ImageButton = findViewById(R.id.ic_x)
-
-        // ImageButton 클릭 리스너 설정
-        closeButton.setOnClickListener {
-            // 앱을 종료합니다.
-            finish()
-        }
 
         val textView: TextView = findViewById(R.id.text_email) // 텍스트뷰 참조
 
@@ -29,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val loginEmailButton: ImageButton = findViewById(R.id.login_email)
+        val loginEmailButton: Button = findViewById(R.id.login_email)
 
         // login_email ImageButton 클릭 리스너 설정
         loginEmailButton.setOnClickListener {

@@ -103,7 +103,8 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/some_id2"
         app:layout_constraintStart_toEndOf="@+id/some_id2"
-        app:layout_constraintTop_toTopOf="@+id/some_id2" />
+        app:layout_constraintTop_toTopOf="@+id/some_id2"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/line2"
@@ -176,7 +177,8 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/some_id3"
         app:layout_constraintStart_toEndOf="@+id/some_id3"
-        app:layout_constraintTop_toTopOf="@+id/some_id3" />
+        app:layout_constraintTop_toTopOf="@+id/some_id3"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/password_error_condition"
@@ -190,7 +192,8 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/some_id3"
         app:layout_constraintStart_toEndOf="@+id/some_id3"
-        app:layout_constraintTop_toTopOf="@+id/some_id3" />
+        app:layout_constraintTop_toTopOf="@+id/some_id3"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/imageView23"
@@ -267,7 +270,8 @@
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="@+id/some_id4"
         app:layout_constraintStart_toEndOf="@+id/some_id4"
-        app:layout_constraintTop_toTopOf="@+id/some_id4" />
+        app:layout_constraintTop_toTopOf="@+id/some_id4"
+        android:visibility="gone"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame_10000_background"
