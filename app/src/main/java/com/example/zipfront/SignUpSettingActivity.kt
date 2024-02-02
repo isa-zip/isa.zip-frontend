@@ -50,12 +50,6 @@ class SignUpSettingActivity : AppCompatActivity() {
             togglePasswordVisibility(checkPassword, eyeCheckImageView)
         }
 
-/*        // imageView10을 클릭했을 때 SignMainActivity 화면 전환
-        binding.imageView10.setOnClickListener {
-            val intent = Intent(this, SignUpBeforeActivity::class.java)
-            startActivity(intent)
-        }*/
-
         // 아이디 작성 후 커서가 깜빡이지 않을 때 오류 메시지 표시
         writeEmail.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
