@@ -210,7 +210,7 @@
                     android:text="전세"
                     android:textColor="@color/Gray900"
                     android:textSize="16dp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/suit_bold"
                     app:layout_constraintStart_toStartOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,6 +222,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
                     android:hint="최소 금액"
+                    android:fontFamily="@font/suit_semibold"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -246,6 +247,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
                     android:hint="최대 금액"
+                    android:fontFamily="@font/suit_semibold"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -272,7 +274,7 @@
                     android:text="매매"
                     android:textColor="@color/Gray900"
                     android:textSize="16dp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/suit_bold"
                     app:layout_constraintStart_toStartOf="@+id/editText2"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -284,6 +286,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
                     android:hint="최소 금액"
+                    android:fontFamily="@font/suit_semibold"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -308,6 +311,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
                     android:hint="최대 금액"
+                    android:fontFamily="@font/suit_semibold"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -334,7 +338,7 @@
                     android:text="월세"
                     android:textColor="@color/Gray900"
                     android:textSize="16dp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/suit_bold"
                     app:layout_constraintStart_toStartOf="@+id/editText4"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -346,6 +350,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
                     android:hint="최소 금액"
+                    android:fontFamily="@font/suit_semibold"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -370,6 +375,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
                     android:hint="최대 금액"
+                    android:fontFamily="@font/suit_semibold"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
