@@ -125,6 +125,12 @@
         <activity
             android:name=".SearchMapActivity"
             android:exported="false"/>
+        <activity
+            android:name=".AdditionalActivity2"
+            android:exported="false"/>
+        <activity
+            android:name=".AdditonalActivity3"
+            android:exported="false"/>
 
     </application>
 

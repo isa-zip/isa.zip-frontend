@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.widget.Button
-                android:id="@+id/myButton1"
+                android:id="@+id/additionalButton1"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -79,7 +79,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <android.widget.Button
-                android:id="@+id/myButton2"
+                android:id="@+id/additionalButton2"
                 android:layout_width="72dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -89,11 +89,11 @@
                 android:text="투 쓰리룸"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton1"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton1"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <android.widget.Button
-                android:id="@+id/myButton3"
+                android:id="@+id/additionalButton3"
                 android:layout_width="66dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -103,11 +103,11 @@
                 android:text="오피스텔"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton2"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton2"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
             <android.widget.Button
-                android:id="@+id/myButton4"
+                android:id="@+id/additionalButton4"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -117,7 +117,7 @@
                 android:text="아파트"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton3"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton3"
                 app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -235,12 +235,12 @@
 
                 <EditText
                     android:id="@+id/textView16"
-                    android:layout_width="152dp"
+                    android:layout_width="324dp"
                     android:layout_height="34dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
-                    android:hint="최소 금액"
+                    android:hint="0만원"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -248,30 +248,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
                 <ImageView
-                    android:id="@+id/imageView12"
+                    android:id="@+id/imageView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView16"
-                    app:layout_constraintStart_toEndOf="@+id/textView16"
+                    app:layout_constraintEnd_toEndOf="@+id/textView16"
                     app:layout_constraintTop_toTopOf="@+id/textView16"
-                    app:srcCompat="@drawable/line" />
-
-                <EditText
-                    android:id="@+id/textView17"
-                    android:layout_width="152dp"
-                    android:layout_height="34dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/option_textview"
-                    android:hint="최대 금액"
-                    android:paddingStart="8dp"
-                    android:textColorHint="@color/Gray700"
-                    android:textSize="12dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView12"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-
+                    app:srcCompat="@drawable/plus_circle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -297,42 +281,26 @@
 
                 <EditText
                     android:id="@+id/editText2"
-                    android:layout_width="152dp"
+                    android:layout_width="324dp"
                     android:layout_height="34dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
-                    android:hint="최소 금액"
+                    android:hint="0만원"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
                 <ImageView
-                    android:id="@+id/imageView13"
+                    android:id="@+id/imageView28"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/editText2"
-                    app:layout_constraintStart_toEndOf="@+id/editText2"
+                    app:layout_constraintEnd_toEndOf="@+id/editText2"
                     app:layout_constraintTop_toTopOf="@+id/editText2"
-                    app:srcCompat="@drawable/line" />
-
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="152dp"
-                    android:layout_height="34dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/option_textview"
-                    android:hint="최대 금액"
-                    android:paddingStart="8dp"
-                    android:textColorHint="@color/Gray700"
-                    android:textSize="12dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView13"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
+                    app:srcCompat="@drawable/plus_circle" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -359,12 +327,12 @@
 
                 <EditText
                     android:id="@+id/editText4"
-                    android:layout_width="152dp"
+                    android:layout_width="324dp"
                     android:layout_height="34dp"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/option_textview"
-                    android:hint="최소 금액"
+                    android:hint="0만원"
                     android:paddingStart="8dp"
                     android:textColorHint="@color/Gray700"
                     android:textSize="12dp"
@@ -372,29 +340,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                 <ImageView
-                    android:id="@+id/imageView14"
+                    android:id="@+id/imageView29"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="12dp"
                     app:layout_constraintBottom_toBottomOf="@+id/editText4"
-                    app:layout_constraintStart_toEndOf="@+id/editText4"
+                    app:layout_constraintEnd_toEndOf="@+id/editText4"
                     app:layout_constraintTop_toTopOf="@+id/editText4"
-                    app:srcCompat="@drawable/line" />
-
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="152dp"
-                    android:layout_height="34dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/option_textview"
-                    android:hint="최대 금액"
-                    android:paddingStart="8dp"
-                    android:textColorHint="@color/Gray700"
-                    android:textSize="12dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView14"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
+                    app:srcCompat="@drawable/plus_circle" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -421,20 +374,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/tradeButton_ex"
+            <EditText
+                android:id="@+id/tradeButton_ex1"
                 android:layout_width="324dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/input"
                 android:paddingEnd="8dp"
-                android:text="0㎡"
+                android:hint="0㎡"
                 android:textColor="#5A5A5A"
                 android:textSize="12dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="12dp"
                 app:layout_constraintStart_toStartOf="@+id/title1"
                 app:layout_constraintTop_toBottomOf="@+id/title1" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex1"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex1"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex1"
+                app:srcCompat="@drawable/plus_circle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -469,7 +432,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.widget.Button
-                android:id="@+id/myButton12"
+                android:id="@+id/additionalButton5"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -482,7 +445,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
 
             <android.widget.Button
-                android:id="@+id/myButton13"
+                android:id="@+id/additionalButton6"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -492,11 +455,11 @@
                 android:text="1층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton12"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton5"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
 
             <android.widget.Button
-                android:id="@+id/myButton14"
+                android:id="@+id/additionalButton7"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -505,11 +468,11 @@
                 android:text="2층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton13"
-                app:layout_constraintTop_toTopOf="@+id/myButton13" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton6"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton6" />
 
             <android.widget.Button
-                android:id="@+id/myButton15"
+                android:id="@+id/additionalButton8"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -519,11 +482,11 @@
                 android:text="3층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton14"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton7"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
 
             <android.widget.Button
-                android:id="@+id/myButton16"
+                android:id="@+id/additionalButton9"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -533,11 +496,11 @@
                 android:text="4층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton15"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton8"
                 app:layout_constraintTop_toBottomOf="@+id/title2" />
 
             <android.widget.Button
-                android:id="@+id/myButton17"
+                android:id="@+id/additionalButton10"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -546,11 +509,11 @@
                 android:text="5층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton16"
-                app:layout_constraintTop_toTopOf="@+id/myButton16" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton9"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton9" />
 
             <android.widget.Button
-                android:id="@+id/myButton18"
+                android:id="@+id/additionalButton11"
                 android:layout_width="40dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="12dp"
@@ -559,11 +522,11 @@
                 android:text="6층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton12"
-                app:layout_constraintTop_toBottomOf="@+id/myButton12" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton5"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton5" />
 
             <android.widget.Button
-                android:id="@+id/myButton19"
+                android:id="@+id/additionalButton12"
                 android:layout_width="65dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -572,11 +535,11 @@
                 android:text="7층 이상"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton18"
-                app:layout_constraintTop_toTopOf="@+id/myButton18" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton11"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton11" />
 
             <android.widget.Button
-                android:id="@+id/myButton20"
+                android:id="@+id/additionalButton13"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -585,11 +548,11 @@
                 android:text="반지층"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton19"
-                app:layout_constraintTop_toTopOf="@+id/myButton19" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton12"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton12" />
 
             <android.widget.Button
-                android:id="@+id/myButton21"
+                android:id="@+id/additionalButton14"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -598,24 +561,33 @@
                 android:text="옥탑방"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton20"
-                app:layout_constraintTop_toTopOf="@+id/myButton20" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton13"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton13" />
 
-            <android.widget.Button
+            <EditText
                 android:id="@+id/tradeButton_ex2"
                 android:layout_width="324dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/input"
                 android:paddingEnd="8dp"
-                android:text="기타..."
+                android:hint="기타..."
                 android:textColor="#5A5A5A"
                 android:textSize="12dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton18"
-                app:layout_constraintTop_toBottomOf="@+id/myButton18" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton11"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton11" />
 
+            <ImageView
+                android:id="@+id/imageView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex2"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex2"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex2"
+                app:srcCompat="@drawable/plus_circle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -649,7 +621,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.widget.Button
-                android:id="@+id/myButton22"
+                android:id="@+id/additionalButton15"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -662,7 +634,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title3" />
 
             <android.widget.Button
-                android:id="@+id/myButton23"
+                android:id="@+id/additionalButton16"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -672,11 +644,11 @@
                 android:text="가스비"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton22"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton15"
                 app:layout_constraintTop_toBottomOf="@+id/title3" />
 
             <android.widget.Button
-                android:id="@+id/myButton24"
+                android:id="@+id/additionalButton17"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -686,11 +658,11 @@
                 android:text="인터넷"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton23"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton16"
                 app:layout_constraintTop_toBottomOf="@+id/title3" />
 
             <android.widget.Button
-                android:id="@+id/myButton25"
+                android:id="@+id/additionalButton18"
                 android:layout_width="66dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="12dp"
@@ -699,11 +671,11 @@
                 android:text="주차여부"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton22"
-                app:layout_constraintTop_toBottomOf="@+id/myButton22" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton15"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton15" />
 
             <android.widget.Button
-                android:id="@+id/myButton26"
+                android:id="@+id/additionalButton19"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -712,24 +684,33 @@
                 android:text="수도세"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton25"
-                app:layout_constraintTop_toTopOf="@+id/myButton25" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton18"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton18" />
 
-            <android.widget.Button
+            <EditText
                 android:id="@+id/tradeButton_ex3"
                 android:layout_width="324dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/input"
                 android:paddingEnd="8dp"
-                android:text="0만원"
+                android:hint="0만원"
                 android:textColor="#5A5A5A"
                 android:textSize="12dp"
                 android:gravity="start|center_vertical"
                 android:paddingStart="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton25"
-                app:layout_constraintTop_toBottomOf="@+id/myButton25" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton18"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton18" />
 
+            <ImageView
+                android:id="@+id/imageView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex3"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex3"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex3"
+                app:srcCompat="@drawable/plus_circle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -763,7 +744,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.widget.Button
-                android:id="@+id/myButton27"
+                android:id="@+id/additionalButton20"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -776,7 +757,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title4" />
 
             <android.widget.Button
-                android:id="@+id/myButton28"
+                android:id="@+id/additionalButton21"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -785,11 +766,11 @@
                 android:text="냉장고"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton33"
-                app:layout_constraintTop_toTopOf="@+id/myButton33" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton26"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton26" />
 
             <android.widget.Button
-                android:id="@+id/myButton29"
+                android:id="@+id/additionalButton22"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -798,11 +779,11 @@
                 android:text="세탁기"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton28"
-                app:layout_constraintTop_toTopOf="@+id/myButton28" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton21"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton21" />
 
             <android.widget.Button
-                android:id="@+id/myButton30"
+                android:id="@+id/additionalButton23"
                 android:layout_width="77dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="12dp"
@@ -811,11 +792,11 @@
                 android:text="전자레인지"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton27"
-                app:layout_constraintTop_toBottomOf="@+id/myButton27" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton20"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton20" />
 
             <android.widget.Button
-                android:id="@+id/myButton31"
+                android:id="@+id/additionalButton24"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -824,11 +805,11 @@
                 android:text="옷장"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton30"
-                app:layout_constraintTop_toTopOf="@+id/myButton30" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton23"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton23" />
 
             <android.widget.Button
-                android:id="@+id/myButton32"
+                android:id="@+id/additionalButton25"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -837,11 +818,11 @@
                 android:text="책상"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton31"
-                app:layout_constraintTop_toTopOf="@+id/myButton31" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton24"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton24" />
 
             <android.widget.Button
-                android:id="@+id/myButton33"
+                android:id="@+id/additionalButton26"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -850,11 +831,11 @@
                 android:text="TV"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton27"
-                app:layout_constraintTop_toTopOf="@+id/myButton27" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton20"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton20" />
 
             <android.widget.Button
-                android:id="@+id/myButton34"
+                android:id="@+id/additionalButton27"
                 android:layout_width="45dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -863,8 +844,8 @@
                 android:text="침대"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton32"
-                app:layout_constraintTop_toTopOf="@+id/myButton32" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton25"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton25" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -898,14 +879,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.widget.Button
+            <EditText
                 android:id="@+id/tradeButton_ex4"
                 android:layout_width="324dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/input"
                 android:paddingEnd="8dp"
-                android:text="년 / 월 / 일"
+                android:hint="년 / 월 / 일"
                 android:textColor="#5A5A5A"
                 android:textSize="12dp"
                 android:gravity="start|center_vertical"
@@ -913,6 +894,15 @@
                 app:layout_constraintStart_toStartOf="@+id/title5"
                 app:layout_constraintTop_toBottomOf="@+id/title5" />
 
+            <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex4"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex4"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex4"
+                app:srcCompat="@drawable/plus_circle" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -946,7 +936,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <android.widget.Button
-                android:id="@+id/myButton35"
+                android:id="@+id/additionalButton28"
                 android:layout_width="66dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="10dp"
@@ -959,7 +949,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/title6" />
 
             <android.widget.Button
-                android:id="@+id/myButton36"
+                android:id="@+id/additionalButton29"
                 android:layout_width="66dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -969,11 +959,11 @@
                 android:text="단기임대"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton35"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton28"
                 app:layout_constraintTop_toBottomOf="@+id/title6" />
 
             <android.widget.Button
-                android:id="@+id/myButton37"
+                android:id="@+id/additionalButton30"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -983,11 +973,11 @@
                 android:text="풀옵션"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton36"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton29"
                 app:layout_constraintTop_toBottomOf="@+id/title6" />
 
             <android.widget.Button
-                android:id="@+id/myButton38"
+                android:id="@+id/additionalButton31"
                 android:layout_width="77dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="12dp"
@@ -996,11 +986,11 @@
                 android:text="엘리베이터"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton35"
-                app:layout_constraintTop_toBottomOf="@+id/myButton35" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton28"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton28" />
 
             <android.widget.Button
-                android:id="@+id/myButton39"
+                android:id="@+id/additionalButton32"
                 android:layout_width="56dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -1009,11 +999,11 @@
                 android:text="베란다"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton38"
-                app:layout_constraintTop_toTopOf="@+id/myButton38" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton31"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton31" />
 
             <android.widget.Button
-                android:id="@+id/myButton40"
+                android:id="@+id/additionalButton33"
                 android:layout_width="92dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -1022,11 +1012,11 @@
                 android:text="보안/안전시설"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton39"
-                app:layout_constraintTop_toTopOf="@+id/myButton39" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton32"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton32" />
 
             <android.widget.Button
-                android:id="@+id/myButton41"
+                android:id="@+id/additionalButton34"
                 android:layout_width="70dp"
                 android:layout_height="34dp"
                 android:layout_marginTop="12dp"
@@ -1035,11 +1025,11 @@
                 android:text="360°VR"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toStartOf="@+id/myButton38"
-                app:layout_constraintTop_toBottomOf="@+id/myButton38" />
+                app:layout_constraintStart_toStartOf="@+id/additionalButton31"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton31" />
 
             <android.widget.Button
-                android:id="@+id/myButton42"
+                android:id="@+id/additionalButton35"
                 android:layout_width="77dp"
                 android:layout_height="34dp"
                 android:layout_marginStart="8dp"
@@ -1048,8 +1038,8 @@
                 android:text="비대면계약"
                 android:textColor="@color/Gray800"
                 android:textSize="12dp"
-                app:layout_constraintStart_toEndOf="@+id/myButton41"
-                app:layout_constraintTop_toTopOf="@+id/myButton41" />
+                app:layout_constraintStart_toEndOf="@+id/additionalButton34"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton34" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
