@@ -75,6 +75,8 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
         updateBtnCloseBackground()
 
         btnOK.setOnClickListener {
+            val intent = Intent(requireContext(), AdditionalActivity2::class.java)
+            startActivity(intent)
             dismiss()
         }
 

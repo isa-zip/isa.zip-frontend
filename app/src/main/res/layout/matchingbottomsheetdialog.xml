@@ -33,7 +33,7 @@
             android:text="매칭 방법을 선택해 주세요"
             android:textColor="@color/Gray800"
             android:textSize="16dp"
-            android:textStyle="bold"
+            android:fontFamily="@font/suit_bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView11" />
@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:textSize="14dp"
+            android:fontFamily="@font/suit_medium"
             android:text="공인중개사 인증시 매물 올리기 버튼을 사용할 수 있어요"
             app:layout_constraintEnd_toEndOf="@+id/textView11"
             app:layout_constraintStart_toStartOf="@+id/textView11"

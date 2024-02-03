@@ -118,13 +118,13 @@
                 android:id="@+id/subemail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/suit_medium"
                 android:text="24zip@gmail.com"
                 android:textColor="@color/Gray600"
                 android:textSize="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/profiletext"
-                app:layout_constraintStart_toStartOf="@+id/profiletext"
+                app:layout_constraintStart_toEndOf="@+id/imageView26"
                 app:layout_constraintTop_toBottomOf="@+id/profiletext" />
 
             <TextView
@@ -180,13 +180,13 @@
 
             <ImageView
                 android:id="@+id/imageView26"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:background="#FEE500"
-                app:layout_constraintBottom_toBottomOf="@+id/profiletext"
-                app:layout_constraintEnd_toStartOf="@+id/profiletext"
-                app:layout_constraintTop_toTopOf="@+id/profiletext"
-                app:srcCompat="@drawable/kakao_svgrepo_com" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                app:layout_constraintBottom_toBottomOf="@+id/subemail"
+                app:layout_constraintStart_toStartOf="@+id/profiletext"
+                app:layout_constraintTop_toTopOf="@+id/subemail"
+                app:srcCompat="@drawable/kakao" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

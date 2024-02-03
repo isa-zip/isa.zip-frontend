@@ -27,6 +27,11 @@ class MenuFirstActivity : AppCompatActivity() {
             val intent = Intent(this, MenuSecessionActivity::class.java)
             startActivity(intent)
         }
+        //이용약관
+        binding.arrowbutton1.setOnClickListener {
+            val intent = Intent(this, MenuSerciveActivity::class.java)
+            startActivity(intent)
+        }
 
         //매물관리
         binding.arrowbutton4.setOnClickListener {
