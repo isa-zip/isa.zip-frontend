@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="@id/search_toolbar"
         app:srcCompat="@drawable/ic_filter" />
 
-    <com.kakao.vectormap.MapView
+    <!--<com.kakao.vectormap.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="397dp"
@@ -62,7 +62,36 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/layout_constraint"
-        tools:ignore="MissingClass"/>
+        tools:ignore="MissingClass"/>-->
+
+
+
+<!--    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="397dp"
+        app:layout_constraintTop_toBottomOf="@id/search_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_constraint">
+        <RelativeLayout
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>-->
+
+    <net.daum.mf.map.api.MapView
+        android:id="@+id/map_view"
+        android:layout_width="match_parent"
+        android:layout_height="397dp"
+        app:layout_constraintTop_toBottomOf="@id/search_toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/layout_constraint"
+        tools:ignore="MissingClass"/> />
+
+
 
     <ImageView
         android:id="@+id/current_location_btn"
