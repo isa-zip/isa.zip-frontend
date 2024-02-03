@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.CalendarView
@@ -22,6 +23,7 @@ class IsaScheduleActivity : AppCompatActivity() {
     private lateinit var roundtab_2week_Button: ImageButton
     private lateinit var optionRecyclerView: RecyclerView
     private lateinit var roundtab_3MonthsAgo_Button: ImageButton
+    private lateinit var Button: ImageButton
 
     private var selectedRoundTab: ImageButton? = null
 
@@ -33,6 +35,7 @@ class IsaScheduleActivity : AppCompatActivity() {
         optionRecyclerView = findViewById(R.id.option_rv)
         val layoutManager = LinearLayoutManager(this)
         optionRecyclerView.layoutManager = layoutManager
+
 
         // 데이터 준비
         val scheduleItems = ArrayList<IsaScheduleItem>()
@@ -66,6 +69,12 @@ class IsaScheduleActivity : AppCompatActivity() {
         roundtab_2week_Button = findViewById(R.id.roundtab_2week)
         calendarView = findViewById(R.id.calendarView)
 
+        Button =findViewById(R.id.imageButton5)
+
+        Button.setOnClickListener {
+            val intent = Intent(this, MatchingOptionActivity2::class.java)
+            startActivity(intent)
+        }
         // 버튼에 클릭 리스너 설정
         roundtab_3_Button.setOnClickListener {
             selectRoundTab(roundtab_3_Button)

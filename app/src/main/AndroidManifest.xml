@@ -79,6 +79,9 @@
             android:name=".MatchingOptionActivity"
             android:exported="false" />
         <activity
+            android:name=".MatchingOptionActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MatchingSecondOptionActivity"
             android:exported="false"/>
         <activity
