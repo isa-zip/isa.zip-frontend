@@ -282,6 +282,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+
         <ImageButton
             android:id="@+id/imageButton5"
             android:layout_width="wrap_content"
@@ -293,7 +294,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/frame_10000_background"
-            app:srcCompat="@drawable/btn_sign_up_setting_gray" />
+            android:src="@drawable/btn_sign_up_setting_gray" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -21,6 +21,7 @@ class IsaScheduleActivity : AppCompatActivity() {
     private lateinit var roundtab_1_Button: ImageButton
     private lateinit var roundtab_2week_Button: ImageButton
     private lateinit var optionRecyclerView: RecyclerView
+    private lateinit var roundtab_3MonthsAgo_Button: ImageButton
 
     private var selectedRoundTab: ImageButton? = null
 
@@ -66,10 +67,25 @@ class IsaScheduleActivity : AppCompatActivity() {
         calendarView = findViewById(R.id.calendarView)
 
         // 버튼에 클릭 리스너 설정
-        roundtab_3_Button.setOnClickListener { selectRoundTab(roundtab_3_Button) }
-        roundtab_2_Button.setOnClickListener { selectRoundTab(roundtab_2_Button) }
-        roundtab_1_Button.setOnClickListener { selectRoundTab(roundtab_1_Button) }
-        roundtab_2week_Button.setOnClickListener { selectRoundTab(roundtab_2week_Button) }
+        roundtab_3_Button.setOnClickListener {
+            selectRoundTab(roundtab_3_Button)
+            moveCalendar(-90)
+        }
+        // 버튼에 클릭 리스너 설정
+        roundtab_2_Button.setOnClickListener {
+            selectRoundTab(roundtab_2_Button)
+            moveCalendar(-60)
+        }
+        // 버튼에 클릭 리스너 설정
+        roundtab_1_Button.setOnClickListener {
+            selectRoundTab(roundtab_1_Button)
+            moveCalendar(-30)
+        }
+        // 버튼에 클릭 리스너 설정
+        roundtab_2week_Button.setOnClickListener {
+            selectRoundTab(roundtab_2week_Button)
+            moveCalendar(-14)
+        }
 
         // imageView10을 클릭했을 때 액티비티 종료
         val imageView10: ImageView = findViewById(R.id.imageView10)
@@ -146,7 +162,7 @@ class IsaScheduleActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
         val calendar = Calendar.getInstance()
         calendar.time = dateFormat.parse(selectedDate) ?: Date()
-        calendar.add(Calendar.DAY_OF_YEAR, daysToSubtract)
+        calendar.add(Calendar.DAY_OF_MONTH, daysToSubtract)
 
         // 변경된 날짜로 캘린더뷰 설정
         calendarView.date = calendar.timeInMillis
