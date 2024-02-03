@@ -86,7 +86,7 @@
             android:gravity="clip_horizontal"
             android:text="서울 동작구 상도 지하 378(7호선 숭실대 입구역)"
             android:padding="12dp"
-            android:textColor="#5A5A5A"
+            android:textColor="@color/Gray500"
             android:textSize="12dp"
             android:translationY="-1.51sp"
             app:layout_constraintStart_toStartOf="@+id/some_id_"

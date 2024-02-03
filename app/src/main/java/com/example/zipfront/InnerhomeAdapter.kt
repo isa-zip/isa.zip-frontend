@@ -29,9 +29,7 @@ class InnerhomeAdapter(private val itemList: List<String> = emptyList()) : Recyc
         init {
             // 아이템 전체에 대한 클릭 리스너 설정
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ZItmeInfoActivity1::class.java)
-
-                // ZItemInfoActivity1로 이동
+                val intent = Intent(itemView.context, ZItmeInfoActivity5::class.java)
                 itemView.context.startActivity(intent)
             }
         }

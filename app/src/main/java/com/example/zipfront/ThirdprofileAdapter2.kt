@@ -86,7 +86,7 @@ class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableLi
         init {
             // 아이템 전체에 대한 클릭 리스너 설정
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ZItmeInfoActivity2::class.java)
+                val intent = Intent(itemView.context, ZItmeInfoActivity4::class.java)
                 itemView.context.startActivity(intent)
             }
 
