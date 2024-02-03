@@ -3,14 +3,12 @@ package com.example.zipfront
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.zipfront.databinding.ActivitySearchlocationBinding
 import com.example.zipfront.databinding.ActivitySearchmapBinding
-import com.kakao.vectormap.KakaoMap
-import com.kakao.vectormap.KakaoMapReadyCallback
-import com.kakao.vectormap.MapLifeCycleCallback
-import com.kakao.vectormap.MapView
+import net.daum.mf.map.api.MapView
 
 class SearchMapActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchmapBinding
@@ -33,8 +31,13 @@ class SearchMapActivity : AppCompatActivity() {
             finish()
         }
 
+        //mapV1
+        val mapView = MapView(this)
+        val mapViewContainer = binding.layout1 as ViewGroup
+        mapViewContainer.addView(mapView)
 
-        //Map
+
+        /*//Map
         val mapView : MapView = binding.mapView
 
         mapView.start(object : MapLifeCycleCallback() {
@@ -49,6 +52,6 @@ class SearchMapActivity : AppCompatActivity() {
             override fun onMapReady(kakaoMap: KakaoMap) {
                 // 인증 후 API 가 정상적으로 실행될 때 호출됨
             }
-        })
+        })*/
     }
 }

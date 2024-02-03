@@ -11,8 +11,6 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
-        
-        maven { url 'https://devrepo.kakao.com/nexus/repository/kakaomap-releases/' }
 
     }
 }

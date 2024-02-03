@@ -69,10 +69,8 @@
             android:name=".MainActivity"
             android:exported="false" />
 
-
-        <meta-data
-            android:name="com.kakao.vectormap.APP_KEY"
-            android:value="026a7ddd525715ea8e569994eaa0170d"/>
+        <meta-data android:name="com.kakao.sdk.AppKey"
+            android:value="9cb869951d9a97be6fc1a0dd0dc28c42"/>
 
         <activity
             android:name=".MatchingActivity"

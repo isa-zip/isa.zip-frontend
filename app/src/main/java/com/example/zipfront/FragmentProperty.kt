@@ -25,11 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zipfront.databinding.PropertyFragmentBinding
-import com.kakao.util.maps.helper.Utility
-import com.kakao.vectormap.KakaoMap
-import com.kakao.vectormap.KakaoMapReadyCallback
-import com.kakao.vectormap.MapLifeCycleCallback
-import com.kakao.vectormap.MapView
+import net.daum.mf.map.api.MapView
 
 
 class FragmentProperty: Fragment() {
@@ -48,10 +44,13 @@ class FragmentProperty: Fragment() {
 
 
 
-        //Map
-        val mapView :MapView = binding.mapView
+        //mapV1
+/*        val mapView = MapView(requireContext())
+        val mapViewContainer = binding.layout1 as ViewGroup
+        mapViewContainer.addView(mapView)*/
 
-        mapView.start(object : MapLifeCycleCallback() {
+        //mapV2
+        /*mapView.start(object : MapLifeCycleCallback() {
             override fun onMapDestroy() {
                 // 지도 API 가 정상적으로 종료될 때 호출됨
                 Log.d("MapActivity1", "onMapDestroy called")
@@ -66,7 +65,7 @@ class FragmentProperty: Fragment() {
                 // 인증 후 API 가 정상적으로 실행될 때 호출됨
                 Log.d("MapActivity3", "onMapReady called")
             }
-        })
+        })*/
 
         //현재위치
         // 위치추적 버튼
@@ -245,16 +244,15 @@ class FragmentProperty: Fragment() {
             }
         } else {
             // 권한이 있는 상태
-            //startTracking()
+            startTracking()
         }
     }
 
     // 위치추적 시작
     private fun startTracking() {
-        //mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
-
-
+        binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
     }
+
 
 
     // 권한 요청 후 행동
