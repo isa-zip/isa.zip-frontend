@@ -31,10 +31,14 @@ class SearchMapActivity : AppCompatActivity() {
             finish()
         }
 
+        binding.choiceButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("fragmentToLoad", "FragmentProperty")
+            startActivity(intent)
+        }
+
         //mapV1
-        val mapView = MapView(this)
-        val mapViewContainer = binding.layout1 as ViewGroup
-        mapViewContainer.addView(mapView)
+
 
 
         /*//Map

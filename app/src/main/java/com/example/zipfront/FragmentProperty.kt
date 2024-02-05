@@ -73,7 +73,7 @@ class FragmentProperty: Fragment() {
             if (checkLocationService()) {
                 // GPS가 켜져있을 경우
                 permissionCheck()
-                Toast.makeText(requireContext(), "GPS가 켜져있습니다.", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "GPS가 켜져있습니다.", Toast.LENGTH_SHORT).show()
             } else {
                 // GPS가 꺼져있을 경우
                 Toast.makeText(requireContext(), "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
@@ -214,7 +214,7 @@ class FragmentProperty: Fragment() {
             // 권한이 없는 상태
             if (ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION)) {
                 // 권한 거절 (다시 한 번 물어봄)
-                val builder = AlertDialog.Builder(requireContext())
+                /*val builder = AlertDialog.Builder(requireContext())
                 builder.setMessage("현재 위치를 확인하시려면 위치 권한을 허용해주세요.")
                 builder.setPositiveButton("확인") { dialog, which ->
                     ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
@@ -222,7 +222,9 @@ class FragmentProperty: Fragment() {
                 builder.setNegativeButton("취소") { dialog, which ->
 
                 }
-                builder.show()
+                builder.show()*/
+                val locationPermissionFragment = LocationPermissionFragment()
+                locationPermissionFragment.show(parentFragmentManager, "LocationPermissionFragment")
             } else {
                 if (isFirstCheck) {
                     // 최초 권한 요청
@@ -230,7 +232,7 @@ class FragmentProperty: Fragment() {
                     ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
                 } else {
                     // 다시 묻지 않음 클릭 (앱 정보 화면으로 이동)
-                    val builder = AlertDialog.Builder(requireContext())
+                    /*val builder = AlertDialog.Builder(requireContext())
                     builder.setMessage("현재 위치를 확인하시려면 설정에서 위치 권한을 허용해주세요.")
                     builder.setPositiveButton("설정으로 이동") { dialog, which ->
                         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:com.example.zipfront"))
@@ -239,7 +241,9 @@ class FragmentProperty: Fragment() {
                     builder.setNegativeButton("취소") { dialog, which ->
 
                     }
-                    builder.show()
+                    builder.show()*/
+                    val locationPermissionFragment = LocationPermissionFragment()
+                    locationPermissionFragment.show(parentFragmentManager, "LocationPermissionFragment")
                 }
             }
         } else {
