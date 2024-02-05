@@ -1,26 +1,42 @@
 package com.example.zipfront
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.SignInBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: SignInBinding
     private var isWritePasswordVisible = false
 
+    private lateinit var user: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // MyApplication을 초기화하는 코드가 여기에 있어야 합니다.
+        MyApplication.initializeUser(this)
+
+        user = MyApplication.getUser()
+        editor = user.edit()
 
         // EditText를 binding으로 참조
         val writePassword = binding.writePassword
@@ -43,11 +59,48 @@ class SignInActivity : AppCompatActivity() {
             togglePasswordVisibility(writePassword, eyeImageView)
         }
 
-        // imageButton5를 클릭했을 때 MainActivity로 이동
-        imageButton5.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+        binding.imageButton5.setOnClickListener {
+            val email = binding.writeEmail.text.toString()
+            val password = binding.writePassword.text.toString()
+
+            val call = RetrofitObject.getRetrofitService.login(RetrofitClient2.Requestlogin(email, password))
+            call.enqueue(object : Callback<RetrofitClient2.Responselogin> {
+                override fun onResponse(call: Call<RetrofitClient2.Responselogin>, response: Response<RetrofitClient2.Responselogin>) {
+                    Log.d("Retrofit21", response.toString())
+                    if (response.isSuccessful) {
+                        val response = response.body()
+                        Log.d("Retrofit2", response.toString())
+                        if(response != null){
+                            if(response.isSuccess) {
+                                val token = response.data.accessToken
+                                val refreshtoken = response.data.refreshToken
+                                editor.putString("email", email)
+                                editor.putString("password", password)
+                                editor.putString("jwt", token)
+                                editor.putString("refreshtoken", refreshtoken)
+                                editor.apply()
+                                val intent =
+                                    Intent(this@SignInActivity, MainActivity::class.java)
+                                startActivity(intent)
+                            }else{
+                                Toast.makeText(this@SignInActivity, response.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.Responselogin>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })
         }
+
+//        // imageButton5를 클릭했을 때 MainActivity로 이동
+//        imageButton5.setOnClickListener {
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         // text2를 클릭했을 때 SignUpSettingActivity로 화면 전환
         text2.setOnClickListener {

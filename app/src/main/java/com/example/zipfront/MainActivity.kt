@@ -29,11 +29,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         initBottomNavigation()
+        getKakaoMapHashKey(this)
 
         val fragmentToLoad: String? = intent.getStringExtra("fragmentToLoad")
         goToProperty(fragmentToLoad)
-
-        //getKakaoMapHashKey(this)
     }
     private fun initBottomNavigation() {
 
@@ -86,7 +85,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     //카카오맵 해시 키 구하기
-/*        fun getKakaoMapHashKey(context: Context) {
+        fun getKakaoMapHashKey(context: Context) {
             try {
                 val packageName = context.packageName
                 val packageInfo = context.packageManager.getPackageInfo(
@@ -102,6 +101,6 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("KakaoMap Hash Key", "Error: ${e.message}")
             }
-        }*/
+        }
 
 }

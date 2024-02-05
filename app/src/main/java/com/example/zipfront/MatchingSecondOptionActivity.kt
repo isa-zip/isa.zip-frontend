@@ -95,6 +95,22 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         // thirdAdapter를 초기화
         thirdAdapter = ThirdoptionAdapter(mutableListOf())
 
+        thirdAdapter.setOnItemCountChangeListener(object : ThirdoptionAdapter.OnItemCountChangeListener {
+            override fun onItemCountChanged(itemCount: Int) {
+                Log.d("MyApp22", "$itemCount")
+                binding.textView23.text = "${itemCount}개"
+                binding.texttitle2.text = "${itemCount}개"
+
+                if (itemCount >= 1) {
+                    binding.imageView17.setImageResource(R.drawable.btn_add__1_)
+                    binding.imageshow3.setImageResource(R.drawable.btn_add__1_)
+                } else {
+                    binding.imageView17.setImageResource(R.drawable.btn_add_gray)
+                    binding.imageshow3.setImageResource(R.drawable.btn_add_gray)
+                }
+            }
+        })
+
         adapter = OuterSecondoptionAdapter(innerItems) { selectedItems ->
             Log.d("ThirdoptionAdapter2", "${selectedItems}")
             // ThirdoptionAdapter에 아이템 추가
@@ -107,6 +123,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
             // 데이터가 변경될 때마다 RecyclerView에 알리기
             thirdAdapter.notifyDataSetChanged()
         }
+
         binding.optionRv.adapter = adapter
     }
 
@@ -117,7 +134,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
     }
     private fun showCustomDialog() {
         // 다이얼로그 레이아웃을 inflate
-        val dialogView = layoutInflater.inflate(R.layout.option_seconddialogview, null)
+        val dialogView = layoutInflater.inflate(R.layout.option_thirddialogview, null)
 
         // AlertDialog.Builder를 사용하여 다이얼로그 생성
         val builder = AlertDialog.Builder(this)

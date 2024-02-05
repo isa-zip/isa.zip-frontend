@@ -110,7 +110,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_add__1_" />
+                    app:srcCompat="@drawable/btn_add_gray" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -178,7 +178,7 @@
                     android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_add__1_" />
+                    app:srcCompat="@drawable/btn_add_gray" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/option_rv2"

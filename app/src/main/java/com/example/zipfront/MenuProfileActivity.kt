@@ -31,6 +31,7 @@ class MenuProfileActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.textchecking.visibility = View.GONE
+        binding.textchecking2.visibility = View.GONE
         // EditText를 binding으로 참조
         val textPassword = binding.textPassword
         val textPasswordCheck = binding.textPasswordcheck
@@ -80,9 +81,11 @@ class MenuProfileActivity : AppCompatActivity() {
                 // textPassword와 textPasswordCheck의 값이 같을 때 배경을 업데이트
                 if (textPassword.text.toString() == textPasswordCheck.text.toString()) {
                     button2.setBackgroundResource(R.drawable.profileroudradius_blue)
+                    binding.textchecking2.visibility = View.GONE
                 }
                 else {
                     button2.setBackgroundResource(R.drawable.profileroudradius_gray)
+                    binding.textchecking2.visibility = View.VISIBLE
                 }
             }
 

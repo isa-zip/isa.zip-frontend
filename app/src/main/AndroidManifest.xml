@@ -76,6 +76,9 @@
             android:name=".MatchingActivity"
             android:exported="false" />
         <activity
+            android:name=".MatchingActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MatchingOptionActivity"
             android:exported="false" />
         <activity
@@ -89,6 +92,9 @@
             android:exported="false"/>
         <activity
             android:name=".SearchLocationActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SearchLocationActivity2"
             android:exported="false"/>
         <activity
             android:name=".PropertyInfoActivity"
@@ -131,6 +137,9 @@
             android:exported="false"/>
         <activity
             android:name=".SearchMapActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SearchMapActivity2"
             android:exported="false"/>
         <activity
             android:name=".AdditionalActivity2"
