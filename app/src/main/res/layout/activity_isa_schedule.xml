@@ -33,10 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginEnd="104dp"
+        android:layout_marginEnd="318dp"
         android:onClick="DialogClick"
         app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="@+id/search_toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView9"
         app:srcCompat="@drawable/ic_left2" />
@@ -59,8 +59,7 @@
         android:id="@+id/tip"
         android:layout_width="281dp"
         android:layout_height="54dp"
-        android:layout_marginEnd="65dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_toolbar">
 
@@ -100,10 +99,10 @@
             android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/roundtab_3"
             android:background="@android:color/transparent"
+            android:contentDescription="Round Tab 3"
             android:onClick="onRoundTab3Clicked"
-            android:contentDescription="Round Tab 3" />
+            android:src="@drawable/roundtab_3" />
 
         <ImageButton
             android:id="@+id/roundtab2"
@@ -112,10 +111,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_toEndOf="@+id/roundtab3"
-            android:src="@drawable/roundtab_2"
             android:background="@android:color/transparent"
+            android:contentDescription="Round Tab 2"
             android:onClick="onRoundTab2Clicked"
-            android:contentDescription="Round Tab 2" />
+            android:src="@drawable/roundtab_2" />
 
         <ImageButton
             android:id="@+id/roundtab1"
@@ -124,10 +123,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_toEndOf="@+id/roundtab2"
-            android:src="@drawable/roundtab_blue_1"
             android:background="@android:color/transparent"
+            android:contentDescription="Round Tab 1"
             android:onClick="onRoundTab1Clicked"
-            android:contentDescription="Round Tab 1" />
+            android:src="@drawable/roundtab_blue_1" />
 
         <ImageButton
             android:id="@+id/roundtab_2week"
@@ -136,10 +135,10 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="4dp"
             android:layout_toEndOf="@+id/roundtab1"
-            android:src="@drawable/roundtab_2week"
             android:background="@android:color/transparent"
+            android:contentDescription="Round Tab 2 Week"
             android:onClick="onRoundTab2WeekClicked"
-            android:contentDescription="Round Tab 2 Week" />
+            android:src="@drawable/roundtab_2week" />
 
     </RelativeLayout>
 

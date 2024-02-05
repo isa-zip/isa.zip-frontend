@@ -142,6 +142,9 @@
             android:name=".SearchMapActivity2"
             android:exported="false"/>
         <activity
+            android:name=".AdditionalActivity0"
+            android:exported="false"/>
+        <activity
             android:name=".AdditionalActivity2"
             android:exported="false"/>
         <activity

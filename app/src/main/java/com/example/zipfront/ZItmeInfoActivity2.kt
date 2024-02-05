@@ -10,6 +10,7 @@ class ZItmeInfoActivity2:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPropertyinfoBinding.inflate(layoutInflater)
 
+        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, PropertyInfoFragment()).commitAllowingStateLoss()
 
         //전화하기 버튼 클릭시 bottom sheet
         binding.callBtn.setOnClickListener(){

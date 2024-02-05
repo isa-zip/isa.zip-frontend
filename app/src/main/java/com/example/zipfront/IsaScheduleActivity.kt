@@ -10,6 +10,7 @@ import android.widget.CalendarView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -121,33 +122,48 @@ class IsaScheduleActivity : AppCompatActivity() {
 
         val imageView10: ImageView = findViewById(R.id.imageView10)
         imageView10.setOnClickListener {
-            val dialog = Dialog(this)
-            dialog.setContentView(R.layout.option_dialogview_calendar)
-
-            val cancelButton: ImageButton = dialog.findViewById(R.id.imageButton8)
-            val completeButton: ImageButton = dialog.findViewById(R.id.imageButton9)
-
-            // 취소 버튼 클릭
-            cancelButton.setOnClickListener {
-                dialog.dismiss()
-            }
-
-            // 나가기 버튼 클릭
-            completeButton.setOnClickListener {
-                finish()
-            }
-
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-            // Window 속성을 사용하여 크기 조절
-            val params = dialog.window?.attributes
-            params?.width = 800
-            params?.height = 600
-            dialog.window?.attributes = params
-
-            dialog.show()
+            showCustomDialog()
         }
 
+    }
+    private fun showCustomDialog() {
+        // 다이얼로그 레이아웃을 inflate
+        val dialogView = layoutInflater.inflate(R.layout.option_dialogview_calendar, null)
+
+        // AlertDialog.Builder를 사용하여 다이얼로그 생성
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialogView)
+        // AlertDialog 생성
+        val alertDialog: AlertDialog = builder.create()
+
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        // Window 속성을 사용하여 크기 조절
+        val params =  alertDialog.window?.attributes
+        params?.width = 296
+        params?.height = 149
+        alertDialog.window?.attributes = params
+
+        // 다이얼로그 내부의 ImageButton 참조
+        val cancelButton = dialogView.findViewById<ImageButton>(R.id.imageButton8)
+        val confirmButton = dialogView.findViewById<ImageButton>(R.id.imageButton9)
+
+        // 취소 버튼 클릭 리스너 설정
+        cancelButton.setOnClickListener {
+            // 취소 버튼을 눌렀을 때 수행할 동작
+            alertDialog.dismiss() // 다이얼로그 닫기
+            // 추가적인 작업 수행 가능
+        }
+
+        // 확인 버튼 클릭 리스너 설정
+        confirmButton.setOnClickListener {
+            finish()
+            alertDialog.dismiss() // 다이얼로그 닫기
+            // 추가적인 작업 수행 가능
+        }
+
+        // AlertDialog 표시
+        alertDialog.show()
     }
 
     // 선택한 roundtab 버튼을 변경하는 메서드

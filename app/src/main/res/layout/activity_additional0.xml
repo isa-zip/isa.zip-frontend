@@ -64,7 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressbar"
         app:srcCompat="@drawable/input_search2" />
 
@@ -74,7 +75,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/button_roundcircle"
         app:layout_constraintStart_toStartOf="@+id/search_image"
-        app:layout_constraintTop_toBottomOf="@+id/search_image">
+        app:layout_constraintTop_toBottomOf="@+id/search_image"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imageView35"
@@ -130,5 +132,14 @@
             app:layout_constraintTop_toBottomOf="@+id/textView64" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/option_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/search_image"
+        app:layout_constraintStart_toStartOf="@+id/search_image"
+        app:layout_constraintTop_toBottomOf="@+id/search_image"
+        tools:listitem="@layout/item_addressoption_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
