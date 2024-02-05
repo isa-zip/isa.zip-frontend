@@ -1,7 +1,6 @@
 package com.example.zipfront
 
 import android.app.Activity
-import android.app.TaskStackBuilder
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.zipfront.databinding.MatchingActivityBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class MatchingActivity: AppCompatActivity() {
+class MatchingActivity2: AppCompatActivity() {
     lateinit var binding: MatchingActivityBinding
     private val information = arrayListOf("매칭 요청", "매칭 완료")
     val REQUEST_CODE_OPTION = 1
@@ -27,17 +26,15 @@ class MatchingActivity: AppCompatActivity() {
 
 //        val bottomSheetFragment = MatchingBottomsheetFragment(applicationContext, matchingAdapter)
 
+
         binding.imageButton3.setOnClickListener {
 //            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
-            val intent = Intent(this, SearchLocationActivity2::class.java)
+            val intent = Intent(this, MatchingOptionActivity2::class.java)
             startActivityForResult(intent, REQUEST_CODE_OPTION)
         }
 
         binding.imageView10.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            val stackBuilder = TaskStackBuilder.create(this)
-            stackBuilder.addNextIntentWithParentStack(intent)
-            stackBuilder.startActivities()
+            finish()
         }
 
         initViewPager()
@@ -56,6 +53,16 @@ class MatchingActivity: AppCompatActivity() {
             Log.d("ViewPagerUpdate", "Adapter is up to date.")
         } else {
             Log.d("ViewPagerUpdate", "Adapter needs to be updated.")
+        }
+
+        val customData = intent.getStringExtra("EXTRA_CUSTOM_DATA")
+        if (customData != null) {
+            // 여기서 필요한 작업을 수행합니다.
+            val fragment = matchingAdapter.fragments[viewPager.currentItem]
+
+            if (fragment is MatchingStillFragment) {
+                fragment.handleActivityResult(REQUEST_CODE_OPTION)
+            }
         }
 
         TabLayoutMediator(binding.tabs, viewPager) { tab, position ->

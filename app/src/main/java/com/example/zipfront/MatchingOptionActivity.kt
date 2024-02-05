@@ -1,6 +1,7 @@
 package com.example.zipfront
 
 import android.app.Activity
+import android.app.TaskStackBuilder
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -14,6 +15,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NavUtils
 import androidx.core.content.ContextCompat
 import com.example.zipfront.databinding.MatchingOptionBinding
 
@@ -249,10 +251,13 @@ class MatchingOptionActivity: AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            val intent = Intent()
+            val intent = Intent(this, MatchingActivity::class.java)
             intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity!")
             setResult(Activity.RESULT_OK, intent)
-            finish()
+
+            val stackBuilder = TaskStackBuilder.create(this)
+            stackBuilder.addNextIntentWithParentStack(intent)
+            stackBuilder.startActivities()
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능
         }

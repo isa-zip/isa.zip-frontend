@@ -25,8 +25,11 @@ class MatchingStillFragment : Fragment() {
     ): View? {
         binding= MatchingstillRecyclerviewBinding.inflate(inflater,container,false)
 
-        binding.textView10.visibility = View.VISIBLE
-        binding.notShowing2.visibility = View.GONE
+        val requestCode = arguments?.getInt("REQUEST_CODE", -1) ?: -1
+        Log.d("MatchingStillFragment", "Received requestCode: $requestCode")
+
+        binding.textView10.visibility = View.GONE
+        binding.notShowing2.visibility = View.VISIBLE
 
         outerItemList = listOf(
             OuterItem("상도동", listOf("내부 아이템 1-1", "내부 아이템 1-2", "내부 아이템 1-3")),

@@ -249,10 +249,9 @@ class MatchingOptionActivity2: AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            val intent = Intent(this, MatchingActivity::class.java)
-            intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity!")
-
-            setResult(Activity.RESULT_OK, intent)
+            val intent = Intent(this, MatchingActivity2::class.java)
+            intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity2!")
+            startActivity(intent)
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능
         }
