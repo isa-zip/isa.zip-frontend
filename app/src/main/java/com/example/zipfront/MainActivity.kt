@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.example.zipfront.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.security.MessageDigest
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         initBottomNavigation()
+
+        val fragmentToLoad: String? = intent.getStringExtra("fragmentToLoad")
+        goToProperty(fragmentToLoad)
+
         //getKakaoMapHashKey(this)
     }
     private fun initBottomNavigation() {
@@ -72,6 +77,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun goToProperty(fragmentToLoad: String?) {
+        if (fragmentToLoad.isNullOrEmpty()) {
+            // fragmentToLoad가 비어있거나 null인 경우 처리
+        } else {
+            Toast.makeText(this, fragmentToLoad, Toast.LENGTH_SHORT).show()
+        }
+    }
     //카카오맵 해시 키 구하기
 /*        fun getKakaoMapHashKey(context: Context) {
             try {

@@ -2,6 +2,7 @@ package com.example.zipfront
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.example.zipfront.databinding.ActivityPropertyinfoBinding
 
 class PropertyInfoActivity:AppCompatActivity() {
@@ -9,6 +10,12 @@ class PropertyInfoActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPropertyinfoBinding.inflate(layoutInflater)
+
+
+
+        //Property Info Fragment 띄우기
+        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, PropertyInfoFragment()).commitAllowingStateLoss()
+
 
 
         //전화하기 버튼 클릭시 bottom sheet
