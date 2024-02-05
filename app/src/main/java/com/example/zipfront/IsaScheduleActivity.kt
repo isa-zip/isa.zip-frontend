@@ -1,6 +1,9 @@
 package com.example.zipfront
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.CalendarView
@@ -36,6 +39,20 @@ class IsaScheduleActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         optionRecyclerView.layoutManager = layoutManager
 
+        // CalendarView 초기화
+        calendarView = findViewById(R.id.calendarView)
+
+        // ScheduleActivity에서 전달받은 선택된 날짜 가져오기
+        val selectedDate = intent.getStringExtra("selectedDate")
+
+        // 선택된 날짜가 null이 아니라면, CalendarView에 설정
+        selectedDate?.let {
+            val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+            val calendar = Calendar.getInstance()
+            calendar.time = dateFormat.parse(selectedDate) ?: Date()
+            val milliseconds = calendar.timeInMillis
+            calendarView.date = milliseconds
+        }
 
         // 데이터 준비
         val scheduleItems = ArrayList<IsaScheduleItem>()
@@ -96,17 +113,41 @@ class IsaScheduleActivity : AppCompatActivity() {
             moveCalendar(-14)
         }
 
-        // imageView10을 클릭했을 때 액티비티 종료
-        val imageView10: ImageView = findViewById(R.id.imageView10)
-        imageView10.setOnClickListener {
-            finish()
-        }
-
         // 년도 텍스트뷰 클릭 시 bottom sheet 표시
         val yearTextView: TextView = findViewById(R.id.year_text)
         yearTextView.setOnClickListener {
             showBottomSheetCalendar()
         }
+
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            val dialog = Dialog(this)
+            dialog.setContentView(R.layout.option_dialogview_calendar)
+
+            val cancelButton: ImageButton = dialog.findViewById(R.id.imageButton8)
+            val completeButton: ImageButton = dialog.findViewById(R.id.imageButton9)
+
+            // 취소 버튼 클릭
+            cancelButton.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            // 나가기 버튼 클릭
+            completeButton.setOnClickListener {
+                finish()
+            }
+
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            // Window 속성을 사용하여 크기 조절
+            val params = dialog.window?.attributes
+            params?.width = 800
+            params?.height = 600
+            dialog.window?.attributes = params
+
+            dialog.show()
+        }
+
     }
 
     // 선택한 roundtab 버튼을 변경하는 메서드
@@ -116,22 +157,20 @@ class IsaScheduleActivity : AppCompatActivity() {
 
         // 현재 선택된 roundtab 버튼과 선택하려는 roundtab 버튼이 같은 경우, 선택 취소
         if (selectedRoundTab === selectedTab) {
-            // 선택된 roundtab 버튼 이미지 변경
-            selectedTab.setImageResource(getRoundTabImage(selectedTab, isSelected = false))
-            // 현재 선택된 roundtab 버튼 초기화
-            selectedRoundTab = null
-        } else {
-            // 선택된 roundtab 버튼 이미지 변경
-            selectedTab.setImageResource(getRoundTabImage(selectedTab, isSelected = true))
-
-            // 이전에 선택된 roundtab 버튼이 있는지 확인하고, 있다면 선택 취소
-            selectedRoundTab?.let {
-                it.setImageResource(getRoundTabImage(it, isSelected = false))
-            }
-
-            // 현재 선택된 roundtab 버튼 업데이트
-            selectedRoundTab = selectedTab
+            // 이미 선택된 상태이므로 아무것도 하지 않음
+            return
         }
+
+        // 선택된 roundtab 버튼 이미지 변경
+        selectedTab.setImageResource(getRoundTabImage(selectedTab, isSelected = true))
+
+        // 이전에 선택된 roundtab 버튼이 있는지 확인하고, 있다면 선택 취소
+        selectedRoundTab?.let {
+            it.setImageResource(getRoundTabImage(it, isSelected = false))
+        }
+
+        // 현재 선택된 roundtab 버튼 업데이트
+        selectedRoundTab = selectedTab
 
         // 선택되지 않은 모든 라운드탭 버튼을 gray로 변경
         allRoundTabs.forEach { button ->
