@@ -3,18 +3,23 @@ package com.example.zipfront
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class IsaScheduleAdapter(private val scheduleList: List<IsaScheduleItem>, private val listener: OnItemClickListener) :
-    RecyclerView.Adapter<IsaScheduleAdapter.IsaScheduleViewHolder>() {
+class IsaScheduleAdapter(
+    private val scheduleList: List<IsaScheduleItem>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<IsaScheduleAdapter.IsaScheduleViewHolder>() {
 
     private var selectedItemPosition: Int = -1
+    private var isEditingMode: Boolean = false
 
-    inner class IsaScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    inner class IsaScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textViewDate: TextView = itemView.findViewById(R.id.textView22)
         val textViewDescription: TextView = itemView.findViewById(R.id.textView23)
+        val circleImageView: ImageView = itemView.findViewById(R.id.circle)
 
         init {
             itemView.setOnClickListener(this)
@@ -25,10 +30,10 @@ class IsaScheduleAdapter(private val scheduleList: List<IsaScheduleItem>, privat
             if (position != RecyclerView.NO_POSITION) {
                 listener.onItemClick(position)
 
-                // 선택된 아이템의 위치를 갱신하고 색상을 변경합니다.
-                val previousSelectedItemPosition = selectedItemPosition
-                selectedItemPosition = position
-                notifyDataSetChanged() // 모든 아이템의 배경을 새로 고칩니다.
+                if (isEditingMode) {
+                    selectedItemPosition = position
+                    notifyDataSetChanged()
+                }
             }
         }
     }
@@ -48,15 +53,39 @@ class IsaScheduleAdapter(private val scheduleList: List<IsaScheduleItem>, privat
         holder.textViewDate.text = currentItem.date
         holder.textViewDescription.text = currentItem.description
 
-        /*// 선택된 아이템인 경우
+        // Set the background and image based on whether the item is selected or not
         if (position == selectedItemPosition) {
-            holder.itemView.setBackgroundResource(R.drawable.point_blue)
-            holder.itemView.setBackgroundResource(R.drawable.list3)
+            val layout1: ConstraintLayout = holder.itemView.findViewById(R.id.layout1)
+            layout1.setBackgroundResource(R.drawable.list3)
+
+            val pointImageView: ImageView = holder.itemView.findViewById(R.id.point_gray)
+            pointImageView.setImageResource(R.drawable.point_blue)
         } else {
-            holder.itemView.setBackgroundResource(R.drawable.point_gray)
-            holder.itemView.setBackgroundResource(R.drawable.list4)
-        }*/
+            val layout1: ConstraintLayout = holder.itemView.findViewById(R.id.layout1)
+            layout1.setBackgroundResource(R.drawable.list4)
+
+            val pointImageView: ImageView = holder.itemView.findViewById(R.id.point_gray)
+            pointImageView.setImageResource(R.drawable.point_gray)
+        }
+
+        // Define the action when the item is clicked
+        holder.itemView.setOnClickListener {
+            val adapterPosition = holder.adapterPosition
+            // Ensure the clicked item is not already selected
+            if (adapterPosition != selectedItemPosition) {
+                // Update the selected item position
+                selectedItemPosition = adapterPosition
+                // Notify that the item has changed
+                notifyDataSetChanged()
+            }
+        }
     }
 
     override fun getItemCount() = scheduleList.size
+
+    // 편집 모드를 설정합니다.
+    fun setEditingMode(isEditing: Boolean) {
+        isEditingMode = isEditing
+        notifyDataSetChanged()
+    }
 }

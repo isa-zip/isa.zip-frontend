@@ -150,6 +150,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:textSize="10sp"
+        android:selectedWeekBackgroundColor="#2FACEB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -216,6 +217,29 @@
             app:layout_constraintHorizontal_weight="1"
             app:layout_constraintStart_toEndOf="@+id/some_id"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/editing_finish"
+            android:layout_width="25dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/suit_medium"
+            android:gravity="center"
+            android:onClick="onEditClicked"
+            android:text="완료"
+            android:textAppearance="@style/some_id"
+            android:textColor="#2FACEB"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/some_id"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
