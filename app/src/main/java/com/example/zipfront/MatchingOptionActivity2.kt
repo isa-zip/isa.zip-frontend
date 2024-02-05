@@ -32,6 +32,7 @@ class MatchingOptionActivity2: AppCompatActivity() {
     var originalBackgroundArray2 = arrayOfNulls<Drawable>(3)
     var originalTextColorArray2 = IntArray(3)
 
+    var isChoose = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MatchingOptionBinding.inflate(layoutInflater)
@@ -42,11 +43,19 @@ class MatchingOptionActivity2: AppCompatActivity() {
         binding.constraintLayout5.visibility = View.GONE
 
         binding.imageButton7.setOnClickListener{
-            showCustomDialog()
+            val intent = Intent(this, MatchingActivity2::class.java)
+            intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity2!")
+            startActivity(intent)
         }
 
         binding.imageView10.setOnClickListener{
-            finish()
+            if (isChoose) {
+                showCustomDialog()
+            }
+            else {
+                finish()
+            }
+
         }
         val clickedColor = ContextCompat.getColor(this, R.color.zipblue01)
 
@@ -86,8 +95,10 @@ class MatchingOptionActivity2: AppCompatActivity() {
                 // 하나라도 버튼이 눌리면 imageButton7의 이미지 변경
                 if (checkArray.any { it }) {
                     binding.imageButton7.setImageResource(R.drawable.btn__apply_active)
+                    isChoose = true
                 } else {
                     binding.imageButton7.setImageResource(R.drawable.btn__apply_disabled)
+                    isChoose = false
                 }
             }
         }
@@ -249,9 +260,7 @@ class MatchingOptionActivity2: AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            val intent = Intent(this, MatchingActivity2::class.java)
-            intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity2!")
-            startActivity(intent)
+            finish()
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능
         }

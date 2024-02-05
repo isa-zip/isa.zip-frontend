@@ -53,12 +53,9 @@ class LocationAdapter2(private var locationSet: List<Location>, private var onIt
         //아이템 클릭시
         val listener = View.OnClickListener { it ->
             Toast.makeText(it.context, "Clicked -> ID : ${holder.location.text}", Toast.LENGTH_SHORT).show()
-
-            // Get the selected location
-            val selectedLocation = locationSet[position]
-
-            // Pass the selected location to SearchLocationActivity2
-            onItemClick.onClick(selectedLocation.id)
+            val intent = Intent(holder.itemView?.context, SearchMapActivity2::class.java)
+            intent.putExtra("location", holder.location.text.toString())
+            ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
         holder.itemView.setOnClickListener(listener)
     }

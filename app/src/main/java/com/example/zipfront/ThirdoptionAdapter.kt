@@ -10,14 +10,34 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ThirdoptionAdapter(private val itemList: MutableList<String> = mutableListOf()) : RecyclerView.Adapter<ThirdoptionAdapter.ViewHolder>() {
 
+    private var onItemCountChangeListener: OnItemCountChangeListener? = null
+    private val itemCountChangeListenerList = mutableListOf<OnItemCountChangeListener>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_matchingoptiondoublemin, parent, false)
         return ViewHolder(view)
+    }
+    interface OnItemCountChangeListener {
+        fun onItemCountChanged(itemCount: Int)
+    }
+    fun setOnItemCountChangeListener(listener: OnItemCountChangeListener) {
+        this.onItemCountChangeListener = listener
+    }
+    fun notifyItemCountChanged() {
+        val selectedItemCount = getSelectedItemCount()
+        Log.d("MyApp32", "Selected Item Count: $selectedItemCount")
+        onItemCountChangeListener?.onItemCountChanged(selectedItemCount)
+        itemCountChangeListenerList.forEach { it.onItemCountChanged(selectedItemCount) }
+    }
+    private fun getSelectedItemCount(): Int {
+        val count = itemList.size
+        Log.d("MyApp33", "$count")
+        return count
     }
 
     fun addItems(items: MutableList<String>) {
         itemList.addAll(items)
         notifyDataSetChanged()
+        notifyItemCountChanged()
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]

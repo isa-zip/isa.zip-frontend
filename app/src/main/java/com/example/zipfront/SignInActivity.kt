@@ -59,48 +59,48 @@ class SignInActivity : AppCompatActivity() {
             togglePasswordVisibility(writePassword, eyeImageView)
         }
 
-//        binding.imageButton5.setOnClickListener {
-//            val email = binding.writeEmail.text.toString()
-//            val password = binding.writePassword.text.toString()
-//
-//            val call = RetrofitObject.getRetrofitService.login(RetrofitClient2.Requestlogin(email, password))
-//            call.enqueue(object : Callback<RetrofitClient2.Responselogin> {
-//                override fun onResponse(call: Call<RetrofitClient2.Responselogin>, response: Response<RetrofitClient2.Responselogin>) {
-//                    Log.d("Retrofit21", response.toString())
-//                    if (response.isSuccessful) {
-//                        val response = response.body()
-//                        Log.d("Retrofit2", response.toString())
-//                        if(response != null){
-//                            if(response.isSuccess) {
-//                                val token = response.data.accessToken
-//                                val refreshtoken = response.data.refreshToken
-//                                editor.putString("email", email)
-//                                editor.putString("password", password)
-//                                editor.putString("jwt", token)
-//                                editor.putString("refreshtoken", refreshtoken)
-//                                editor.apply()
-//                                val intent =
-//                                    Intent(this@SignInActivity, MainActivity::class.java)
-//                                startActivity(intent)
-//                            }else{
-//                                Toast.makeText(this@SignInActivity, response.message, Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<RetrofitClient2.Responselogin>, t: Throwable) {
-//                    val errorMessage = "Call Failed: ${t.message}"
-//                    Log.d("Retrofit", errorMessage)
-//                }
-//            })
-//        }
+        binding.imageButton5.setOnClickListener {
+            val email = binding.writeEmail.text.toString()
+            val password = binding.writePassword.text.toString()
 
-        // imageButton5를 클릭했을 때 MainActivity로 이동
-        imageButton5.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            val call = RetrofitObject.getRetrofitService.login(RetrofitClient2.Requestlogin(email, password))
+            call.enqueue(object : Callback<RetrofitClient2.Responselogin> {
+                override fun onResponse(call: Call<RetrofitClient2.Responselogin>, response: Response<RetrofitClient2.Responselogin>) {
+                    Log.d("Retrofit21", response.toString())
+                    if (response.isSuccessful) {
+                        val response = response.body()
+                        Log.d("Retrofit2", response.toString())
+                        if(response != null){
+                            if(response.isSuccess) {
+                                val token = response.data.accessToken
+                                val refreshtoken = response.data.refreshToken
+                                editor.putString("email", email)
+                                editor.putString("password", password)
+                                editor.putString("jwt", token)
+                                editor.putString("refreshtoken", refreshtoken)
+                                editor.apply()
+                                val intent =
+                                    Intent(this@SignInActivity, MainActivity::class.java)
+                                startActivity(intent)
+                            }else{
+                                Toast.makeText(this@SignInActivity, response.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.Responselogin>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })
         }
+
+//        // imageButton5를 클릭했을 때 MainActivity로 이동
+//        imageButton5.setOnClickListener {
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         // text2를 클릭했을 때 SignUpSettingActivity로 화면 전환
         text2.setOnClickListener {

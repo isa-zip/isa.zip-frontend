@@ -64,7 +64,7 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler {
     private lateinit var locationAdapter: LocationAdapter2
 
     //현재 검색
-    val REQUEST_CODE_OPTION = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,11 +78,6 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler {
         //레이아웃 바꾸기
         changeLayout()
 
-        // Retrieve the selected location from intent
-        val selectedLocation = intent.getSerializableExtra("selectedLocation") as? Location
-
-        // Use the selected location data as needed
-        binding.searchEt.setText(selectedLocation?.toString())
 
         //자동으로 포커싱, 키보드 올리기
         binding.searchEt.requestFocus()
@@ -212,13 +207,13 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler {
 
 
     override fun onClick(locationId: Int) {
-        val selectedLocation = locationList.find { it.id == locationId }
+        /*setFragmentResultListener("requestInfo") { requestKey, bundle ->
+            val email = bundle.getString("email")!!
+            val nick = bundle.getString("nick")!!
+            val password = bundle.getString("password")
 
-        // Handle the selected location as needed
-        // You can start the next activity (SearchMapActivity2) and pass the selected location data
-        val intent = Intent(this, SearchMapActivity2::class.java)
-        intent.putExtra("selectedLocation", selectedLocation)
-        startActivityForResult(intent, REQUEST_CODE_OPTION)
+            signUp(email, nick, password, locationId)
+        }*/
     }
 
 
@@ -354,16 +349,4 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler {
         changeLayout()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == REQUEST_CODE_OPTION && resultCode == Activity.RESULT_OK) {
-            // Handle the result from MatchingOptionActivity if needed
-            val customData = data?.getStringExtra("EXTRA_CUSTOM_DATA")
-            Log.d(
-                "SearchLocationT2",
-                "Received custom data from MatchingOptionActivity: $customData"
-            )
-        }
-    }
 }
