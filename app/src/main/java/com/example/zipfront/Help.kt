@@ -39,7 +39,7 @@ class Help : Fragment() {
         searchbar.setOnClickListener {
             try {
                 // ScheduleActivity로 화면 전환
-                val intent = Intent(activity, ScheduleActivity::class.java)
+                val intent = Intent(activity, SearchLocationActivity3::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
                 e.printStackTrace()

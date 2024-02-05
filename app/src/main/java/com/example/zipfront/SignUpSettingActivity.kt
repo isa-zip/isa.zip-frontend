@@ -171,7 +171,7 @@ class SignUpSettingActivity : AppCompatActivity() {
         val isNicknameErrorVisible = nicknameError.visibility == View.VISIBLE
 
         if (!isIdErrorVisible && !isPasswordErrorMatchingVisible && !isNicknameErrorVisible) {
-            imageButton5.setBackgroundResource(R.drawable.btn_sign_up_setting_blue)
+            imageButton5.setImageResource(R.drawable.btn_sign_up_setting_blue)
             // 모든 입력이 다 끝난 후에 어떤 오류 메시지도 생기지 않을 경우 버튼을 활성화합니다.
             imageButton5.isEnabled = true
             imageButton5.setOnClickListener {
@@ -179,7 +179,7 @@ class SignUpSettingActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         } else {
-            imageButton5.setBackgroundResource(R.drawable.btn_sign_up_setting_gray)
+            imageButton5.setImageResource(R.drawable.btn_sign_up_setting_gray)
             // 오류가 있을 때는 화면 전환을 막습니다.
             imageButton5.isEnabled = false
         }

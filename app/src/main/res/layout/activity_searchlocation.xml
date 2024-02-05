@@ -7,7 +7,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/search_layout"
-        android:layout_width="360dp"
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,10 +28,10 @@
             android:id="@+id/search_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toEndOf="@id/left_image"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/left_image"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/frame_search" />
 
         <EditText

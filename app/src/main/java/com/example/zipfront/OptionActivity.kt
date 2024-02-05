@@ -41,9 +41,13 @@ class OptionActivity: AppCompatActivity() {
         binding.constraintLayout4.visibility = View.GONE
         binding.constraintLayout5.visibility = View.GONE
 
-/*        binding.imageButton7.setOnClickListener{
-            showCustomDialog()
-        }*/
+        binding.imageButton7.setOnClickListener{
+            if (isChoose) {
+                finish()
+            }
+            else {
+            }
+        }
 
         binding.imageView10.setOnClickListener{
             if (isChoose) {

@@ -97,6 +97,9 @@
             android:name=".SearchLocationActivity2"
             android:exported="false"/>
         <activity
+            android:name=".SearchLocationActivity3"
+            android:exported="false"/>
+        <activity
             android:name=".PropertyInfoActivity"
             android:exported="false"/>
         <activity
@@ -142,10 +145,14 @@
             android:name=".SearchMapActivity2"
             android:exported="false"/>
         <activity
+            android:name=".SearchMapActivity3"
+            android:exported="false"/>
+        <activity
             android:name=".AdditionalActivity0"
             android:exported="false"/>
         <activity
             android:name=".AdditionalActivity2"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false"/>
         <activity
             android:name=".AdditonalActivity3"

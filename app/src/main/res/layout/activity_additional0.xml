@@ -59,15 +59,24 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
 
-    <ImageView
+    <EditText
         android:id="@+id/search_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="324dp"
+        android:layout_height="44dp"
         android:layout_marginTop="18dp"
+        android:drawableLeft="@drawable/search11"
+        android:drawablePadding="1dp"
+        android:background="@drawable/anotherprofileroudradius"
+        android:fontFamily="@font/suit_semibold"
+        android:gravity="center|start"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:hint="장소를 검색해 주세요"
+        android:textColor="@color/Gray700"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar"
-        app:srcCompat="@drawable/input_search2" />
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="324dp"
