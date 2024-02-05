@@ -18,7 +18,7 @@
 
     <ImageView
         android:id="@+id/property_image"
-        android:layout_width="360dp"
+        android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:layout_constraintTop_toBottomOf="@+id/layout_margin"
@@ -36,7 +36,7 @@
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_margin"
         app:srcCompat="@drawable/imgbed" />
 
     <TextView
@@ -107,13 +107,12 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="12dp"
-        android:text="숭실대입구 4번출구 바로 앞 가..."
-        android:maxLines="1"
         android:ellipsize="end"
+        android:fontFamily="@font/suit_medium"
+        android:maxLines="1"
+        android:text="숭실대입구 4번출구 바로 앞 가..."
         android:textColor="@color/Gray600"
         android:textSize="12dp"
-        android:fontFamily="@font/suit_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/property_img"
         app:layout_constraintStart_toEndOf="@+id/property_img" />
 </androidx.constraintlayout.widget.ConstraintLayout>

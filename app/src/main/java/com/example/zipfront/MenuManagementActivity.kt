@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
@@ -41,6 +42,10 @@ class MenuManagementActivity : AppCompatActivity() {
 
         val recyclerView = RecyclerView(this)
 
+        binding.addPropertyBtn.setOnClickListener {
+            val intent = Intent(this, AdditionalActivity0::class.java)
+            startActivity(intent)
+        }
 
         checkList()
     }
