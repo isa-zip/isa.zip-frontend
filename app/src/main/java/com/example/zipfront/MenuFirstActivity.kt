@@ -1,5 +1,6 @@
 package com.example.zipfront
 
+import android.app.TaskStackBuilder
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +42,12 @@ class MenuFirstActivity : AppCompatActivity() {
 
         binding.imageView10.setOnClickListener {
             finish()
+        }
+        binding.button2.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            val stackBuilder = TaskStackBuilder.create(this)
+            stackBuilder.addNextIntentWithParentStack(intent)
+            stackBuilder.startActivities()
         }
 
     }

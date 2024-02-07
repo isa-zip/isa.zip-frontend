@@ -27,6 +27,10 @@ class FragmentHome: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = HomeFragmentBinding.inflate(inflater, container, false)
+
+        binding.propertylayout.visibility=View.VISIBLE
+        binding.recyclerView.visibility=View.GONE
+
         // RecyclerView 찾기
 
         // RecyclerView에 사용할 아이템 리스트 생성
@@ -57,6 +61,9 @@ class FragmentHome: Fragment() {
             bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
         }
 
+        binding.imageButton.setOnClickListener {
+            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        }
         // imageView7 또는 imageButton2 클릭 시 ScheduleActivity로 이동
         binding.imageView7.setOnClickListener {
             startActivity(Intent(requireContext(), ScheduleActivity::class.java))
