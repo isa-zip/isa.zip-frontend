@@ -1,12 +1,9 @@
 package com.example.zipfront
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.example.zipfront.databinding.ActivitySearchlocationBinding
 import com.example.zipfront.databinding.ActivitySearchmapBinding
 import net.daum.mf.map.api.MapView
 
@@ -32,10 +29,18 @@ class SearchMapActivity : AppCompatActivity() {
         }
 
         binding.choiceButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("fragmentToLoad", "FragmentProperty")
+            val parentView = binding.parentLayout
+            parentView.removeView(binding.mapView)
+            //binding.mapView.setOnClickListener(null)
+            //binding.mapView.setOnLongClickListener(null)
+            //binding.mapView.onSurfaceDestroyed()
+            val intent = Intent(this@SearchMapActivity, MainActivity::class.java)
+            intent.putExtra("fragmentToLoad", "propertyFragment")
             startActivity(intent)
+            finish()
         }
+
+
 
         //mapV1
 
@@ -58,4 +63,5 @@ class SearchMapActivity : AppCompatActivity() {
             }
         })*/
     }
+
 }
