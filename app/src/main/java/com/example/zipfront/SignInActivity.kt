@@ -102,6 +102,8 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 비밀번호 잘못 입력했을 때 login_dialogview 코드 추가해야함!!!!!!!
+
         // text2를 클릭했을 때 SignUpSettingActivity로 화면 전환
         text2.setOnClickListener {
             val intent = Intent(this, SignUpSettingActivity::class.java)

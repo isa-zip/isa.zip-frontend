@@ -13,6 +13,9 @@ dependencyResolutionManagement {
         jcenter()
 
     }
+    repositories {
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
+    }
 }
 rootProject.name = "ZIPfront"
 include ':app'

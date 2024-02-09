@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class SignUpBeforeActivity : AppCompatActivity() {
@@ -14,6 +15,7 @@ class SignUpBeforeActivity : AppCompatActivity() {
     private lateinit var imageButton4: ImageButton
     private lateinit var imageButton5: ImageButton
     private lateinit var imageButton1_1: ImageButton
+    private lateinit var serviceTextView: TextView
 
     private var isButton2Blue = false
     private var isButton3Blue = false
@@ -30,6 +32,7 @@ class SignUpBeforeActivity : AppCompatActivity() {
         imageButton4 = findViewById(R.id.imageButton4)
         imageButton5 = findViewById(R.id.imageButton5)
         imageButton1_1 = findViewById(R.id.imageButton1_1)
+        serviceTextView = findViewById(R.id.some_id8)
 
         imageButton1.setOnClickListener {
             toggleButtonState(imageButton1)
@@ -49,6 +52,10 @@ class SignUpBeforeActivity : AppCompatActivity() {
 
         imageButton5.setOnClickListener {
             toggleButtonState(imageButton5)
+        }
+
+        serviceTextView.setOnClickListener {
+            startActivity(Intent(this, SignUpServiceActivity::class.java))
         }
 
         val imageRight1: ImageView = findViewById(R.id.image_right1)

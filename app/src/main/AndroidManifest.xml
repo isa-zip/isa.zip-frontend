@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -21,7 +20,8 @@
 
         <activity
             android:name=".SignInActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
 
         <activity
             android:name=".SignUpSettingActivity"
@@ -162,6 +162,18 @@
             android:exported="false"/>
         <activity
             android:name=".ManagementInfoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ScheduleActivityHome"
+            android:exported="false"/>
+        <activity
+            android:name=".IsaScheduleActivityHome"
+            android:exported="false"/>
+        <activity
+            android:name=".ScheduleHomeModifyActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ScheduleModifyActivity"
             android:exported="false"/>
     </application>
 

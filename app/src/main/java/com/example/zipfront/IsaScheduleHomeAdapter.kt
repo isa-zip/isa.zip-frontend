@@ -1,26 +1,28 @@
 package com.example.zipfront
 
 import android.app.Dialog
+import android.content.Intent
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
-class IsaScheduleAdapter(
-    private val scheduleList: List<IsaScheduleItem>,
+class IsaScheduleHomeAdapter(
+    private val scheduleList: List<IsaScheduleHomeItem>,
     private val listener: OnItemClickListener
-) : RecyclerView.Adapter<IsaScheduleAdapter.IsaScheduleViewHolder>() {
+) : RecyclerView.Adapter<IsaScheduleHomeAdapter.IsaScheduleHomeViewHolder>() {
 
     private var selectedItemPosition: Int = -1
     private var isEditingMode: Boolean = false
     private var isEditingClicked: Boolean = false
 
-    inner class IsaScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class IsaScheduleHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textViewDate: TextView = itemView.findViewById(R.id.textView22)
         val textViewDescription: TextView = itemView.findViewById(R.id.textView23)
         val circleImageView: ImageView = itemView.findViewById(R.id.edit_circle)
@@ -50,13 +52,13 @@ class IsaScheduleAdapter(
         fun onItemClick(position: Int)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IsaScheduleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IsaScheduleHomeViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_scheduleoption_layout, parent, false)
-        return IsaScheduleViewHolder(itemView)
+        return IsaScheduleHomeViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: IsaScheduleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: IsaScheduleHomeViewHolder, position: Int) {
         val currentItem = scheduleList[position]
         holder.textViewDate.text = currentItem.date
         holder.textViewDescription.text = currentItem.description
@@ -103,16 +105,30 @@ class IsaScheduleAdapter(
             }
             window?.attributes = layoutParams
 
+            // imageButton4와 imageButton5 찾기
+            val modifyButton: ImageButton = dialog.findViewById(R.id.imageButton4)
+            val deleteButton: ImageButton = dialog.findViewById(R.id.imageButton5)
+
+            // imageButton4 클릭 시 ScheduleHomeModifyActivity로 화면 전환
+            modifyButton.setOnClickListener {
+                // ScheduleHomeModifyActivity로 화면 전환하는 코드 추가
+                val intent = Intent(holder.itemView.context, ScheduleHomeModifyActivity::class.java)
+                holder.itemView.context.startActivity(intent)
+                dialog.dismiss() // 다이얼로그 닫기
+            }
+
+            /*// imageButton5 클릭 시 선택한 아이템 삭제
+            deleteButton.setOnClickListener {
+                val position = holder.adapterPosition
+                adapter.removeItem(position)
+
+                // 아이템을 삭제한 후에는 다이얼로그를 닫습니다.
+                dialog.dismiss()
+                notifyDataSetChanged() // RecyclerView 업데이트
+            }*/
             dialog.show()
         }
 
-        holder.itemView.setOnClickListener {
-            val adapterPosition = holder.adapterPosition
-            if (adapterPosition != selectedItemPosition) {
-                selectedItemPosition = adapterPosition
-                notifyDataSetChanged()
-            }
-        }
     }
 
     // 편집 텍스트를 누를 때 선택된 아이템의 배경색과 편집 모드를 변경합니다.

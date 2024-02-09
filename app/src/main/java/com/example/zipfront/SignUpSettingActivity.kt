@@ -175,7 +175,7 @@ class SignUpSettingActivity : AppCompatActivity() {
             // 모든 입력이 다 끝난 후에 어떤 오류 메시지도 생기지 않을 경우 버튼을 활성화합니다.
             imageButton5.isEnabled = true
             imageButton5.setOnClickListener {
-                val intent = Intent(this, SignInActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         } else {

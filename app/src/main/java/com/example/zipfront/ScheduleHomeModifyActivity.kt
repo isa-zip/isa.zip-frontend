@@ -15,7 +15,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class ScheduleActivity : AppCompatActivity() {
+class ScheduleHomeModifyActivity : AppCompatActivity() {
 
     private lateinit var calendarView: CalendarView
     private lateinit var selectedDateTextView: TextView
@@ -25,7 +25,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_schedule)
+        setContentView(R.layout.activity_schedule_home_modify)
 
         calendarView = findViewById(R.id.calendarView)
         selectedDateTextView = findViewById(R.id.textViewInside)
@@ -55,15 +55,15 @@ class ScheduleActivity : AppCompatActivity() {
             // 취소 버튼을 숨깁니다.
             cancel.visibility = View.GONE
             // 등록 버튼 이미지를 업데이트합니다.
-            registerButton.setImageResource(R.drawable.btn_register)
+            registerButton.setImageResource(R.drawable.btn_calendar_modity)
             // 등록 버튼 활성화 상태로 설정합니다.
             registerButton.isEnabled = false
         }
 
         // 이미지 버튼 클릭 시 동작
         registerButton.setOnClickListener {
-            // 선택한 날짜를 IsaScheduleActivity로 전달
-            val intent = Intent(this, IsaScheduleActivity::class.java)
+            // 선택한 날짜를 IsaScheduleActivityHome 전달
+            val intent = Intent(this, IsaScheduleActivityHome::class.java)
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
         }
