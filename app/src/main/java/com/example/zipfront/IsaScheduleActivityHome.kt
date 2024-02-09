@@ -20,7 +20,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.*
 
-class IsaScheduleActivity : AppCompatActivity() {
+class IsaScheduleActivityHome : AppCompatActivity() {
     private lateinit var calendarView: CalendarView
     private lateinit var roundtab_3_Button: ImageButton
     private lateinit var roundtab_2_Button: ImageButton
@@ -36,7 +36,7 @@ class IsaScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_isa_schedule)
+        setContentView(R.layout.activity_isa_schedule_home)
 
         // 리사이클러뷰 초기화
         optionRecyclerView = findViewById(R.id.option_rv)
@@ -90,12 +90,6 @@ class IsaScheduleActivity : AppCompatActivity() {
         roundtab_2week_Button = findViewById(R.id.roundtab_2week)
         calendarView = findViewById(R.id.calendarView)
 
-        Button =findViewById(R.id.imageButton5)
-
-        Button.setOnClickListener {
-            val intent = Intent(this, MatchingOptionActivity2::class.java)
-            startActivity(intent)
-        }
         // 버튼에 클릭 리스너 설정
         roundtab_3_Button.setOnClickListener {
             selectRoundTab(roundtab_3_Button)
@@ -123,51 +117,44 @@ class IsaScheduleActivity : AppCompatActivity() {
             showBottomSheetCalendar()
         }
 
+        /*val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            if (isEditingClicked && isEditingMode) {
+                showCustomDialog()
+            } else {
+                finish()
+            }
+        }*/
+
         val imageView10: ImageView = findViewById(R.id.imageView10)
         imageView10.setOnClickListener {
-            finish()
+            showCustomDialog()
         }
 
         // 편집 누르면 완료로 뜸
         val editingTextView: TextView = findViewById(R.id.editing)
         val editingFinishTextView: TextView = findViewById(R.id.editing_finish)
 
-        // 편집 누르면 매물 옵션 선택하기 버튼 사라짐
-        val optionBackgroundConstraintLayout: ConstraintLayout = findViewById(R.id.frame_10000_background)
-        val optionChoiceTextView: ImageButton = findViewById(R.id.imageButton5)
-
         // "편집" 텍스트뷰가 클릭된 상태를 저장하는 변수
         var isEditingClicked = false
 
         editingTextView.setOnClickListener {
-            // 편집 텍스트 버튼이 클릭되었을 때, edit_circle 버튼을 모든 아이템에 보이도록 설정
+            // 편집 텍스트 버튼이 클릭되었을 때, edit_circle 버튼을 모든 아이템에 보이도록 설정합니다.
             adapter.setEditingClicked(true)
             adapter.setEditingMode(true) // 편집 모드를 설정합니다.
-
             // 나머지 코드는 현재와 동일합니다.
             val adapter = optionRecyclerView.adapter as IsaScheduleAdapter
-
             // 모든 아이템에 대해 순회하면서 edit_circle ImageButton의 visibility를 VISIBLE로 변경
             for (i in 0 until adapter.itemCount) {
                 val viewHolder = optionRecyclerView.findViewHolderForAdapterPosition(i)
                 viewHolder?.itemView?.findViewById<ImageButton>(R.id.edit_circle)?.visibility = View.VISIBLE
             }
-
             // layout1의 배경을 list3에서 btn_agent3로 변경
             val layout1: ConstraintLayout = findViewById(R.id.layout1)
             layout1.setBackgroundResource(R.drawable.btn_agent3)
-
             // 편집 텍스트 버튼의 가시성을 변경합니다.
             editingTextView.visibility = View.GONE
             editingFinishTextView.visibility = View.VISIBLE
-
-            // 버튼 안 보이게
-            optionBackgroundConstraintLayout.visibility = View.GONE
-            optionChoiceTextView.visibility = View.GONE
-
-            imageView10.setOnClickListener {
-                showCustomDialog()
-            }
         }
 
         editingFinishTextView.setOnClickListener {
@@ -181,9 +168,6 @@ class IsaScheduleActivity : AppCompatActivity() {
 
             editingTextView.visibility = View.VISIBLE
             editingFinishTextView.visibility = View.GONE
-
-            optionBackgroundConstraintLayout.visibility = View.VISIBLE
-            optionChoiceTextView.visibility = View.VISIBLE
 
             adapter.setEditingClicked(false) // 편집 모드 종료
             adapter.setEditingMode(false) // 편집 모드를 종료합니다.

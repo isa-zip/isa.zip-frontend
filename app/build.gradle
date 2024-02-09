@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.zipfront"
-        minSdk 28
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -70,6 +70,8 @@ dependencies {
     // OKhttp logging intercepter
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
+    // 카카오 로그인
+/*
+    implementation "com.kakao.sdk:usermgmt:1.27.0"
+*/
 }
-
-

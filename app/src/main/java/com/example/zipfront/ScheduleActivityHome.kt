@@ -9,13 +9,14 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class ScheduleActivity : AppCompatActivity() {
+class ScheduleActivityHome : AppCompatActivity() {
 
     private lateinit var calendarView: CalendarView
     private lateinit var selectedDateTextView: TextView
@@ -25,7 +26,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_schedule)
+        setContentView(R.layout.activity_schedule_home)
 
         calendarView = findViewById(R.id.calendarView)
         selectedDateTextView = findViewById(R.id.textViewInside)
@@ -62,8 +63,8 @@ class ScheduleActivity : AppCompatActivity() {
 
         // 이미지 버튼 클릭 시 동작
         registerButton.setOnClickListener {
-            // 선택한 날짜를 IsaScheduleActivity로 전달
-            val intent = Intent(this, IsaScheduleActivity::class.java)
+            // 선택한 날짜를 IsaScheduleActivityHome 전달
+            val intent = Intent(this, IsaScheduleActivityHome::class.java)
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
         }

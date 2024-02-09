@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScheduleActivity">
+    tools:context=".ScheduleModifyActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/search_toolbar"
@@ -97,7 +97,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewInside"
-            app:srcCompat="@drawable/btn_register" />
+            app:srcCompat="@drawable/btn_calendar_modity" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -111,8 +111,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
-        <!--android:focusedMonthDateColor="@drawable/ellipse_87"
-        android:unfocusedMonthDateColor="@drawable/ellipse_97"-->
+    <!--android:focusedMonthDateColor="@drawable/ellipse_87"
+    android:unfocusedMonthDateColor="@drawable/ellipse_97"-->
 
     <TextView
         android:id="@+id/year_text"
