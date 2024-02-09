@@ -12,6 +12,8 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.zipfront.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kakao.util.maps.helper.Utility
@@ -20,6 +22,8 @@ import java.security.MessageDigest
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,22 +34,36 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MenuFirstActivity::class.java)
             startActivity(intent)
         }
-        initBottomNavigation()
-        getKakaoMapHashKey(this)
+        val fragmentToLoad = intent.getStringExtra("fragmentToLoad")
+        Log.d("확인", "$fragmentToLoad")
+        //val fragmentToLoad = intent.getStringExtra("fragmentToLoad")
+        //Log.d("프래그먼트", "$fragmentToLoad")
+        initBottomNavigation(fragmentToLoad)
+        //getKakaoMapHashKey(this)
 
-        val fragmentToLoad: String? = intent.getStringExtra("fragmentToLoad")
-        goToProperty(fragmentToLoad)
     }
-    private fun initBottomNavigation() {
+    private fun initBottomNavigation(fragmentToLoad : String?) {
 
         bottomNavigationView = binding.AmainBnv
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(binding.AmainFrame.id, FragmentHome())
-            .commitAllowingStateLoss()
+        if (fragmentToLoad.isNullOrEmpty()) {
+            binding.AmainToolbar.visibility = View.VISIBLE
+            bottomNavigationView.selectedItemId = R.id.homeFragment
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.AmainFrame.id, FragmentHome())
+                .commitAllowingStateLoss()
+        }
+        else if(fragmentToLoad == "propertyFragment") {
+            binding.AmainToolbar.visibility = View.VISIBLE
+            bottomNavigationView.selectedItemId = R.id.propertyFragment
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.AmainFrame.id, FragmentProperty())
+                .commitAllowingStateLoss()
+        }
 
-        bottomNavigationView.selectedItemId = R.id.homeFragment
+        //bottomNavigationView.selectedItemId = R.id.homeFragment
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -79,15 +97,23 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun goToProperty(fragmentToLoad: String?) {
-        if (fragmentToLoad.isNullOrEmpty()) {
-            // fragmentToLoad가 비어있거나 null인 경우 처리
-        } else {
-            Toast.makeText(this, fragmentToLoad, Toast.LENGTH_SHORT).show()
+
+
+    // PropertyFragment를 보여주는 메서드
+    private fun showPropertyFragment(fragmentToLoad : String) {
+        if (fragmentToLoad == "propertyFragment") {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(binding.AmainFrame.id, FragmentHome())
+                .commitAllowingStateLoss()
         }
     }
+
+
+
+
     //카카오맵 해시 키 구하기
-        fun getKakaoMapHashKey(context: Context) {
+        /*fun getKakaoMapHashKey(context: Context) {
             try {
                 val packageName = context.packageName
                 val packageInfo = context.packageManager.getPackageInfo(
@@ -103,5 +129,5 @@ class MainActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("KakaoMap Hash Key", "Error: ${e.message}")
             }
-        }
+        }*/
 }

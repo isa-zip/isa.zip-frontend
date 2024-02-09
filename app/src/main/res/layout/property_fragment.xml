@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_lo"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -81,7 +82,7 @@
             android:layout_height="match_parent" />
     </RelativeLayout>-->
 
-    <net.daum.mf.map.api.MapView
+    <FrameLayout
         android:id="@+id/map_view"
         android:layout_width="match_parent"
         android:layout_height="397dp"
@@ -132,11 +133,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
-            android:fontFamily="@font/suit_variable"
+            android:fontFamily="@font/suit_semibold"
             android:text="-개의 해당하는 매물을 찾았습니다."
             android:textColor="@color/Gray700"
             android:textSize="12sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/status_image" />
