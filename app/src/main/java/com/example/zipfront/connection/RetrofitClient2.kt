@@ -29,4 +29,15 @@ class RetrofitClient2 {
         @SerializedName("refreshToken")
         val refreshToken: String
     )
+
+    data class ResponseWithdraw(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: String,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
 }
