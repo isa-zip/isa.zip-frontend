@@ -59,15 +59,15 @@ class IsaScheduleActivityHome : AppCompatActivity() {
         }
 
         // 데이터 준비
-        val scheduleItems = ArrayList<IsaScheduleItem>()
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
+        val scheduleItems = ArrayList<IsaScheduleHomeItem>()
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
 
         // 어댑터 설정
-        val adapter = IsaScheduleAdapter(scheduleItems, object : IsaScheduleAdapter.OnItemClickListener {
+        val adapter = IsaScheduleHomeAdapter(scheduleItems, object : IsaScheduleHomeAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 // The following variable is not used in the current implementation.
                 val selectedItem = scheduleItems[position]
@@ -117,15 +117,6 @@ class IsaScheduleActivityHome : AppCompatActivity() {
             showBottomSheetCalendar()
         }
 
-        /*val imageView10: ImageView = findViewById(R.id.imageView10)
-        imageView10.setOnClickListener {
-            if (isEditingClicked && isEditingMode) {
-                showCustomDialog()
-            } else {
-                finish()
-            }
-        }*/
-
         val imageView10: ImageView = findViewById(R.id.imageView10)
         imageView10.setOnClickListener {
             showCustomDialog()
@@ -143,7 +134,7 @@ class IsaScheduleActivityHome : AppCompatActivity() {
             adapter.setEditingClicked(true)
             adapter.setEditingMode(true) // 편집 모드를 설정합니다.
             // 나머지 코드는 현재와 동일합니다.
-            val adapter = optionRecyclerView.adapter as IsaScheduleAdapter
+            val adapter = optionRecyclerView.adapter as IsaScheduleHomeAdapter
             // 모든 아이템에 대해 순회하면서 edit_circle ImageButton의 visibility를 VISIBLE로 변경
             for (i in 0 until adapter.itemCount) {
                 val viewHolder = optionRecyclerView.findViewHolderForAdapterPosition(i)
@@ -158,7 +149,7 @@ class IsaScheduleActivityHome : AppCompatActivity() {
         }
 
         editingFinishTextView.setOnClickListener {
-            val adapter = optionRecyclerView.adapter as IsaScheduleAdapter
+            val adapter = optionRecyclerView.adapter as IsaScheduleHomeAdapter
 
             // 모든 아이템에 대해 순회하면서 edit_circle ImageButton의 visibility를 GONE으로 변경
             for (i in 0 until adapter.itemCount) {

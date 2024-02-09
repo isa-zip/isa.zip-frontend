@@ -10,6 +10,7 @@ import android.view.WindowManager
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 
@@ -93,42 +94,17 @@ class IsaScheduleHomeAdapter(
 
         // ViewHolder 내부의 circleImageView에 클릭 리스너 설정
         circleImageView.setOnClickListener {
-            val dialog = Dialog(holder.itemView.context)
-            dialog.setContentView(R.layout.bottomsheet_dialog_component)
-
-            // Dialog의 창 위치 설정
-            val window = dialog.window
-            val layoutParams = window?.attributes
-            layoutParams?.apply {
-                gravity = Gravity.BOTTOM // 화면 아래에 위치하도록 설정
-                width = WindowManager.LayoutParams.MATCH_PARENT
-            }
-            window?.attributes = layoutParams
-
-            // imageButton4와 imageButton5 찾기
-            val modifyButton: ImageButton = dialog.findViewById(R.id.imageButton4)
-            val deleteButton: ImageButton = dialog.findViewById(R.id.imageButton5)
-
-            // imageButton4 클릭 시 ScheduleHomeModifyActivity로 화면 전환
-            modifyButton.setOnClickListener {
-                // ScheduleHomeModifyActivity로 화면 전환하는 코드 추가
-                val intent = Intent(holder.itemView.context, ScheduleHomeModifyActivity::class.java)
-                holder.itemView.context.startActivity(intent)
-                dialog.dismiss() // 다이얼로그 닫기
-            }
-
-            /*// imageButton5 클릭 시 선택한 아이템 삭제
-            deleteButton.setOnClickListener {
-                val position = holder.adapterPosition
-                adapter.removeItem(position)
-
-                // 아이템을 삭제한 후에는 다이얼로그를 닫습니다.
-                dialog.dismiss()
-                notifyDataSetChanged() // RecyclerView 업데이트
-            }*/
-            dialog.show()
+            val bottomSheetFragment = IsaScheduleHomeBottomSheet()
+            bottomSheetFragment.show((holder.itemView.context as AppCompatActivity).supportFragmentManager, bottomSheetFragment.tag)
         }
 
+        holder.itemView.setOnClickListener {
+            val adapterPosition = holder.adapterPosition
+            if (adapterPosition != selectedItemPosition) {
+                selectedItemPosition = adapterPosition
+                notifyDataSetChanged()
+            }
+        }
     }
 
     // 편집 텍스트를 누를 때 선택된 아이템의 배경색과 편집 모드를 변경합니다.

@@ -1,3 +1,4 @@
+// 이사스케줄홈바텀시트
 package com.example.zipfront
 
 import android.app.Activity
@@ -16,7 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
+class IsaScheduleHomeBottomSheet() : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,9 +31,10 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
         btnModify.setOnClickListener {
             dismiss() // 현재 다이얼로그를 닫음
 
-            val intent = Intent(activity, ScheduleModifyActivity::class.java)
+            val intent = Intent(activity, ScheduleHomeModifyActivity::class.java)
             startActivity(intent)
         }
+
 
         btnDelete.setOnClickListener {
             dismiss()
