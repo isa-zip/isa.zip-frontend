@@ -15,7 +15,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-class ScheduleActivity : AppCompatActivity() {
+class ScheduleModifyActivity : AppCompatActivity() {
 
     private lateinit var calendarView: CalendarView
     private lateinit var selectedDateTextView: TextView
@@ -25,7 +25,7 @@ class ScheduleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_schedule)
+        setContentView(R.layout.activity_schedule_modify)
 
         calendarView = findViewById(R.id.calendarView)
         selectedDateTextView = findViewById(R.id.textViewInside)
@@ -62,7 +62,7 @@ class ScheduleActivity : AppCompatActivity() {
 
         // 이미지 버튼 클릭 시 동작
         registerButton.setOnClickListener {
-            // 선택한 날짜를 IsaScheduleActivity로 전달
+            // 선택한 날짜를 IsaScheduleActivityHome 전달
             val intent = Intent(this, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)

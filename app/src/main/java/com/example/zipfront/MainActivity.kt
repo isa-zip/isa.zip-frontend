@@ -3,6 +3,7 @@ package com.example.zipfront
 import com.example.zipfront.Help
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.zipfront.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.kakao.util.maps.helper.Utility
 import java.security.MessageDigest
 
 class MainActivity : AppCompatActivity() {
@@ -128,5 +130,4 @@ class MainActivity : AppCompatActivity() {
                 Log.e("KakaoMap Hash Key", "Error: ${e.message}")
             }
         }*/
-
 }
