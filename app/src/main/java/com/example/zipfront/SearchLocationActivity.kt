@@ -1,6 +1,7 @@
 package com.example.zipfront
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable
@@ -88,7 +89,9 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
         binding.searchEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 //구현 필요시 구현
-                changeLayout()
+                if (binding.searchEt.length() == 0) {
+                    changeLayout()
+                }
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -100,7 +103,13 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
 
             override fun afterTextChanged(s: Editable?) {
                 if (binding.searchEt.length() == 0) {
-                    changeLayout()
+                    val handler = Handler(Looper.getMainLooper())
+                    val currentSearchAdapter = CurrentSearchAdapter(this@SearchLocationActivity, searchLocationList)
+                    handler.post {
+                        // UI 업데이트 코드
+                        binding.currentSearchLv.adapter = currentSearchAdapter
+                        changeLayout()
+                    }
                 }
             }
         })
@@ -124,7 +133,13 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val selectItem = parent.getItemAtPosition(position) as CurrentSearch
                 val imageView = view.findViewById<ImageView>(R.id.delete_iv)
+                //아이템 클릭시 지도 화면으로 넘어감
+                val intent = Intent(this, SearchMapActivity::class.java)
+                intent.putExtra("location", selectItem.location)
+                ContextCompat.startActivity(this, intent, null)
 
+
+                //x 아이콘 클릭시 삭제
                 val handler = Handler(Looper.getMainLooper())
                 imageView.setOnClickListener {
                     handler.post {
@@ -135,7 +150,6 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
                         changeLayout()
                     }
                 }
-
             }
 
         //검색중인 지역 x 버튼 누를때 처리
@@ -145,20 +159,14 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
         }
 
 
-        // EditText 키보드 이벤트
-        binding.searchEt.setOnEditorActionListener { textView, actionId, _ ->
+        // EditText 키보드 이벤트 -> searchLocationList 눌렀을 때 저장되도록 변경 완료
+        /*binding.searchEt.setOnEditorActionListener { textView, actionId, _ ->
             // 키보드에서 완료 버튼이 눌렸을 때 처리
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                searchLocationList.add(
-                    CurrentSearch(
-                        textView.text.toString(),
-                        R.drawable.plus_circle
-                    )
-                )
-                saveList(searchLocationList)
+                saveCurrentSearchLocation(textView.text.toString())
             }
             false // false로 해야 키패드가 닫힘
-        }
+        }*/
 
 
     }
@@ -204,14 +212,9 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
     }
 
 
-    override fun onClick(locationId: Int) {
-        /*setFragmentResultListener("requestInfo") { requestKey, bundle ->
-            val email = bundle.getString("email")!!
-            val nick = bundle.getString("nick")!!
-            val password = bundle.getString("password")
-
-            signUp(email, nick, password, locationId)
-        }*/
+    override fun onClick(locationId: Int, locationText: String) {
+        Toast.makeText(this, "$locationText", Toast.LENGTH_SHORT).show()
+        saveCurrentSearchLocation(locationText)
     }
 
 
@@ -345,6 +348,17 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
     fun clearEt() {
         binding.searchEt.text.clear()
         changeLayout()
+    }
+
+    private fun saveCurrentSearchLocation(text : String) {
+        searchLocationList.add(
+            CurrentSearch(
+                text.toString(),
+                R.drawable.plus_circle
+            )
+        )
+        saveList(searchLocationList)
+        //changeLayout()
     }
 
 
