@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 
 class IsaScheduleAdapter(
@@ -91,19 +93,8 @@ class IsaScheduleAdapter(
 
         // ViewHolder 내부의 circleImageView에 클릭 리스너 설정
         circleImageView.setOnClickListener {
-            val dialog = Dialog(holder.itemView.context)
-            dialog.setContentView(R.layout.bottomsheet_dialog_component)
-
-            // Dialog의 창 위치 설정
-            val window = dialog.window
-            val layoutParams = window?.attributes
-            layoutParams?.apply {
-                gravity = Gravity.BOTTOM // 화면 아래에 위치하도록 설정
-                width = WindowManager.LayoutParams.MATCH_PARENT
-            }
-            window?.attributes = layoutParams
-
-            dialog.show()
+            val bottomSheetFragment = IsaScheduleBottomSheet()
+            bottomSheetFragment.show((holder.itemView.context as AppCompatActivity).supportFragmentManager, bottomSheetFragment.tag)
         }
 
         holder.itemView.setOnClickListener {

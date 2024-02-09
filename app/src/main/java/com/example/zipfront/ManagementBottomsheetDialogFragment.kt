@@ -1,6 +1,7 @@
 package com.example.zipfront
 
 import android.app.Activity
+import android.app.TaskStackBuilder
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -29,6 +30,10 @@ class ManagementBottomsheetDialogFragment : BottomSheetDialogFragment() {
         val button1: Button = view.findViewById(R.id.modify_btn)
         button1.setOnClickListener() {
             //수정하기
+            val intent = Intent(requireContext(), AdditionalActivity2::class.java)
+            val stackBuilder = TaskStackBuilder.create(requireContext())
+            stackBuilder.addNextIntentWithParentStack(intent)
+            stackBuilder.startActivities()
         }
 
         val button2: Button = view.findViewById(R.id.sold_out_btn)
