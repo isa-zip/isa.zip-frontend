@@ -1,22 +1,31 @@
 package com.example.zipfront
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.TaskStackBuilder
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.ActivityMainBinding
 import com.example.zipfront.databinding.FitstMenuCertifyBinding
 import com.example.zipfront.databinding.FitstMenuLayoutBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MenuCertifyActivity : AppCompatActivity() {
     lateinit var binding: FitstMenuCertifyBinding
@@ -65,6 +74,7 @@ class MenuCertifyActivity : AppCompatActivity() {
                 .into(binding.imageupload)
         }
     }
+    @SuppressLint("MissingInflatedId")
     private fun showCustomDialog() {
         // 다이얼로그 레이아웃을 inflate
         val dialogView = layoutInflater.inflate(R.layout.certify_dialogview, null)
@@ -88,12 +98,62 @@ class MenuCertifyActivity : AppCompatActivity() {
 
         // 취소 버튼 클릭 리스너 설정
         cancelButton.setOnClickListener {
-            // 취소 버튼을 눌렀을 때 수행할 동작
-            finish()
-            alertDialog.dismiss() // 다이얼로그 닫기
-            // 추가적인 작업 수행 가능
-        }
+            val textID = binding.textID.text.toString()
+            val textID2 = binding.textID2.text.toString()
+            val textPassword = binding.textPassword.text.toString()
+            val textID3 = binding.textID3.text.toString()
+            val brokerId: Int = textID.toIntOrNull() ?: 0 // 기본값으로 0을 사용하거나 적절한 기본값을 지정
 
+            val requestCertify = RetrofitClient2.RequestCertify(
+                brokerId = brokerId,
+                name = textID2,
+                phoneNum = textPassword,
+                businessName = textID3
+            )
+
+            val user = MyApplication.getUser()
+            val token = user.getString("jwt", "").toString()
+
+            val call = RetrofitObject.getRetrofitService.menucertify("Bearer $token", requestCertify)
+            call.enqueue(object : Callback<RetrofitClient2.ResponseCertify> {
+                override fun onResponse(call: Call<RetrofitClient2.ResponseCertify>, response: Response<RetrofitClient2.ResponseCertify>) {
+                    Log.d("Retrofit51", response.toString())
+                    if (response.isSuccessful) {
+                        Log.d("Retrofit5", response.toString())
+                        val profileData = response.body()
+                        if(profileData != null){
+                            Log.d("Retrofit52", profileData.toString())
+                            if(profileData.isSuccess) {
+                                val intent = Intent(this@MenuCertifyActivity, MenuManagementActivity::class.java)
+                                intent.putExtra("EXTRA_CUSTOM_DATA", "Hello from MatchingOptionActivity!")
+                                setResult(Activity.RESULT_OK, intent)
+
+                                val stackBuilder = TaskStackBuilder.create(this@MenuCertifyActivity)
+                                stackBuilder.addNextIntentWithParentStack(intent)
+                                stackBuilder.startActivities()
+                                alertDialog.dismiss() // 다이얼로그 닫기
+                            }else{
+                                Toast.makeText(
+                                    this@MenuCertifyActivity,
+                                    response.body()?.message ?: "Unknown error",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@MenuCertifyActivity,
+                            response.body()?.message ?: "Unknown error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                override fun onFailure(call: Call<RetrofitClient2.ResponseCertify>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })
+        }
         // AlertDialog 표시
         alertDialog.show()
     }
