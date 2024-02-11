@@ -11,6 +11,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface RetrofitAPI {
     @POST("/auth/login")
@@ -34,5 +35,19 @@ interface RetrofitAPI {
     @POST("/users/auth-broker")
     fun menucertify(@Header("Authorization") token: String,
                 @Body request: RetrofitClient2.RequestCertify): Call<RetrofitClient2.ResponseCertify>
+
+    @GET("/users/items/dong-count")
+    fun dongcount(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseDongcount>
+
+    @GET("/users/items")
+    fun dongitem(@Header("Authorization") token: String,
+                 @Query("dongName") dongName: String): Call<RetrofitClient2.ResponseDongitem>
+    @POST("/users/items")
+    fun useritem(@Header("Authorization") token: String,
+                 @Query("address") address: String, // 쿼리 매개변수 추가
+                 @Body request: RetrofitClient2.RequestUseritem): Call<RetrofitClient2.ResponseUseritem>
+
+    @GET("/brokers/items/show")
+    fun brokeritem(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseBrokeritem>
 
 }

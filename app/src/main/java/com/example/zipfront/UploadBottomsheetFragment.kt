@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.MatchingOptionBinding
 import com.example.zipfront.databinding.UploadbottomsheetdialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -26,12 +27,17 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
     private var adapter: BottomSheetAdapter? = null
     private lateinit var btnClose: ImageButton
     lateinit var binding: UploadbottomsheetdialogBinding
-    lateinit var onItemSelected: (List<String>) -> Unit
+    lateinit var onItemSelected: (List<RetrofitClient2.BrokerItem>) -> Unit
+
 
     // 선택된 아이템을 반환하는 메소드
     private val selectedItems = mutableListOf<String>()
+    fun setData(data: List<RetrofitClient2.BrokerItem>) {
+        adapter?.setData(data)
+        Log.d("Retrofit77", "$data")
+    }
 
-    fun getSelectedItems(): List<String> {
+    fun getSelectedItems(): List<RetrofitClient2.BrokerItem> {
         return adapter?.getSelectedItems() ?: emptyList()
     }
 

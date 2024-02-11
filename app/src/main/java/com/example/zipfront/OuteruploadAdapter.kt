@@ -34,33 +34,16 @@ class OuteruploadAdapter(private val outerItemList: List<NewMatchinguploadActivi
         private val textView: TextView = itemView.findViewById(R.id.textView22)
         private val textView2: TextView = itemView.findViewById(R.id.textView23)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView16)
+
         fun bind(outerItem: NewMatchinguploadActivity.OuterUploadItem, context: Context) {
-            if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
+            textView.text = outerItem.title
+            textView2.text = "${outerItem.dongCount}개" // dongCount를 사용하여 아이템 개수 표시
 
-                textView.text = outerItem.title
-                imageView.setOnClickListener {
-                    val intent = Intent(context, MatchingSecondUploadActivity::class.java)
-                    intent.putExtra("title", outerItem.title)
-                    context.startActivity(intent)
-                    Log.d("MatchingSecondOption", "no inner")
-                }
-            } else {
-
-//                // 여기서 outerItem의 내부 아이템 리스트를 사용하여 InnerAdapter 생성 및 설정
-//                val innerAdapter = InnerUploadAdapter(outerItem.innerItemList)
-//                innerRecyclerView.adapter = innerAdapter
-
-                // titletext5에 아이템 개수 표시
-                textView2.text = "${outerItem.getItemCount()}개"
-                textView.text = outerItem.title
-
-                imageView.setOnClickListener {
-                    val intent = Intent(context, MatchingSecondUploadActivity::class.java)
-                    intent.putExtra("title", outerItem.title)
-                    // You can put the list of items as a Serializable or Parcelable Extra
-                    intent.putStringArrayListExtra("innerItems", ArrayList(outerItem.innerItemList))
-                    context.startActivity(intent)
-                }
+            imageView.setOnClickListener {
+                val intent = Intent(context, MatchingSecondUploadActivity::class.java)
+                intent.putExtra("title", outerItem.title)
+                intent.putExtra("dongCount", outerItem.dongCount) // dongCount도 함께 전달
+                context.startActivity(intent)
             }
         }
     }
