@@ -84,7 +84,7 @@
                 android:layout_width="84dp"
                 android:layout_height="84dp"
                 android:background="@android:color/transparent"
-                android:src="@drawable/imgbed"
+                android:src="@drawable/btn_image_bed"
                 app:civ_border_overlay="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -124,6 +124,7 @@
                 android:text="24zip@gmail.com"
                 android:textColor="@color/Gray600"
                 android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/profiletext"
                 app:layout_constraintStart_toEndOf="@+id/imageView26"
                 app:layout_constraintTop_toBottomOf="@+id/profiletext" />
 
@@ -186,7 +187,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/subemail"
                 app:layout_constraintStart_toStartOf="@+id/profiletext"
                 app:layout_constraintTop_toTopOf="@+id/subemail"
-                app:srcCompat="@drawable/kakao" />
+                app:srcCompat="@drawable/kakao"
+                android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

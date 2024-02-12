@@ -8,19 +8,26 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.ActivityMainBinding
 import com.example.zipfront.databinding.ActivityMatchingoptionselectBinding
 import com.example.zipfront.databinding.ActivityMatchinguploadselectBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MatchingSecondUploadActivity : AppCompatActivity() {
     lateinit var binding: ActivityMatchinguploadselectBinding
     private lateinit var adapter: OuterSeconduploadAdapter
     private lateinit var thirdAdapter: ThirdprofileAdapter2
     private var clickedItemPosition: Int = -1
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchinguploadselectBinding.inflate(layoutInflater)
@@ -38,29 +45,65 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
             binding.layout2.visibility = View.GONE
         }
 
-        val title = intent.getStringExtra("title")
+        val title = intent.getStringExtra("title") ?: ""
         if (!title.isNullOrBlank()) {
             binding.textView9.text = title
         }
 
-        // innerItems를 받아서 RecyclerView 설정
-        val innerItems = intent.getStringArrayListExtra("innerItems")
-        if (innerItems.isNullOrEmpty()) {
+        val dongCount = intent.getIntExtra("dongCount", -1)
+        Log.d("dongCount", dongCount.toString())
+
+        if (dongCount == 0) {
+            // dongCount가 0일 때
             binding.optionRv.visibility = View.GONE
             binding.notshwoingtext.visibility = View.VISIBLE
         } else {
-            binding.optionRv.visibility = View.VISIBLE
-            binding.notshwoingtext.visibility = View.GONE
-            setupRecyclerView(innerItems)
+            // dongCount가 0이 아닐 때
+            fetchDongItem(title)
         }
-        binding.imageView10.setOnClickListener{
+
+        binding.imageView10.setOnClickListener {
             finish()
         }
 
         setContentView(binding.root)
     }
 
-    private fun setupRecyclerView(innerItems: List<String>) {
+    private fun fetchDongItem(title: String) {
+        val call = RetrofitObject.getRetrofitService.dongitem("Bearer $token", title)
+        call.enqueue(object : Callback<RetrofitClient2.ResponseDongitem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseDongitem>,
+                response: Response<RetrofitClient2.ResponseDongitem>
+            ) {
+                Log.d("Retrofit61", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit6", responseBody.toString())
+                    if (responseBody != null) {
+                        if (responseBody.isSuccess) {
+                            val userItemResponses = responseBody.data.userItemResponses
+                            setupRecyclerView(userItemResponses)
+                            binding.optionRv.visibility = View.VISIBLE
+                            binding.notshwoingtext.visibility = View.GONE
+                        } else {
+                            Toast.makeText(
+                                this@MatchingSecondUploadActivity,
+                                responseBody.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RetrofitClient2.ResponseDongitem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+    }
+
+    private fun setupRecyclerView(innerItems: List<RetrofitClient2.UserItemResponse>) {
         // RecyclerView의 레이아웃 매니저 설정
         binding.optionRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.optionRv2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -150,9 +193,4 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
         // AlertDialog 표시
         alertDialog.show()
     }
-//    override fun onItemCountChanged(itemCount: Int) {
-//        Log.d("MyApp22", "$itemCount")
-//        binding.textView23.text = "${itemCount + 1}개"
-//        binding.texttitle2.text = "${itemCount + 1}개"
-//    }
 }

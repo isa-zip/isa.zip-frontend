@@ -74,8 +74,10 @@ class SignInActivity : AppCompatActivity() {
                             if(response.isSuccess) {
                                 val token = response.data.accessToken
                                 val refreshtoken = response.data.refreshToken
+                                val nickName = response.data.nickName
                                 editor.putString("email", email)
                                 editor.putString("password", password)
+                                editor.putString("nickName", nickName)
                                 editor.putString("jwt", token)
                                 editor.putString("refreshtoken", refreshtoken)
                                 editor.apply()
@@ -83,7 +85,6 @@ class SignInActivity : AppCompatActivity() {
                                     Intent(this@SignInActivity, MainActivity::class.java)
                                 startActivity(intent)
                             }else{
-
                                 Toast.makeText(this@SignInActivity, response.message, Toast.LENGTH_SHORT).show()
                             }
                         }
@@ -97,11 +98,11 @@ class SignInActivity : AppCompatActivity() {
             })
         }
 
-        /*// imageButton5를 클릭했을 때 MainActivity로 이동
-        imageButton5.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }*/
+//        // imageButton5를 클릭했을 때 MainActivity로 이동
+//        imageButton5.setOnClickListener {
+//            val intent = Intent(this, MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         // 비밀번호 잘못 입력했을 때 login_dialogview 코드 추가해야함!!!!!!!
 
