@@ -1,15 +1,22 @@
 package com.example.zipfront
 
+import android.app.TaskStackBuilder
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CalendarView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -22,6 +29,9 @@ class ScheduleActivity : AppCompatActivity() {
     private lateinit var registerButton: ImageButton
     private lateinit var cancel: ImageButton
     private lateinit var selectedDate: String // 선택된 날짜를 저장할 변수 추가
+
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +76,40 @@ class ScheduleActivity : AppCompatActivity() {
             val intent = Intent(this, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
+
+            /*val call = RetrofitObject.getRetrofitService.schedule("Bearer $token")
+
+            call.enqueue(object : Callback<RetrofitClient2.Responseschedule> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.Responseschedule>,
+                    response: Response<RetrofitClient2.Responseschedule>
+                ) {
+                    Log.d("Retrofit31", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit3", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            val intent = Intent(this@ScheduleActivity, IsaScheduleActivity::class.java)
+                            intent.putExtra("selectedDate", selectedDate)
+                            startActivity(intent)
+                            val stackBuilder = TaskStackBuilder.create(this@ScheduleActivity)
+                            stackBuilder.addNextIntentWithParentStack(intent)
+                            stackBuilder.startActivities()
+                        } else {
+                            Toast.makeText(
+                                this@ScheduleActivity,
+                                responseBody?.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.Responseschedule>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })*/
         }
 
         // imageView10을 클릭했을 때 액티비티 종료
@@ -79,6 +123,7 @@ class ScheduleActivity : AppCompatActivity() {
         yearTextView.setOnClickListener {
             showBottomSheetCalendar()
         }
+
     }
 
     private fun formatSelectedDate(year: Int, month: Int, dayOfMonth: Int): String {

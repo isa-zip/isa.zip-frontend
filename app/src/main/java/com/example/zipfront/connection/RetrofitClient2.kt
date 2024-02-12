@@ -21,6 +21,7 @@ class RetrofitClient2 {
         @SerializedName("isSuccess")
         val isSuccess: Boolean
     )
+
     data class LoginResult(
         @SerializedName("id")
         val id: String,
@@ -41,6 +42,36 @@ class RetrofitClient2 {
         val isSuccess: Boolean
     )
 
+    // 이메일 회원가입
+    data class Requestsetting(
+        @SerializedName("email")
+        val email: String,
+        @SerializedName("password")
+        val password: String,
+        @SerializedName("nickName")
+        val nickName: String
+    )
+
+    data class Responsesetting(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: String,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    // 이사 일정
+    data class Requestschedule(
+        @SerializedName("period")
+        val email: String,
+        @SerializedName("moveDate")
+        val password: String
+    )
+
+    data class Responseschedule(
 
     //지도 검색
     // 검색 결과를 담는 클래스
@@ -77,18 +108,16 @@ class RetrofitClient2 {
         var distanc: String // 중심좌표까지의 거리. 단, x,y 파라미터를 준 경우에만 존재. 단위는 meter
     )
 
-    data class requestDetail(
-        @SerializedName("code")
-        val code: Int,
-        @SerializedName("message")
-        val message: String,
-        @SerializedName("data")
-        val data: LoginResult,
-        @SerializedName("isSuccess")
-        val isSuccess: Boolean
+  
+    data class ScheduleResult(
+        @SerializedName("scheduleId")
+        val scheduleId: String,
+        @SerializedName("userId")
+        val userId: String,
+        @SerializedName("period")
+        val period: String,
+        @SerializedName("moveDate")
+        val moveDate: String
     )
-
-
-
 
 }

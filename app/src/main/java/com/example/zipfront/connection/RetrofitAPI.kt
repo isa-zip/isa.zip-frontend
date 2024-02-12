@@ -16,6 +16,12 @@ interface RetrofitAPI {
     fun withdraw(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseWithdraw>
 
 
+    @POST("/auth/sign-up")
+    fun setting(@Body request: RetrofitClient2.Requestsetting): Call<RetrofitClient2.Responsesetting>
+
+    @POST("/users/schedule")
+    fun schedule(@Header("Authorization") token: String): Call<RetrofitClient2.Responseschedule>
+
     //카카오맵 검색
     @GET("v2/local/search/address.json") // Keyword.json의 정보를 받아옴
     fun getSearchKeyword(
