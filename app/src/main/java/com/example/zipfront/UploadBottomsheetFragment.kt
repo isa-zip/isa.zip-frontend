@@ -21,19 +21,49 @@ import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.MatchingOptionBinding
 import com.example.zipfront.databinding.UploadbottomsheetdialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
     private lateinit var recyclerView: RecyclerView
     private var adapter: BottomSheetAdapter? = null
     private lateinit var btnClose: ImageButton
     lateinit var binding: UploadbottomsheetdialogBinding
-    lateinit var onItemSelected: (List<RetrofitClient2.BrokerItem>) -> Unit
+    private lateinit var onItemSelected: (List<RetrofitClient2.BrokerItem>, Int) -> Unit
+    private var userItemId: Int = 0 // 이 부분을 추가하여 userItemId를 프래그먼트 내부에서 사용 가능하도록 함
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
+    fun updateFragment(selectedItems: List<RetrofitClient2.BrokerItem>) {
+        Log.d("Retrofit83", selectedItems.toString())
+        val request = RetrofitClient2.RequestMatchbroker(selectedItems.map { it.brokerItemId })
+        val call = RetrofitObject.getRetrofitService.matchBrokerItem("Bearer $token", userItemId, request)
+        call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbroker> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseMatchbroker>,
+                response: Response<RetrofitClient2.ResponseMatchbroker>
+            ) {
+                Log.d("Retrofit81", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit8", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        //요청 성공시 화면 띄우기
+                    } else {
+                        // 요청이 실패했을 때의 처리
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RetrofitClient2.ResponseMatchbroker>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit82", errorMessage)
+            }
+        })
+    }
 
-
-    // 선택된 아이템을 반환하는 메소드
-    private val selectedItems = mutableListOf<String>()
-    fun setData(data: List<RetrofitClient2.BrokerItem>) {
+    fun setData(data: List<RetrofitClient2.BrokerItem>, userItemId: Int) {
         adapter?.setData(data)
+        this.userItemId = userItemId // userItemId 설정
         Log.d("Retrofit77", "$data")
     }
 
@@ -87,12 +117,8 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
         }
 
         btnClose.setOnClickListener {
-            val selectedItemList = getSelectedItems()
-
-            val selectedItemString = selectedItemList.joinToString(",")
-            Log.d("SelectedItemFromAdapter2", "Selected Item from Adapter: $selectedItemString")
-
-            onItemSelected.invoke(selectedItemList)
+            val selectedItems = getSelectedItems()
+            updateFragment(selectedItems)
             dismiss()
         }
 

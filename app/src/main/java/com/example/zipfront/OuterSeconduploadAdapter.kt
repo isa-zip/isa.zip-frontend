@@ -31,7 +31,6 @@ class OuterSeconduploadAdapter(
     private val onItemSelected: (List<String>) -> Unit
 ) : RecyclerView.Adapter<OuterSeconduploadAdapter.ViewHolder>() {
 
-    // UploadBottomsheetFragment 객체를 멤버 변수로 선언
     private val bottomSheetFragment = UploadBottomsheetFragment()
     private val user = MyApplication.getUser()
     private val token = user.getString("jwt", "").toString()
@@ -174,46 +173,50 @@ class OuterSeconduploadAdapter(
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
             }
+            val dong = innerItem.userItemAddressResponse.dong
+            val userItmeId=innerItem.userItemId
+
             imageButton.setOnClickListener {
+                fetchDataFromServer(innerItem.userItemAddressResponse.dong, userItmeId)
                 bottomSheetFragment.show(
                     (context as AppCompatActivity).supportFragmentManager,
                     bottomSheetFragment.tag
                 )
             }
-            val dong = innerItem.userItemAddressResponse.dong
-
-            val call = RetrofitObject.getRetrofitService.brokeritem("Bearer $token")
-            call.enqueue(object : Callback<RetrofitClient2.ResponseBrokeritem> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.ResponseBrokeritem>,
-                    response: Response<RetrofitClient2.ResponseBrokeritem>
-                ) {
-                    Log.d("Retrofit71", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        Log.d("Retrofit7", responseBody.toString())
-                        if (responseBody != null && responseBody.isSuccess) {
-                            val userItemResponses = responseBody.data
-                            val matchingItems = userItemResponses.filter { it.addressResponse.postNumber == dong }
-                            if (matchingItems.isNotEmpty()) {
-                                // matchingItems 중 원하는 처리를 수행
-                                bottomSheetFragment.setData(matchingItems)
-                            } else {
-                                // 해당하는 아이템이 없을 때의 처리
-                            }
-                            // 바텀시트를 표시
-                        } else {
-                            // 요청이 실패했을 때의 처리
-                        }
-                    }
-                }
-                override fun onFailure(call: Call<RetrofitClient2.ResponseBrokeritem>, t: Throwable) {
-                    val errorMessage = "Call Failed: ${t.message}"
-                    Log.d("Retrofit", errorMessage)
-                }
-            })
 //            bottomSheetFragment.onItemSelected = onItemSelected
         }
+    }
+    private fun fetchDataFromServer(dong: String, userItemId: Int) {
+        val call = RetrofitObject.getRetrofitService.brokeritem("Bearer $token")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseBrokeritem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseBrokeritem>,
+                response: Response<RetrofitClient2.ResponseBrokeritem>
+            ) {
+                Log.d("Retrofit71", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit7", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        val userItemResponses = responseBody.data
+                        val matchingItems = userItemResponses.filter { it.addressResponse.postNumber == dong }
+                        if (matchingItems.isNotEmpty()) {
+                            // matchingItems 중 원하는 처리를 수행
+                            bottomSheetFragment.setData(matchingItems, userItemId)
+                        } else {
+                            // 해당하는 아이템이 없을 때의 처리
+                        }
+                        // 바텀시트를 표시
+                    } else {
+                        // 요청이 실패했을 때의 처리
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RetrofitClient2.ResponseBrokeritem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
     }
     fun formatPrice(price: Int?): String {
         return price?.let {

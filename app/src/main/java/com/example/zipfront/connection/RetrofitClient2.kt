@@ -566,4 +566,118 @@ class RetrofitClient2 {
         val extraFilter: String
     )
 
+    data class RequestMatchbroker(
+        @SerializedName("brokerItemId")
+        val brokerItemId: List<Int>
+    )
+
+    data class ResponseMatchbroker(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: MatchBrokerData,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class MatchBrokerData(
+        @SerializedName("matchDetails")
+        val matchDetails: List<MatchDetail>
+    )
+
+    data class MatchDetail(
+        @SerializedName("matchId")
+        val matchId: Int,
+        @SerializedName("userItemId")
+        val userItemId: Int,
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int
+    )
+
+    //매칭전체조회
+//    data class ResponseDongitem(
+//        @SerializedName("code")
+//        val code: String,
+//        @SerializedName("message")
+//        val message: String,
+//        @SerializedName("data")
+//        val data: DongitemData,
+//        @SerializedName("isSuccess")
+//        val isSuccess: Boolean
+//    )
+//
+//    data class DongitemData(
+//        @SerializedName("matchListDetails")
+//        val matchListDetails: List<MatchDetail>,
+//        @SerializedName("isSuccess")
+//        val isSuccess: Boolean
+//    )
+//
+//    data class MatchDetail(
+//        @SerializedName("matchId")
+//        val matchId: Int,
+//        @SerializedName("matchStatus")
+//        val matchStatus: String,
+//        @SerializedName("userItemResponse")
+//        val userItemResponse: UserItemResponse,
+//        @SerializedName("brokerItemResponse")
+//        val brokerItemResponse: BrokerItemResponse
+//    )
+//
+//    data class UserItemResponse(
+//        @SerializedName("userItemId")
+//        val userItemId: Int,
+//        @SerializedName("userId")
+//        val userId: Int,
+//        @SerializedName("userNickname")
+//        val userNickname: String,
+//        @SerializedName("userItemAddressResponse")
+//        val userItemAddressResponse: UserItemAddressResponse,
+//        @SerializedName("userItemOptionsResponse")
+//        val userItemOptionsResponse: UserItemOptionsResponse
+//    )
+//
+//    data class UserItemAddressResponse(
+//        @SerializedName("address")
+//        val address: String,
+//        @SerializedName("dong")
+//        val dong: String
+//    )
+//
+//    data class UserItemOptionsResponse(
+//        @SerializedName("userOptionId")
+//        val userOptionId: Int,
+//        @SerializedName("userRoomTypes")
+//        val userRoomTypes: List<UserRoomType>,
+//        @SerializedName("userDealTypes")
+//        val userDealTypes: List<UserDealType>,
+//        @SerializedName("userRoomSizes")
+//        val userRoomSizes: List<UserRoomSize>,
+//        @SerializedName("userFloors")
+//        val userFloors: List<UserFloor>,
+//        @SerializedName("userManagementOptions")
+//        val userManagementOptions: List<UserManagementOption>,
+//        @SerializedName("userInternalFacilities")
+//        val userInternalFacilities: List<UserInternalFacility>,
+//        @SerializedName("approveDate")
+//        val approveDate: String,
+//        @SerializedName("userExtraFilters")
+//        val userExtraFilters: List<UserExtraFilter>
+//    )
+//    data class BrokerItemResponse(
+//        @SerializedName("brokerItemId")
+//        val brokerItemId: Int,
+//        @SerializedName("businessName")
+//        val businessName: String,
+//        @SerializedName("itemStatus")
+//        val itemStatus: String,
+//        @SerializedName("addressResponse")
+//        val addressResponse: AddressResponse,
+//        @SerializedName("detailResponse")
+//        val detailResponse: DetailResponse,
+//        @SerializedName("optionResponse")
+//        val optionResponse: OptionResponse
+//    )
 }

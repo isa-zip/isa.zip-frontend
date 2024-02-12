@@ -11,6 +11,7 @@ import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface RetrofitAPI {
@@ -49,5 +50,12 @@ interface RetrofitAPI {
 
     @GET("/brokers/items/show")
     fun brokeritem(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseBrokeritem>
+
+    @POST("/match/brokers/{userItemId}")
+    fun matchBrokerItem(
+        @Header("Authorization") token: String,
+        @Path("userItemId") userItemId: Int,
+        @Body request: RetrofitClient2.RequestMatchbroker
+    ): Call<RetrofitClient2.ResponseMatchbroker>
 
 }

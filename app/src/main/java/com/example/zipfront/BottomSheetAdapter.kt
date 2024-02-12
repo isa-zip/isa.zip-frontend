@@ -114,6 +114,7 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
                 }
 
                 fragment.updateBtnCloseBackground()
+                Log.d("Retrofit84", selectedItems.toString())
             }
         }
     }
