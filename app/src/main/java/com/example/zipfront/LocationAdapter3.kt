@@ -18,7 +18,7 @@ import com.example.zipfront.SearchLocationActivity
 import com.example.zipfront.databinding.ActivitySearchlocationBinding
 
 interface ItemClickHandler2 {
-    fun onClick(location: Int)
+    fun onClick(location: Int, locationText: String)
 }
 class LocationAdapter3(private var locationSet: List<Location>, private var onItemClick: ItemClickHandler2) : RecyclerView.Adapter<LocationAdapter3.ViewHolder>() {
 
@@ -30,7 +30,7 @@ class LocationAdapter3(private var locationSet: List<Location>, private var onIt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_location, parent, false)
-        return ViewHolder(view).listen { position, type -> setLocation(locationSet[position].id) }
+        return ViewHolder(view).listen { position, type -> setLocation(locationSet[position].id, "") }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -52,7 +52,8 @@ class LocationAdapter3(private var locationSet: List<Location>, private var onIt
 
         //아이템 클릭시
         val listener = View.OnClickListener { it ->
-            Toast.makeText(it.context, "Clicked -> ID : ${holder.location.text}", Toast.LENGTH_SHORT).show()
+            setLocation(position, holder.location.text.toString())
+            //Toast.makeText(it.context, "Clicked -> ID : ${holder.location.text}", Toast.LENGTH_SHORT).show()
             val intent = Intent(holder.itemView?.context, SearchMapActivity3::class.java)
             intent.putExtra("location", holder.location.text.toString())
             ContextCompat.startActivity(holder.itemView.context, intent, null)
@@ -77,8 +78,8 @@ class LocationAdapter3(private var locationSet: List<Location>, private var onIt
     }
 
     // 지역 설정
-    private fun setLocation(id: Int) {
-        onItemClick.onClick(id)
+    private fun setLocation(id: Int, locationText: String) {
+        onItemClick.onClick(id, locationText)
     }
 
 
