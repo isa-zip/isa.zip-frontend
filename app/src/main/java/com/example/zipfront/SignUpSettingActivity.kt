@@ -1,21 +1,32 @@
 package com.example.zipfront
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.telecom.Call
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.SignUpSettingBinding
+import retrofit2.Response
 import java.util.regex.Pattern
+import javax.security.auth.callback.Callback
 
 class SignUpSettingActivity : AppCompatActivity() {
     private lateinit var binding: SignUpSettingBinding
+
+    /*private lateinit var user: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,23 +135,43 @@ class SignUpSettingActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        // 버튼 클릭 리스너 설정
-        imageButton5.setOnClickListener {
+        binding.imageButton5.setOnClickListener {
             val idErrorVisible = idError.visibility != View.VISIBLE
             val passwordMatchingVisible = passwordErrorMatching.visibility != View.VISIBLE
             val nicknameErrorVisible = nicknameError.visibility != View.VISIBLE
             val passwordConditionVisible = passwordErrorCondition.visibility != View.VISIBLE
             val isButtonEnabled = imageButton5.background.constantState != ContextCompat.getDrawable(this, R.drawable.btn_sign_up_setting_gray)?.constantState
+            val isButtonTagBlue = imageButton5.tag == "blue"
+            Log.d("Retrofit42", "updateProfile 함수 호출됨")
 
-            if (idErrorVisible && passwordMatchingVisible && nicknameErrorVisible && passwordConditionVisible && isButtonEnabled && imageButton5.tag == "blue") {
-                // 모든 오류가 없고 버튼이 활성화되며 버튼의 태그가 "blue"인 경우 SignUpSettingActivity로 화면 전환
-                startActivity(Intent(this, SignUpSettingActivity::class.java))
-            } else {
-                // 조건에 해당하지 않는 경우 화면 전환을 막습니다.
-                // 이때 아무런 작업을 수행하지 않습니다.
-            }
+            val email = binding.writeEmail.text.toString()
+            val password = binding.writePassword.text.toString()
+            val nickName = binding.writeNickname.text.toString()
+            Log.d("Retrofit48", "updateProfile 함수 호출됨")
+
+            val call = RetrofitObject.getRetrofitService.setting(RetrofitClient2.Requestsetting(email, password, nickName))
+            call.enqueue(object : retrofit2.Callback<RetrofitClient2.Responsesetting> {
+                override fun onResponse(call: retrofit2.Call<RetrofitClient2.Responsesetting>, response: Response<RetrofitClient2.Responsesetting>) {
+                    Log.d("Retrofit11", response.toString())
+                    if (response.isSuccessful) {
+                        val response = response.body()
+                        Log.d("Retrofit22", response.toString())
+                        if(response != null){
+                            if(response.isSuccess) {
+                                val intent = Intent(this@SignUpSettingActivity, MainActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(this@SignUpSettingActivity, response.message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+                override fun onFailure(call: retrofit2.Call<RetrofitClient2.Responsesetting>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })
         }
-
     }
 
     private fun containsSpecialCharacter(text: String): Boolean {
@@ -174,10 +205,6 @@ class SignUpSettingActivity : AppCompatActivity() {
             imageButton5.setImageResource(R.drawable.btn_sign_up_setting_blue)
             // 모든 입력이 다 끝난 후에 어떤 오류 메시지도 생기지 않을 경우 버튼을 활성화합니다.
             imageButton5.isEnabled = true
-            imageButton5.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
         } else {
             imageButton5.setImageResource(R.drawable.btn_sign_up_setting_gray)
             // 오류가 있을 때는 화면 전환을 막습니다.

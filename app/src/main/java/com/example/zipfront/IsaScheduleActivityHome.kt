@@ -34,6 +34,12 @@ class IsaScheduleActivityHome : AppCompatActivity() {
 
     private var selectedRoundTab: ImageButton? = null
 
+
+    // 서버 연결
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_isa_schedule_home)
@@ -61,10 +67,7 @@ class IsaScheduleActivityHome : AppCompatActivity() {
         // 데이터 준비
         val scheduleItems = ArrayList<IsaScheduleHomeItem>()
         scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.4.7", "방 청소"))
 
         // 어댑터 설정
         val adapter = IsaScheduleHomeAdapter(scheduleItems, object : IsaScheduleHomeAdapter.OnItemClickListener {
@@ -119,7 +122,7 @@ class IsaScheduleActivityHome : AppCompatActivity() {
 
         val imageView10: ImageView = findViewById(R.id.imageView10)
         imageView10.setOnClickListener {
-            showCustomDialog()
+            finish()
         }
 
         // 편집 누르면 완료로 뜸
@@ -143,9 +146,14 @@ class IsaScheduleActivityHome : AppCompatActivity() {
             // layout1의 배경을 list3에서 btn_agent3로 변경
             val layout1: ConstraintLayout = findViewById(R.id.layout1)
             layout1.setBackgroundResource(R.drawable.btn_agent3)
+
             // 편집 텍스트 버튼의 가시성을 변경합니다.
             editingTextView.visibility = View.GONE
             editingFinishTextView.visibility = View.VISIBLE
+
+            imageView10.setOnClickListener {
+                showCustomDialog()
+            }
         }
 
         editingFinishTextView.setOnClickListener {
@@ -194,13 +202,13 @@ class IsaScheduleActivityHome : AppCompatActivity() {
 
         // 나가기 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            finish() // 현재 엑티비티 종료
-            alertDialog.dismiss() // 다이얼로그 닫기
-
-            // IsaScheduleActivity를 시작하여 처음 화면으로 전환
-            val intent = Intent(this, IsaScheduleActivity::class.java)
+            // IsaScheduleActivityHome 시작하여 처음 화면으로 전환
+            val intent = Intent(this, IsaScheduleActivityHome::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             startActivity(intent)
+
+            finish() // 현재 엑티비티 종료
+            alertDialog.dismiss() // 다이얼로그 닫기
         }
 
         // AlertDialog 표시

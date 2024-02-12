@@ -12,4 +12,10 @@ interface RetrofitAPI {
 
     @DELETE("/users")
     fun withdraw(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseWithdraw>
+
+    @POST("/auth/sign-up")
+    fun setting(@Body request: RetrofitClient2.Requestsetting): Call<RetrofitClient2.Responsesetting>
+
+    @POST("/users/schedule")
+    fun schedule(@Header("Authorization") token: String): Call<RetrofitClient2.Responseschedule>
 }
