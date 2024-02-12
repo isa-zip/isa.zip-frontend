@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private lateinit var fragmentToLoad: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +35,18 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MenuFirstActivity::class.java)
             startActivity(intent)
         }
-        val fragmentToLoad = intent.getStringExtra("fragmentToLoad")
-        Log.d("확인", "$fragmentToLoad")
-        //val fragmentToLoad = intent.getStringExtra("fragmentToLoad")
-        //Log.d("프래그먼트", "$fragmentToLoad")
-        initBottomNavigation(fragmentToLoad)
+        //var fragmentToLoad = intent.getStringExtra("fragmentToLoad")
+        fragmentToLoad = intent.getStringExtra("fragmentToLoad") ?: ""
+        Log.d("프래그먼트", "$fragmentToLoad")
+        initBottomNavigation()
         //getKakaoMapHashKey(this)
 
     }
-    private fun initBottomNavigation(fragmentToLoad : String?) {
+    private fun initBottomNavigation() {
 
         bottomNavigationView = binding.AmainBnv
 
-        if (fragmentToLoad.isNullOrEmpty()) {
+        if (fragmentToLoad == "") {
             binding.AmainToolbar.visibility = View.VISIBLE
             bottomNavigationView.selectedItemId = R.id.homeFragment
             supportFragmentManager
@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 .beginTransaction()
                 .replace(binding.AmainFrame.id, FragmentProperty())
                 .commitAllowingStateLoss()
+            fragmentToLoad = ""
         }
 
         //bottomNavigationView.selectedItemId = R.id.homeFragment

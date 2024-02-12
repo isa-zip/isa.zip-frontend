@@ -1,20 +1,27 @@
 package com.example.zipfront
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.ActivitySearchmapBinding
-import net.daum.mf.map.api.MapView
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchMapActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchmapBinding
+    private val API_KEY = "KakaoAK 752d895cabf8520cd29b4cd34878496f"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchmapBinding.inflate(layoutInflater)
 
         //editText text 바꾸기
-        val locationData = intent.getStringExtra("location")
+        val locationData = intent.getStringExtra("location") ?: ""
         binding.searchEt.setText(locationData)
 
         setContentView(binding.root)
@@ -42,26 +49,48 @@ class SearchMapActivity : AppCompatActivity() {
 
 
 
-        //mapV1
-
-
-
-        /*//Map
-        val mapView : MapView = binding.mapView
-
-        mapView.start(object : MapLifeCycleCallback() {
-            override fun onMapDestroy() {
-                // 지도 API 가 정상적으로 종료될 때 호출됨
+        //카카오맵 API연결
+        val api = RetrofitKakaoMapObject.getRetrofitService
+        val call = api.getSearchKeyword(API_KEY, locationData)
+        // API 서버에 요청Callback
+        call.enqueue(object : Callback<RetrofitClient2.ResultSearchKeyword> {
+            override fun onResponse(call: Call<RetrofitClient2.ResultSearchKeyword>, response: Response<RetrofitClient2.ResultSearchKeyword>) {
+                // 통신 성공
+                setMap(response.body())
+                Log.d("LocalSearch", "${response.body()}")
+                Log.d("PlaceMeta", "${response.body()?.meta}")
+                Log.d("RegionInfo", "${response.body()?.meta?.same_name}")
+                Log.d("Document", "${response.body()?.documents}")
             }
+            override fun onFailure(call: Call<RetrofitClient2.ResultSearchKeyword>, t: Throwable) {
+                // 통신 실패
+                Log.e("LocalSearch", "통신 실패: ${t.message}")
+            }
+        })
 
-            override fun onMapError(error: Exception) {
-                // 인증 실패 및 지도 사용 중 에러가 발생할 때 호출됨
-            }
-        }, object : KakaoMapReadyCallback() {
-            override fun onMapReady(kakaoMap: KakaoMap) {
-                // 인증 후 API 가 정상적으로 실행될 때 호출됨
-            }
-        })*/
+    }
+
+    private fun setMap(searchResult: RetrofitClient2.ResultSearchKeyword?) {
+        if (!searchResult?.documents.isNullOrEmpty()) {
+        // 검색 결과 있음
+            val latitude = searchResult?.documents?.firstOrNull()?.x?.toDouble() ?: 0.0
+            val longitude = searchResult?.documents?.firstOrNull()?.y?.toDouble() ?: 0.0
+            Log.d("위도 확인", "latitude:${latitude}, longitude:${longitude}")
+            binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(longitude, latitude), 4, true);
+
+        //마커 추가
+            val marker = MapPOIItem()
+            marker.itemName = searchResult?.documents?.firstOrNull()?.address_name
+            val mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
+            marker.mapPoint = mapPoint
+            marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+            binding.mapView.addPOIItem(marker)
+
+
+        } else {
+        // 검색 결과 없음
+            Toast.makeText(this, "검색 결과가 없습니다", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

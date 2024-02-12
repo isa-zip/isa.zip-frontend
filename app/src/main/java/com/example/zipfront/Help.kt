@@ -38,7 +38,7 @@ class Help : Fragment() {
         val searchbar = view.findViewById<RelativeLayout>(R.id.searchbar)
         searchbar.setOnClickListener {
             try {
-                // ScheduleActivity로 화면 전환
+                // ScheduleActivity 화면 전환
                 // SearchLocationActivity3 원래 이거임!!!!!!!!!
                 val intent = Intent(activity, SearchLocationActivity3::class.java)
                 startActivity(intent)
