@@ -152,7 +152,7 @@ class RetrofitClient2 {
         @SerializedName("roomType")
         val roomType: List<RoomType>,
         @SerializedName("dealTypes")
-        val dealTypes: List<DealType>,
+        val dealTypes: List<DealType2>,
         @SerializedName("dealInfoMap")
         val dealInfoMap: DealInfoMap,
         @SerializedName("roomSize")
@@ -313,18 +313,18 @@ class RetrofitClient2 {
         val userId: Int,
         @SerializedName("userNickname")
         val userNickname: String,
-        @SerializedName("userItemAddressResponse")
-        val userItemAddressResponse: UserItemAddressResponse,
+        @SerializedName("dong")
+        val dong: String,
         @SerializedName("userItemOptionsResponse")
         val userItemOptionsResponse: UserItemOptionsResponse
     )
 
-    data class UserItemAddressResponse(
-        @SerializedName("address")
-        val address: String,
-        @SerializedName("dong")
-        val dong: String
-    )
+//    data class UserItemAddressResponse(
+//        @SerializedName("address")
+//        val address: String,
+//        @SerializedName("dong")
+//        val dong: String
+//    )
 
     data class UserItemOptionsResponse(
         @SerializedName("userOptionId")
@@ -523,18 +523,14 @@ class RetrofitClient2 {
     )
 
     data class BrokerDealType(
-        @SerializedName("createdAt")
-        val createdAt: String,
-        @SerializedName("updateAt")
-        val updateAt: String,
         @SerializedName("brokerDealId")
         val brokerDealId: Int,
         @SerializedName("dealType")
         val dealType: String,
-        @SerializedName("price")
-        val price: String?,
-        @SerializedName("deposit")
-        val deposit: String?,
+        @SerializedName("charterPrice")
+        val charterPrice: String?,
+        @SerializedName("tradingPrice")
+        val tradingPrice: String?,
         @SerializedName("monthPrice")
         val monthPrice: String?
     )
@@ -618,89 +614,49 @@ class RetrofitClient2 {
     )
 
     //매칭전체조회
-//    data class ResponseDongitem(
-//        @SerializedName("code")
-//        val code: String,
-//        @SerializedName("message")
-//        val message: String,
-//        @SerializedName("data")
-//        val data: DongitemData,
-//        @SerializedName("isSuccess")
-//        val isSuccess: Boolean
-//    )
-//
-//    data class DongitemData(
-//        @SerializedName("matchListDetails")
-//        val matchListDetails: List<MatchDetail>,
-//        @SerializedName("isSuccess")
-//        val isSuccess: Boolean
-//    )
-//
-//    data class MatchDetail(
-//        @SerializedName("matchId")
-//        val matchId: Int,
-//        @SerializedName("matchStatus")
-//        val matchStatus: String,
-//        @SerializedName("userItemResponse")
-//        val userItemResponse: UserItemResponse,
-//        @SerializedName("brokerItemResponse")
-//        val brokerItemResponse: BrokerItemResponse
-//    )
-//
-//    data class UserItemResponse(
-//        @SerializedName("userItemId")
-//        val userItemId: Int,
-//        @SerializedName("userId")
-//        val userId: Int,
-//        @SerializedName("userNickname")
-//        val userNickname: String,
-//        @SerializedName("userItemAddressResponse")
-//        val userItemAddressResponse: UserItemAddressResponse,
-//        @SerializedName("userItemOptionsResponse")
-//        val userItemOptionsResponse: UserItemOptionsResponse
-//    )
-//
-//    data class UserItemAddressResponse(
-//        @SerializedName("address")
-//        val address: String,
-//        @SerializedName("dong")
-//        val dong: String
-//    )
-//
-//    data class UserItemOptionsResponse(
-//        @SerializedName("userOptionId")
-//        val userOptionId: Int,
-//        @SerializedName("userRoomTypes")
-//        val userRoomTypes: List<UserRoomType>,
-//        @SerializedName("userDealTypes")
-//        val userDealTypes: List<UserDealType>,
-//        @SerializedName("userRoomSizes")
-//        val userRoomSizes: List<UserRoomSize>,
-//        @SerializedName("userFloors")
-//        val userFloors: List<UserFloor>,
-//        @SerializedName("userManagementOptions")
-//        val userManagementOptions: List<UserManagementOption>,
-//        @SerializedName("userInternalFacilities")
-//        val userInternalFacilities: List<UserInternalFacility>,
-//        @SerializedName("approveDate")
-//        val approveDate: String,
-//        @SerializedName("userExtraFilters")
-//        val userExtraFilters: List<UserExtraFilter>
-//    )
-//    data class BrokerItemResponse(
-//        @SerializedName("brokerItemId")
-//        val brokerItemId: Int,
-//        @SerializedName("businessName")
-//        val businessName: String,
-//        @SerializedName("itemStatus")
-//        val itemStatus: String,
-//        @SerializedName("addressResponse")
-//        val addressResponse: AddressResponse,
-//        @SerializedName("detailResponse")
-//        val detailResponse: DetailResponse,
-//        @SerializedName("optionResponse")
-//        val optionResponse: OptionResponse
-//    )
+    data class ResponseMatchbrokeritem(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: DataMatchborker,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class DataMatchborker(
+        @SerializedName("matchListDetails")
+        val matchListDetails: List<MatchDetail2>
+    )
+
+    data class MatchDetail2(
+        @SerializedName("matchId")
+        val matchId: Int,
+        @SerializedName("matchStatus")
+        val matchStatus: String,
+        @SerializedName("userItemResponse")
+        val userItemResponse: UserItemResponse,
+        @SerializedName("brokerItemResponse")
+        val brokerItemResponse: BrokerItemResponse
+    )
+
+    data class BrokerItemResponse(
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("businessName")
+        val businessName: String,
+        @SerializedName("itemStatus")
+        val itemStatus: String,
+        @SerializedName("addressResponse")
+        val addressResponse: AddressResponse,
+        @SerializedName("detailResponse")
+        val detailResponse: DetailResponse,
+        @SerializedName("optionResponse")
+        val optionResponse: OptionResponse
+    )
+
+
     // 이사 일정
     data class Requestschedule(
         @SerializedName("period")
@@ -765,6 +721,208 @@ class RetrofitClient2 {
         val period: String,
         @SerializedName("moveDate")
         val moveDate: String
+    )
+
+    //유저 매칭 조회
+    data class ResponseUserMatchitem(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: List<UserMatchitemData>,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class UserMatchitemData(
+        @SerializedName("dong_requestName")
+        val dongRequestName: String,
+        @SerializedName("matchingCount")
+        val matchingCount: Int,
+        @SerializedName("matchedBrokerItemResponses")
+        val matchedBrokerItemResponses: List<MatchedBrokerItemResponse>,
+        @SerializedName("userRequestInfo")
+        val userRequestInfo: UserRequestInfo
+    )
+
+    data class MatchedBrokerItemResponse(
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("businessName")
+        val businessName: String,
+        @SerializedName("itemStatus")
+        val itemStatus: String,
+        @SerializedName("dongName")
+        val dongName: String,
+        @SerializedName("detailResponse")
+        val detailResponse: DetailResponse3,
+        @SerializedName("optionResponse")
+        val optionResponse: OptionResponse2
+    )
+
+    data class DetailResponse3(
+        @SerializedName("itemImages")
+        val itemImages: List<ItemImage>,
+        @SerializedName("itemContent")
+        val itemContent: ItemContent
+    )
+
+    data class OptionResponse2(
+        @SerializedName("brokerOptionId")
+        val brokerOptionId: Int,
+        @SerializedName("dealTypes")
+        val dealTypes: List<DealType2>,
+        @SerializedName("roomType")
+        val roomType: String,
+        @SerializedName("roomSize")
+        val roomSize: String,
+        @SerializedName("floors")
+        val floors: List<Floor2>,
+        @SerializedName("managementOptions")
+        val managementOptions: List<ManagementOption2>,
+        @SerializedName("internalFacilities")
+        val internalFacilities: List<InternalFacility2>,
+        @SerializedName("extraFilters")
+        val extraFilters: List<ExtraFilter2>,
+        @SerializedName("approvedDate")
+        val approvedDate: String
+    )
+
+    data class DealType2(
+        @SerializedName("brokerDealId")
+        val brokerDealId: Int,
+        @SerializedName("dealType")
+        val dealType: String,
+        @SerializedName("charterPrice")
+        val charterPrice: String?,
+        @SerializedName("tradingPrice")
+        val tradingPrice: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
+    )
+
+    data class Floor2(
+        @SerializedName("brokerFloorId")
+        val brokerFloorId: Int,
+        @SerializedName("floor")
+        val floor: String?,
+        @SerializedName("customFloor")
+        val customFloor: String?
+    )
+
+    data class ManagementOption2(
+        @SerializedName("brokerManagementOptionId")
+        val brokerManagementOptionId: Int,
+        @SerializedName("managementOption")
+        val managementOption: String,
+        @SerializedName("managementPrice")
+        val managementPrice: String
+    )
+
+    data class InternalFacility2(
+        @SerializedName("brokerInternalFacilityId")
+        val brokerInternalFacilityId: Int,
+        @SerializedName("internalFacility")
+        val internalFacility: String
+    )
+
+    data class ExtraFilter2(
+        @SerializedName("brokerExtraFilterId")
+        val brokerExtraFilterId: Int,
+        @SerializedName("extraFilter")
+        val extraFilter: String
+    )
+
+    data class UserRequestInfo(
+        @SerializedName("userItemId")
+        val userItemId: Int,
+        @SerializedName("userId")
+        val userId: Int,
+        @SerializedName("userNickname")
+        val userNickname: String,
+        @SerializedName("dong")
+        val dong: String,
+        @SerializedName("userItemOptionsResponse")
+        val userItemOptionsResponse: UserItemOptionsResponse2
+    )
+
+    data class UserItemOptionsResponse2(
+        @SerializedName("userOptionId")
+        val userOptionId: Int,
+        @SerializedName("userRoomTypes")
+        val userRoomTypes: List<UserRoomType2>,
+        @SerializedName("userDealTypes")
+        val userDealTypes: List<UserDealType2>,
+        @SerializedName("userRoomSizes")
+        val userRoomSizes: List<UserRoomSize2>,
+        @SerializedName("userFloors")
+        val userFloors: List<UserFloor2>,
+        @SerializedName("userManagementOptions")
+        val userManagementOptions: List<UserManagementOption2>,
+        @SerializedName("userInternalFacilities")
+        val userInternalFacilities: List<UserInternalFacility2>,
+        @SerializedName("approveDate")
+        val approveDate: String,
+        @SerializedName("userExtraFilters")
+        val userExtraFilters: List<UserExtraFilter2>
+    )
+
+    data class UserRoomType2(
+        @SerializedName("userRoomTypeId")
+        val userRoomTypeId: Int,
+        @SerializedName("roomType")
+        val roomType: String
+    )
+
+    data class UserDealType2(
+        @SerializedName("dealId")
+        val dealId: Int,
+        @SerializedName("dealType")
+        val dealType: String,
+        @SerializedName("minPrice")
+        val minPrice: String?,
+        @SerializedName("maxPrice")
+        val maxPrice: String?,
+        @SerializedName("minMonthPrice")
+        val minMonthPrice: String?,
+        @SerializedName("maxMonthPrice")
+        val maxMonthPrice: String?
+    )
+
+    data class UserRoomSize2(
+        @SerializedName("userRoomSize")
+        val userRoomSize: Int,
+        @SerializedName("roomSize")
+        val roomSize: String
+    )
+
+    data class UserFloor2(
+        @SerializedName("userFloorId")
+        val userFloorId: Int,
+        @SerializedName("floor")
+        val floor: String?
+    )
+
+    data class UserManagementOption2(
+        @SerializedName("userManagementOptionId")
+        val userManagementOptionId: Int,
+        @SerializedName("managementOption")
+        val managementOption: String
+    )
+
+    data class UserInternalFacility2(
+        @SerializedName("userInternalFacilityId")
+        val userInternalFacilityId: Int,
+        @SerializedName("internalFacility")
+        val internalFacility: String
+    )
+
+    data class UserExtraFilter2(
+        @SerializedName("userExtraFilterId")
+        val userExtraFilterId: Int,
+        @SerializedName("extraFilter")
+        val extraFilter: String
     )
 
 }

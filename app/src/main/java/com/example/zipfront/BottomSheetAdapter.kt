@@ -56,20 +56,18 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
             val monthDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "MONTHLY" }
 
             val tradingPriceText = when {
-                tradingDeal != null && tradingDeal.price != null -> "전세 ${tradingDeal.price}"
-                tradingDeal != null -> "전세 ${tradingDeal.deposit}"
-                else -> ""
+                tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
+                else -> "전세 "
             }
 
             val charterPriceText = when {
-                charterDeal != null && charterDeal.price != null -> "매매 ${charterDeal.price} "
-                charterDeal != null -> "매매 ${charterDeal.deposit}"
-                else -> ""
+                charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
+                else -> "매매 "
             }
 
             val monthPriceText = when {
                 monthDeal != null && monthDeal.monthPrice != null -> "월세 ${monthDeal.monthPrice}"
-                else -> ""
+                else -> "월세 "
             }
 
             val dealTypesText = listOf(tradingPriceText, charterPriceText, monthPriceText)

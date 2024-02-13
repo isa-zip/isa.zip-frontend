@@ -37,7 +37,8 @@ class SearchMapActivity2 : AppCompatActivity() {
 
         binding.imageButton11.setOnClickListener {
             val intent = Intent(this, MatchingOptionActivity::class.java)
-            startActivityForResult(intent, REQUEST_CODE_OPTION)
+//            startActivityForResult(intent, REQUEST_CODE_OPTION)
+            startActivity(intent)
         }
 
 

@@ -27,8 +27,7 @@ import retrofit2.Response
 import java.text.DecimalFormat
 
 class OuterSeconduploadAdapter(
-    private val innerItems: List<RetrofitClient2.UserItemResponse>,
-    private val onItemSelected: (List<String>) -> Unit
+    private val innerItems: List<RetrofitClient2.UserItemResponse>
 ) : RecyclerView.Adapter<OuterSeconduploadAdapter.ViewHolder>() {
 
     private val bottomSheetFragment = UploadBottomsheetFragment()
@@ -173,11 +172,11 @@ class OuterSeconduploadAdapter(
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
             }
-            val dong = innerItem.userItemAddressResponse.dong
+            val dong = innerItem.dong
             val userItmeId=innerItem.userItemId
 
             imageButton.setOnClickListener {
-                fetchDataFromServer(innerItem.userItemAddressResponse.dong, userItmeId)
+                fetchDataFromServer(innerItem.dong, userItmeId)
                 bottomSheetFragment.show(
                     (context as AppCompatActivity).supportFragmentManager,
                     bottomSheetFragment.tag

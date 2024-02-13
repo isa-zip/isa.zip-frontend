@@ -7,16 +7,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.MatchingstillLayoutBinding
 import com.example.zipfront.databinding.MatchingstillRecyclerviewBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MatchingStillFragment : Fragment() {
     lateinit var binding: MatchingstillRecyclerviewBinding
     private lateinit var adapter: OuteroptionAdapter
-    private lateinit var outerItemList: List<OuterItem>
     val REQUEST_CODE_OPTION = 1
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,20 +34,53 @@ class MatchingStillFragment : Fragment() {
         val requestCode = arguments?.getInt("REQUEST_CODE", -1) ?: -1
         Log.d("MatchingStillFragment", "Received requestCode: $requestCode")
 
-        binding.textView10.visibility = View.GONE
-        binding.notShowing2.visibility = View.VISIBLE
+        binding.textView10.visibility = View.VISIBLE
+        binding.notShowing2.visibility = View.GONE
 
-        outerItemList = listOf(
-            OuterItem("상도동", listOf("내부 아이템 1-1", "내부 아이템 1-2", "내부 아이템 1-3")),
-            OuterItem("동선동", listOf("내부 아이템 2-1", "내부 아이템 2-2", "내부 아이템 2-3", "내부 아이템 2-4")),
-            OuterItem("목동"),
-            OuterItem("성신여대", listOf("내부 아이템 4-1", "내부 아이템 4-2", "내부 아이템 4-3", "내부 아이템 4-4","내부 아이템 4-5"))
-        )
+//        outerItemList = listOf(
+//            OuterItem("상도동", listOf("내부 아이템 1-1", "내부 아이템 1-2", "내부 아이템 1-3")),
+//            OuterItem("동선동", listOf("내부 아이템 2-1", "내부 아이템 2-2", "내부 아이템 2-3", "내부 아이템 2-4")),
+//            OuterItem("목동"),
+//            OuterItem("성신여대", listOf("내부 아이템 4-1", "내부 아이템 4-2", "내부 아이템 4-3", "내부 아이템 4-4","내부 아이템 4-5"))
+//        )
 
-        setupRecyclerView(outerItemList)
-
-        // OuterItem의 개수를 textView20에 설정
-        binding.textView20.text = "${outerItemList.size}건"
+        val call = RetrofitObject.getRetrofitService.usermatchitem("Bearer $token", "MATCH_COMPLETE")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseUserMatchitem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseUserMatchitem>,
+                response: Response<RetrofitClient2.ResponseUserMatchitem>
+            ) {
+                Log.d("Retrofit61", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit6", responseBody.toString())
+                    if (responseBody != null) {
+                        if (responseBody.isSuccess) {
+                            if (responseBody.data.isNotEmpty()) {
+                                binding.textView10.visibility = View.GONE
+                                binding.notShowing2.visibility = View.VISIBLE
+                                setupRecyclerView(responseBody.data)
+                                binding.textView20.text = "${responseBody.data.size}건"
+                            } else {
+                                // 데이터가 없을 때 처리
+                                binding.textView10.visibility = View.VISIBLE
+                                binding.notShowing2.visibility = View.GONE
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                responseBody.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RetrofitClient2.ResponseUserMatchitem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
 
         return binding.root
     }
@@ -85,7 +124,7 @@ class MatchingStillFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView(outerItemList: List<OuterItem>) {
+    private fun setupRecyclerView(outerItemList: List<RetrofitClient2.UserMatchitemData>) {
         // RecyclerView의 레이아웃 매니저 설정
         binding.optionRv.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
 
@@ -94,10 +133,10 @@ class MatchingStillFragment : Fragment() {
         binding.optionRv.adapter = adapter
     }
 
-    data class OuterItem(val title: String, val innerItemList: List<String>? = null) {
-        fun getItemCount(): Int {
-            return innerItemList?.size ?: 0
-        }
-    }
+//    data class OuterItem(val title: String, val innerItemList: List<String>? = null) {
+//        fun getItemCount(): Int {
+//            return innerItemList?.size ?: 0
+//        }
+//    }
 
 }
