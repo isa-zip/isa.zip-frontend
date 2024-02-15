@@ -8,18 +8,22 @@ import com.example.zipfront.databinding.ActivityManagementinfoBinding
 class ManagementInfoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityManagementinfoBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityManagementinfoBinding.inflate(layoutInflater)
-        // PropertyInfoFragment 띄우기
-        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, PropertyInfoFragment()).commitAllowingStateLoss()
-
-        setContentView(binding.root)
-
-        //brokerItemId 설정
+        //brokerItemId 받아오기
         val intent = intent
         val brokerItemId = intent.getIntExtra("brokerItemID", 1)
+
+        //brokerItemId 보내기 (PropertyInfoFragment.kt로)
+        val fragment = PropertyInfoFragment.newInstance(brokerItemId)
+        // PropertyInfoFragment 띄우기
+        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, fragment).commitAllowingStateLoss()
+
+
 
         //케밥메뉴 선택시
         binding.buttonSetting.setOnClickListener(){
@@ -30,5 +34,7 @@ class ManagementInfoActivity : AppCompatActivity() {
         binding.leftImage.setOnClickListener {
             finish()
         }
+
+        setContentView(binding.root)
     }
 }

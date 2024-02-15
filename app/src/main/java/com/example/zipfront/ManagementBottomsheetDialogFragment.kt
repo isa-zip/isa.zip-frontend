@@ -40,10 +40,9 @@ class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFra
         val button1: Button = view.findViewById(R.id.modify_btn)
         button1.setOnClickListener() {
             //수정하기
-            val intent = Intent(requireContext(), AdditionalActivity2::class.java)
-            val stackBuilder = TaskStackBuilder.create(requireContext())
-            stackBuilder.addNextIntentWithParentStack(intent)
-            stackBuilder.startActivities()
+            val intent = Intent(requireContext(), ModifyActivity2::class.java)
+            intent.putExtra("brokerItemId", brokerItemId)
+            startActivity(intent)
             //수정하기 넘어가면 AdditionalActivity2 뒤로가기 버튼 안먹음
         }
 
@@ -125,6 +124,8 @@ class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFra
         // 확인 버튼 클릭 리스너 설정
         deleteButton.setOnClickListener {
             Log.d("delete", "버튼 클릭")
+
+            //매물 삭제 API 연동
             val call = RetrofitObject.getRetrofitService.deleteProperty("Bearer $token", brokerItemId)
 
             call.enqueue(object : Callback<RetrofitClient2.ResponseDelete> {
@@ -151,41 +152,13 @@ class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFra
                 }
             })
 
-
-            //deleteProperty(brokerItemId)
-            alertDialog.dismiss() // 다이얼로그 닫기
+            val intent = Intent(requireContext(), MenuManagementActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() // 현재 Activity 종료
+            //alertDialog.dismiss() // 다이얼로그 닫기
         }
 
         alertDialog.show()
     }
 
-
-    //매물 삭제 API 연동
-    private fun deleteProperty(brokerItemId : Int) {
-        val call = RetrofitObject.getRetrofitService.deleteProperty("Bearer $token", brokerItemId)
-
-        call.enqueue(object : Callback<RetrofitClient2.ResponseDelete> {
-            override fun onResponse(call: Call<RetrofitClient2.ResponseDelete>, response: Response<RetrofitClient2.ResponseDelete>) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    Log.d("Retrofit2", response.toString())
-                    if(responseBody != null){
-                        if(responseBody.isSuccess) {
-                            Toast.makeText(requireContext(), "삭제 완료", Toast.LENGTH_SHORT).show()
-
-                        }else{
-                            Toast.makeText(requireContext(), responseBody?.message ?: "Unknown error", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<RetrofitClient2.ResponseDelete>, t: Throwable) {
-                val errorMessage = "Call Failed: ${t.message}"
-                Log.d("Retrofit", errorMessage)
-                Toast.makeText(requireContext(), "삭제 실패", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-    }
 }

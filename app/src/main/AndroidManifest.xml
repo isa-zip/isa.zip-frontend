@@ -177,6 +177,12 @@
         <activity
             android:name=".ScheduleModifyActivity"
             android:exported="false"/>
+        <activity
+            android:name=".ModifyActivity2"
+            android:exported="false"/>
+        <activity
+            android:name=".ModifyActivity3"
+            android:exported="false"/>
     </application>
 
 </manifest>

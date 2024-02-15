@@ -452,6 +452,10 @@ class RetrofitClient2 {
         val brokerItemId: Int,
         @SerializedName("businessName")
         val businessName: String,
+        @SerializedName("phoneNumber")
+        val phoneNumber: String,
+        @SerializedName("messageNumber")
+        val messageNumber: String,
         @SerializedName("brokerImage")
         val brokerImage: Int,
         @SerializedName("itemStatus")
@@ -1184,5 +1188,35 @@ class RetrofitClient2 {
         @SerializedName("extraFilter")
         val extraFilter: String
     )
+
+    data class detailRequest(
+        @SerializedName("itemImages")
+        val itemImages: List<ItemImage>,
+        @SerializedName("itemContent")
+        val itemContent: ItemContent
+    )
+
+    data class optionsRequest(
+        @SerializedName("brokerOptionId")
+        val brokerOptionId: Int,
+        @SerializedName("dealTypes")
+        val dealTypes: List<BrokerDealType>,
+        @SerializedName("roomType")
+        val roomType: String,
+        @SerializedName("roomSize")
+        val roomSize: String,
+        @SerializedName("floors")
+        val floors: List<BrokerFloor>,
+        @SerializedName("managementOptions")
+        val managementOptions: List<BrokerManagementOption>,
+        @SerializedName("internalFacilities")
+        val internalFacilities: List<BrokerInternalFacility>,
+        @SerializedName("extraFilters")
+        val extraFilters: List<BrokerExtraFilter>,
+        @SerializedName("approvedDate")
+        val approvedDate: String
+    )
+
+
 
 }

@@ -283,7 +283,7 @@
 
                     <View
                         android:id="@+id/padding"
-                        android:layout_width="121dp"
+                        android:layout_width="113dp"
                         android:layout_height="28dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/administration_price_tv"
@@ -622,6 +622,14 @@
                         app:layout_constraintTop_toBottomOf="@id/Line6" />
 
 
+                    <View
+                        android:id="@+id/padding2"
+                        android:layout_width="113dp"
+                        android:layout_height="28dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/Line6"
+                        android:layout_marginTop="8dp"/>
+
                     <android.widget.Button
                         android:id="@+id/facility_btn_1"
                         android:text="에어컨"
@@ -634,8 +642,9 @@
                         android:background="@drawable/caption_option"
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="121dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/Line6" />
+                        app:layout_constraintStart_toEndOf="@id/padding2"
+                        app:layout_constraintTop_toBottomOf="@id/Line6"
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/facility_btn_2"
@@ -650,7 +659,8 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="4dp"
                         app:layout_constraintStart_toEndOf="@+id/facility_btn_1"
-                        app:layout_constraintTop_toBottomOf="@id/Line6" />
+                        app:layout_constraintTop_toBottomOf="@id/Line6"
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/facility_btn_3"
@@ -665,7 +675,8 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="4dp"
                         app:layout_constraintStart_toEndOf="@+id/facility_btn_2"
-                        app:layout_constraintTop_toBottomOf="@id/Line6" />
+                        app:layout_constraintTop_toBottomOf="@id/Line6"
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/facility_btn_4"
@@ -680,7 +691,8 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginLeft="4dp"
                         app:layout_constraintStart_toEndOf="@+id/facility_btn_3"
-                        app:layout_constraintTop_toBottomOf="@id/Line6" />
+                        app:layout_constraintTop_toBottomOf="@id/Line6"
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/facility_btn_5"
@@ -696,7 +708,7 @@
                         android:layout_marginLeft="4dp"
                         app:layout_constraintStart_toEndOf="@+id/facility_btn_4"
                         app:layout_constraintTop_toBottomOf="@id/Line6"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
 
 
 
