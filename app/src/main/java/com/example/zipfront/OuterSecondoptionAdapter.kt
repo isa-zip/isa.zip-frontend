@@ -2,6 +2,7 @@ package com.example.zipfront
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +14,14 @@ import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.zipfront.connection.RetrofitClient2
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class OuterSecondoptionAdapter(private val innerItems: List<String>,
-                               private val onInnerItemSelected: (List<String>) -> Unit // Callback for inner item selected
-) : RecyclerView.Adapter<OuterSecondoptionAdapter.ViewHolder>() {
+class OuterSecondoptionAdapter(private val innerItems: List<RetrofitClient2.MatchedBrokerItemResponse>) : RecyclerView.Adapter<OuterSecondoptionAdapter.ViewHolder>() {
 
     private var thirdAdapter: ThirdoptionAdapter? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,8 +32,9 @@ class OuterSecondoptionAdapter(private val innerItems: List<String>,
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val innerItem = innerItems[position]
-        holder.bind(innerItem, holder.itemView.context)
+        holder.bind(innerItem)
     }
+
     override fun getItemCount(): Int {
         return innerItems.size
     }
@@ -42,35 +44,19 @@ class OuterSecondoptionAdapter(private val innerItems: List<String>,
         private val textView: TextView = itemView.findViewById(R.id.textView24)
         private val imageView: ImageView = itemView.findViewById(R.id.imageView18)
 
-        fun bind(innerItem: String, context: Context) {
+        fun bind(innerItem: RetrofitClient2.MatchedBrokerItemResponse) {
             // 여기서 innerItem 사용하여 필요한 작업 수행
-            textView.text = innerItem
-            imageView.setImageResource(R.drawable.maruisgang)
-            // 비동기적으로 데이터를 가져오고 RecyclerView를 업데이트
-            GlobalScope.launch {
-                val innerItemList = withContext(Dispatchers.Default) {
-                    // 여기에서 createInnerItemList을 호출하거나, 데이터를 가져오는 작업 수행
-                    createInnerItemList(innerItem)
-                }
+            Log.d("Retrofit9", "$innerItem")
+            textView.text = innerItem.businessName
+            Glide.with(itemView)
+                .load(innerItem.detailResponse.itemImages.firstOrNull()?.imageUrl) // 첫 번째 이미지 URL을 사용합니다.
+                .into(imageView)
 
-                withContext(Dispatchers.Main) {
-                    // UI 업데이트는 Main 스레드에서 수행
-                    val innerAdapter = InnerSecondoptionAdapter(innerItemList) { selectedItem ->
-                        // This lambda function is the onImageViewClick parameter
-                        // You can handle the ImageView click event here
-                        Toast.makeText(context, "ImageView Clicked: $selectedItem", Toast.LENGTH_SHORT).show()
-
-                        onInnerItemSelected.invoke(listOf(selectedItem))
-                    }
-                    innerRecyclerView.layoutManager = LinearLayoutManager(context)
-                    innerRecyclerView.adapter = innerAdapter
-                }
-            }
+            val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
+            innerRecyclerView.layoutManager = layoutManager
+            Log.d("Retrofit93", listOf(innerItem).toString())
+            val innerAdapter = InnerSecondoptionAdapter(listOf(innerItem))
+            innerRecyclerView.adapter = innerAdapter
         }
-    }
-    private fun createInnerItemList(innerItem: String): List<String> {
-        // Your logic to create the list of inner items based on innerItem
-        // Replace this with your actual implementation
-        return listOf("아이템 1", "아이템 2")
     }
 }

@@ -27,8 +27,7 @@ import retrofit2.Response
 import java.text.DecimalFormat
 
 class OuterSeconduploadAdapter(
-    private val innerItems: List<RetrofitClient2.UserItemResponse>,
-    private val onItemSelected: (List<String>) -> Unit
+    private val innerItems: List<RetrofitClient2.UserItemResponse>
 ) : RecyclerView.Adapter<OuterSeconduploadAdapter.ViewHolder>() {
 
     private val bottomSheetFragment = UploadBottomsheetFragment()
@@ -173,11 +172,11 @@ class OuterSeconduploadAdapter(
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
             }
-            val dong = innerItem.userItemAddressResponse.dong
+            val dong = innerItem.dong
             val userItmeId=innerItem.userItemId
 
             imageButton.setOnClickListener {
-                fetchDataFromServer(innerItem.userItemAddressResponse.dong, userItmeId)
+                fetchDataFromServer(innerItem.dong, userItmeId)
                 bottomSheetFragment.show(
                     (context as AppCompatActivity).supportFragmentManager,
                     bottomSheetFragment.tag
@@ -237,13 +236,13 @@ class OuterSeconduploadAdapter(
             "CHARTER" -> "전세"
             "TRADING" -> "매매"
             "MONTHLY" -> "월세"
-            "UNDER_FIVE" -> "~5평"
-            "TEN" -> "10평대"
-            "TWENTY" -> "20평대"
-            "THIRTY" -> "30평대"
-            "FORTY" -> "40평대"
-            "FIFTY" -> "50평대"
-            "OVER_SIXTY" -> "60평대~"
+            "UNDER_17" -> "~17㎡"
+            "UNDER_66" -> "33~66㎡"
+            "UNDER_99" -> "66~99㎡"
+            "UNDER_132" -> "99~132㎡"
+            "UNDER_165" -> "132~165㎡"
+            "UNDER_198" -> "165~198㎡"
+            "OVER_198" -> "198㎡~"
             "ONE" -> "1층"
             "TWO" -> "2층"
             "THREE" -> "3층"

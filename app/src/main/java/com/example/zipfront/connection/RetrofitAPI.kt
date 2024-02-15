@@ -45,12 +45,18 @@ interface RetrofitAPI {
                  @Query("dongName") dongName: String): Call<RetrofitClient2.ResponseDongitem>
     @POST("/users/items")
     fun useritem(@Header("Authorization") token: String,
-                 @Query("address") address: String, // 쿼리 매개변수 추가
+                 @Query("dong") dong: String, // 쿼리 매개변수 추가
                  @Body request: RetrofitClient2.RequestUseritem): Call<RetrofitClient2.ResponseUseritem>
+
+    @GET("/match/users/items")
+    fun usermatchitem(@Header("Authorization") token: String,
+                      @Query("matchStatus") matchStatus: String): Call<RetrofitClient2.ResponseUserMatchitem>
 
     @GET("/brokers/items/show")
     fun brokeritem(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseBrokeritem>
 
+    @GET("/match/brokers/items")
+    fun matchbrokeritem(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseMatchbrokeritem>
     @POST("/match/brokers/{userItemId}")
     fun matchBrokerItem(
         @Header("Authorization") token: String,

@@ -10,8 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.RecyclerView
+import com.example.zipfront.connection.RetrofitClient2
 
-class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableListOf()) : RecyclerView.Adapter<ThirdprofileAdapter2.ViewHolder>() {
+class ThirdprofileAdapter2(private val itemList: MutableList<RetrofitClient2.MatchDetail2> = mutableListOf()) : RecyclerView.Adapter<ThirdprofileAdapter2.ViewHolder>() {
 
     private val selectedItems = mutableListOf<Boolean>()
     private var onItemCountChangeListener: OnItemCountChangeListener? = null
@@ -62,8 +63,15 @@ class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableLi
         notifyItemCountChanged()
     }
 
+    fun setItems(items: List<RetrofitClient2.MatchDetail2>) {
+        itemList.clear()
+        itemList.addAll(items)
+        notifyDataSetChanged()
+        notifyItemCountChanged()
+    }
 
-    fun addItems(items: MutableList<String>) {
+
+    fun addItems(items: MutableList<RetrofitClient2.MatchDetail2>) {
         itemList.addAll(items)
         selectedItems.addAll(List(items.size) { false })
         notifyDataSetChanged()
@@ -97,8 +105,13 @@ class ThirdprofileAdapter2(private val itemList: MutableList<String> = mutableLi
             }
         }
 
-        fun bind(item: String) {
-            textView.text = item
+        fun bind(item: RetrofitClient2.MatchDetail2) {
+            val textView1: TextView = itemView.findViewById(R.id.textView59)
+            val textView2: TextView = itemView.findViewById(R.id.textView25)
+            val textView3: TextView = itemView.findViewById(R.id.textView26)
+            val textView4: TextView = itemView.findViewById(R.id.textView27)
+            val textView5: TextView = itemView.findViewById(R.id.textView28)
+            val imageView1: ImageView = itemView.findViewById(R.id.imageView18)
         }
         fun updateBackground(isSelected: Boolean) {
             val newBackgroundResource = if (isSelected) R.drawable.btn_add_gray else R.drawable.btn_add__1_

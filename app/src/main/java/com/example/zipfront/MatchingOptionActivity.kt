@@ -67,18 +67,18 @@ class MatchingOptionActivity: AppCompatActivity() {
         }
         val clickedColor = ContextCompat.getColor(this, R.color.zipblue01)
 
-        // switch2의 체크 상태에 따라 sizeofroom과 sizeofroom2의 레이아웃을 조절
-        binding.switch2.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                // switch2가 체크된 경우 sizeofroom2를 보이게 함
-                binding.sizeofroom2.visibility = View.VISIBLE
-                binding.sizeofroom.visibility = View.GONE
-            } else {
-                // switch2가 체크되지 않은 경우 sizeofroom을 보이게 함
-                binding.sizeofroom.visibility = View.VISIBLE
-                binding.sizeofroom2.visibility = View.GONE
-            }
-        }
+//        // switch2의 체크 상태에 따라 sizeofroom과 sizeofroom2의 레이아웃을 조절
+//        binding.switch2.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked) {
+//                // switch2가 체크된 경우 sizeofroom2를 보이게 함
+//                binding.sizeofroom2.visibility = View.VISIBLE
+//                binding.sizeofroom.visibility = View.GONE
+//            } else {
+//                // switch2가 체크되지 않은 경우 sizeofroom을 보이게 함
+//                binding.sizeofroom.visibility = View.VISIBLE
+//                binding.sizeofroom2.visibility = View.GONE
+//            }
+//        }
 
         // 각 버튼에 대한 원래 값 추출
         for (i in 0 until 48) {

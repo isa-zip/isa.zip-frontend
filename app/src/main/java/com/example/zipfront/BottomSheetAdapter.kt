@@ -56,20 +56,18 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
             val monthDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "MONTHLY" }
 
             val tradingPriceText = when {
-                tradingDeal != null && tradingDeal.charterPrice != null -> "전세 ${tradingDeal.charterPrice}"
-                tradingDeal != null -> "전세 ${tradingDeal.tradingPrice}"
-                else -> ""
+                tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
+                else -> "전세 "
             }
 
             val charterPriceText = when {
                 charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
-                charterDeal != null -> "매매 ${charterDeal.tradingPrice}"
-                else -> ""
+                else -> "매매 "
             }
 
             val monthPriceText = when {
                 monthDeal != null && monthDeal.monthPrice != null -> "월세 ${monthDeal.monthPrice}"
-                else -> ""
+                else -> "월세 "
             }
 
             val dealTypesText = listOf(tradingPriceText, charterPriceText, monthPriceText)
@@ -127,13 +125,13 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
             "CHARTER" -> "전세"
             "TRADING" -> "매매"
             "MONTHLY" -> "월세"
-            "UNDER_FIVE" -> "~5평"
-            "TEN" -> "10평대"
-            "TWENTY" -> "20평대"
-            "THIRTY" -> "30평대"
-            "FORTY" -> "40평대"
-            "FIFTY" -> "50평대"
-            "OVER_SIXTY" -> "60평대~"
+            "UNDER_17" -> "~17㎡"
+            "UNDER_66" -> "33~66㎡"
+            "UNDER_99" -> "66~99㎡"
+            "UNDER_132" -> "99~132㎡"
+            "UNDER_165" -> "132~165㎡"
+            "UNDER_198" -> "165~198㎡"
+            "OVER_198" -> "198㎡~"
             "ONE" -> "1층"
             "TWO" -> "2층"
             "THREE" -> "3층"

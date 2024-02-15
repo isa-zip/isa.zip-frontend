@@ -83,6 +83,8 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
                     if (responseBody != null) {
                         if (responseBody.isSuccess) {
                             val userItemResponses = responseBody.data.userItemResponses
+                            // adapter 초기화
+                            adapter = OuterSeconduploadAdapter(userItemResponses)
                             setupRecyclerView(userItemResponses)
                             binding.optionRv.visibility = View.VISIBLE
                             binding.notshwoingtext.visibility = View.GONE
@@ -124,32 +126,50 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
             }
         })
 
-        adapter = OuterSeconduploadAdapter(innerItems) { selectedItemList ->
-            // Remove null values and convert to List<String>
-            val selectedItems = selectedItemList.filterNotNull().map { it.orEmpty() }
+//        adapter = OuterSeconduploadAdapter(mutableListOf())
 
-            Log.d("ThirdprofileAdapter2", selectedItems.toString())
-
-            // ThirdoptionAdapter에 아이템 추가
-            thirdAdapter.addItems(selectedItems.toMutableList())
-
-            Log.d("ThirdprofileAdapter3", "${thirdAdapter.itemCount}")
-
-            binding.optionRv2.adapter = thirdAdapter
-
-            // 데이터가 변경될 때마다 RecyclerView에 알리기
-            thirdAdapter.notifyDataSetChanged()
-            thirdAdapter.notifyItemCountChanged()
-        }
-//        // RecyclerView의 어댑터 설정
-//        adapter = OuterSeconduploadAdapter(innerItems)
+        // RecyclerView의 어댑터 설정
         binding.optionRv.adapter = adapter
+
+        // 서버에서 데이터를 가져와서 RecyclerView에 설정
+//        fetchItemsFromServer(thirdAdapter)
 
         val itemCount = thirdAdapter.getItemCount()
         Log.d("ThirdprofileAdapter22", "$itemCount")
 
     }
 
+    private fun fetchItemsFromServer(thirdAdapter: ThirdprofileAdapter2) {
+        val call = RetrofitObject.getRetrofitService.matchbrokeritem("Bearer $token")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbrokeritem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseMatchbrokeritem>,
+                response: Response<RetrofitClient2.ResponseMatchbrokeritem>
+            ) {
+                Log.d("Retrofit612", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit62", responseBody.toString())
+                    if (responseBody != null) {
+                        if (responseBody.isSuccess) {
+                            val innerItems = responseBody.data.matchListDetails
+                            thirdAdapter.setItems(innerItems)
+                        } else {
+                            Toast.makeText(
+                                this@MatchingSecondUploadActivity,
+                                responseBody.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RetrofitClient2.ResponseMatchbrokeritem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+    }
     private fun showCustomDialog() {
         // 다이얼로그 레이아웃을 inflate
         val dialogView = layoutInflater.inflate(R.layout.option_seconddialogview, null)

@@ -12,9 +12,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.zipfront.connection.RetrofitClient2
+import com.google.gson.Gson
 
-class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.OuterItem>) : RecyclerView.Adapter<OuteroptionAdapter.ViewHolder>() {
+class OuteroptionAdapter(private val outerItemList: List<RetrofitClient2.UserMatchitemData>) : RecyclerView.Adapter<OuteroptionAdapter.ViewHolder>() {
 
+    private val sortedList = outerItemList.sortedBy { it.userRequestInfo.userItemId }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_matchingoption_layout, parent, false)
@@ -22,12 +25,12 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val outerItem = outerItemList[position]
-        holder.bind(outerItem, position, holder.itemView.context)
+        val outerItem = sortedList[position]
+        holder.bind(outerItem)
     }
 
     override fun getItemCount(): Int {
-        return outerItemList.size
+        return sortedList.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -40,17 +43,20 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
         private val imageView: ImageView = itemView.findViewById(R.id.imageView2)
         private val imageView2: ImageView = itemView.findViewById(R.id.imageView16)
 
-        fun bind(outerItem: MatchingStillFragment.OuterItem, position: Int, context: Context) {
-            if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
+        fun bind(outerItem: RetrofitClient2.UserMatchitemData) {
+            if (outerItem.matchingCount==0) {
                 // 내부 아이템이 없는 경우
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
-                textView2.text = "${position + 1} ${outerItem.title}"
+                textView2.text = "${adapterPosition + 1} ${outerItem.dongRequestName}"
                 imageView2.setOnClickListener {
-                    val intent = Intent(context, MatchingSecondOptionActivity::class.java)
-                    intent.putExtra("title", outerItem.title)
-                    intent.putExtra("position", position)
-                    context.startActivity(intent)
+                    val intent = Intent(itemView.context, MatchingSecondOptionActivity::class.java)
+                    intent.putExtra("title", outerItem.dongRequestName)
+                    intent.putExtra("position", adapterPosition)
+                    val gson = Gson()
+                    val json = gson.toJson(outerItem)
+                    intent.putExtra("outerItemJson", json)
+                    itemView.context.startActivity(intent)
                     Log.d("MatchingSecondOption", "no inner")
                 }
             } else {
@@ -59,20 +65,21 @@ class OuteroptionAdapter(private val outerItemList: List<MatchingStillFragment.O
                 layout3.visibility = View.VISIBLE
 
                 // 여기서 outerItem의 내부 아이템 리스트를 사용하여 InnerAdapter 생성 및 설정
-                val innerAdapter = InneroptionAdapter(outerItem.innerItemList)
+                val innerAdapter = InneroptionAdapter(outerItem.matchedBrokerItemResponses)
                 innerRecyclerView.adapter = innerAdapter
 
                 // titletext5에 아이템 개수 표시
-                titletext5.text = "${outerItem.getItemCount()}개"
-                textView.text = "${position + 1} ${outerItem.title}"
+                titletext5.text = "${outerItem.matchingCount}개"
+                textView.text = "${adapterPosition + 1} ${outerItem.dongRequestName}"
 
                 imageView.setOnClickListener {
-                    val intent = Intent(context, MatchingSecondOptionActivity::class.java)
-                    intent.putExtra("title", outerItem.title)
-                    intent.putExtra("position", position)
-                    // You can put the list of items as a Serializable or Parcelable Extra
-                    intent.putStringArrayListExtra("innerItems", ArrayList(outerItem.innerItemList))
-                    context.startActivity(intent)
+                    val intent = Intent(itemView.context, MatchingSecondOptionActivity::class.java)
+                    intent.putExtra("title", outerItem.dongRequestName)
+                    intent.putExtra("position", adapterPosition)
+                    val gson = Gson()
+                    val json = gson.toJson(outerItem)
+                    intent.putExtra("outerItemJson", json)
+                    itemView.context.startActivity(intent)
                 }
             }
         }
