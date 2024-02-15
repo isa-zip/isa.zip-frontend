@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.example.zipfront.databinding.FragmentBannerBinding
 import com.example.zipfront.databinding.FragmentPropertyBannerBinding
+import com.squareup.picasso.RequestCreator
 
-class PropertyBannerFragment(val imageres: Int) : Fragment() {
+class PropertyBannerFragment(val imageres: RequestCreator) : Fragment() {
 
     lateinit var binding: FragmentPropertyBannerBinding
 
@@ -19,7 +21,7 @@ class PropertyBannerFragment(val imageres: Int) : Fragment() {
     ): View? {
         binding=FragmentPropertyBannerBinding.inflate(inflater,container,false)
 
-        binding.bannerImage.setImageResource(imageres)
+        imageres.into(binding.bannerImage)
         return binding.root
     }
 }

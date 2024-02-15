@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            android:text="매물 추가"
+            android:textSize="18dp"
+            android:fontFamily="@font/suit_medium"
+            android:textColor="@color/Gray900"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="104dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView9"
+            app:layout_constraintEnd_toStartOf="@+id/textView9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView9"
+            app:srcCompat="@drawable/ic_left2" />
+
+        <RelativeLayout
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_marginTop="14dp"
+            android:background="#67C8F9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progress">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:text="방 종류"
+                android:textColor="@color/Gray900"
+                android:textSize="16dp"
+                android:fontFamily="@font/suit_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton1"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="원룸"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/textView13"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton2"
+                android:layout_width="72dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="투 쓰리룸"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton1"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton3"
+                android:layout_width="66dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="오피스텔"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton2"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton4"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="아파트"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton3"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/suit_bold"
+                android:text="거래유형"
+                android:textColor="@color/Gray900"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.Button
+                android:id="@+id/tradeButton1"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="전세"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <android.widget.Button
+                android:id="@+id/tradeButton2"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="매매"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/tradeButton1"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+            <android.widget.Button
+                android:id="@+id/tradeButton3"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="월세"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/tradeButton2"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notShowing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="전세"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/Gray900"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/textView16"
+                    android:layout_width="324dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/option_textview"
+                    android:hint="0만원"
+                    android:fontFamily="@font/suit_semibold"
+                    android:paddingStart="8dp"
+                    android:textColorHint="@color/Gray700"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+                <ImageView
+                    android:id="@+id/imageView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView16"
+                    app:layout_constraintEnd_toEndOf="@+id/textView16"
+                    app:layout_constraintTop_toTopOf="@+id/textView16"
+                    app:srcCompat="@drawable/plus_circle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="매매"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/Gray900"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/editText2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_width="324dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/suit_semibold"
+                    android:background="@drawable/option_textview"
+                    android:hint="0만원"
+                    android:paddingStart="8dp"
+                    android:textColorHint="@color/Gray700"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                <ImageView
+                    android:id="@+id/imageView28"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editText2"
+                    app:layout_constraintEnd_toEndOf="@+id/editText2"
+                    app:layout_constraintTop_toTopOf="@+id/editText2"
+                    app:srcCompat="@drawable/plus_circle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="월세"
+                    android:fontFamily="@font/suit_bold"
+                    android:textColor="@color/Gray900"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/editText4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/editText4"
+                    android:layout_width="324dp"
+                    android:layout_height="34dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/suit_semibold"
+                    android:background="@drawable/option_textview"
+                    android:hint="0만원"
+                    android:paddingStart="8dp"
+                    android:textColorHint="@color/Gray700"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+                <ImageView
+                    android:id="@+id/imageView29"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/editText4"
+                    app:layout_constraintEnd_toEndOf="@+id/editText4"
+                    app:layout_constraintTop_toTopOf="@+id/editText4"
+                    app:srcCompat="@drawable/plus_circle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notShowing">
+
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:text="방크기"
+                android:fontFamily="@font/suit_bold"
+                android:textColor="@color/Gray900"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tradeButton_ex1"
+                android:layout_width="324dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input"
+                android:paddingEnd="8dp"
+                android:hint="0㎡"
+                android:textColor="#5A5A5A"
+                android:fontFamily="@font/suit_semibold"
+                android:textSize="12dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                app:layout_constraintStart_toStartOf="@+id/title1"
+                app:layout_constraintTop_toBottomOf="@+id/title1" />
+
+            <ImageView
+                android:id="@+id/imageView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex1"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex1"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex1"
+                app:srcCompat="@drawable/plus_circle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:text="층수"
+                android:textColor="@color/Gray900"
+                android:fontFamily="@font/suit_bold"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton5"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="전체"
+                android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/title2"
+                app:layout_constraintTop_toBottomOf="@+id/title2" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton6"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="1층"
+                android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton5"
+                app:layout_constraintTop_toBottomOf="@+id/title2" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton7"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="2층"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton6"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton6" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton8"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="3층"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton7"
+                app:layout_constraintTop_toBottomOf="@+id/title2" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton9"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="4층"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton8"
+                app:layout_constraintTop_toBottomOf="@+id/title2" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton10"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="5층"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton9"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton9" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton11"
+                android:layout_width="40dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="6층"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton5"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton5" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton12"
+                android:layout_width="65dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="7층 이상"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton11"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton11" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton13"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="반지층"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton12"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton12" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton14"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="옥탑방"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton13"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton13" />
+
+            <EditText
+                android:id="@+id/tradeButton_ex2"
+                android:layout_width="324dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_semibold"
+                android:hint="기타..."
+                android:textColor="#5A5A5A"
+                android:textSize="12dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton11"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton11" />
+
+            <ImageView
+                android:id="@+id/imageView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex2"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex2"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex2"
+                app:srcCompat="@drawable/plus_circle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout9"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+
+            <TextView
+                android:id="@+id/title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/suit_bold"
+                android:text="관리비"
+                android:textColor="@color/Gray900"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton15"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="전기세"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/title3"
+                app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton16"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="가스비"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton15"
+                app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton17"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="인터넷"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton16"
+                app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton18"
+                android:layout_width="66dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="주차여부"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton15"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton15" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton19"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="수도세"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton18"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton18" />
+
+            <EditText
+                android:id="@+id/tradeButton_ex3"
+                android:layout_width="324dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input"
+                android:fontFamily="@font/suit_semibold"
+                android:paddingEnd="8dp"
+                android:hint="0만원"
+                android:textColor="#5A5A5A"
+                android:textSize="12dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton18"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton18" />
+
+            <ImageView
+                android:id="@+id/imageView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex3"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex3"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex3"
+                app:srcCompat="@drawable/plus_circle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout10"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
+
+            <TextView
+                android:id="@+id/title4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:text="내부 시설"
+                android:textColor="@color/Gray900"
+                android:textSize="16dp"
+                android:fontFamily="@font/suit_bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton20"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="에어컨"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/title4"
+                app:layout_constraintTop_toBottomOf="@+id/title4" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton21"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="냉장고"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton26"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton26" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton22"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="세탁기"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                android:fontFamily="@font/suit_medium"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton21"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton21" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton23"
+                android:layout_width="77dp"
+                android:layout_height="34dp"
+                android:fontFamily="@font/suit_medium"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="전자레인지"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton20"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton20" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton24"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="옷장"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton23"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton23" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton25"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="책상"
+                android:textColor="@color/Gray800"
+                android:fontFamily="@font/suit_medium"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton24"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton24" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton26"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="TV"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton20"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton20" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton27"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="침대"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton25"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton25" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout11"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+
+            <TextView
+                android:id="@+id/title5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/suit_bold"
+                android:text="사용승인일"
+                android:textColor="@color/Gray900"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tradeButton_ex4"
+                android:layout_width="324dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/input"
+                android:paddingEnd="8dp"
+                android:hint="년 / 월 / 일"
+                android:textColor="#5A5A5A"
+                android:fontFamily="@font/suit_semibold"
+                android:textSize="12dp"
+                android:gravity="start|center_vertical"
+                android:paddingStart="12dp"
+                app:layout_constraintStart_toStartOf="@+id/title5"
+                app:layout_constraintTop_toBottomOf="@+id/title5" />
+
+            <ImageView
+                android:id="@+id/imageView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tradeButton_ex4"
+                app:layout_constraintEnd_toEndOf="@+id/tradeButton_ex4"
+                app:layout_constraintTop_toTopOf="@+id/tradeButton_ex4"
+                app:srcCompat="@drawable/plus_circle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/line7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/thin_line"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout12"
+            android:layout_width="match_parent"
+            android:layout_height="192dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+
+            <TextView
+                android:id="@+id/title6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                android:text="추가필터"
+                android:textColor="@color/Gray900"
+                android:fontFamily="@font/suit_bold"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton28"
+                android:layout_width="66dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="주차기능"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/title6"
+                app:layout_constraintTop_toBottomOf="@+id/title6" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton29"
+                android:layout_width="66dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/suit_medium"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="단기임대"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton28"
+                app:layout_constraintTop_toBottomOf="@+id/title6" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton30"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="풀옵션"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton29"
+                app:layout_constraintTop_toBottomOf="@+id/title6" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton31"
+                android:layout_width="77dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="엘리베이터"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton28"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton28" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton32"
+                android:layout_width="56dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="베란다"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton31"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton31" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton33"
+                android:layout_width="92dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:fontFamily="@font/suit_medium"
+                android:text="보안/안전시설"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton32"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton32" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton34"
+                android:layout_width="70dp"
+                android:layout_height="34dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="360°VR"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toStartOf="@+id/additionalButton31"
+                app:layout_constraintTop_toBottomOf="@+id/additionalButton31" />
+
+            <android.widget.Button
+                android:id="@+id/additionalButton35"
+                android:layout_width="77dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/button_roundcircle"
+                android:paddingEnd="8dp"
+                android:text="비대면계약"
+                android:fontFamily="@font/suit_medium"
+                android:textColor="@color/Gray800"
+                android:textSize="12dp"
+                app:layout_constraintStart_toEndOf="@+id/additionalButton34"
+                app:layout_constraintTop_toTopOf="@+id/additionalButton34" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="24dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout12"
+            app:srcCompat="@drawable/btn_reset" />
+
+        <ImageButton
+            android:id="@+id/imageButton7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="12dp"
+            android:background="#00FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/imageButton6"
+            app:layout_constraintStart_toEndOf="@+id/imageButton6"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout12"
+            app:srcCompat="@drawable/btn__apply_disabled" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

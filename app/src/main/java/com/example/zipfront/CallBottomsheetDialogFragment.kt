@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class CallBottomsheetDialogFragment : BottomSheetDialogFragment() {
+class CallBottomsheetDialogFragment() : BottomSheetDialogFragment() {
+    var telNum = "010-1234-5678"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +23,7 @@ class CallBottomsheetDialogFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val button: Button = view.findViewById(R.id.phone_number_btn)
+        button.text = telNum
         button.setOnClickListener() {
             requireContext()!!.startActivity(
                 Intent(Intent.ACTION_DIAL, Uri.parse("tel:${button.text}"))

@@ -5,6 +5,8 @@ import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
@@ -133,4 +135,13 @@ interface RetrofitAPI {
         @Header("Authorization") token: String,
         @Path("brokerItemId") brokerItemId: Int
     ) : Call<RetrofitClient2.ResponseDelete>
+
+    //매물 수정
+    /*@PUT("/brokers/items/{brokerItemId}")
+    @Multipart
+    fun modifyDetailProperty(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int,
+        @Part
+    ): Call<RetrofitClient2.ResponseDetail>*/
 }
