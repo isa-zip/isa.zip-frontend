@@ -114,4 +114,17 @@ interface RetrofitAPI {
         @Query("query") query: String, // 검색을 원하는 질의어 [필수]
     ): Call<RetrofitClient2.ResultSearchKeyword> // 받아온 정보가 ResultSearchKeyword 클래스의 구조로 담김
 
+    //매물단건 상세조회
+    @GET("/brokers/items/show/details/{brokerItemId}")
+    fun showDetailItem(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int
+    ): Call<RetrofitClient2.ResponseDetail>
+
+    //매물 삭제
+    @DELETE("/brokers/items/{brokerItemId}")
+    fun deleteProperty(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int
+    ) : Call<RetrofitClient2.ResponseDelete>
 }
