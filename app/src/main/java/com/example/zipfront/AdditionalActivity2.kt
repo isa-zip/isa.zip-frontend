@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -27,6 +28,11 @@ class AdditionalActivity2: AppCompatActivity() {
             startActivity(intent)
         }
         setupRecyclerView()
+
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setupRecyclerView() {

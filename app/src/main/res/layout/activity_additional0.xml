@@ -79,13 +79,14 @@
         app:layout_constraintTop_toBottomOf="@+id/progressbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/first"
         android:layout_width="324dp"
         android:layout_height="99dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button_roundcircle"
         app:layout_constraintStart_toStartOf="@+id/search_image"
         app:layout_constraintTop_toBottomOf="@+id/search_image"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <ImageView
             android:id="@+id/imageView35"
@@ -149,6 +150,7 @@
         app:layout_constraintEnd_toEndOf="@+id/search_image"
         app:layout_constraintStart_toStartOf="@+id/search_image"
         app:layout_constraintTop_toBottomOf="@+id/search_image"
-        tools:listitem="@layout/item_addressoption_layout" />
+        tools:listitem="@layout/item_addressoption_layout"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,7 +58,12 @@ class ScheduleActivity : AppCompatActivity() {
 
         // 이미지 버튼 클릭 시 동작
         registerButton.setOnClickListener {
-            // 현재 선택된 날짜 가져오기
+            // 선택한 날짜를 IsaScheduleActivityHome 전달
+            val intent = Intent(this, IsaScheduleActivity::class.java)
+            intent.putExtra("selectedDate", selectedDate)
+            startActivity(intent)
+
+            /*// 현재 선택된 날짜 가져오기
             val now = System.currentTimeMillis()
             val date = Date(now)
             val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -107,7 +112,13 @@ class ScheduleActivity : AppCompatActivity() {
                     val errorMessage = "Call Failed: ${t.message}"
                     Log.d("Retrofit", errorMessage)
                 }
-            })
+            })*/
+        }
+
+        // imageView10을 클릭했을 때 액티비티 종료
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            finish()
         }
     }
 
@@ -130,5 +141,7 @@ class ScheduleActivity : AppCompatActivity() {
     private fun updateRegisterButtonImage() {
         // 선택된 날짜가 있을 때만 버튼을 활성화
         registerButton.isEnabled = true
+        // 아무 날짜가 선택되었을 때 항상 btn_register_blue.xml로 버튼 이미지 변경
+        registerButton.setImageResource(R.drawable.btn_register_blue)
     }
 }

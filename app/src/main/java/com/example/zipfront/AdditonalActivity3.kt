@@ -130,6 +130,11 @@ class AdditonalActivity3: AppCompatActivity() {
             }
         }
 
+        val imageView10: ImageView = findViewById(R.id.imageView10)
+        imageView10.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun toggleConstraintLayoutVisibility2(index: Int) {
