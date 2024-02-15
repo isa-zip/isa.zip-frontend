@@ -67,8 +67,51 @@ interface RetrofitAPI {
     @POST("/auth/sign-up")
     fun setting(@Body request: RetrofitClient2.Requestsetting): Call<RetrofitClient2.Responsesetting>
 
+    // 일정 등록
     @POST("/users/schedule")
-    fun schedule(@Header("Authorization") token: String): Call<RetrofitClient2.Responseschedule>
+    fun schedule(
+        @Header("Authorization") token: String,
+        @Body request: RetrofitClient2.Requestschedule
+    ): Call<RetrofitClient2.Responseschedule>
+
+    // 일정 수정
+    @POST("/users/schedule")
+    fun schedulemodify(
+        @Header("Authorization") token: String,
+        @Body request: RetrofitClient2.Requestschedulemodify
+    ): Call<RetrofitClient2.Responseschedulemodify>
+
+    // 일정 삭제
+    @POST("/users/schedule")
+    fun scheduledelete(
+        @Header("Authorization") token: String
+    ): Call<RetrofitClient2.Responsescheduledelete>
+
+    // 일정 조회
+    @POST("/users/schedule")
+    fun schedulelookup(
+        @Header("Authorization") token: String
+    ): Call<RetrofitClient2.Responseschedulelookup>
+
+    // 상세 일정 조회
+    @POST("/users/events")
+    fun evenschedulelookup(
+        @Header("Authorization") token: String
+    ): Call<RetrofitClient2.ResponseEventScheduleLookup>
+
+    // 상세 일정 수정
+    @POST("/users/events/{eventId}")
+    fun evenschedulemodify(
+        @Header("Authorization") token: String,
+        @Body request: RetrofitClient2.RequestEventschedulemodify
+    ): Call<RetrofitClient2.ResponseEventschedulemodify>
+
+    // 상세 일정 삭제
+    @POST("/users/events/{eventId}")
+    fun evenscheduledelete(
+        @Header("Authorization") token: String,
+        @Body request: RetrofitClient2.RequestEventscheduledelete
+    ): Call<RetrofitClient2.ResponseEventscheduledelete>
 
     //카카오맵 검색
     @GET("v2/local/search/address.json") // Keyword.json의 정보를 받아옴
@@ -77,4 +120,17 @@ interface RetrofitAPI {
         @Query("query") query: String, // 검색을 원하는 질의어 [필수]
     ): Call<RetrofitClient2.ResultSearchKeyword> // 받아온 정보가 ResultSearchKeyword 클래스의 구조로 담김
 
+    //매물단건 상세조회
+    @GET("/brokers/items/show/details/{brokerItemId}")
+    fun showDetailItem(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int
+    ): Call<RetrofitClient2.ResponseDetail>
+
+    //매물 삭제
+    @DELETE("/brokers/items/{brokerItemId}")
+    fun deleteProperty(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int
+    ) : Call<RetrofitClient2.ResponseDelete>
 }

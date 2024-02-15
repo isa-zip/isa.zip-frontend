@@ -17,9 +17,13 @@ class ManagementInfoActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        //brokerItemId 설정
+        val intent = intent
+        val brokerItemId = intent.getIntExtra("brokerItemID", 1)
+
         //케밥메뉴 선택시
         binding.buttonSetting.setOnClickListener(){
-            val bottomSheetFragment = ManagementBottomsheetDialogFragment()
+            val bottomSheetFragment = ManagementBottomsheetDialogFragment(brokerItemId)
             bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
         }
 

@@ -1,6 +1,7 @@
 package com.example.zipfront.connection
 
 import com.google.gson.annotations.SerializedName
+import java.util.Date
 
 class RetrofitClient2 {
     //로그인
@@ -451,6 +452,8 @@ class RetrofitClient2 {
         val brokerItemId: Int,
         @SerializedName("businessName")
         val businessName: String,
+        @SerializedName("brokerImage")
+        val brokerImage: Int,
         @SerializedName("itemStatus")
         val itemStatus: String,
         @SerializedName("addressResponse")
@@ -658,22 +661,266 @@ class RetrofitClient2 {
 
 
     // 이사 일정
+//    data class ResponseDongitem(
+//        @SerializedName("code")
+//        val code: String,
+//        @SerializedName("message")
+//        val message: String,
+//        @SerializedName("data")
+//        val data: DongitemData,
+//        @SerializedName("isSuccess")
+//        val isSuccess: Boolean
+//    )
+//
+//    data class DongitemData(
+//        @SerializedName("matchListDetails")
+//        val matchListDetails: List<MatchDetail>,
+//        @SerializedName("isSuccess")
+//        val isSuccess: Boolean
+//    )
+//
+//    data class MatchDetail(
+//        @SerializedName("matchId")
+//        val matchId: Int,
+//        @SerializedName("matchStatus")
+//        val matchStatus: String,
+//        @SerializedName("userItemResponse")
+//        val userItemResponse: UserItemResponse,
+//        @SerializedName("brokerItemResponse")
+//        val brokerItemResponse: BrokerItemResponse
+//    )
+//
+//    data class UserItemResponse(
+//        @SerializedName("userItemId")
+//        val userItemId: Int,
+//        @SerializedName("userId")
+//        val userId: Int,
+//        @SerializedName("userNickname")
+//        val userNickname: String,
+//        @SerializedName("userItemAddressResponse")
+//        val userItemAddressResponse: UserItemAddressResponse,
+//        @SerializedName("userItemOptionsResponse")
+//        val userItemOptionsResponse: UserItemOptionsResponse
+//    )
+//
+//    data class UserItemAddressResponse(
+//        @SerializedName("address")
+//        val address: String,
+//        @SerializedName("dong")
+//        val dong: String
+//    )
+//
+//    data class UserItemOptionsResponse(
+//        @SerializedName("userOptionId")
+//        val userOptionId: Int,
+//        @SerializedName("userRoomTypes")
+//        val userRoomTypes: List<UserRoomType>,
+//        @SerializedName("userDealTypes")
+//        val userDealTypes: List<UserDealType>,
+//        @SerializedName("userRoomSizes")
+//        val userRoomSizes: List<UserRoomSize>,
+//        @SerializedName("userFloors")
+//        val userFloors: List<UserFloor>,
+//        @SerializedName("userManagementOptions")
+//        val userManagementOptions: List<UserManagementOption>,
+//        @SerializedName("userInternalFacilities")
+//        val userInternalFacilities: List<UserInternalFacility>,
+//        @SerializedName("approveDate")
+//        val approveDate: String,
+//        @SerializedName("userExtraFilters")
+//        val userExtraFilters: List<UserExtraFilter>
+//    )
+//    data class BrokerItemResponse(
+//        @SerializedName("brokerItemId")
+//        val brokerItemId: Int,
+//        @SerializedName("businessName")
+//        val businessName: String,
+//        @SerializedName("itemStatus")
+//        val itemStatus: String,
+//        @SerializedName("addressResponse")
+//        val addressResponse: AddressResponse,
+//        @SerializedName("detailResponse")
+//        val detailResponse: DetailResponse,
+//        @SerializedName("optionResponse")
+//        val optionResponse: OptionResponse
+//    )
+
+    // 일정 등록
     data class Requestschedule(
         @SerializedName("period")
         val email: String,
         @SerializedName("moveDate")
-        val password: String
+        val password: Date
     )
 
     data class Responseschedule(
         @SerializedName("code")
-        val code: Int,
+        val code: String,
         @SerializedName("message")
         val message: String,
         @SerializedName("data")
         val data: ScheduleResult,
         @SerializedName("isSuccess")
         val isSuccess: Boolean
+    )
+
+    data class ScheduleResult(
+        @SerializedName("scheduleId")
+        val scheduleId: Int,
+        @SerializedName("userId")
+        val userId: Int,
+        @SerializedName("period")
+        val period: String,
+        @SerializedName("moveDate")
+        val moveDate: Date
+    )
+
+    // 일정 수정
+    data class Requestschedulemodify(
+        @SerializedName("period")
+        val email: String,
+        @SerializedName("moveDate")
+        val password: Date
+    )
+
+    data class Responseschedulemodify(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: SchedulemodifyResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class SchedulemodifyResult(
+        @SerializedName("scheduleId")
+        val scheduleId: Int,
+        @SerializedName("userId")
+        val userId: Int,
+        @SerializedName("period")
+        val period: String,
+        @SerializedName("moveDate")
+        val moveDate: Date
+    )
+
+    // 일정 삭제
+    data class Responsescheduledelete(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: ScheduledeleteResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class ScheduledeleteResult(
+        @SerializedName("scheduleId")
+        val scheduleId: Int
+    )
+
+    // 일정 조회
+    data class Responseschedulelookup(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: SchedulelookupResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class SchedulelookupResult(
+        @SerializedName("scheduleId")
+        val scheduleId: Int,
+        @SerializedName("userId")
+        val userId: Int,
+        @SerializedName("period")
+        val period: String,
+        @SerializedName("moveDate")
+        val moveDate: Date
+    )
+
+    // 상세 일정 조회
+    data class ResponseEventScheduleLookup(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: EventSchedulelookupResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class EventSchedulelookupResult(
+        @SerializedName("eventId")
+        val eventId: Int,
+        @SerializedName("scheduleId")
+        val scheduleId: Int,
+        @SerializedName("eventTitle")
+        val eventTitle: String,
+        @SerializedName("eventDate")
+        val eventDate: Date
+    )
+
+    // 상세 일정 수정
+    // string은 어떻게 넣는지 모르겠음
+    data class RequestEventschedulemodify(
+        @SerializedName("eventId")
+        val eventId: Int
+    )
+
+    data class ResponseEventschedulemodify(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: ScheduleEventmodifyResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class ScheduleEventmodifyResult(
+        @SerializedName("eventId")
+        val scheduleId: Int
+    )
+
+    // 상세 일정 삭제
+    data class RequestEventscheduledelete(
+        @SerializedName("eventId")
+        val eventId: Int,
+        @SerializedName("eventTitle")
+        val eventTitle: String,
+        @SerializedName("eventDate")
+        val eventDate: Date
+    )
+
+    data class ResponseEventscheduledelete(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: EventScheduledeleteResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class EventScheduledeleteResult(
+        @SerializedName("eventId")
+        val eventId: Int,
+        @SerializedName("scheduleId")
+        val scheduleId: Int,
+        @SerializedName("eventTitle")
+        val eventTitle: String,
+        @SerializedName("eventDate")
+        val eventDate: Date
     )
 
     //지도 검색
@@ -711,16 +958,29 @@ class RetrofitClient2 {
         var distanc: String // 중심좌표까지의 거리. 단, x,y 파라미터를 준 경우에만 존재. 단위는 meter
     )
 
-  
-    data class ScheduleResult(
-        @SerializedName("scheduleId")
-        val scheduleId: String,
-        @SerializedName("userId")
-        val userId: String,
-        @SerializedName("period")
-        val period: String,
-        @SerializedName("moveDate")
-        val moveDate: String
+
+    //매물 상세정보 조회
+    data class ResponseDetail(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: BrokerItem,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    //매물 삭제
+    data class ResponseDelete(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: String,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
     )
 
     //유저 매칭 조회
