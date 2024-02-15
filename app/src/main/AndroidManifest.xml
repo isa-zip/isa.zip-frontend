@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ZIPfront"
         tools:targetApi="31"
-        android:usesCleartextTraffic = "true" >
+        android:usesCleartextTraffic = "true"
+        android:requestLegacyExternalStorage="true">
 
         <activity
             android:name=".SignInActivity"

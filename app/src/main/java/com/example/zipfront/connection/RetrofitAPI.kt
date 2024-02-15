@@ -8,6 +8,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
@@ -63,6 +64,13 @@ interface RetrofitAPI {
         @Path("userItemId") userItemId: Int,
         @Body request: RetrofitClient2.RequestMatchbroker
     ): Call<RetrofitClient2.ResponseMatchbroker>
+
+    @PATCH("/match/brokers/{matchingId}")
+    fun matchBrokeUserItem(
+        @Header("Authorization") token: String,
+        @Path("matchingId") matchingId: Int,
+        @Query("matchStatus") matchStatus: String
+    ): Call<RetrofitClient2.ResponseMatchbroker2>
 
     @POST("/auth/sign-up")
     fun setting(@Body request: RetrofitClient2.Requestsetting): Call<RetrofitClient2.Responsesetting>
