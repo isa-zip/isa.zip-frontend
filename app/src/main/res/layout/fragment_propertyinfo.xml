@@ -281,6 +281,14 @@
                         app:layout_constraintTop_toBottomOf="@+id/rent_price_tv" />
 
 
+                    <View
+                        android:id="@+id/padding"
+                        android:layout_width="121dp"
+                        android:layout_height="28dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/administration_price_tv"
+                        android:layout_marginTop="8dp"/>
+
                     <android.widget.Button
                         android:id="@+id/option_btn_1"
                         android:text="수도세"
@@ -292,9 +300,9 @@
                         android:fontFamily="@font/suit_semibold"
                         android:background="@drawable/caption_option"
                         android:layout_marginTop="8dp"
-                        android:layout_marginLeft="121dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/administration_price_tv" />
+                        app:layout_constraintStart_toEndOf="@+id/padding"
+                        app:layout_constraintTop_toBottomOf="@+id/administration_price_tv"
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/option_btn_2"
@@ -309,7 +317,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginLeft="4dp"
                         app:layout_constraintTop_toBottomOf="@id/administration_price_tv"
-                        app:layout_constraintStart_toEndOf="@id/option_btn_1"/>
+                        app:layout_constraintStart_toEndOf="@id/option_btn_1"
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/option_btn_3"
@@ -325,7 +334,7 @@
                         android:layout_marginLeft="4dp"
                         app:layout_constraintTop_toBottomOf="@id/administration_price_tv"
                         app:layout_constraintStart_toEndOf="@id/option_btn_2"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
 
                     <android.widget.Button
                         android:id="@+id/option_btn_4"
@@ -341,7 +350,7 @@
                         android:layout_marginLeft="4dp"
                         app:layout_constraintTop_toBottomOf="@id/administration_price_tv"
                         app:layout_constraintStart_toEndOf="@id/option_btn_3"
-                        android:visibility="invisible"/>
+                        android:visibility="gone"/>
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

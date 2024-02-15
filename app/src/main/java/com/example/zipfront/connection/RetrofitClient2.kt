@@ -451,6 +451,8 @@ class RetrofitClient2 {
         val brokerItemId: Int,
         @SerializedName("businessName")
         val businessName: String,
+        @SerializedName("brokerImage")
+        val brokerImage: Int,
         @SerializedName("itemStatus")
         val itemStatus: String,
         @SerializedName("addressResponse")
@@ -531,10 +533,10 @@ class RetrofitClient2 {
         val brokerDealId: Int,
         @SerializedName("dealType")
         val dealType: String,
-        @SerializedName("price")
-        val price: String?,
-        @SerializedName("deposit")
-        val deposit: String?,
+        @SerializedName("charterPrice")
+        val charterPrice: String?,
+        @SerializedName("tradingPrice")
+        val tradingPrice: String?,
         @SerializedName("monthPrice")
         val monthPrice: String?
     )
@@ -766,5 +768,30 @@ class RetrofitClient2 {
         @SerializedName("moveDate")
         val moveDate: String
     )
+
+    //매물 상세정보 조회
+    data class ResponseDetail(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: BrokerItem,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    //매물 삭제
+    data class ResponseDelete(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: String,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
 
 }

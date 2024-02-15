@@ -135,7 +135,7 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
                 val selectItem = parent.getItemAtPosition(position) as CurrentSearch
                 val imageView = view.findViewById<ImageView>(R.id.delete_iv)
                 //아이템 클릭시 지도 화면으로 넘어감
-                val intent = Intent(this, SearchMapActivity::class.java)
+                val intent = Intent(this, SearchMapActivity2::class.java)
                 intent.putExtra("location", selectItem.location)
                 ContextCompat.startActivity(this, intent, null)
 
