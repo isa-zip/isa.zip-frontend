@@ -153,7 +153,7 @@ class RetrofitClient2 {
         @SerializedName("roomType")
         val roomType: List<RoomType>,
         @SerializedName("dealTypes")
-        val dealTypes: List<DealType2>,
+        val dealTypes: List<DealType>,
         @SerializedName("dealInfoMap")
         val dealInfoMap: DealInfoMap,
         @SerializedName("roomSize")
@@ -165,7 +165,7 @@ class RetrofitClient2 {
         @SerializedName("internalFacility")
         val internalFacility: List<InternalFacility>,
         @SerializedName("approveDate")
-        val approveDate: ApproveDate,
+        val approveDate: ApproveDate?,
         @SerializedName("extraFilter")
         val extraFilter: List<ExtraFilter>
     )
@@ -200,6 +200,7 @@ class RetrofitClient2 {
         FOUR,
         FIVE,
         SIX,
+        OVER_SEVEN,
         SEMI_LAYER,
         ROOFTOP
     }
@@ -268,10 +269,6 @@ class RetrofitClient2 {
     )
 
     data class MonthlyInfo(
-        @SerializedName("minDeposit")
-        val minDeposit: Int?,
-        @SerializedName("maxDeposit")
-        val maxDeposit: Int?,
         @SerializedName("minMonthPrice")
         val minMonthPrice: Int?,
         @SerializedName("maxMonthPrice")
@@ -618,6 +615,24 @@ class RetrofitClient2 {
         val userItemId: Int,
         @SerializedName("brokerItemId")
         val brokerItemId: Int
+    )
+
+    data class ResponseMatchbroker2(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: MatchBrokerData2,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class MatchBrokerData2(
+        @SerializedName("matchId")
+        val matchId: Int,
+        @SerializedName("matchStatus")
+        val matchStatus: String
     )
 
     //매칭전체조회
@@ -1034,6 +1049,8 @@ class RetrofitClient2 {
     )
 
     data class MatchedBrokerItemResponse(
+        @SerializedName("matchingId")
+        val matchingId: Int,
         @SerializedName("brokerItemId")
         val brokerItemId: Int,
         @SerializedName("businessName")

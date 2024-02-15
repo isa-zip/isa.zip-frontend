@@ -11,9 +11,13 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.zipfront.connection.RetrofitClient2
+import com.google.gson.Gson
 
-class OuterCompleteAdapter(private val outerItemList: List<MatchingCompleteFragment.OuterItem2>) :
+class OuterCompleteAdapter(private val outerItemList: List<RetrofitClient2.UserMatchitemData>) :
     RecyclerView.Adapter<OuterCompleteAdapter.ViewHolder>() {
+
+    private val sortedList = outerItemList.sortedBy { it.userRequestInfo.userItemId }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_matchingcomplete_layout, parent, false)
@@ -21,12 +25,12 @@ class OuterCompleteAdapter(private val outerItemList: List<MatchingCompleteFragm
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val outerItem = outerItemList[position]
-        holder.bind(outerItem, holder.itemView.context)
+        val outerItem = sortedList[position]
+        holder.bind(outerItem)
     }
 
     override fun getItemCount(): Int {
-        return outerItemList.size
+        return sortedList.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -54,30 +58,30 @@ class OuterCompleteAdapter(private val outerItemList: List<MatchingCompleteFragm
         }
 
         // 수정된 부분: bind 메서드의 매개변수 타입을 MatchingCompleteFragment.OuterItem2로 변경
-        fun bind(outerItem: MatchingCompleteFragment.OuterItem2, context: Context) {
-            if (outerItem.innerItemList == null || outerItem.innerItemList.isEmpty()) {
+        fun bind(outerItem: RetrofitClient2.UserMatchitemData) {
+            if (outerItem.matchingCount==0) {
                 // 내부 아이템이 없는 경우
                 layout1.visibility = View.VISIBLE
                 layout3.visibility = View.GONE
-                textView2.text = outerItem.title
-                imageView16.isClickable = false
-
+                // titletext5에 아이템 개수 표시
+                titletext5.text = "${outerItem.matchingCount}개"
+                textView.text = "${outerItem.userRequestInfo.userItemId} ${outerItem.dongRequestName}"
+                textView2.text = "${outerItem.userRequestInfo.userItemId} ${outerItem.dongRequestName}"
             } else {
                 // 내부 아이템이 있는 경우
-                layout1.visibility = View.VISIBLE
-                layout3.visibility = View.GONE
-                Log.d("OuterCompleteAdapter", "${outerItem.innerItemList.size}")
+                layout1.visibility = View.GONE
+                layout3.visibility = View.VISIBLE
 
+                val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                innerRecyclerView.layoutManager = layoutManager
                 // 여기서 outerItem의 내부 아이템 리스트를 사용하여 InnerAdapter 생성 및 설정
-                val innerAdapter = InnerCompleteAdapter(outerItem.innerItemList)
-                innerRecyclerView.layoutManager = LinearLayoutManager(context)  // 레이아웃 관리자 설정
+                val innerAdapter = InnerCompleteAdapter(outerItem.matchedBrokerItemResponses)
                 innerRecyclerView.adapter = innerAdapter
 
-                textView3.text = "${outerItem.getItemCount()}개"
                 // titletext5에 아이템 개수 표시
-                titletext5.text = "${outerItem.getItemCount()}개"
-                textView2.text = outerItem.title
-                textView.text = outerItem.title
+                titletext5.text = "${outerItem.matchingCount}개"
+                textView.text = "${outerItem.userRequestInfo.userItemId} ${outerItem.dongRequestName}"
+                textView2.text = "${outerItem.userRequestInfo.userItemId} ${outerItem.dongRequestName}"
             }
         }
     }

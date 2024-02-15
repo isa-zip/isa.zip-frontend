@@ -11,9 +11,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.connection.RetrofitClient2
 import com.squareup.picasso.Picasso
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.MatchedBrokerItemResponse>) : RecyclerView.Adapter<InnerSecondoptionAdapter.ViewHolder>() {
-
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_matchingoptiondoubleact, parent, false)
         return ViewHolder(view)
@@ -100,10 +104,29 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
 
             // 이미지 뷰 클릭 이벤트 처리
             imageView22.setOnClickListener {
-                // 클릭된 아이템의 값을 전달
-//                onImageViewClick.invoke(innerItem)
-//                // 이미지 변경
                 imageView22.setImageResource(R.drawable.ic_plusbox)
+                val call = RetrofitObject.getRetrofitService.matchBrokeUserItem("Bearer $token", innerItem.matchingId, "MATCH_LIKE")
+                call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbroker2> {
+                    override fun onResponse(
+                        call: Call<RetrofitClient2.ResponseMatchbroker2>,
+                        response: Response<RetrofitClient2.ResponseMatchbroker2>
+                    ) {
+                        Log.d("Retrofit81", response.toString())
+                        if (response.isSuccessful) {
+                            val responseBody = response.body()
+                            Log.d("Retrofit8", responseBody.toString())
+                            if (responseBody != null && responseBody.isSuccess) {
+                                //요청 성공시 화면 띄우기
+                            } else {
+                                // 요청이 실패했을 때의 처리
+                            }
+                        }
+                    }
+                    override fun onFailure(call: Call<RetrofitClient2.ResponseMatchbroker2>, t: Throwable) {
+                        val errorMessage = "Call Failed: ${t.message}"
+                        Log.d("Retrofit82", errorMessage)
+                    }
+                })
             }
         }
     }
