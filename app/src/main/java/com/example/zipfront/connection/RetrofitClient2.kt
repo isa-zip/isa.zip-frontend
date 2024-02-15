@@ -183,13 +183,13 @@ class RetrofitClient2 {
     }
 
     enum class RoomSize {
-        UNDER_FIVE,
-        TEN,
-        TWENTY,
-        THIRTY,
-        FORTY,
-        FIFTY,
-        OVER_SIXTY
+        UNDER_17,
+        UNDER_66,
+        UNDER_99,
+        UNDER_132,
+        UNDER_165,
+        UNDER_198,
+        OVER_198
     }
 
     enum class Floor {

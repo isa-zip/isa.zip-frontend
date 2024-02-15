@@ -44,7 +44,7 @@ class MatchingStillFragment : Fragment() {
 //            OuterItem("성신여대", listOf("내부 아이템 4-1", "내부 아이템 4-2", "내부 아이템 4-3", "내부 아이템 4-4","내부 아이템 4-5"))
 //        )
 
-        val call = RetrofitObject.getRetrofitService.usermatchitem("Bearer $token", "MATCH_COMPLETE")
+        val call = RetrofitObject.getRetrofitService.usermatchitem("Bearer $token", "WAITING")
         call.enqueue(object : Callback<RetrofitClient2.ResponseUserMatchitem> {
             override fun onResponse(
                 call: Call<RetrofitClient2.ResponseUserMatchitem>,
