@@ -43,6 +43,7 @@ interface RetrofitAPI {
     @GET("/users/items")
     fun dongitem(@Header("Authorization") token: String,
                  @Query("dongName") dongName: String): Call<RetrofitClient2.ResponseDongitem>
+
     @POST("/users/items")
     fun useritem(@Header("Authorization") token: String,
                  @Query("dong") dong: String, // 쿼리 매개변수 추가
@@ -57,6 +58,7 @@ interface RetrofitAPI {
 
     @GET("/match/brokers/items")
     fun matchbrokeritem(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseMatchbrokeritem>
+
     @POST("/match/brokers/{userItemId}")
     fun matchBrokerItem(
         @Header("Authorization") token: String,
@@ -112,6 +114,16 @@ interface RetrofitAPI {
         @Header("Authorization") token: String,
         @Body request: RetrofitClient2.RequestEventscheduledelete
     ): Call<RetrofitClient2.ResponseEventscheduledelete>
+
+    // 매물 새로 등록하기 전 주소 입력
+    @Multipart
+    @GET("/brokers/items?address=도로명주소")
+    fun BeforeAddress(
+        @Header("Authorization") token: String,
+        @Query("address") address: String
+    ): Call<RetrofitClient2.ResponseBeforeAddress>
+
+
 
     //카카오맵 검색
     @GET("v2/local/search/address.json") // Keyword.json의 정보를 받아옴

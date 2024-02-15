@@ -83,6 +83,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView36" />
 
     <TextView
+        android:id="@+id/road"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
         android:fontFamily="@font/suit_medium"

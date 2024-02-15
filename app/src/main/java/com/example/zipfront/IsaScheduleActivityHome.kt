@@ -68,6 +68,10 @@ class IsaScheduleActivityHome : AppCompatActivity() {
         val scheduleItems = ArrayList<IsaScheduleHomeItem>()
         scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
         scheduleItems.add(IsaScheduleHomeItem("2023.4.7", "방 청소"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.4.7", "방 청소"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.11.7", "방 확정"))
+        scheduleItems.add(IsaScheduleHomeItem("2023.4.7", "방 청소"))
 
         // 어댑터 설정
         val adapter = IsaScheduleHomeAdapter(scheduleItems, object : IsaScheduleHomeAdapter.OnItemClickListener {

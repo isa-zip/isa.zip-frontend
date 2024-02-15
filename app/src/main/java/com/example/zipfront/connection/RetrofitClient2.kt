@@ -923,6 +923,29 @@ class RetrofitClient2 {
         val eventDate: Date
     )
 
+    // 매물 새로 등록하기 전 주소 입력
+    data class ResponseBeforeAddress(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: BeforeAddress,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class BeforeAddress(
+        @SerializedName("address")
+        val address: String,
+        @SerializedName("road_address_name")
+        val road_address_name: String,
+        @SerializedName("postNumber")
+        val postNumber: String
+    )
+
+    //
+
     //지도 검색
     // 검색 결과를 담는 클래스
     data class ResultSearchKeyword(
