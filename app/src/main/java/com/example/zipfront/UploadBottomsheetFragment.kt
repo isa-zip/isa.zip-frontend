@@ -119,6 +119,8 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
         btnClose.setOnClickListener {
             val selectedItems = getSelectedItems()
             updateFragment(selectedItems)
+            val activity = requireContext() as? MatchingSecondUploadActivity
+            activity?.setupRecyclerView2()
             dismiss()
         }
 

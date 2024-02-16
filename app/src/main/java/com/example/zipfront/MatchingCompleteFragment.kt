@@ -28,7 +28,7 @@ class MatchingCompleteFragment: Fragment() {
         binding = MatchingcompleteRecyclerviewBinding.inflate(inflater, container, false)
 
         binding.textView10.visibility = View.VISIBLE
-        binding.notShowing1.visibility = View.GONE
+        binding.optionRv.visibility = View.GONE
 //        outerItemList = listOf(
 //            OuterItem2(
 //                "성수동",
@@ -59,12 +59,12 @@ class MatchingCompleteFragment: Fragment() {
                         if (responseBody.isSuccess) {
                             if (responseBody.data.isNotEmpty()) {
                                 binding.textView10.visibility = View.GONE
-                                binding.notShowing1.visibility = View.VISIBLE
+                                binding.optionRv.visibility = View.VISIBLE
                                 setupRecyclerView(responseBody.data)
                             } else {
                                 // 데이터가 없을 때 처리
                                 binding.textView10.visibility = View.VISIBLE
-                                binding.notShowing1.visibility = View.GONE
+                                binding.optionRv.visibility = View.GONE
                             }
                         } else {
                             Toast.makeText(

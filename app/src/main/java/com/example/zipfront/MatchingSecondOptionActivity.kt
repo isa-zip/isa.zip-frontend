@@ -17,18 +17,24 @@ import com.example.zipfront.databinding.ActivityMainBinding
 import com.example.zipfront.databinding.ActivityMatchingoptionselectBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.DecimalFormat
 
 class MatchingSecondOptionActivity : AppCompatActivity() {
     lateinit var binding: ActivityMatchingoptionselectBinding
     private lateinit var adapter: OuterSecondoptionAdapter
     private lateinit var thirdAdapter: ThirdoptionAdapter
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchingoptionselectBinding.inflate(layoutInflater)
 
         val title = intent.getStringExtra("title")
         val position = intent.getIntExtra("position", -1)
+        val userItemId = intent.getIntExtra("userItemId", -1)
 
         // JSON 형태의 데이터를 문자열로 가져옴
         val outerItemJson = intent.getStringExtra("outerItemJson")
@@ -76,6 +82,10 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
 //        // innerItems를 받아서 RecyclerView 설정
 //        val innerItems = intent.getStringArrayListExtra("innerItems")
 
+        // thirdAdapter 초기화
+        thirdAdapter = ThirdoptionAdapter(mutableListOf())
+
+
         Log.d("Retrofit9", "$outerItem")
         if (outerItem.matchingCount==0) {
             binding.optionRv.visibility = View.GONE
@@ -83,7 +93,8 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         } else {
             binding.optionRv.visibility = View.VISIBLE
             binding.textView58.visibility = View.GONE
-            setupRecyclerView(outerItem.matchedBrokerItemResponses)
+            setupRecyclerView(outerItem.matchedBrokerItemResponses,userItemId)
+            setupRecyclerView2(userItemId)
         }
         binding.imageView10.setOnClickListener{
             finish()
@@ -169,13 +180,63 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    private fun setupRecyclerView(outerItem: List<RetrofitClient2.MatchedBrokerItemResponse>) {
+    private fun setupRecyclerView(outerItem: List<RetrofitClient2.MatchedBrokerItemResponse>,useritemId: Int) {
         // RecyclerView의 레이아웃 매니저 설정
         binding.optionRv.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.optionRv2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        // thirdAdapter를 초기화
-        thirdAdapter = ThirdoptionAdapter(mutableListOf())
+        adapter = OuterSecondoptionAdapter(outerItem,useritemId)
+//
+//        adapter = OuterSecondoptionAdapter(outerItem) { selectedItems ->
+//            Log.d("ThirdoptionAdapter2", "${selectedItems}")
+//            // ThirdoptionAdapter에 아이템 추가
+//
+//            // ThirdoptionAdapter에 아이템 추가
+//            thirdAdapter.addItems(selectedItems.toMutableList())
+//            Log.d("ThirdoptionAdapter3", "${thirdAdapter.itemCount}")
+//            binding.optionRv2.adapter = thirdAdapter
+//
+//            // 데이터가 변경될 때마다 RecyclerView에 알리기
+//            thirdAdapter.notifyDataSetChanged()
+//        }
+
+        binding.optionRv.adapter = adapter
+    }
+    fun setupRecyclerView2(useritemId: Int) {
+        // RecyclerView의 레이아웃 매니저 설정
+        binding.optionRv2.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        val call = RetrofitObject.getRetrofitService.usermatchitem("Bearer $token", "MATCH_LIKE")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseUserMatchitem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseUserMatchitem>,
+                response: Response<RetrofitClient2.ResponseUserMatchitem>
+            ) {
+                Log.d("Retrofit81", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit8", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        val filteredData = responseBody.data.filter { it.userRequestInfo.userItemId == useritemId }
+                        if (filteredData.isNotEmpty()) {
+                            val matchedBrokerItemResponses = filteredData.flatMap { it.matchedBrokerItemResponses }
+                            Log.d("Retrofit82", matchedBrokerItemResponses.toString())
+                            thirdAdapter.setItems(matchedBrokerItemResponses)
+                            // RecyclerView 어댑터 설정
+                            binding.optionRv2.adapter = thirdAdapter
+                        } else {
+                            // 필터링된 데이터가 없는 경우의 처리
+                        }
+                    } else {
+                        // 요청이 실패했을 때의 처리
+                    }
+                }
+            }
+            override fun onFailure(call: Call<RetrofitClient2.ResponseUserMatchitem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit82", errorMessage)
+            }
+        })
 
         thirdAdapter.setOnItemCountChangeListener(object : ThirdoptionAdapter.OnItemCountChangeListener {
             override fun onItemCountChanged(itemCount: Int) {
@@ -192,22 +253,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
                 }
             }
         })
-        adapter = OuterSecondoptionAdapter(outerItem)
-//
-//        adapter = OuterSecondoptionAdapter(outerItem) { selectedItems ->
-//            Log.d("ThirdoptionAdapter2", "${selectedItems}")
-//            // ThirdoptionAdapter에 아이템 추가
-//
-//            // ThirdoptionAdapter에 아이템 추가
-//            thirdAdapter.addItems(selectedItems.toMutableList())
-//            Log.d("ThirdoptionAdapter3", "${thirdAdapter.itemCount}")
-//            binding.optionRv2.adapter = thirdAdapter
-//
-//            // 데이터가 변경될 때마다 RecyclerView에 알리기
-//            thirdAdapter.notifyDataSetChanged()
-//        }
-
-        binding.optionRv.adapter = adapter
+//        binding.optionRv2.adapter = thirdAdapter
     }
 
 //    data class OuterItem2(val title: String, val innerItemList: List<String>? = null) {
@@ -269,7 +315,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
     fun translateToKorean(keyword: String?): String {
         return when (keyword) {
             "ONE_ROOM" -> "원룸"
-            "TWO_OR_THREE_ROOM" -> "투룸/쓰리룸"
+            "TWO_OR_THREEROOM" -> "투룸/쓰리룸"
             "OFFICETELS" -> "오피스텔"
             "APARTMENT" -> "아파트"
             "CHARTER" -> "전세"

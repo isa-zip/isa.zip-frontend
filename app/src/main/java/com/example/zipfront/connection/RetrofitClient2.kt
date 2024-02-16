@@ -172,7 +172,7 @@ class RetrofitClient2 {
 
     enum class RoomType {
         ONE_ROOM,
-        TWO_OR_THREE_ROOM,
+        TWO_OR_THREEROOM,
         OFFICETELS,
         APARTMENT
     }
@@ -256,23 +256,23 @@ class RetrofitClient2 {
 
     data class CharterInfo(
         @SerializedName("minPrice")
-        val minPrice: Int?,
+        val minPrice: String?,
         @SerializedName("maxPrice")
-        val maxPrice: Int?
+        val maxPrice: String?
     )
 
     data class TradingInfo(
         @SerializedName("minPrice")
-        val minPrice: Int?,
+        val minPrice: String?,
         @SerializedName("maxPrice")
-        val maxPrice: Int?
+        val maxPrice: String?
     )
 
     data class MonthlyInfo(
         @SerializedName("minMonthPrice")
-        val minMonthPrice: Int?,
+        val minMonthPrice: String?,
         @SerializedName("maxMonthPrice")
-        val maxMonthPrice: Int?
+        val maxMonthPrice: String?
     )
 
     data class ResponseUseritem(
@@ -357,26 +357,18 @@ class RetrofitClient2 {
     )
 
     data class UserDealType(
-        @SerializedName("createdAt")
-        val createdAt: String,
-        @SerializedName("updateAt")
-        val updateAt: String,
         @SerializedName("dealId")
         val dealId: Int,
         @SerializedName("dealType")
         val dealType: String,
         @SerializedName("minPrice")
-        val minPrice: Int?,
+        val minPrice: String?,
         @SerializedName("maxPrice")
-        val maxPrice: Int?,
-        @SerializedName("minDeposit")
-        val minDeposit: Int?,
-        @SerializedName("maxDeposit")
-        val maxDeposit: Int?,
+        val maxPrice: String?,
         @SerializedName("minMonthPrice")
-        val minMonthPrice: Int?,
+        val minMonthPrice: String?,
         @SerializedName("maxMonthPrice")
-        val maxMonthPrice: Int?
+        val maxMonthPrice: String?
     )
 
     data class UserRoomSize(
@@ -655,6 +647,8 @@ class RetrofitClient2 {
     data class MatchDetail2(
         @SerializedName("matchId")
         val matchId: Int,
+        @SerializedName("userImage")
+        val userImage: String,
         @SerializedName("matchStatus")
         val matchStatus: String,
         @SerializedName("userItemResponse")

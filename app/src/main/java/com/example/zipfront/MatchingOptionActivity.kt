@@ -68,6 +68,38 @@ class MatchingOptionActivity: AppCompatActivity() {
         binding.constraintLayout5.visibility = View.GONE
 
         binding.imageButton7.setOnClickListener{
+            // EditText로부터 사용자가 입력한 값을 가져옵니다.
+            val minPriceText = binding.textView16.text.toString()
+            val maxPriceText = binding.textView17.text.toString()
+
+            val minPrice: String? = if (minPriceText.isNotEmpty()) minPriceText else null
+            val maxPrice: String? = if (maxPriceText.isNotEmpty()) maxPriceText else null
+
+            Log.d("Retrofit832", minPrice.toString() + maxPrice.toString())
+            charterInfo = RetrofitClient2.CharterInfo(minPrice, maxPrice)
+            Log.d("Retrofit8321", charterInfo.toString())
+
+            // EditText로부터 사용자가 입력한 값을 가져옵니다.
+            val minPriceText2 = binding.editText2.text.toString()
+            val maxPriceText2 = binding.editText3.text.toString()
+
+            val minPrice2: String? = if (minPriceText2.isNotEmpty()) minPriceText2 else null
+            val maxPrice2: String? = if (maxPriceText2.isNotEmpty()) maxPriceText2 else null
+
+            Log.d("Retrofit822", minPrice2.toString() + maxPrice2.toString())
+            tradingInfo = RetrofitClient2.TradingInfo(minPrice2, maxPrice2)
+            Log.d("Retrofit8221", tradingInfo.toString())
+
+            // EditText로부터 사용자가 입력한 값을 가져옵니다.
+            val minPriceText3 = binding.editText4.text.toString()
+            val maxPriceText3 = binding.editText5.text.toString()
+
+            val minPrice3: String? = if (minPriceText3.isNotEmpty()) minPriceText3 else null
+            val maxPrice3: String? = if (maxPriceText3.isNotEmpty()) maxPriceText3 else null
+
+            Log.d("Retrofit823", minPrice3.toString() + maxPrice3.toString())
+            monthlyInfo = RetrofitClient2.MonthlyInfo(minPrice3, maxPrice3)
+            Log.d("Retrofit8231", monthlyInfo.toString())
 
             val dong = "목동"
             val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
@@ -141,81 +173,6 @@ class MatchingOptionActivity: AppCompatActivity() {
         for (i in 0 until 48) {
             val buttonId = resources.getIdentifier("myButton${i + 1}", "id", packageName)
             val button = findViewById<Button>(buttonId)
-
-//            // RoomType 할당
-//            val roomType = if (i in 0..3) {
-//                when (i) {
-//                    0 -> RetrofitClient2.RoomType.ONE_ROOM
-//                    1 -> RetrofitClient2.RoomType.TWO_OR_THREE_ROOM
-//                    2 -> RetrofitClient2.RoomType.OFFICETELS
-//                    else -> RetrofitClient2.RoomType.APARTMENT
-//                }
-//            }
-//            else {
-//                null // 예시로 null을 반환하도록 했습니다.
-//            }
-//
-//            // RoomSize 할당
-//            val roomSize = when {
-//                i == 42 -> RetrofitClient2.RoomSize.UNDER_17
-//                i == 43 -> RetrofitClient2.RoomSize.UNDER_66
-//                i == 44 -> RetrofitClient2.RoomSize.UNDER_99
-//                i == 45 -> RetrofitClient2.RoomSize.UNDER_132
-//                i == 46 -> RetrofitClient2.RoomSize.UNDER_165
-//                i == 47 -> RetrofitClient2.RoomSize.UNDER_198
-//                i == 11 -> RetrofitClient2.RoomSize.OVER_198
-//                else -> null
-//            }
-//
-//// Floor 할당
-//            val floor = when {
-//                i == 12-> RetrofitClient2.Floor.ONE
-//                i == 13 -> RetrofitClient2.Floor.TWO
-//                i == 14-> RetrofitClient2.Floor.THREE
-//                i == 15 -> RetrofitClient2.Floor.FOUR
-//                i == 16 -> RetrofitClient2.Floor.FIVE
-//                i == 17 -> RetrofitClient2.Floor.SIX
-//                i == 18 -> RetrofitClient2.Floor.OVER_SEVEN
-//                i == 19 -> RetrofitClient2.Floor.SEMI_LAYER
-//                i == 20 -> RetrofitClient2.Floor.ROOFTOP
-//                else -> null
-//            }
-//
-//// ManagementOption 할당
-//            val managementOption = when {
-//                i == 21 -> RetrofitClient2.ManagementOption.ELECTRONIC_FEE
-//                i == 22 -> RetrofitClient2.ManagementOption.GAS_FEE
-//                i == 23 -> RetrofitClient2.ManagementOption.INTERNET_FEE
-//                i == 24 -> RetrofitClient2.ManagementOption.PARKING_FEE
-//                i == 25 -> RetrofitClient2.ManagementOption.WATER_FEE
-//                else -> null
-//            }
-//
-//// InternalFacility 할당
-//            val internalFacility = when {
-//                i == 26 -> RetrofitClient2.InternalFacility.AIR_CONDITIONER
-//                i == 27 -> RetrofitClient2.InternalFacility.REFRIGERATOR
-//                i == 28 -> RetrofitClient2.InternalFacility.WASHING_MACHINE
-//                i == 29 -> RetrofitClient2.InternalFacility.MICROWAVE
-//                i == 30 -> RetrofitClient2.InternalFacility.CLOSET
-//                i == 31 -> RetrofitClient2.InternalFacility.TABLE
-//                i == 32 -> RetrofitClient2.InternalFacility.TV
-//                i == 33 -> RetrofitClient2.InternalFacility.BED
-//                else -> null
-//            }
-//
-//
-//            val extraFilter = when {
-//                i == 34 -> RetrofitClient2.ExtraFilter.PARKING
-//                i == 35 -> RetrofitClient2.ExtraFilter.SHORT_LOAN
-//                i == 36 -> RetrofitClient2.ExtraFilter.FULL_OPTION
-//                i == 37 -> RetrofitClient2.ExtraFilter.ELEVATOR
-//                i == 38 -> RetrofitClient2.ExtraFilter.VERANDA
-//                i == 39 -> RetrofitClient2.ExtraFilter.SECURITY
-//                i == 40 -> RetrofitClient2.ExtraFilter.VR
-//                i == 41 -> RetrofitClient2.ExtraFilter.NON_FACE_CONTRACT
-//                else -> null
-//            }
 
             originalWidthArray[i] = button.layoutParams.width
             originalBackgroundArray[i] = button.background
@@ -296,48 +253,33 @@ class MatchingOptionActivity: AppCompatActivity() {
                 Log.d("Retrofit81", approveDate.toString())
             }
         }
-
-        // EditText로부터 사용자가 입력한 값을 가져옵니다.
-        val minPriceText = findViewById<EditText>(R.id.textView16).text.toString()
-        val maxPriceText = findViewById<EditText>(R.id.textView17).text.toString()
-
-        val minPrice = if (minPriceText.isNotEmpty()) minPriceText.toIntOrNull() else null
-        val maxPrice = if (maxPriceText.isNotEmpty()) maxPriceText.toIntOrNull() else null
-
-        Log.d("Retrofit82", minPrice.toString() + maxPrice.toString())
-        charterInfo = RetrofitClient2.CharterInfo(minPrice, maxPrice)
-
-        // EditText로부터 사용자가 입력한 값을 가져옵니다.
-        val minPriceText2 = findViewById<EditText>(R.id.editText2).text.toString()
-        val maxPriceText2 = findViewById<EditText>(R.id.editText3).text.toString()
-
-        val minPrice2 = if (minPriceText2.isNotEmpty()) minPriceText2.toIntOrNull() else null
-        val maxPrice2 = if (maxPriceText2.isNotEmpty()) maxPriceText2.toIntOrNull() else null
-
-        Log.d("Retrofit822", minPrice2.toString() + maxPrice2.toString())
-        tradingInfo = RetrofitClient2.TradingInfo(minPrice2, maxPrice2)
-
-        // EditText로부터 사용자가 입력한 값을 가져옵니다.
-        val minPriceText3 = findViewById<EditText>(R.id.editText4).text.toString()
-        val maxPriceText3 = findViewById<EditText>(R.id.editText5).text.toString()
-
-        val minPrice3 = if (minPriceText3.isNotEmpty()) minPriceText2.toIntOrNull() else null
-        val maxPrice3 = if (maxPriceText3.isNotEmpty()) maxPriceText2.toIntOrNull() else null
-
-        Log.d("Retrofit823", minPrice3.toString() + maxPrice3.toString())
-        monthlyInfo = RetrofitClient2.MonthlyInfo(minPrice3, maxPrice3)
     }
 
     private fun toggleConstraintLayoutVisibility2(index: Int) {
         when (index) {
             0 -> {
-                binding.constraintLayout3.visibility = if (binding.constraintLayout3.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                binding.constraintLayout3.visibility =
+                    if (binding.constraintLayout3.visibility == View.VISIBLE)
+                    {
+                        View.GONE
+                    }
+                    else View.VISIBLE
             }
             1 -> {
-                binding.constraintLayout4.visibility = if (binding.constraintLayout4.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                binding.constraintLayout4.visibility =
+                    if (binding.constraintLayout4.visibility == View.VISIBLE)
+                    {
+                        View.GONE
+                    }
+                    else View.VISIBLE
             }
             2 -> {
-                binding.constraintLayout5.visibility = if (binding.constraintLayout5.visibility == View.VISIBLE) View.GONE else View.VISIBLE
+                binding.constraintLayout5.visibility =
+                    if (binding.constraintLayout5.visibility == View.VISIBLE)
+                    {
+                        View.GONE
+                    }
+                    else View.VISIBLE
             }
             else -> {
             }
@@ -380,7 +322,7 @@ class MatchingOptionActivity: AppCompatActivity() {
             when (index) {
                 in 0..3 -> roomTypeList += when (index) {
                     0 -> RetrofitClient2.RoomType.ONE_ROOM
-                    1 -> RetrofitClient2.RoomType.TWO_OR_THREE_ROOM
+                    1 -> RetrofitClient2.RoomType.TWO_OR_THREEROOM
                     2 -> RetrofitClient2.RoomType.OFFICETELS
                     else -> RetrofitClient2.RoomType.APARTMENT
                 }

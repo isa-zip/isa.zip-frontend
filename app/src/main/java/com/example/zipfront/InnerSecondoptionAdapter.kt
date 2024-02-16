@@ -15,7 +15,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.MatchedBrokerItemResponse>) : RecyclerView.Adapter<InnerSecondoptionAdapter.ViewHolder>() {
+class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.MatchedBrokerItemResponse>,
+                               private val userItemId: Int) : RecyclerView.Adapter<InnerSecondoptionAdapter.ViewHolder>() {
     private val user = MyApplication.getUser()
     private val token = user.getString("jwt", "").toString()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,6 +35,7 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val activity = itemView.context as? MatchingSecondOptionActivity
         fun bind(innerItem: RetrofitClient2.MatchedBrokerItemResponse) {
             Log.d("Retrofit92", "$innerItem")
             val textView1: TextView = itemView.findViewById(R.id.textView25)
@@ -59,17 +61,17 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
 
             val tradingPriceText = when {
                 tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
-                else -> "전세 "
+                else -> ""
             }
 
             val charterPriceText = when {
                 charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
-                else -> "매매 "
+                else -> ""
             }
 
             val monthPriceText = when {
                 monthDeal != null && monthDeal.monthPrice != null -> "월세 ${monthDeal.monthPrice}"
-                else -> "월세 "
+                else -> ""
             }
 
             val dealTypesText = listOf(tradingPriceText, charterPriceText, monthPriceText)
@@ -116,7 +118,7 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
                             val responseBody = response.body()
                             Log.d("Retrofit8", responseBody.toString())
                             if (responseBody != null && responseBody.isSuccess) {
-                                //요청 성공시 화면 띄우기
+                                activity?.setupRecyclerView2(userItemId)
                             } else {
                                 // 요청이 실패했을 때의 처리
                             }
