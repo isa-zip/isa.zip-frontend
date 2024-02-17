@@ -156,6 +156,13 @@ interface RetrofitAPI {
         @Path("brokerItemId") brokerItemId: Int
     ) : Call<RetrofitClient2.ResponseDelete>
 
+    //매물 판매완료
+    @PATCH("/brokers/items/{brokerItemId}/soldout")
+    fun soldOutProperty(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int
+    ) : Call<RetrofitClient2.ResponseSoldOut>
+
     //매물 수정
     /*@PUT("/brokers/items/{brokerItemId}")
     @Multipart

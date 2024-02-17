@@ -462,7 +462,7 @@
                         android:layout_marginLeft="18dp"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/suit_medium"
-                        android:text="해당층/건물층"
+                        android:text="층수"
                         android:textColor="@color/Gray900"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -641,7 +641,7 @@
                         android:fontFamily="@font/suit_semibold"
                         android:background="@drawable/caption_option"
                         android:layout_marginTop="16dp"
-                        android:layout_marginLeft="121dp"
+                        android:layout_marginLeft="4dp"
                         app:layout_constraintStart_toEndOf="@id/padding2"
                         app:layout_constraintTop_toBottomOf="@id/Line6"
                         android:visibility="gone"/>

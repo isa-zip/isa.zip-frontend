@@ -447,6 +447,8 @@ class RetrofitClient2 {
     data class BrokerItem(
         @SerializedName("brokerItemId")
         val brokerItemId: Int,
+        @SerializedName("createdAt")
+        val createdAt: String,
         @SerializedName("businessName")
         val businessName: String,
         @SerializedName("phoneNumber")
@@ -1255,6 +1257,25 @@ class RetrofitClient2 {
         val extraFilters: List<BrokerExtraFilter>,
         @SerializedName("approvedDate")
         val approvedDate: String
+    )
+
+    //매물 판매완료
+    data class ResponseSoldOut(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: ItemStatus,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class ItemStatus(
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("itemStatus")
+        val itemStatus: String
     )
 
 
