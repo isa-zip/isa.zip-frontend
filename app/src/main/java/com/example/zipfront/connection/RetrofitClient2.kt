@@ -949,7 +949,7 @@ class RetrofitClient2 {
         @SerializedName("message")
         val message: String,
         @SerializedName("data")
-        val data: BeforeAddress,
+        val data: List<BeforeAddress>,
         @SerializedName("isSuccess")
         val isSuccess: Boolean
     )
@@ -963,7 +963,6 @@ class RetrofitClient2 {
         val postNumber: String
     )
 
-    //
 
     //지도 검색
     // 검색 결과를 담는 클래스

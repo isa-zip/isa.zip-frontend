@@ -126,12 +126,12 @@ interface RetrofitAPI {
     ): Call<RetrofitClient2.ResponseEventscheduledelete>
 
     // 매물 새로 등록하기 전 주소 입력
-    @Multipart
-    @GET("/brokers/items?address=도로명주소")
+    @GET("/brokers/map") // 변경된 주소로 수정
     fun BeforeAddress(
         @Header("Authorization") token: String,
         @Query("address") address: String
     ): Call<RetrofitClient2.ResponseBeforeAddress>
+
 
 
 
