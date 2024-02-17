@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class PropertyInfoFragment : Fragment() {
 
@@ -101,7 +103,7 @@ class PropertyInfoFragment : Fragment() {
                         //동작구 상도동 부분
                         binding.propertyInfo4.text = addressResponse.dong
                         //방크기
-                        binding.propertyInfo2.text = "${translateToKorean(optionResponse.roomSize)}m²"
+                        binding.propertyInfo2.text = translateToKorean(optionResponse.roomSize)
                         //방종류
                         binding.propertyInfo3.text = optionResponse.floors.firstOrNull()?.customFloor
                         //전세/매매/월세
@@ -127,10 +129,10 @@ class PropertyInfoFragment : Fragment() {
                         binding.administrationPriceTv.text = optionResponse.managementOptions.firstOrNull()?.managementPrice
                         for (managementOption in optionResponse.managementOptions) {
                             if (managementOption.brokerManagementOptionId == 1) {
-                                binding.optionBtn1.text = "옵션1"
+                                binding.optionBtn1.text = "전기세"
                                 binding.optionBtn1.visibility = View.VISIBLE
                             } else if (managementOption.brokerManagementOptionId == 2) {
-                                binding.optionBtn2.text = "옵션2"
+                                binding.optionBtn2.text = "수도세"
                                 binding.optionBtn2.visibility = View.VISIBLE
                             } else if (managementOption.brokerManagementOptionId == 3) {
                                 binding.optionBtn3.text = "전기세"
@@ -145,14 +147,16 @@ class PropertyInfoFragment : Fragment() {
                         binding.locationInfoTv.text = addressResponse.addressName
                         //방종류
                         binding.roomTypeInfoTv.text = translateToKorean(optionResponse.roomType)
-                        //해당층/건물층
+                        //층수
                         binding.floorInfoTv.text = optionResponse.floors.firstOrNull()?.customFloor
                         //방크기
-                        binding.roomSizeInfoTv.text = "${translateToKorean(optionResponse.roomSize)}m²"
+                        binding.roomSizeInfoTv.text = translateToKorean(optionResponse.roomSize)
                         //사용 승인일
                         binding.approvalDateInfoTv.text = optionResponse.approvedDate
                         //최초 등록일
-                        binding.registrationDateInfoTv.text = optionResponse.approvedDate
+                        val inputDate = data.createdAt
+                        val convertedDate = convertDateFormat(inputDate)
+                        binding.registrationDateInfoTv.text = convertedDate
                         //내부 시설
                         for (internalFacility in optionResponse.internalFacilities) {
                             if (internalFacility.brokerInternalFacilityId == 1) {
@@ -200,7 +204,7 @@ class PropertyInfoFragment : Fragment() {
     private fun translateToKorean(keyword: String?): String {
         return when (keyword) {
             "ONE_ROOM" -> "원룸"
-            "TWO_OR_THREE_ROOM" -> "투룸/쓰리룸"
+            "TWO_OR_THREEROOM" -> "투룸/쓰리룸"
             "OFFICETELS" -> "오피스텔"
             "APARTMENT" -> "아파트"
             "CHARTER" -> "전세"
@@ -248,7 +252,33 @@ class PropertyInfoFragment : Fragment() {
             "SECURITY" -> "보안/안전시설"
             "VR" -> "360°VR"
             "NON_FACE_CONTRACT" -> "비대면계약"
+            "UNDER_17" -> "~ 17m²"
+            "UNDER_66" -> "33~66m²"
+            "UNDER_99" -> "66~99m²"
+            "UNDER_132" -> "99~132m²"
+            "UNDER_165" -> "132~165m²"
+            "UNDER_198" -> "165~198m²"
+            "OVER_198" -> "198m² ~"
             else -> keyword ?: ""
+        }
+    }
+
+
+    fun convertDateFormat(inputDate: String): String {
+        // 입력된 날짜 문자열의 형식 지정
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS", Locale.getDefault())
+        // 출력할 날짜 형식 지정
+        val outputFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
+
+        try {
+            // 입력된 날짜 문자열을 Date 객체로 파싱
+            val date = inputFormat.parse(inputDate)
+
+            // 출력 형식에 맞게 변환된 문자열 반환
+            return outputFormat.format(date)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return "ALL"
         }
     }
 

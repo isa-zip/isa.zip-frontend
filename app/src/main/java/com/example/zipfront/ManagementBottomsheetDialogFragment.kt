@@ -3,10 +3,14 @@ package com.example.zipfront
 import android.app.Activity
 import android.app.TaskStackBuilder
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +21,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+
 
 class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFragment() {
 
@@ -87,7 +98,33 @@ class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFra
 
         // 확인 버튼 클릭 리스너 설정
         deleteButton.setOnClickListener {
-            alertDialog.dismiss() // 다이얼로그 닫기
+            //매물 판매완료 API 연동
+            val call = RetrofitObject.getRetrofitService.soldOutProperty("Bearer $token", brokerItemId)
+            call.enqueue(object : Callback<RetrofitClient2.ResponseSoldOut> {
+                override fun onResponse(call: Call<RetrofitClient2.ResponseSoldOut>, response: Response<RetrofitClient2.ResponseSoldOut>) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit2", response.toString())
+                        if(responseBody != null){
+                            Log.d("soldout", "${responseBody.isSuccess}")
+                            if(responseBody.isSuccess) {
+                                //
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.ResponseSoldOut>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                    Toast.makeText(requireContext(), "실패", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+            val intent = Intent(requireContext(), MenuManagementActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish() // 현재 Activity 종료
+            //alertDialog.dismiss() // 다이얼로그 닫기
         }
 
         alertDialog.show()
@@ -160,5 +197,6 @@ class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFra
 
         alertDialog.show()
     }
+
 
 }
