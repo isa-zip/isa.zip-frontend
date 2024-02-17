@@ -1544,6 +1544,9 @@ class RetrofitClient2 {
         val message: String,
         @SerializedName("data")
         val data: HomeMatchitemData,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
 
     //매물 판매완료
     data class ResponseSoldOut(
