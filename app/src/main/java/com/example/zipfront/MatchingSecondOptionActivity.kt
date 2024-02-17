@@ -28,13 +28,16 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
     private lateinit var thirdAdapter: ThirdoptionAdapter
     private val user = MyApplication.getUser()
     private val token = user.getString("jwt", "").toString()
+    private var matchingID: Int = 0
+    private var userItemID: Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchingoptionselectBinding.inflate(layoutInflater)
 
         val title = intent.getStringExtra("title")
         val position = intent.getIntExtra("position", -1)
-        val userItemId = intent.getIntExtra("userItemId", -1)
+        userItemID = intent.getIntExtra("userItemId", -1)
 
         // JSON 형태의 데이터를 문자열로 가져옴
         val outerItemJson = intent.getStringExtra("outerItemJson")
@@ -93,8 +96,8 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         } else {
             binding.optionRv.visibility = View.VISIBLE
             binding.textView58.visibility = View.GONE
-            setupRecyclerView(outerItem.matchedBrokerItemResponses,userItemId)
-            setupRecyclerView2(userItemId)
+            setupRecyclerView(outerItem.matchedBrokerItemResponses,userItemID)
+            setupRecyclerView2(userItemID)
         }
         binding.imageView10.setOnClickListener{
             finish()
@@ -224,6 +227,10 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
                             thirdAdapter.setItems(matchedBrokerItemResponses)
                             // RecyclerView 어댑터 설정
                             binding.optionRv2.adapter = thirdAdapter
+                            if (matchedBrokerItemResponses.isNotEmpty()) {
+                                // 여기서 매칭 ID를 추출하거나 적절한 로직을 사용하여 설정합니다.
+                                matchingID = matchedBrokerItemResponses.first().matchingId
+                            }
                         } else {
                             // 필터링된 데이터가 없는 경우의 처리
                         }
@@ -292,6 +299,28 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
+            val call = RetrofitObject.getRetrofitService.matchBrokeUserItem("Bearer $token", matchingID, "MATCH_COMPLETE")
+            call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbroker2> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.ResponseMatchbroker2>,
+                    response: Response<RetrofitClient2.ResponseMatchbroker2>
+                ) {
+                    Log.d("Retrofit81", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit8", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            setupRecyclerView2(userItemID)
+                        } else {
+                            // 요청이 실패했을 때의 처리
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<RetrofitClient2.ResponseMatchbroker2>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit82", errorMessage)
+                }
+            })
             finish()
             alertDialog.dismiss() // 다이얼로그 닫기
             // 추가적인 작업 수행 가능

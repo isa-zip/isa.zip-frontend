@@ -26,6 +26,8 @@
         android:text="월세 1000/75"
         android:textColor="@color/Gray800"
         android:textSize="14dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:fontFamily="@font/suit_bold"
         app:layout_constraintStart_toEndOf="@+id/imageView19"
         app:layout_constraintTop_toTopOf="@+id/imageView19" />

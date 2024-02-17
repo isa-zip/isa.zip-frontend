@@ -41,8 +41,17 @@ class InneroptionAdapter(private val itemList: List<RetrofitClient2.MatchedBroke
             val textView2: TextView = itemView.findViewById(R.id.textView7)
             val imageView: ImageView = itemView.findViewById(R.id.imageView9)
 
-            val dealTypes = item.optionResponse.dealTypes.joinToString(" / ") { translateToKorean(it.dealType) }
-            textView1.text = dealTypes
+            // 거래 유형과 해당하는 금액을 함께 표시
+            val dealTypesWithPrices = item.optionResponse.dealTypes.joinToString(" / ") { dealType ->
+                val dealPrice = when {
+                    dealType.tradingPrice != null -> "${dealType.tradingPrice}"
+                    dealType.charterPrice != null -> "${dealType.charterPrice}"
+                    dealType.monthPrice != null -> "${dealType.monthPrice}"
+                    else -> "" // 다른 거래 유형이 있는 경우 여기에 추가
+                }
+                "${translateToKorean(dealType.dealType)} $dealPrice"
+            }
+            textView1.text = dealTypesWithPrices
             textView2.text = item.businessName
 
             // Glide를 사용하여 이미지 로드 및 설정

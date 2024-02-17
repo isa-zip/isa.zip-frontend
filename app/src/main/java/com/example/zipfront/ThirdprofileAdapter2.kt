@@ -109,12 +109,25 @@ class ThirdprofileAdapter2(private val itemList: MutableList<RetrofitClient2.Mat
             val textView4: TextView = itemView.findViewById(R.id.textView28)
             val imageView: ImageView = itemView.findViewById(R.id.imageView19)
 
+            val textshow: TextView = itemView.findViewById(R.id.matchingtext)
+            val textshow2: TextView = itemView.findViewById(R.id.matchingtext2)
+
             val profileView1: TextView = itemView.findViewById(R.id.textView59)
             val profileView: ImageView = itemView.findViewById(R.id.imageView18)
 
             val tradingDeal = item.brokerItemResponse.optionResponse.dealTypes.firstOrNull { it.dealType == "TRADING" }
             val charterDeal = item.brokerItemResponse.optionResponse.dealTypes.firstOrNull { it.dealType == "CHARTER" }
             val monthDeal = item.brokerItemResponse.optionResponse.dealTypes.firstOrNull { it.dealType == "MONTHLY" }
+
+            if(item.brokerItemResponse.itemStatus!="MATCH_COMPLETE")
+            {
+                textshow.visibility=View.GONE
+                textshow2.visibility=View.VISIBLE
+            }
+            else{
+                textshow.visibility=View.VISIBLE
+                textshow2.visibility=View.GONE
+            }
 
             val tradingPriceText = when {
                 tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
@@ -146,7 +159,7 @@ class ThirdprofileAdapter2(private val itemList: MutableList<RetrofitClient2.Mat
             // 방 크기, 층, 관리비 설정
             val roomSize = translateToKorean(item.brokerItemResponse.optionResponse.roomSize)
             val floors = item.brokerItemResponse.optionResponse.floors
-                .mapNotNull { translateToKorean(it.floor) }
+                .mapNotNull { it.customFloor }
                 .joinToString(", ")
 
             val managementPrice = item.brokerItemResponse.optionResponse.managementOptions.firstOrNull()?.let { translateToKorean(it.managementPrice) } ?: "-"

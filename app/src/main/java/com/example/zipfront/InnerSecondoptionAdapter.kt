@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zipfront.connection.RetrofitClient2
 import com.squareup.picasso.Picasso
@@ -53,6 +54,12 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
             if (innerItem.itemStatus!="ITEM_SELLING")
             {
                 imagelayout.visibility=View.VISIBLE
+                imageView22.visibility=View.GONE
+                val textColorGray500 = ContextCompat.getColor(itemView.context, R.color.Gray500)
+                textView1.setTextColor(textColorGray500)
+                textView2.setTextColor(textColorGray500)
+                textView3.setTextColor(textColorGray500)
+                textView4.setTextColor(textColorGray500)
             }
             else
             {
@@ -87,7 +94,7 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
             // 방 크기, 층, 관리비 설정
             val roomSize = translateToKorean(innerItem.optionResponse.roomSize)
             val floors = innerItem.optionResponse.floors
-                .mapNotNull { translateToKorean(it.floor) }
+                .mapNotNull { it.customFloor }
                 .joinToString(", ")
 
             val managementPrice = innerItem.optionResponse.managementOptions.firstOrNull()?.let { translateToKorean(it.managementPrice) } ?: "-"

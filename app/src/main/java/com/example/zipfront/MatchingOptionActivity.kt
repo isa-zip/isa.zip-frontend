@@ -67,6 +67,9 @@ class MatchingOptionActivity: AppCompatActivity() {
         binding.constraintLayout4.visibility = View.GONE
         binding.constraintLayout5.visibility = View.GONE
 
+        val locationDong = intent.getStringExtra("dong") ?: ""
+        Log.d("Retrofitdong3", locationDong.toString())
+
         binding.imageButton7.setOnClickListener{
             // EditText로부터 사용자가 입력한 값을 가져옵니다.
             val minPriceText = binding.textView16.text.toString()
@@ -101,7 +104,7 @@ class MatchingOptionActivity: AppCompatActivity() {
             monthlyInfo = RetrofitClient2.MonthlyInfo(minPrice3, maxPrice3)
             Log.d("Retrofit8231", monthlyInfo.toString())
 
-            val dong = "목동"
+            val dong = locationDong
             val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
 
             val request = RetrofitClient2.RequestUseritem(
@@ -312,13 +315,6 @@ class MatchingOptionActivity: AppCompatActivity() {
             // 클릭 시 텍스트 색상 변경
             button.setTextColor(clickedColor)
 
-//            roomTypeList = mutableListOf<RetrofitClient2.RoomType>()
-//            roomSizeList = mutableListOf<RetrofitClient2.RoomSize>()
-//            floorList = mutableListOf<RetrofitClient2.Floor>()
-//            managementOptionList = mutableListOf<RetrofitClient2.ManagementOption>()
-//            internalFacilityList = mutableListOf<RetrofitClient2.InternalFacility>()
-//            extraFilterList = mutableListOf<RetrofitClient2.ExtraFilter>()
-
             when (index) {
                 in 0..3 -> roomTypeList += when (index) {
                     0 -> RetrofitClient2.RoomType.ONE_ROOM
@@ -335,12 +331,16 @@ class MatchingOptionActivity: AppCompatActivity() {
                     46 -> RetrofitClient2.RoomSize.UNDER_165
                     else -> RetrofitClient2.RoomSize.UNDER_198
                 }
-                in 12..16 -> floorList+= when (index) {
+                in 12..20 -> floorList+= when (index) {
                     12 -> RetrofitClient2.Floor.ONE
                     13 -> RetrofitClient2.Floor.TWO
                     14 -> RetrofitClient2.Floor.THREE
                     15 -> RetrofitClient2.Floor.FOUR
-                    else -> RetrofitClient2.Floor.FIVE
+                    16 -> RetrofitClient2.Floor.FIVE
+                    17 -> RetrofitClient2.Floor.SIX
+                    18 -> RetrofitClient2.Floor.OVER_SEVEN
+                    19 -> RetrofitClient2.Floor.SEMI_LAYER
+                    else -> RetrofitClient2.Floor.ROOFTOP
                 }
                 in 21..25 -> managementOptionList+= when (index) {
                     21 -> RetrofitClient2.ManagementOption.ELECTRONIC_FEE
@@ -383,6 +383,62 @@ class MatchingOptionActivity: AppCompatActivity() {
             button.background = originalBackground
 
             button.setTextColor(originalTextColor)
+            when (index) {
+                in 0..3 -> roomTypeList -= when (index) {
+                    0 -> RetrofitClient2.RoomType.ONE_ROOM
+                    1 -> RetrofitClient2.RoomType.TWO_OR_THREEROOM
+                    2 -> RetrofitClient2.RoomType.OFFICETELS
+                    else -> RetrofitClient2.RoomType.APARTMENT
+                }
+                11 -> roomSizeList+=RetrofitClient2.RoomSize.OVER_198
+                in 42..47 -> roomSizeList-= when (index) {
+                    42 -> RetrofitClient2.RoomSize.UNDER_17
+                    43 -> RetrofitClient2.RoomSize.UNDER_66
+                    44 -> RetrofitClient2.RoomSize.UNDER_99
+                    45 -> RetrofitClient2.RoomSize.UNDER_132
+                    46 -> RetrofitClient2.RoomSize.UNDER_165
+                    else -> RetrofitClient2.RoomSize.UNDER_198
+                }
+                in 12..20 -> floorList-= when (index) {
+                    12 -> RetrofitClient2.Floor.ONE
+                    13 -> RetrofitClient2.Floor.TWO
+                    14 -> RetrofitClient2.Floor.THREE
+                    15 -> RetrofitClient2.Floor.FOUR
+                    16 -> RetrofitClient2.Floor.FIVE
+                    17 -> RetrofitClient2.Floor.SIX
+                    18 -> RetrofitClient2.Floor.OVER_SEVEN
+                    19 -> RetrofitClient2.Floor.SEMI_LAYER
+                    else -> RetrofitClient2.Floor.ROOFTOP
+                }
+                in 21..25 -> managementOptionList-= when (index) {
+                    21 -> RetrofitClient2.ManagementOption.ELECTRONIC_FEE
+                    22 -> RetrofitClient2.ManagementOption.GAS_FEE
+                    23 -> RetrofitClient2.ManagementOption.INTERNET_FEE
+                    24 -> RetrofitClient2.ManagementOption.PARKING_FEE
+                    else -> RetrofitClient2.ManagementOption.WATER_FEE
+                }
+                in 26..33 -> internalFacilityList-= when (index) {
+                    26 -> RetrofitClient2.InternalFacility.AIR_CONDITIONER
+                    27 -> RetrofitClient2.InternalFacility.REFRIGERATOR
+                    28 -> RetrofitClient2.InternalFacility.WASHING_MACHINE
+                    29 -> RetrofitClient2.InternalFacility.MICROWAVE
+                    30 -> RetrofitClient2.InternalFacility.CLOSET
+                    31 -> RetrofitClient2.InternalFacility.TABLE
+                    32 -> RetrofitClient2.InternalFacility.TV
+                    else -> RetrofitClient2.InternalFacility.BED
+                }
+                in 34..41 -> extraFilterList-= when (index) {
+                    34 -> RetrofitClient2.ExtraFilter.PARKING
+                    35 -> RetrofitClient2.ExtraFilter.SHORT_LOAN
+                    36 -> RetrofitClient2.ExtraFilter.FULL_OPTION
+                    37 -> RetrofitClient2.ExtraFilter.ELEVATOR
+                    38 -> RetrofitClient2.ExtraFilter.VERANDA
+                    39 -> RetrofitClient2.ExtraFilter.SECURITY
+                    40 -> RetrofitClient2.ExtraFilter.VR
+                    else -> RetrofitClient2.ExtraFilter.NON_FACE_CONTRACT
+                }
+                else -> { /* 처리할 로직이 없는 경우 */ }
+            }
         }
 
         // 토글 상태 변경

@@ -81,7 +81,7 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
             // 방 크기, 층, 관리비 설정
             val roomSize = translateToKorean(item.optionResponse.roomSize)
             val floors = item.optionResponse.floors
-                .mapNotNull { translateToKorean(it.floor) }
+                .mapNotNull { it.customFloor }
                 .joinToString(", ")
 
             val managementPrice = item.optionResponse.managementOptions.firstOrNull()?.let { translateToKorean(it.managementPrice) } ?: "-"

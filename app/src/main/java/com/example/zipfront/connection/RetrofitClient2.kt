@@ -1251,6 +1251,68 @@ class RetrofitClient2 {
         val approvedDate: String
     )
 
+    //유저 home
+    data class ResponseHome(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: HomeMatchitemData,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class HomeMatchitemData(
+        @SerializedName("matchedItems")
+        val matchedItems: MatchedItems,
+        @SerializedName("movingSchedule")
+        val movingSchedule: MovingSchedulehome? // 현재 null 값을 허용하도록 설정했으나 필요에 따라 타입 변경 가능
+    )
+
+    data class MatchedItems(
+        @SerializedName("dong")
+        val dong: String,
+        @SerializedName("matchingCount")
+        val matchingCount: Int,
+        @SerializedName("matchedBrokerItemResponses")
+        val matchedBrokerItemResponses: List<HomeItemResponse>
+    )
+
+    data class HomeItemResponse(
+        @SerializedName("matchingId")
+        val matchingId: Int,
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("businessName")
+        val businessName: String,
+        @SerializedName("itemStatus")
+        val itemStatus: String,
+        @SerializedName("dongName")
+        val dongName: String,
+        @SerializedName("detailResponse")
+        val detailResponse: DetailResponse3,
+        @SerializedName("optionResponse")
+        val optionResponse: OptionResponse2
+    )
+
+    data class MovingSchedulehome(
+        @SerializedName("month")
+        val month: Int,
+        @SerializedName("event")
+        val event: Eventhome
+    )
+
+    data class Eventhome(
+        @SerializedName("eventId")
+        val eventId: Int,
+        @SerializedName("scheduleId")
+        val scheduleId: Int,
+        @SerializedName("eventTitle")
+        val eventTitle: String,
+        @SerializedName("eventDate")
+        val eventDate: String
+    )
 
 
 }

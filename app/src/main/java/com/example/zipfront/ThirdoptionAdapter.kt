@@ -27,6 +27,7 @@ class ThirdoptionAdapter(private val itemList: MutableList<RetrofitClient2.Match
         itemList.clear()
         itemList.addAll(newItems)
         notifyDataSetChanged()
+        notifyItemCountChanged()
     }
     fun setOnItemCountChangeListener(listener: OnItemCountChangeListener) {
         this.onItemCountChangeListener = listener
@@ -77,17 +78,17 @@ class ThirdoptionAdapter(private val itemList: MutableList<RetrofitClient2.Match
 
             val tradingPriceText = when {
                 tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
-                else -> "전세 "
+                else -> ""
             }
 
             val charterPriceText = when {
                 charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
-                else -> "매매 "
+                else -> ""
             }
 
             val monthPriceText = when {
                 monthDeal != null && monthDeal.monthPrice != null -> "월세 ${monthDeal.monthPrice}"
-                else -> "월세 "
+                else -> ""
             }
 
             val dealTypesText = listOf(tradingPriceText, charterPriceText, monthPriceText)
@@ -103,7 +104,7 @@ class ThirdoptionAdapter(private val itemList: MutableList<RetrofitClient2.Match
             // 방 크기, 층, 관리비 설정
             val roomSize = translateToKorean(item.optionResponse.roomSize)
             val floors = item.optionResponse.floors
-                .mapNotNull { translateToKorean(it.floor) }
+                .mapNotNull { it.customFloor }
                 .joinToString(", ")
 
             val managementPrice = item.optionResponse.managementOptions.firstOrNull()?.let { translateToKorean(it.managementPrice) } ?: "-"
