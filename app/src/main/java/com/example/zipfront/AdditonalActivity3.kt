@@ -3,6 +3,7 @@ package com.example.zipfront
 import android.app.Activity
 import android.app.TaskStackBuilder
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
@@ -16,15 +17,24 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.ActivityAdditional3Binding
 import com.example.zipfront.databinding.MatchingOptionBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class AdditonalActivity3: AppCompatActivity() {
     lateinit var binding: ActivityAdditional3Binding
+
+    private lateinit var user: SharedPreferences
+    private lateinit var token: String
+
     val checkArray = BooleanArray(35)
     // 각 버튼에 대한 원래 값 저장 배열
     var originalWidthArray = IntArray(35)
@@ -69,6 +79,36 @@ class AdditonalActivity3: AppCompatActivity() {
             val stackBuilder = TaskStackBuilder.create(this)
             stackBuilder.addNextIntentWithParentStack(intent)
             stackBuilder.startActivities()
+
+
+            /*val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.RequestNewItem(detailsRequest, optionsRequest))
+            call.enqueue(object : Callback<RetrofitClient2.ResponseNewItem> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.ResponseNewItem>,
+                    response: Response<RetrofitClient2.ResponseNewItem>
+                ) {
+                    Log.d("Retrofit31", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit3", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            val intent = Intent(this@AdditonalActivity3, IsaScheduleActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                this@AdditonalActivity3,
+                                responseBody?.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.ResponseNewItem>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })*/
         }
 
         binding.imageView10.setOnClickListener{

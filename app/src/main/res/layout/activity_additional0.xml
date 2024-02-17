@@ -60,7 +60,7 @@
 
 
     <EditText
-        android:id="@+id/search_image"
+        android:id="@+id/search_image2"
         android:layout_width="324dp"
         android:layout_height="44dp"
         android:layout_marginTop="18dp"
@@ -84,8 +84,8 @@
         android:layout_height="99dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/button_roundcircle"
-        app:layout_constraintStart_toStartOf="@+id/search_image"
-        app:layout_constraintTop_toBottomOf="@+id/search_image"
+        app:layout_constraintStart_toStartOf="@+id/search_image2"
+        app:layout_constraintTop_toBottomOf="@+id/search_image2"
         android:visibility="visible">
 
         <ImageView
@@ -147,9 +147,9 @@
         android:id="@+id/option_rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/search_image"
-        app:layout_constraintStart_toStartOf="@+id/search_image"
-        app:layout_constraintTop_toBottomOf="@+id/search_image"
+        app:layout_constraintEnd_toEndOf="@+id/search_image2"
+        app:layout_constraintStart_toStartOf="@+id/search_image2"
+        app:layout_constraintTop_toBottomOf="@+id/search_image2"
         tools:listitem="@layout/item_addressoption_layout"
         android:visibility="gone"/>
 
