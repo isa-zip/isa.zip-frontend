@@ -89,6 +89,53 @@ class MatchingCompleteFragment: Fragment() {
 //        setupRecyclerView(outerItemList)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        loadDataFromServer()
+    }
+
+    private fun loadDataFromServer() {
+        val call = RetrofitObject.getRetrofitService.usermatchitem("Bearer $token", "MATCH_COMPLETE")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseUserMatchitem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseUserMatchitem>,
+                response: Response<RetrofitClient2.ResponseUserMatchitem>
+            ) {
+                Log.d("Retrofit61", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit6", responseBody.toString())
+                    if (responseBody != null) {
+                        if (responseBody.isSuccess) {
+                            if (responseBody.data.isNotEmpty()) {
+                                binding.textView10.visibility = View.GONE
+                                binding.optionRv.visibility = View.VISIBLE
+                                setupRecyclerView(responseBody.data)
+                            } else {
+                                // 데이터가 없을 때 처리
+                                binding.textView10.visibility = View.VISIBLE
+                                binding.optionRv.visibility = View.GONE
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                responseBody.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitClient2.ResponseUserMatchitem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+    }
+
+
     private fun setupRecyclerView(outerItemList: List<RetrofitClient2.UserMatchitemData>) {
         // RecyclerView의 레이아웃 매니저 설정
         binding.optionRv.layoutManager =

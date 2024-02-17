@@ -28,7 +28,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
     private lateinit var thirdAdapter: ThirdoptionAdapter
     private val user = MyApplication.getUser()
     private val token = user.getString("jwt", "").toString()
-    private var matchingID: Int = 0
+    private var matchingID: List<Int> = ArrayList() // 또는 listOf<Int>()
     private var userItemID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -172,7 +172,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         // 사용자의 승인 날짜 설정
         binding.textView51.text = translateToKorean(outerItem.userRequestInfo.userItemOptionsResponse.approveDate)
         binding.itemnotshow4.visibility =
-            if (outerItem.userRequestInfo.userItemOptionsResponse.approveDate.isNotEmpty()) View.VISIBLE else View.GONE
+            if (!outerItem.userRequestInfo.userItemOptionsResponse.approveDate.isNullOrBlank()) View.VISIBLE else View.GONE
 
         // 사용자의 추가 필터 정보 설정
         val extraFilters =
@@ -228,8 +228,8 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
                             // RecyclerView 어댑터 설정
                             binding.optionRv2.adapter = thirdAdapter
                             if (matchedBrokerItemResponses.isNotEmpty()) {
-                                // 여기서 매칭 ID를 추출하거나 적절한 로직을 사용하여 설정합니다.
-                                matchingID = matchedBrokerItemResponses.first().matchingId
+                                val matchingIds = matchedBrokerItemResponses.map { it.matchingId }
+                                matchingID = matchingIds
                             }
                         } else {
                             // 필터링된 데이터가 없는 경우의 처리
@@ -299,7 +299,9 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
 
         // 확인 버튼 클릭 리스너 설정
         confirmButton.setOnClickListener {
-            val call = RetrofitObject.getRetrofitService.matchBrokeUserItem("Bearer $token", matchingID, "MATCH_COMPLETE")
+            Log.d("Retrofit88", matchingID.toString())
+            val request = RetrofitClient2.RequestMatchbroker2(matchingID,"MATCH_COMPLETE")
+            val call = RetrofitObject.getRetrofitService.matchBrokeUserItem("Bearer $token", request)
             call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbroker2> {
                 override fun onResponse(
                     call: Call<RetrofitClient2.ResponseMatchbroker2>,

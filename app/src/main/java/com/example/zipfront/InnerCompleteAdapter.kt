@@ -36,9 +36,13 @@ class InnerCompleteAdapter (private val itemList: List<RetrofitClient2.MatchedBr
         init {
             // 아이템 전체에 대한 클릭 리스너 설정
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ZItmeInfoActivity3::class.java)
-                // ZItemInfoActivity1로 이동
-                itemView.context.startActivity(intent)
+                val position = adapterPosition // 클릭된 항목의 위치
+                if (position != RecyclerView.NO_POSITION) {
+                    val intent = Intent(itemView.context, ZItmeInfoActivity1::class.java)
+                    // ZItemInfoActivity1로 이동
+                    intent.putExtra("brokerItemID", itemList[position].brokerItemId)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
         fun bind(item: RetrofitClient2.MatchedBrokerItemResponse) {
@@ -47,20 +51,20 @@ class InnerCompleteAdapter (private val itemList: List<RetrofitClient2.MatchedBr
             val textView3: TextView = itemView.findViewById(R.id.textView27)//동 정보
             val textView4: TextView = itemView.findViewById(R.id.textView28)
             val imageView: ImageView = itemView.findViewById(R.id.imageView19)
-            val imagelayout: ConstraintLayout = itemView.findViewById(R.id.soldoutlayout)
+//            val imagelayout: ConstraintLayout = itemView.findViewById(R.id.soldoutlayout)
 
             val tradingDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "TRADING" }
             val charterDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "CHARTER" }
             val monthDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "MONTHLY" }
 
-            if (item.itemStatus!="ITEM_SELLING")
-            {
-                imagelayout.visibility=View.VISIBLE
-            }
-            else
-            {
-                imagelayout.visibility=View.GONE
-            }
+//            if (item.itemStatus!="ITEM_SELLING")
+//            {
+//                imagelayout.visibility=View.VISIBLE
+//            }
+//            else
+//            {
+//                imagelayout.visibility=View.GONE
+//            }
 
             val tradingPriceText = when {
                 tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"

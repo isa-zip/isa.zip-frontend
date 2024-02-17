@@ -30,8 +30,13 @@ class InnerhomeAdapter(private val itemList: List<RetrofitClient2.HomeItemRespon
         init {
             // 아이템 전체에 대한 클릭 리스너 설정
             itemView.setOnClickListener {
-                val intent = Intent(itemView.context, ZItmeInfoActivity5::class.java)
-                itemView.context.startActivity(intent)
+                val position = adapterPosition // 클릭된 항목의 위치
+                if (position != RecyclerView.NO_POSITION) {
+                    val intent = Intent(itemView.context, ZItmeInfoActivity1::class.java)
+                    // ZItemInfoActivity1로 이동
+                    intent.putExtra("brokerItemID", itemList[position].brokerItemId)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
         fun bind(item: RetrofitClient2.HomeItemResponse) {

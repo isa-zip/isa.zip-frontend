@@ -85,6 +85,51 @@ class MatchingStillFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        // 여기에 서버에서 데이터를 다시 불러오고 UI를 업데이트하는 코드를 작성합니다.
+        val call = RetrofitObject.getRetrofitService.usermatchitem("Bearer $token", "WAITING")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseUserMatchitem> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseUserMatchitem>,
+                response: Response<RetrofitClient2.ResponseUserMatchitem>
+            ) {
+                Log.d("Retrofit61", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit6", responseBody.toString())
+                    if (responseBody != null) {
+                        if (responseBody.isSuccess) {
+                            if (responseBody.data.isNotEmpty()) {
+                                binding.textView10.visibility = View.GONE
+                                binding.notShowing2.visibility = View.VISIBLE
+                                setupRecyclerView(responseBody.data)
+                                binding.textView20.text = "${responseBody.data.size}건"
+                            } else {
+                                // 데이터가 없을 때 처리
+                                binding.textView10.visibility = View.VISIBLE
+                                binding.notShowing2.visibility = View.GONE
+                            }
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                responseBody.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitClient2.ResponseUserMatchitem>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

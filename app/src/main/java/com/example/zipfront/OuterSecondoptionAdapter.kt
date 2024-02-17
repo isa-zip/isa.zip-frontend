@@ -25,6 +25,7 @@ class OuterSecondoptionAdapter(private val innerItems: List<RetrofitClient2.Matc
                                private val userItemId: Int) : RecyclerView.Adapter<OuterSecondoptionAdapter.ViewHolder>() {
 
     private var thirdAdapter: ThirdoptionAdapter? = null
+    private val sortedList = innerItems.sortedBy { it.matchingId }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_matchingselectactivity, parent, false)
@@ -32,12 +33,12 @@ class OuterSecondoptionAdapter(private val innerItems: List<RetrofitClient2.Matc
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val innerItem = innerItems[position]
+        val innerItem = sortedList[position]
         holder.bind(innerItem)
     }
 
     override fun getItemCount(): Int {
-        return innerItems.size
+        return sortedList.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
