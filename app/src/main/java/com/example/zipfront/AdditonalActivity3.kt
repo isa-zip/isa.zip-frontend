@@ -80,8 +80,8 @@ class AdditonalActivity3: AppCompatActivity() {
             stackBuilder.addNextIntentWithParentStack(intent)
             stackBuilder.startActivities()
 
-            /*val detailsRequest =
-            val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.RequestNewItem(detailsRequest, optionsRequest))
+
+            /*val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.RequestNewItem(detailsRequest, optionsRequest))
             call.enqueue(object : Callback<RetrofitClient2.ResponseNewItem> {
                 override fun onResponse(
                     call: Call<RetrofitClient2.ResponseNewItem>,
