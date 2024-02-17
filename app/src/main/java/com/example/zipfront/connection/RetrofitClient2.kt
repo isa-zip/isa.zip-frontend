@@ -1,5 +1,6 @@
 package com.example.zipfront.connection
 
+import android.media.Image
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
@@ -963,6 +964,288 @@ class RetrofitClient2 {
         val postNumber: String
     )
 
+    // step2, step3 관련 dealInfoMap 코드 오류
+    // 매물 새로 등록하기(공인중개사)
+    /*data class RequestNewItem(
+        @SerializedName("detailsRequest")
+        val detailsRequest: Introduction,
+        @SerializedName("optionsRequest")
+        val optionsRequest: Options,
+        // 이미지를 이렇게 하는지 잘 모르겠음
+        @SerializedName("multipartFiles")
+        val multipartFiles: Image
+    )
+
+    data class Introduction(
+        @SerializedName("shortIntroduction")
+        val shortIntroduction: String,
+        @SerializedName("specificIntroduction")
+        val specificIntroduction: String
+    )
+
+    data class Options(
+        @SerializedName("roomType")
+        val roomType: List<roomType>,
+        @SerializedName("dealTypes")
+        val dealTypes: List<dealTypes>,
+        @SerializedName("dealInfoMap")
+        val dealInfoMap: dealInfoMap,
+        @SerializedName("roomSize")
+        val roomSize: String,
+        @SerializedName("selectedFloor")
+        val selectedFloor: List<selectedFloor>,
+        @SerializedName("customFloor")
+        val customFloor: String,
+        @SerializedName("managementOptions")
+        val managementOptions: List<managementOptions>,
+        @SerializedName("managementPrice")
+        val managementPrice: String,
+        @SerializedName("internalFacilities")
+        val internalFacilities: List<internalFacilities>,
+        @SerializedName("approveDate")
+        val approveDate: approveDate?,
+        @SerializedName("extraFilters")
+        val extraFilters: List<extraFilters>
+    )
+
+    enum class roomType {
+        ONE_ROOM,
+        TWO_OR_THREE_ROOM,
+        OFFICETELS,
+        APARTMENT
+    }
+
+    // 복수 선택 가능 (배열)
+    enum class dealTypes {
+        CHARTER,
+        TRADING,
+        MONTHLY
+    }
+
+    data class dealInfoMap(
+        @SerializedName("CHARTER")
+        val CHARTER: charterInfo?,
+        @SerializedName("TRADING")
+        val TRADING: tradingInfo?
+    )
+
+    data class charterInfo(
+        @SerializedName("price")
+        val price: String?,
+        @SerializedName("deposit")
+        val deposit: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
+    )
+
+    data class tradingInfo(
+        @SerializedName("price")
+        val price: String?,
+        @SerializedName("deposit")
+        val deposit: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
+    )
+
+    enum class selectedFloor {
+        ONE,
+        TWO,
+        THREE,
+        FOUR,
+        FIVE,
+        SIX,
+        OVER_SEVEN,
+        SEMI_LAYER,
+        ROOFTOP
+    }
+
+    enum class managementOptions {
+        ELECTRONIC_FEE,
+        GAS_FEE,
+        INTERNET_FEE,
+        PARKING_FEE,
+        WATER_FEE
+    }
+
+    // 복수 선택 가능
+    enum class internalFacilities {
+        AIR_CONDITIONER,
+        REFRIGERATOR,
+        WASHING_MACHINE,
+        MICROWAVE,
+        CLOSET,
+        TABLE,
+        TV,
+        BED
+    }
+
+    enum class approveDate {
+        ALL,
+        UNDER_ONE_YEAR,
+        UNDER_FIVE_YEARS,
+        UNDER_TEN_YEARS,
+        UNDER_FIFTEEN_YEARS,
+        OVER_FIFTEEN_YEARS
+    }
+
+    // 복수 선택 가능
+    enum class extraFilters {
+        PARKING,
+        SHORT_LOAN,
+        FULL_OPTION,
+        ELEVATOR,
+        VERANDA,
+        SECURITY,
+        VR,
+        NON_FACE_CONTRACT
+    }
+
+    data class ResponseNewItem(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: NewItemResult,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class NewItemResult(
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("itemStatus")
+        val itemStatus: String,
+        @SerializedName("addressResponse")
+        val addressResponse: addressResult,
+        @SerializedName("detailResponse")
+        val detailResponse: detailResult,
+        @SerializedName("optionResponse")
+        val optionResponse: optionResult
+    )
+
+    data class addressResult(
+        @SerializedName("addressName")
+        val addressName: String,
+        @SerializedName("roadName")
+        val roadName: String,
+        @SerializedName("postNumber")
+        val postNumber: String,
+        @SerializedName("dong")
+        val dong: String,
+        @SerializedName("roaddong")
+        val roaddong: String,
+        @SerializedName("x")
+        val x: Int,
+        @SerializedName("y")
+        val y: Int
+    )
+
+    data class detailResult(
+        @SerializedName("itemImage")
+        val itemImage: itemImageResult,
+        @SerializedName("itemContent")
+        val itemContent: itemContentResult
+    )
+    data class itemImageResult(
+        @SerializedName("itemImageId")
+        val itemImageId: Int,
+        @SerializedName("itemImage")
+        val itemImage: String //웹
+    )
+    data class itemContentResult(
+        @SerializedName("itemContentId")
+        val itemContentId: Int,
+        @SerializedName("shortIntroduction")
+        val shortIntroduction: String,
+        @SerializedName("specificIntroduction")
+        val specificIntroduction: String
+    )
+
+    data class optionResult(
+        @SerializedName("brokerOptionId")
+        val brokerOptionId: Int,
+        @SerializedName("dealTypes")
+        val dealTypes: dealTypesResult,
+        // roomType은 선택하는건데 스트링이 맞는지 모르겠음
+        @SerializedName("roomType")
+        val roomType: String,
+        @SerializedName("roomSize")
+        val roomSize: String,
+        @SerializedName("floors")
+        val floors: floorsResult,
+        @SerializedName("managementOptions")
+        val managementOptions: managementOptionsResult,
+        @SerializedName("internalFacilities")
+        val internalFacilities: internalFacilitiesResult,
+        @SerializedName("extraFilters")
+        val extraFilters: extraFiltersResult,
+        @SerializedName("approvedDate")
+        val approvedDate: String
+    )
+    data class dealTypesResult(
+        @SerializedName("createdAt")
+        val createdAt: String,
+        @SerializedName("updateAt")
+        val updateAt: String,
+        @SerializedName("brokerDealId")
+        val brokerDealId: Int,
+        @SerializedName("dealType")
+        val dealType: String,
+        @SerializedName("price")
+        val price: String?,
+        @SerializedName("deposit")
+        val deposit: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
+    )
+    data class floorsResult(
+        @SerializedName("createdAt")
+        val createdAt: String,
+        @SerializedName("updateAt")
+        val updateAt: String,
+        @SerializedName("brokerFloorId")
+        val brokerFloorId: Int,
+        @SerializedName("floor")
+        val dealType: String,
+        @SerializedName("customFloor")
+        val price: String?
+    )
+
+    data class managementOptionsResult(
+        @SerializedName("createdAt")
+        val createdAt: String,
+        @SerializedName("updateAt")
+        val updateAt: String,
+        @SerializedName("brokerManagementOptionId")
+        val brokerManagementOptionId: Int,
+        @SerializedName("managementOption")
+        val managementOption: String,
+        @SerializedName("managementPrice")
+        val managementPrice: Int
+    )
+
+    data class internalFacilitiesResult(
+        @SerializedName("createdAt")
+        val createdAt: String,
+        @SerializedName("updateAt")
+        val updateAt: String,
+        @SerializedName("brokerInternalFacilityId")
+        val brokerInternalFacilityId: Int,
+        @SerializedName("internalFacility")
+        val internalFacility: String
+    )
+
+    data class extraFiltersResult(
+        @SerializedName("createdAt")
+        val createdAt: String,
+        @SerializedName("updateAt")
+        val updateAt: String,
+        @SerializedName("brokerExtraFilterId")
+        val brokerExtraFilterId: Int,
+        @SerializedName("extraFilter")
+        val extraFilter: String
+    )*/
 
     //지도 검색
     // 검색 결과를 담는 클래스

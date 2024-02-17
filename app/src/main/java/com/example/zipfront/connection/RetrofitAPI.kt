@@ -132,8 +132,16 @@ interface RetrofitAPI {
         @Query("address") address: String
     ): Call<RetrofitClient2.ResponseBeforeAddress>
 
-
-
+    // 매물 새로 등록하기(공인중개사)
+    @Multipart
+    @POST("/brokers/items")
+    fun NewItem(
+        @Header("Authorization") token: String,
+        @Query("address") address: String,
+        @Part("detailsRequest") detailsRequest: RequestBody,
+        @Part("optionsRequest") optionsRequest: RequestBody,
+        @Part multipartFiles: MultipartBody.Part?
+    ): Call<RetrofitClient2.ResponseProfile>
 
     //카카오맵 검색
     @GET("v2/local/search/address.json") // Keyword.json의 정보를 받아옴
