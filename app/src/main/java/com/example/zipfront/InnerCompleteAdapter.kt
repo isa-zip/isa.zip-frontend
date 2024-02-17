@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.zipfront.connection.RetrofitClient2
+import com.squareup.picasso.Picasso
 
 class InnerCompleteAdapter (private val itemList: List<RetrofitClient2.MatchedBrokerItemResponse>) : RecyclerView.Adapter<InnerCompleteAdapter.ViewHolder>() {
 
@@ -40,18 +42,70 @@ class InnerCompleteAdapter (private val itemList: List<RetrofitClient2.MatchedBr
             }
         }
         fun bind(item: RetrofitClient2.MatchedBrokerItemResponse) {
-            val textView1: TextView = itemView.findViewById(R.id.textView6)
-            val textView2: TextView = itemView.findViewById(R.id.textView7)
-            val imageView: ImageView = itemView.findViewById(R.id.imageView9)
+            val textView1: TextView = itemView.findViewById(R.id.textView25)
+            val textView2: TextView = itemView.findViewById(R.id.textView26)
+            val textView3: TextView = itemView.findViewById(R.id.textView27)//동 정보
+            val textView4: TextView = itemView.findViewById(R.id.textView28)
+            val imageView: ImageView = itemView.findViewById(R.id.imageView19)
+            val imagelayout: ConstraintLayout = itemView.findViewById(R.id.soldoutlayout)
 
-            val dealTypes = item.optionResponse.dealTypes.joinToString(" / ") { translateToKorean(it.dealType) }
-            textView1.text = dealTypes
-            textView2.text = item.businessName
+            val tradingDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "TRADING" }
+            val charterDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "CHARTER" }
+            val monthDeal = item.optionResponse.dealTypes.firstOrNull { it.dealType == "MONTHLY" }
 
-            // Glide를 사용하여 이미지 로드 및 설정
-            Glide.with(itemView)
-                .load(item.detailResponse.itemImages.firstOrNull()?.imageUrl) // 첫 번째 이미지 URL을 사용합니다.
-                .into(imageView)
+            if (item.itemStatus!="ITEM_SELLING")
+            {
+                imagelayout.visibility=View.VISIBLE
+            }
+            else
+            {
+                imagelayout.visibility=View.GONE
+            }
+
+            val tradingPriceText = when {
+                tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
+                else -> ""
+            }
+
+            val charterPriceText = when {
+                charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
+                else -> ""
+            }
+
+            val monthPriceText = when {
+                monthDeal != null && monthDeal.monthPrice != null -> "월세 ${monthDeal.monthPrice}"
+                else -> ""
+            }
+
+            val dealTypesText = listOf(tradingPriceText, charterPriceText, monthPriceText)
+                .filter { it.isNotEmpty() }
+                .joinToString(", ")
+
+            val finalText = "$dealTypesText"
+
+            textView1.text = finalText
+
+            textView3.text = item.dongName
+
+            // 방 크기, 층, 관리비 설정
+            val roomSize = translateToKorean(item.optionResponse.roomSize)
+            val floors = item.optionResponse.floors
+                .mapNotNull { it.customFloor }
+                .joinToString(", ")
+
+            val managementPrice = item.optionResponse.managementOptions.firstOrNull()?.let { translateToKorean(it.managementPrice) } ?: "-"
+            textView2.text = "$roomSize, $floors, $managementPrice"
+
+
+            // 짧은 소개 설정
+            val shortIntroduction = item.detailResponse.itemContent.shortIntroduction
+            textView4.text = "$shortIntroduction"
+
+            // 이미지 로딩
+            val imageUrl = item.detailResponse.itemImages.firstOrNull()?.imageUrl
+            if (imageUrl != null) {
+                Picasso.get().load(imageUrl).into(imageView)
+            }
         }
     }
     fun translateToKorean(keyword: String?): String {

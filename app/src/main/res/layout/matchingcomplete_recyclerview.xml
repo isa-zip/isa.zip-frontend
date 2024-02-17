@@ -16,14 +16,16 @@
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="261dp"
             android:text="아직 매물 매칭 기록이 없어요"
             android:textColor="@color/Gray600"
             android:textSize="14dp"
+            android:fontFamily="@font/suit_medium"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="gone"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/option_rv"
@@ -34,7 +36,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_matchingcomplete_layout" />
+            tools:listitem="@layout/item_matchingcomplete_layout"
+            android:visibility="gone"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -56,6 +56,13 @@ class LocationAdapter2(private var locationSet: List<Location>, private var onIt
             //Toast.makeText(it.context, "Clicked -> ID : ${holder.location.text}", Toast.LENGTH_SHORT).show()
             val intent = Intent(holder.itemView?.context, SearchMapActivity2::class.java)
             intent.putExtra("location", holder.location.text.toString())
+            Log.d("Retrofitdong1231", holder.location.text.toString())
+            val locationText = holder.location.text.toString()
+            val parts = locationText.split(" ")
+            val dongmyeon = if (parts.size >= 3) parts[2] else ""
+            intent.putExtra("dong", dongmyeon)
+            Log.d("Retrofitdong123", dongmyeon.toString())
+
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
         holder.itemView.setOnClickListener(listener)

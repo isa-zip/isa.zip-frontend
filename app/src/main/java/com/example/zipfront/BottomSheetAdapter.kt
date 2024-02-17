@@ -57,17 +57,17 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
 
             val tradingPriceText = when {
                 tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
-                else -> "전세 "
+                else -> ""
             }
 
             val charterPriceText = when {
                 charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
-                else -> "매매 "
+                else -> ""
             }
 
             val monthPriceText = when {
                 monthDeal != null && monthDeal.monthPrice != null -> "월세 ${monthDeal.monthPrice}"
-                else -> "월세 "
+                else -> ""
             }
 
             val dealTypesText = listOf(tradingPriceText, charterPriceText, monthPriceText)
@@ -81,7 +81,7 @@ class BottomSheetAdapter(private val fragment: UploadBottomsheetFragment): Recyc
             // 방 크기, 층, 관리비 설정
             val roomSize = translateToKorean(item.optionResponse.roomSize)
             val floors = item.optionResponse.floors
-                .mapNotNull { translateToKorean(it.floor) }
+                .mapNotNull { it.customFloor }
                 .joinToString(", ")
 
             val managementPrice = item.optionResponse.managementOptions.firstOrNull()?.let { translateToKorean(it.managementPrice) } ?: "-"

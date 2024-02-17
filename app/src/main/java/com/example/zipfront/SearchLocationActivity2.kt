@@ -56,6 +56,7 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
     private var searchLocationList = ArrayList<CurrentSearch>()
     private var stringPrefs: String? = null
 
+    private var locationdong: String? = null
 
     //위치 검색 구현
     private lateinit var retrofit: Retrofit
@@ -134,9 +135,25 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val selectItem = parent.getItemAtPosition(position) as CurrentSearch
                 val imageView = view.findViewById<ImageView>(R.id.delete_iv)
+
+                // 동 이름 추출
+                val parts = selectItem.location.split(" ")
+                val dongmyeon = if (parts.size >= 3) {
+                    parts[2]
+                }
+                else if(parts.size >= 2) {
+                    parts[1]
+                }
+                else
+                {
+                    parts[0]
+                }
                 //아이템 클릭시 지도 화면으로 넘어감
+                Log.d("Retrofitdong1", dongmyeon.toString())
+                Log.d("Retrofitdong1232", selectItem.location.toString())
                 val intent = Intent(this, SearchMapActivity2::class.java)
                 intent.putExtra("location", selectItem.location)
+                intent.putExtra("dong", dongmyeon)
                 ContextCompat.startActivity(this, intent, null)
 
 
@@ -197,7 +214,6 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
             )
         }
     }
-
     private fun changeLayout() {
         if (searchLocationList.size == 0) {
             binding.searchImageLayout.visibility = View.VISIBLE
@@ -216,6 +232,10 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
     override fun onClick(locationId: Int, locationText: String) {
         Toast.makeText(this, "$locationText", Toast.LENGTH_SHORT).show()
         saveCurrentSearchLocation(locationText)
+        val parts = locationText.split(" ")
+        val dong = if (parts.size >= 3) parts[2] else ""
+        Log.d("Retrofitdong1234", "$dong")
+        // 이제 클릭된 위치의 동 이름을 사용할 수 있습니다.
     }
 
 
@@ -303,7 +323,8 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
                         dongmyeon = parts.getOrNull(2) ?: "",
                         li = parts.getOrNull(3) ?: ""
                     )
-
+//                    locationdong = location.dongmyeon
+//                    Log.d("Retrofitdong12", locationdong.toString())
                     locationList.add(location)
                     line = reader.readLine()
                 }
@@ -337,12 +358,13 @@ class SearchLocationActivity2 :AppCompatActivity(), ItemClickHandler, OnItemClic
                     )
                 ) {
                     filteredList.add(location)
+//                    locationdong = location.dongmyeon
+//                    Log.d("Retrofitdong123", locationdong.toString())
                 }
             }
         }
 
         locationAdapter.filterList(filteredList)
-
 
     }
 

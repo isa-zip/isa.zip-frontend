@@ -30,6 +30,7 @@ class SearchMapActivity2 : AppCompatActivity() {
 
         //editText text 바꾸기
         val locationData = intent.getStringExtra("location") ?: ""
+        val locationDong = intent.getStringExtra("dong") ?: ""
         binding.searchEt.setText(locationData)
 
         setContentView(binding.root)
@@ -44,7 +45,9 @@ class SearchMapActivity2 : AppCompatActivity() {
         }
 
         binding.imageButton11.setOnClickListener {
+            Log.d("Retrofitdong2", locationDong.toString())
             val intent = Intent(this, MatchingOptionActivity::class.java)
+            intent.putExtra("dong", locationDong)
 //            startActivityForResult(intent, REQUEST_CODE_OPTION)
             startActivity(intent)
         }

@@ -119,12 +119,10 @@ class OuterSeconduploadAdapter(
             userCHARTER.text = "${formatPrice(charterDeal?.minPrice)}~${formatPrice(charterDeal?.maxPrice)}"
             userTRADING.text = "${formatPrice(tradingDeal?.minPrice)}~${formatPrice(tradingDeal?.maxPrice)}"
 
-            val minDeposit = monthlyDeal?.minDeposit
-            val maxDeposit = monthlyDeal?.maxDeposit
             val minMonthlyPrice = monthlyDeal?.minMonthPrice
             val maxMonthlyPrice = monthlyDeal?.maxMonthPrice
 
-            userMONTHLY.text = "${formatPrice(minDeposit)}/${formatPrice(maxDeposit)} ~ ${formatPrice(minMonthlyPrice)}/${formatPrice(maxMonthlyPrice)}"
+            userMONTHLY.text = "${formatPrice(minMonthlyPrice)}~${formatPrice(maxMonthlyPrice)}"
 
 
             val dealTypes2 =
@@ -217,10 +215,11 @@ class OuterSeconduploadAdapter(
             }
         })
     }
-    fun formatPrice(price: Int?): String {
+    fun formatPrice(price: String?): String {
         return price?.let {
-            if (it >= 0) {
-                val formattedPrice = DecimalFormat("#,###").format(it)
+            val numericPrice = it.toIntOrNull() ?: 0 // price를 정수로 변환, 실패하면 0으로 처리
+            if (numericPrice >= 0) {
+                val formattedPrice = DecimalFormat("#,###").format(numericPrice)
                 "$formattedPrice"
             } else {
                 ""

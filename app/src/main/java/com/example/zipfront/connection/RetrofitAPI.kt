@@ -62,6 +62,9 @@ interface RetrofitAPI {
     @GET("/match/brokers/items")
     fun matchbrokeritem(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseMatchbrokeritem>
 
+    @GET("/home")
+    fun home(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseHome>
+
     @POST("/match/brokers/{userItemId}")
     fun matchBrokerItem(
         @Header("Authorization") token: String,
