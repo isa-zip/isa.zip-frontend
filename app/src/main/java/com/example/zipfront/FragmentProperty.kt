@@ -38,6 +38,15 @@ class FragmentProperty: Fragment() {
         mapView = MapView(requireContext())
         val mapViewContainer = binding.mapView
         mapViewContainer.addView(mapView)
+
+        /*if (checkLocationService()) {
+            // GPS가 켜져있을 경우
+            permissionCheck()
+            //Toast.makeText(requireContext(), "GPS가 켜져있습니다.", Toast.LENGTH_SHORT).show()
+        } else {
+            // GPS가 꺼져있을 경우
+            Toast.makeText(requireContext(), "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
+        }*/
     }
 
     override fun onCreateView(
@@ -49,9 +58,9 @@ class FragmentProperty: Fragment() {
 
 
         //mapV1
-/*        val mapView = MapView(requireContext())
-        val mapViewContainer = binding.layout1 as ViewGroup
-        mapViewContainer.addView(mapView)*/
+        /*        val mapView = MapView(requireContext())
+                val mapViewContainer = binding.layout1 as ViewGroup
+                mapViewContainer.addView(mapView)*/
 
         //mapV2
         /*mapView.start(object : MapLifeCycleCallback() {

@@ -1,7 +1,6 @@
 package com.example.zipfront
 
 import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -39,25 +38,25 @@ class AdditionalActivity0 : AppCompatActivity() {
             finish()
         }
 
-        // user 객체 초기화
-        user = getSharedPreferences("user", MODE_PRIVATE)
-        token = user.getString("jwt", "").toString() // token 초기화
-
         // EditText에서 엔터 키 이벤트 처리
-        binding.searchImage.setOnEditorActionListener { _, actionId, keyEvent ->
+        binding.searchImage2.setOnEditorActionListener { _, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_DONE || keyEvent.keyCode == KeyEvent.KEYCODE_ENTER) {
                 getAddressInfo()
-                // 이벤트를 계속 전달합니다.
-                false
-            } else {
-                // 다른 이벤트는 처리하지 않고 계속 전달합니다.
+                // 이벤트를 소비했으므로 true 반환
                 true
+            } else {
+                // 다른 이벤트는 처리하지 않고 계속 전달
+                false
             }
         }
     }
 
     private fun getAddressInfo() {
-        val address = binding.searchImage.text.toString().trim()
+        // user 객체 초기화
+        user = getSharedPreferences("user", Context.MODE_PRIVATE)
+        token = user.getString("jwt", "").toString() // token 초기화
+
+        val address = binding.searchImage2.text.toString().trim()
         if (address.isEmpty()) {
             Toast.makeText(this, "주소를 입력해주세요", Toast.LENGTH_SHORT).show()
             return
@@ -69,18 +68,16 @@ class AdditionalActivity0 : AppCompatActivity() {
                 call: Call<RetrofitClient2.ResponseBeforeAddress>,
                 response: Response<RetrofitClient2.ResponseBeforeAddress>
             ) {
+                Log.d("Retrofit73", response.toString())
                 if (!isResponseHandled) {
                     isResponseHandled = true
-                    Log.d("Retrofit33", response.toString())
                     if (response.isSuccessful) {
                         val responseBody = response.body()
+                        Log.d("Retrofit7", responseBody.toString())
                         if (responseBody != null && responseBody.isSuccess) {
-                            val addressData = responseBody.data
-                            val addressList = listOf(
-                                addressData.address,
-                                addressData.road_address_name,
-                                addressData.postNumber
-                            )
+                            val addressList = responseBody.data.map { beforeAddress ->
+                                "${beforeAddress.road_address_name}, ${beforeAddress.address}, ${beforeAddress.postNumber}"
+                            }
                             binding.first.visibility = View.GONE
                             binding.optionRv.visibility = View.VISIBLE
                             setupRecyclerView(addressList)
@@ -95,11 +92,24 @@ class AdditionalActivity0 : AppCompatActivity() {
                 }
             }
 
+
             override fun onFailure(call: Call<RetrofitClient2.ResponseBeforeAddress>, t: Throwable) {
                 val errorMessage = "Call Failed: ${t.message}"
                 Log.d("Retrofit", errorMessage)
             }
         })
+
+        // EditText를 엔터를 눌렀을 때 초기화하지 않도록 수정
+        if (binding.searchImage2.imeOptions != EditorInfo.IME_ACTION_DONE) {
+            // EditText에 입력된 주소를 초기화하지 않습니다.
+            // binding.searchImage2.setText("")
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // EditText 초기화
+        binding.searchImage2.setText("")
     }
 
     private fun setupRecyclerView(informationList: List<String>) {

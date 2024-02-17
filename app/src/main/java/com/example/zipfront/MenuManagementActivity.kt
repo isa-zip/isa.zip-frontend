@@ -61,7 +61,13 @@ class MenuManagementActivity : AppCompatActivity() {
                                 Log.d("Retrofit3", data.toString())
                                 //이미지 설정
                                 val imageUrl = data.detailResponse.itemImages.firstOrNull()?.imageUrl
-                                imgRes = Picasso.get().load(imageUrl)
+                                if (data.itemStatus == "ITEM_SELLING") {
+                                    imgRes = Picasso.get().load(imageUrl)
+                                } else {
+                                    imgRes = Picasso.get().load(R.drawable.sold_out)
+                                }
+
+
 
                                 info1 = if (data.optionResponse.dealTypes.firstOrNull()?.dealType == "CHARTER") {
                                     "매매 ${data.optionResponse.dealTypes.firstOrNull()?.charterPrice ?: "-"}"
@@ -73,11 +79,7 @@ class MenuManagementActivity : AppCompatActivity() {
                                     "전세 1억 5천만원"
                                 }
                                 info2 = "${translateToKorean(data.optionResponse.roomSize)}, "
-                                info3 = if (translateToKorean(data.optionResponse.floors.firstOrNull()?.floor) == "") {
-                                    "-층, "
-                                } else{
-                                    "${translateToKorean(data.optionResponse.floors.firstOrNull()?.floor)}, "
-                                }
+                                info3 = "${data.optionResponse.floors.firstOrNull()?.customFloor}, "
 
                                 info4 = "관리비 ${data.optionResponse.managementOptions.firstOrNull()?.managementPrice ?: "-"}"
                                 info5 = data.addressResponse.addressName
@@ -126,19 +128,19 @@ class MenuManagementActivity : AppCompatActivity() {
     private fun translateToKorean(keyword: String?): String {
         return when (keyword) {
             "ONE_ROOM" -> "원룸"
-            "TWO_OR_THREE_ROOM" -> "투룸/쓰리룸"
+            "TWO_OR_THREEROOM" -> "투룸/쓰리룸"
             "OFFICETELS" -> "오피스텔"
             "APARTMENT" -> "아파트"
             "CHARTER" -> "전세"
             "TRADING" -> "매매"
             "MONTHLY" -> "월세"
-            "UNDER_FIVE" -> "~5평"
-            "TEN" -> "10평대"
-            "TWENTY" -> "20평대"
-            "THIRTY" -> "30평대"
-            "FORTY" -> "40평대"
-            "FIFTY" -> "50평대"
-            "OVER_SIXTY" -> "60평대~"
+            "UNDER_FIVE" -> "~5"
+            "TEN" -> "10"
+            "TWENTY" -> "20"
+            "THIRTY" -> "30"
+            "FORTY" -> "40"
+            "FIFTY" -> "50"
+            "OVER_SIXTY" -> "60"
             "ONE" -> "1층"
             "TWO" -> "2층"
             "THREE" -> "3층"
@@ -174,6 +176,13 @@ class MenuManagementActivity : AppCompatActivity() {
             "SECURITY" -> "보안/안전시설"
             "VR" -> "360°VR"
             "NON_FACE_CONTRACT" -> "비대면계약"
+            "UNDER_17" -> "~ 17m²"
+            "UNDER_66" -> "33~66m²"
+            "UNDER_99" -> "66~99m²"
+            "UNDER_132" -> "99~132m²"
+            "UNDER_165" -> "132~165m²"
+            "UNDER_198" -> "165~198m²"
+            "OVER_198" -> "198m² ~"
             else -> keyword ?: ""
         }
     }
