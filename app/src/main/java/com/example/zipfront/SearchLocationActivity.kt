@@ -129,16 +129,12 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
 
 
         //아이템 클릭시
+        var imageViewClicked = false
         binding.currentSearchLv.onItemClickListener =
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val selectItem = parent.getItemAtPosition(position) as CurrentSearch
                 val imageView = view.findViewById<ImageView>(R.id.delete_iv)
-                //아이템 클릭시 지도 화면으로 넘어감
-                val intent = Intent(this, SearchMapActivity::class.java)
-                intent.putExtra("location", selectItem.location)
-                ContextCompat.startActivity(this, intent, null)
-
-
+                val textView = view.findViewById<TextView>(R.id.location_tv)
                 //x 아이콘 클릭시 삭제
                 val handler = Handler(Looper.getMainLooper())
                 imageView.setOnClickListener {
@@ -148,7 +144,15 @@ class SearchLocationActivity :AppCompatActivity(), OnItemClick {
                         (binding.currentSearchLv.adapter as CurrentSearchAdapter).notifyDataSetChanged()
                         saveList(searchLocationList)
                         changeLayout()
+                        imageViewClicked = true
                     }
+                }
+                //return@OnItemClickListener
+                textView.setOnClickListener {
+                    //아이템 클릭시 지도 화면으로 넘어감
+                    val intent = Intent(this, SearchMapActivity::class.java)
+                    intent.putExtra("location", selectItem.location)
+                    ContextCompat.startActivity(this, intent, null)
                 }
             }
 

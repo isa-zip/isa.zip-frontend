@@ -33,6 +33,9 @@ class SearchMapActivity2 : AppCompatActivity() {
         val locationDong = intent.getStringExtra("dong") ?: ""
         binding.searchEt.setText(locationData)
 
+        //현재위치 추적모드 끄기
+        binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
+
         setContentView(binding.root)
 
 
