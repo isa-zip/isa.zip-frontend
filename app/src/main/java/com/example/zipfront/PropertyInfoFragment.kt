@@ -90,9 +90,9 @@ class PropertyInfoFragment : Fragment() {
                         binding.estateText.text = data.businessName
                         //월세 000/00 부분
                         binding.propertyInfo1.text = if (data.optionResponse.dealTypes.firstOrNull()?.dealType == "CHARTER") {
-                            "매매 ${data.optionResponse.dealTypes.firstOrNull()?.charterPrice ?: "-"}"
+                            "전세 ${data.optionResponse.dealTypes.firstOrNull()?.charterPrice ?: "-"}"
                         } else if (data.optionResponse.dealTypes.firstOrNull()?.dealType == "TRADING") {
-                            "전세 ${data.optionResponse.dealTypes.firstOrNull()?.tradingPrice ?: "-"}"
+                            "매매 ${data.optionResponse.dealTypes.firstOrNull()?.tradingPrice ?: "-"}"
                         } else if (data.optionResponse.dealTypes.firstOrNull()?.dealType == "MONTHLY") {
                             "월세 ${data.optionResponse.dealTypes.firstOrNull()?.monthPrice ?: "-"}"
                         } else {

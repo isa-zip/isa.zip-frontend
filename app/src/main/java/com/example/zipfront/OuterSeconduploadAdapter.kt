@@ -150,10 +150,12 @@ class OuterSeconduploadAdapter(
                 if (internalFacilities.isNotEmpty()) View.VISIBLE else View.GONE
 
             // 사용자의 승인 날짜 설정
+//            approveDate.text = translateToKorean(innerItem.userItemOptionsResponse.approveDate)
+//            approveDatelayout.visibility =
+//                if (innerItem.userItemOptionsResponse.approveDate.isNotEmpty()) View.VISIBLE else View.GONE
             approveDate.text = translateToKorean(innerItem.userItemOptionsResponse.approveDate)
             approveDatelayout.visibility =
-                if (innerItem.userItemOptionsResponse.approveDate.isNotEmpty()) View.VISIBLE else View.GONE
-
+                if (!innerItem.userItemOptionsResponse.approveDate.isNullOrBlank()) View.VISIBLE else View.GONE
             // 사용자의 추가 필터 정보 설정
             val extraFilters =
                 innerItem.userItemOptionsResponse.userExtraFilters.joinToString(" / ") { translateToKorean(it.extraFilter) }
@@ -226,7 +228,7 @@ class OuterSeconduploadAdapter(
             }
         } ?: ""
     }
-    fun translateToKorean(keyword: String): String {
+    fun translateToKorean(keyword: String?): String {
         return when (keyword) {
             "ONE_ROOM" -> "원룸"
             "TWO_OR_THREE_ROOM" -> "투룸/쓰리룸"
@@ -277,7 +279,7 @@ class OuterSeconduploadAdapter(
             "SECURITY" -> "보안/안전시설"
             "VR" -> "360°VRㅅ"
             "NON_FACE_CONTRACT" -> "비대면계약"
-            else -> keyword // 다른 경우에는 그대로 반환
+            else -> keyword ?: ""
         }
     }
 }
