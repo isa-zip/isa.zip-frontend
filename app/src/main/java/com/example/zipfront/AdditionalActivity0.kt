@@ -69,25 +69,22 @@ class AdditionalActivity0 : AppCompatActivity() {
                 response: Response<RetrofitClient2.ResponseBeforeAddress>
             ) {
                 Log.d("Retrofit73", response.toString())
-                if (!isResponseHandled) {
-                    isResponseHandled = true
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        Log.d("Retrofit7", responseBody.toString())
-                        if (responseBody != null && responseBody.isSuccess) {
-                            val addressList = responseBody.data.map { beforeAddress ->
-                                "${beforeAddress.road_address_name}, ${beforeAddress.address}, ${beforeAddress.postNumber}"
-                            }
-                            binding.first.visibility = View.GONE
-                            binding.optionRv.visibility = View.VISIBLE
-                            setupRecyclerView(addressList)
-                        } else {
-                            Toast.makeText(
-                                this@AdditionalActivity0,
-                                responseBody?.message ?: "Unknown error",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit7", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        val addressList = responseBody.data.map { beforeAddress ->
+                            "${beforeAddress.road_address_name}, ${beforeAddress.address}, ${beforeAddress.postNumber}"
                         }
+                        binding.first.visibility = View.GONE
+                        binding.optionRv.visibility = View.VISIBLE
+                        setupRecyclerView(addressList)
+                    } else {
+                        Toast.makeText(
+                            this@AdditionalActivity0,
+                            responseBody?.message ?: "Unknown error",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }
