@@ -67,12 +67,12 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
             }
 
             val tradingPriceText = when {
-                tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
+                tradingDeal != null && tradingDeal.tradingPrice != null -> "매매 ${tradingDeal.tradingPrice}"
                 else -> ""
             }
 
             val charterPriceText = when {
-                charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
+                charterDeal != null && charterDeal.charterPrice != null -> "전세 ${charterDeal.charterPrice} "
                 else -> ""
             }
 

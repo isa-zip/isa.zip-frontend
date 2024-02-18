@@ -55,7 +55,7 @@ class PropertyInfoFragment : Fragment() {
 
         //brokerItemID 받아오기
         val brokerItemId = arguments?.getInt("brokerItemId", 1) ?: 1
-        Toast.makeText(requireContext(), "$brokerItemId", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "$brokerItemId", Toast.LENGTH_SHORT).show()
 
 
         //서버 연결
