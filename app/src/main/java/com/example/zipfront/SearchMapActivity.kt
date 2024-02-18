@@ -9,6 +9,7 @@ import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.ActivitySearchmapBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
+import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +17,7 @@ import retrofit2.Response
 class SearchMapActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchmapBinding
     private val API_KEY = "KakaoAK 752d895cabf8520cd29b4cd34878496f"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchmapBinding.inflate(layoutInflater)
@@ -23,6 +25,9 @@ class SearchMapActivity : AppCompatActivity() {
         //editText text 바꾸기
         val locationData = intent.getStringExtra("location") ?: ""
         binding.searchEt.setText(locationData)
+
+        //현재위치 추적모드 끄기
+        binding.mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
 
         setContentView(binding.root)
 
