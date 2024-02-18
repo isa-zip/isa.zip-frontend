@@ -63,28 +63,15 @@ class ScheduleActivity : AppCompatActivity() {
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
 
-            /*// 현재 선택된 날짜 가져오기
-            val now = System.currentTimeMillis()
-            val date = Date(now)
-            val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val moveDateStr = dateFormat.format(date)
-
-            //long now = System.currentTimeMillist()
-            //Date date = new Date(now)
-            //val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            //val moveDateStr = dateFormat.format(Calendar.getInstance().time) // 현재 날짜를 문자열로 변환
-            //val moveDateStr = dateFormat.format(date) // 현재 날짜를 문자열로 변환
-
-            val moveDate = Calendar.getInstance().time
+            // 현재 선택된 날짜 가져오기
+            val moveDate = getSelectedDate()
 
             // 1개월 전 날짜 계산
             val calendarperiod = Calendar.getInstance()
             calendarperiod.add(Calendar.MONTH, -1)
             val period = "ONE_MONTH"
 
-            Log.d("Retrofit33", moveDateStr.toString())
-            val selectedDate = "2024-02-11"
-
+            Log.d("Retrofit33", moveDate.toString())
             val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.Requestschedule(period, moveDate))
             call.enqueue(object : Callback<RetrofitClient2.Responseschedule> {
                 override fun onResponse(
@@ -112,7 +99,7 @@ class ScheduleActivity : AppCompatActivity() {
                     val errorMessage = "Call Failed: ${t.message}"
                     Log.d("Retrofit", errorMessage)
                 }
-            })*/
+            })
         }
 
         // imageView10을 클릭했을 때 액티비티 종료
@@ -122,14 +109,15 @@ class ScheduleActivity : AppCompatActivity() {
         }
     }
 
-    private fun getSelectedDate(): Date {
+    private fun getSelectedDate(): String {
         // 현재 선택된 날짜 가져오기
         val selectedDate = calendarView.date
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = selectedDate
 
-        // 선택된 날짜를 Date 객체로 반환
-        return calendar.time
+        // 선택된 날짜를 "yyyy-MM-dd" 형식으로 반환
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return sdf.format(calendar.time)
     }
 
     private fun formatSelectedDate(year: Int, month: Int, dayOfMonth: Int): String {
