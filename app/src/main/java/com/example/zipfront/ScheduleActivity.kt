@@ -63,13 +63,15 @@ class ScheduleActivity : AppCompatActivity() {
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
 
-            // 현재 선택된 날짜 가져오기
-            val moveDate = getSelectedDate()
+            /*// 현재 선택된 날짜 가져오기
+            val moveDate = getSelectedDate()*/
 
             // 1개월 전 날짜 계산
             val calendarperiod = Calendar.getInstance()
             calendarperiod.add(Calendar.MONTH, -1)
             val period = "ONE_MONTH"
+
+            val moveDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendarperiod.time)
 
             Log.d("Retrofit33", moveDate.toString())
             val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.Requestschedule(period, moveDate))
