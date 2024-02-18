@@ -67,12 +67,12 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
             }
 
             val tradingPriceText = when {
-                tradingDeal != null && tradingDeal.tradingPrice != null -> "전세 ${tradingDeal.tradingPrice}"
+                tradingDeal != null && tradingDeal.tradingPrice != null -> "매매 ${tradingDeal.tradingPrice}"
                 else -> ""
             }
 
             val charterPriceText = when {
-                charterDeal != null && charterDeal.charterPrice != null -> "매매 ${charterDeal.charterPrice} "
+                charterDeal != null && charterDeal.charterPrice != null -> "전세 ${charterDeal.charterPrice} "
                 else -> ""
             }
 
@@ -114,7 +114,8 @@ class InnerSecondoptionAdapter(private val itemList: List<RetrofitClient2.Matche
             // 이미지 뷰 클릭 이벤트 처리
             imageView22.setOnClickListener {
                 imageView22.setImageResource(R.drawable.ic_plusbox)
-                val call = RetrofitObject.getRetrofitService.matchBrokeUserItem("Bearer $token", innerItem.matchingId, "MATCH_LIKE")
+                val request = RetrofitClient2.RequestMatchbroker2(listOf(innerItem.matchingId),"MATCH_LIKE")
+                val call = RetrofitObject.getRetrofitService.matchBrokeUserItem("Bearer $token", request)
                 call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbroker2> {
                     override fun onResponse(
                         call: Call<RetrofitClient2.ResponseMatchbroker2>,

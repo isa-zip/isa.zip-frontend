@@ -35,6 +35,17 @@ class RetrofitClient2 {
         val refreshToken: String
     )
 
+    data class Responselogout(
+        @SerializedName("code")
+        val code: Int,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: String,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
     data class ResponseWithdraw(
         @SerializedName("code")
         val code: Int,
@@ -630,13 +641,21 @@ class RetrofitClient2 {
         val brokerItemId: Int
     )
 
+    data class RequestMatchbroker2(
+        @SerializedName("matchingIds")
+        val matchingIds: List<Int>,
+        @SerializedName("matchStatus")
+        val matchStatus: String
+    )
+
+
     data class ResponseMatchbroker2(
         @SerializedName("code")
         val code: String,
         @SerializedName("message")
         val message: String,
         @SerializedName("data")
-        val data: MatchBrokerData2,
+        val data: String,
         @SerializedName("isSuccess")
         val isSuccess: Boolean
     )

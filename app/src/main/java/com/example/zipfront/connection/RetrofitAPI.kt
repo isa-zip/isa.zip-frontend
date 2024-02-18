@@ -21,6 +21,9 @@ interface RetrofitAPI {
     @POST("/auth/login")
     fun login(@Body request: RetrofitClient2.Requestlogin): Call<RetrofitClient2.Responselogin>
 
+    @POST("/users/logout")
+    fun logout(@Header("Authorization") token: String): Call<RetrofitClient2.Responselogout>
+
     @DELETE("/users")
     fun withdraw(@Header("Authorization") token: String): Call<RetrofitClient2.ResponseWithdraw>
 
@@ -72,11 +75,10 @@ interface RetrofitAPI {
         @Body request: RetrofitClient2.RequestMatchbroker
     ): Call<RetrofitClient2.ResponseMatchbroker>
 
-    @PATCH("/match/brokers/{matchingId}")
+    @PATCH("/match/status")
     fun matchBrokeUserItem(
         @Header("Authorization") token: String,
-        @Path("matchingId") matchingId: Int,
-        @Query("matchStatus") matchStatus: String
+        @Body request: RetrofitClient2.RequestMatchbroker2
     ): Call<RetrofitClient2.ResponseMatchbroker2>
 
     @POST("/auth/sign-up")

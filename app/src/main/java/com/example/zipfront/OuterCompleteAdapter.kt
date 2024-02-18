@@ -72,7 +72,7 @@ class OuterCompleteAdapter(private val outerItemList: List<RetrofitClient2.UserM
                 layout1.visibility = View.GONE
                 layout3.visibility = View.VISIBLE
 
-                val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                val layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.VERTICAL, false)
                 innerRecyclerView.layoutManager = layoutManager
                 // 여기서 outerItem의 내부 아이템 리스트를 사용하여 InnerAdapter 생성 및 설정
                 val innerAdapter = InnerCompleteAdapter(outerItem.matchedBrokerItemResponses)

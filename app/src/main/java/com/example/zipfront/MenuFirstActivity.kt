@@ -67,10 +67,36 @@ class MenuFirstActivity : AppCompatActivity() {
             finish()
         }
         binding.button2.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            val stackBuilder = TaskStackBuilder.create(this)
-            stackBuilder.addNextIntentWithParentStack(intent)
-            stackBuilder.startActivities()
+            val call = RetrofitObject.getRetrofitService.logout("Bearer $token")
+            call.enqueue(object : Callback<RetrofitClient2.Responselogout> {
+                override fun onResponse(call: Call<RetrofitClient2.Responselogout>, response: Response<RetrofitClient2.Responselogout>) {
+                    if (response.isSuccessful) {
+                        Log.d("Retrofit4", response.toString())
+                        val responseBody = response.body()
+                        if (responseBody != null && responseBody.isSuccess)
+                        {
+                            val intent = Intent(this@MenuFirstActivity, LoginActivity::class.java)
+                            val stackBuilder = TaskStackBuilder.create(this@MenuFirstActivity)
+                            stackBuilder.addNextIntentWithParentStack(intent)
+                            stackBuilder.startActivities()
+                        }
+                        else
+                        {
+                        }
+                    } else {
+                        Toast.makeText(
+                            this@MenuFirstActivity,
+                            response.body()?.message ?: "Unknown error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.Responselogout>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                }
+            })
         }
 
         // 프로필 이미지 가져오기

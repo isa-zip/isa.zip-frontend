@@ -10,8 +10,13 @@ class ZItmeInfoActivity2:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPropertyinfoBinding.inflate(layoutInflater)
 
-        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, PropertyInfoFragment()).commitAllowingStateLoss()
+        //brokerItemId 받아오기
+        val intent = intent
+        val brokerItemId = intent.getIntExtra("brokerItemID", 1)
 
+        //brokerItemId 보내기 (PropertyInfoFragment.kt로)
+        val fragment = PropertyInfoFragment.newInstance(brokerItemId)
+        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, fragment).commitAllowingStateLoss()
         //전화하기 버튼 클릭시 bottom sheet
         binding.callBtn.setOnClickListener(){
             val bottomSheetFragment = CallBottomsheetDialogFragment()
