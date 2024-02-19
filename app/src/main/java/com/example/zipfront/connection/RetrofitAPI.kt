@@ -176,6 +176,14 @@ interface RetrofitAPI {
         @Path("brokerItemId") brokerItemId: Int
     ) : Call<RetrofitClient2.ResponseSoldOut>
 
+    //매물 탭 메인
+    @GET("/main/item")
+    fun showPropertyItem(
+        @Header("Authorization") token: String,
+        @Query("x") x: Double,
+        @Query("y") y: Double
+    ): Call<RetrofitClient2.ResponseLocationFilter>
+
     //매물 수정
     /*@PUT("/brokers/items/{brokerItemId}")
     @Multipart

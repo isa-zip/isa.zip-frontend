@@ -13,9 +13,15 @@ class PropertyInfoActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPropertyinfoBinding.inflate(layoutInflater)
 
+        //brokerItemId 받아오기
+        val intent = intent
+        val brokerItemId = intent.getIntExtra("brokerItemID", 1)
+
+        //brokerItemId 보내기 (PropertyInfoFragment.kt로)
+        val fragment = PropertyInfoFragment.newInstance(brokerItemId)
 
         //Property Info Fragment 띄우기
-        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, PropertyInfoFragment()).commitAllowingStateLoss()
+        supportFragmentManager.beginTransaction().replace(binding.propertyInfoFrame.id, fragment).commitAllowingStateLoss()
 
 
         setContentView(binding.root)

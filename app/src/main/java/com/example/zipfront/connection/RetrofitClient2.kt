@@ -1370,5 +1370,61 @@ class RetrofitClient2 {
         val itemStatus: String
     )
 
+    //매물 정보 동 필터링
+    data class ResponseLocationFilter(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: ItemList,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
+    data class ItemList(
+        @SerializedName("count")
+        val count: Int,
+        @SerializedName("brokerItemListList")
+        val brokerItemListList: List<BrokerItemList>
+    )
+
+    data class BrokerItemList(
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("itemStatus")
+        val itemStatus: String,
+        @SerializedName("dealTypes")
+        val dealTypes: List<DealType2>,
+        @SerializedName("roomSize")
+        val roomSize: String,
+        @SerializedName("floors")
+        val floors: List<Floor2>,
+        @SerializedName("managementOptions")
+        val managementOptions: List<ManagementOption2>,
+        @SerializedName("addressName")
+        val addressName: String,
+        @SerializedName("roadName")
+        val roadName: String,
+        @SerializedName("shortIntroduction")
+        val shortIntroduction: String,
+        @SerializedName("itemImage")
+        val itemImage: List<ItemImage2>
+    )
+
+    data class ItemImage2(
+        @SerializedName("itemImageId")
+        val itemImageId: Int,
+        @SerializedName("itemImage")
+        val itemImage: String
+    )
+
+    data class RequestLocation(
+        @SerializedName("x")
+        val x: Double,
+        @SerializedName("y")
+        val y: Double
+    )
+
 
 }
