@@ -46,12 +46,16 @@ class MenuManagementActivity : AppCompatActivity() {
         //매물 전체 조회 API 연동
         //이미지, 전세 1억 5천만원, 평, 3층, 관리비 3만, 동작구 상도동, 숭실대입구 4번출구바로앞
         val call = RetrofitObject.getRetrofitService.brokeritem("Bearer $token")
+        Log.d("Retrofit202", "123")
 
         call.enqueue(object : Callback<RetrofitClient2.ResponseBrokeritem> {
             override fun onResponse(call: Call<RetrofitClient2.ResponseBrokeritem>, response: Response<RetrofitClient2.ResponseBrokeritem>) {
+                Log.d("Retrofit202", response.toString())
                 if (response.isSuccessful) {
+                    Log.d("Retrofit202", "1234")
                     val responseBody = response.body()
                     Log.d("Retrofit2", response.toString())
+                    Log.d("Retrofit202", "123")
                     if(responseBody != null){
                         if(responseBody.isSuccess) {
                             val responseData = responseBody.data
@@ -99,7 +103,7 @@ class MenuManagementActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<RetrofitClient2.ResponseBrokeritem>, t: Throwable) {
                 val errorMessage = "Call Failed: ${t.message}"
-                Log.d("Retrofit", errorMessage)
+                Log.d("Retrofit333", errorMessage)
             }
         })
 

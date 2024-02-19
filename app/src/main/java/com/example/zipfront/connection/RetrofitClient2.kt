@@ -1391,6 +1391,10 @@ class RetrofitClient2 {
     data class BrokerItemList(
         @SerializedName("brokerItemId")
         val brokerItemId: Int,
+        @SerializedName("x")
+        val x: Double,
+        @SerializedName("y")
+        val y: Double,
         @SerializedName("itemStatus")
         val itemStatus: String,
         @SerializedName("dealTypes")
@@ -1418,12 +1422,6 @@ class RetrofitClient2 {
         val itemImage: String
     )
 
-    data class RequestLocation(
-        @SerializedName("x")
-        val x: Double,
-        @SerializedName("y")
-        val y: Double
-    )
 
 
 }
