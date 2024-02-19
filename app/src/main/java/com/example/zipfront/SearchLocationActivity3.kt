@@ -134,9 +134,23 @@ class SearchLocationActivity3 :AppCompatActivity(), ItemClickHandler2, OnItemCli
             AdapterView.OnItemClickListener { parent, view, position, id ->
                 val selectItem = parent.getItemAtPosition(position) as CurrentSearch
                 val imageView = view.findViewById<ImageView>(R.id.delete_iv)
+
+                // 동 이름 추출
+                val parts = selectItem.location.split(" ")
+                val dongmyeon = if (parts.size >= 3) {
+                    parts[2]
+                }
+                else if(parts.size >= 2) {
+                    parts[1]
+                }
+                else
+                {
+                    parts[0]
+                }
                 //아이템 클릭시 지도 화면으로 넘어감
                 val intent = Intent(this, SearchMapActivity3::class.java)
                 intent.putExtra("location", selectItem.location)
+                intent.putExtra("dong", dongmyeon)
                 ContextCompat.startActivity(this, intent, null)
 
 
