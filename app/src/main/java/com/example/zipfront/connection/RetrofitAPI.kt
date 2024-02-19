@@ -184,6 +184,7 @@ interface RetrofitAPI {
         @Query("y") y: Double
     ): Call<RetrofitClient2.ResponseLocationFilter>
 
+
     //매물 수정
     /*@PUT("/brokers/items/{brokerItemId}")
     @Multipart

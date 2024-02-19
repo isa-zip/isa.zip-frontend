@@ -26,6 +26,8 @@ import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.PropertyFragmentBinding
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import retrofit2.Call
 import retrofit2.Callback
@@ -41,6 +43,7 @@ class FragmentProperty: Fragment() {
 
     private val ACCESS_FINE_LOCATION = 1000
     private lateinit var mapView : MapView
+    private var mapData = ArrayList<MapData>()
 
     var info1 : String = ""
     var info2 : String = ""
@@ -133,13 +136,10 @@ class FragmentProperty: Fragment() {
 
         val call = RetrofitObject.getRetrofitService.showPropertyItem("Bearer $token",x, y)
 
-        Log.d("Retrofit20", "여기")
         call.enqueue(object : Callback<RetrofitClient2.ResponseLocationFilter> {
             override fun onResponse(call: Call<RetrofitClient2.ResponseLocationFilter>, response: Response<RetrofitClient2.ResponseLocationFilter>) {
-                Log.d("Retrofit20", "여기2")
                 Log.d("Retrofit20", response.toString())
                 if (response.isSuccessful) {
-                    Log.d("Retrofit20", "여기3")
                     val responseBody = response.body()
                     Log.d("Retrofit20", response.toString())
                     if(responseBody != null){
@@ -153,6 +153,11 @@ class FragmentProperty: Fragment() {
                                     //이미지 설정
                                     val imageUrl = data.itemImage.firstOrNull()?.itemImage
                                     imgRes = Picasso.get().load(imageUrl)
+
+                                    //지도 설정
+                                    mapData.add(MapData(data.brokerItemId, data.addressName, data.x, data.y))
+                                    Log.d("mapdata", mapData.toString())
+                                    setMissionMark(mapData)
 
                                     info1 =
                                         if (data.dealTypes.firstOrNull()?.dealType == "CHARTER") {
@@ -411,6 +416,20 @@ class FragmentProperty: Fragment() {
         binding.propertyRv.adapter = PropertyAdapter(list)
         binding.propertyRv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
 
+    }
+
+    //마커추가
+    private fun setMissionMark(dataList: ArrayList<MapData>) {
+        for (data in dataList) {
+            val marker = MapPOIItem()
+            marker.apply {
+                itemName = data.locationName
+                mapPoint = MapPoint.mapPointWithGeoCoord(data.latitude, data.longitude)
+//                markerType = MapPOIItem.MarkerType.BluePin
+                selectedMarkerType = MapPOIItem.MarkerType.RedPin
+            }
+            mapView.addPOIItem(marker)
+        }
     }
 
 
