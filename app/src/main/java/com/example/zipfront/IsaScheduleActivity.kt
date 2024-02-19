@@ -2,21 +2,30 @@ package com.example.zipfront
 
 import android.app.Dialog
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Adapter
 import android.widget.CalendarView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -31,8 +40,19 @@ class IsaScheduleActivity : AppCompatActivity() {
     private lateinit var Button: ImageButton
     private var isEditingClicked = false
     private var isEditingMode = false
+    private var isRegistration: Boolean = false
+    var scheduleItems = ArrayList<IsaScheduleItem>()
+    private lateinit var adapter : IsaScheduleAdapter
 
     private var selectedRoundTab: ImageButton? = null
+
+    private var user = MyApplication.getUser()
+    private var token = user.getString("jwt", "").toString()
+
+
+    //period, moveDate
+    private lateinit var peroid : String
+    private var moveDate = "2024.02.11"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,18 +76,37 @@ class IsaScheduleActivity : AppCompatActivity() {
             calendar.time = dateFormat.parse(selectedDate) ?: Date()
             val milliseconds = calendar.timeInMillis
             calendarView.date = milliseconds
+
+            // moveDate 설정
+            val moveDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+            moveDate = moveDateFormat.format(calendar.time)
+            Log.d("moveDate", moveDate)
+        }
+
+        calendarView.setOnDateChangeListener { _, year, month, dayOfMonth ->
+            // 선택된 날짜를 Calendar 객체에 설정
+            val calendar = Calendar.getInstance().apply {
+                set(year, month, dayOfMonth)
+            }
+
+            // 선택된 날짜를 "yyyy.MM.dd" 형식의 문자열로 변환하여 moveDate에 할당
+            val moveDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+            moveDate = moveDateFormat.format(calendar.time)
+
+            // moveDate 값 로그로 확인
+            Log.d("moveDate", moveDate)
         }
 
         // 데이터 준비
-        val scheduleItems = ArrayList<IsaScheduleItem>()
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
-        scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
+        //var scheduleItems = ArrayList<IsaScheduleItem>()
+        //scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
+        //scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
+        //scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
+        //scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
+        //scheduleItems.add(IsaScheduleItem("2023.11.7", "방 확정"))
 
         // 어댑터 설정
-        val adapter = IsaScheduleAdapter(scheduleItems, object : IsaScheduleAdapter.OnItemClickListener {
+        adapter = IsaScheduleAdapter(scheduleItems, object : IsaScheduleAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
                 // The following variable is not used in the current implementation.
                 val selectedItem = scheduleItems[position]
@@ -81,7 +120,25 @@ class IsaScheduleActivity : AppCompatActivity() {
                 layout1.setBackgroundResource(R.drawable.list3)
             }
         })
-        optionRecyclerView.adapter = adapter
+        //optionRecyclerView.adapter = adapter
+
+
+        //이사일정 등록
+        if (isRegistration) {
+            deleteSchedule("ONE_MONTH")
+        }
+
+        peroid = "ONE_MONTH"
+        registerSchedule(peroid, moveDate)
+
+        //이사 일정 상세 조회
+        evenschedulelookup()
+
+
+
+
+
+
 
         // 버튼 초기화
         roundtab_3_Button = findViewById(R.id.roundtab3)
@@ -96,25 +153,47 @@ class IsaScheduleActivity : AppCompatActivity() {
             val intent = Intent(this, MatchingOptionActivity2::class.java)
             startActivity(intent)
         }
-        // 버튼에 클릭 리스너 설정
+        // 3개월 전
         roundtab_3_Button.setOnClickListener {
             selectRoundTab(roundtab_3_Button)
             moveCalendar(-90)
+            deleteSchedule("THREE_MONTHS")
+            //peroid = "THREE_MONTHS"
+            //registerSchedule(peroid, moveDate)
+            //optionRecyclerView.adapter = null
+            //evenschedulelookup()
+
         }
-        // 버튼에 클릭 리스너 설정
+        // 2개월 전
         roundtab_2_Button.setOnClickListener {
             selectRoundTab(roundtab_2_Button)
             moveCalendar(-60)
+            deleteSchedule("TWO_MONTHS")
+            //peroid = "TWO_MONTHS"
+            //registerSchedule(peroid, moveDate)
+            //optionRecyclerView.adapter = null
+            //evenschedulelookup()
+
         }
-        // 버튼에 클릭 리스너 설정
+        // 1개월 전
         roundtab_1_Button.setOnClickListener {
             selectRoundTab(roundtab_1_Button)
             moveCalendar(-30)
+            deleteSchedule("ONE_MONTH")
+            //peroid = "ONE_MONTH"
+            //registerSchedule(peroid, moveDate)
+            //optionRecyclerView.adapter = null
+            //evenschedulelookup()
         }
-        // 버튼에 클릭 리스너 설정
+        // 2주 전
         roundtab_2week_Button.setOnClickListener {
             selectRoundTab(roundtab_2week_Button)
             moveCalendar(-14)
+            deleteSchedule("TWO_WEEKS")
+            //peroid = "TWO_WEEKS"
+            //registerSchedule(peroid, moveDate)
+            //optionRecyclerView.adapter = null
+            //evenschedulelookup()
         }
 
         // 년도 텍스트뷰 클릭 시 bottom sheet 표시
@@ -455,5 +534,118 @@ class IsaScheduleActivity : AppCompatActivity() {
 
         bottomSheetDialog.setContentView(bottomSheetView)
         bottomSheetDialog.show()
+    }
+
+    // 일정 등록
+    private fun registerSchedule(str1: String, str2: String)  {
+        val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.Requestschedule(str1, str2))
+        call.enqueue(object : Callback<RetrofitClient2.Responseschedule> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.Responseschedule>,
+                response: Response<RetrofitClient2.Responseschedule>
+            ) {
+                Log.d("Retrofit31", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit3", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        //이사일정 등록 완료
+                        isRegistration = true
+                        //optionRecyclerView.adapter = null
+                        evenschedulelookup()
+
+                    } else {
+                        Toast.makeText(
+                            this@IsaScheduleActivity,
+                            responseBody?.message ?: "Unknown error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitClient2.Responseschedule>, t: Throwable) {
+                val errorMessage = "Call Failed1: ${t.message}"
+                Log.d("RetrofitError", errorMessage)
+            }
+        })
+
+    }
+
+    // 일정 삭제
+    private fun deleteSchedule(peroid : String) {
+        val call = RetrofitObject.getRetrofitService.scheduledelete("Bearer $token")
+        call.enqueue(object : Callback<RetrofitClient2.Responsescheduledelete> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.Responsescheduledelete>,
+                response: Response<RetrofitClient2.Responsescheduledelete>
+            ) {
+                Log.d("Retrofit55555", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit5", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        //이사일정 등록 완료
+                        isRegistration = false
+                        registerSchedule(peroid, moveDate)
+                    } else {
+                        Toast.makeText(
+                            this@IsaScheduleActivity,
+                            responseBody?.message ?: "Unknown error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitClient2.Responsescheduledelete>, t: Throwable) {
+                val errorMessage = "Call Failed2: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+
+    }
+
+    // 상세 일정 조회
+    private fun evenschedulelookup() {
+        var date = ""
+        var description = ""
+
+        val call = RetrofitObject.getRetrofitService.evenschedulelookup("Bearer $token")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseEventScheduleLookup> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseEventScheduleLookup>,
+                response: Response<RetrofitClient2.ResponseEventScheduleLookup>
+            ) {
+                Log.d("Retrofit777", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit77777", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        //여기서 리사이클러뷰 설정
+                        scheduleItems.clear()
+                        for (data in responseBody.data) {
+                            date = data.eventDate
+                            description = data.eventTitle
+                            scheduleItems.add(IsaScheduleItem(date, description))
+                        }
+                        optionRecyclerView.adapter = null
+                        optionRecyclerView.adapter = adapter
+                    } else {
+                        Toast.makeText(
+                            this@IsaScheduleActivity,
+                            responseBody?.message ?: "Unknown error",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitClient2.ResponseEventScheduleLookup>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+
     }
 }

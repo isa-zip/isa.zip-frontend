@@ -63,17 +63,14 @@ class ScheduleActivity : AppCompatActivity() {
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
 
-            /*// 현재 선택된 날짜 가져오기
-            val moveDate = getSelectedDate()*/
 
-            // 1개월 전 날짜 계산
-            val calendarperiod = Calendar.getInstance()
-            calendarperiod.add(Calendar.MONTH, -1)
+            /*
             val period = "ONE_MONTH"
+            Log.d("Retrofit33", period)
+            // 현재 선택된 날짜 가져오기
+            val moveDate = getSelectedDate()
+            Log.d("Retrofit3333", moveDate)
 
-            val moveDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(calendarperiod.time)
-
-            Log.d("Retrofit33", moveDate.toString())
             val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.Requestschedule(period, moveDate))
             call.enqueue(object : Callback<RetrofitClient2.Responseschedule> {
                 override fun onResponse(
@@ -102,6 +99,8 @@ class ScheduleActivity : AppCompatActivity() {
                     Log.d("Retrofit", errorMessage)
                 }
             })
+             */
+
         }
 
         // imageView10을 클릭했을 때 액티비티 종료
@@ -111,14 +110,18 @@ class ScheduleActivity : AppCompatActivity() {
         }
     }
 
+    // 현재 선택된 날짜에서 1달을 뺀 날짜 가져오기
     private fun getSelectedDate(): String {
         // 현재 선택된 날짜 가져오기
-        val selectedDate = calendarView.date
-        val calendar = Calendar.getInstance()
-        calendar.timeInMillis = selectedDate
+        val sdf = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
+        val selectedDate = sdf.parse(selectedDate) ?: Date() // selectedDate를 Date 객체로 파싱
 
-        // 선택된 날짜를 "yyyy-MM-dd" 형식으로 반환
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        // Calendar 객체를 사용하여 날짜 조작
+        val calendar = Calendar.getInstance()
+        calendar.time = selectedDate
+        calendar.add(Calendar.MONTH, -1)
+
+        // 변경된 날짜를 다시 String 형식으로 반환
         return sdf.format(calendar.time)
     }
 
