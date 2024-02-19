@@ -26,7 +26,8 @@ class PropertyAdapter(private val items: ArrayList<PropertyData>) : RecyclerView
         val listener = View.OnClickListener { it ->
             Toast.makeText(it.context, "Clicked -> ID : ${item.info1}, Name : ${item.info2}", Toast.LENGTH_SHORT).show()
             val intent = Intent(holder.itemView?.context, PropertyInfoActivity::class.java)
-            //intent.putExtra("content", "원하는 데이터를 보냅니다.")
+            //brokerItemID 보내기
+            intent.putExtra("brokerItemID", item.brokerItemID)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
         }
 
@@ -56,7 +57,7 @@ class PropertyAdapter(private val items: ArrayList<PropertyData>) : RecyclerView
         private val textView5: TextView = itemView.findViewById(R.id.property_tv)
 
         fun bind(listener: View.OnClickListener, item: PropertyData) {
-            image.setImageResource(item.img!!)
+            item.img.into(image)
             textView1.text = item.info1
             textView2.text = item.info2
             textView3.text = item.info3
