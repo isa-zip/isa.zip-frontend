@@ -116,19 +116,20 @@ interface RetrofitAPI {
         @Header("Authorization") token: String
     ): Call<RetrofitClient2.ResponseEventScheduleLookup>
 
-    // 상세 일정 수정
-    @PUT("/users/events/{eventId}")
-    fun evenschedulemodify(
-        @Header("Authorization") token: String,
-        @Body request: RetrofitClient2.RequestEventschedulemodify
-    ): Call<RetrofitClient2.ResponseEventschedulemodify>
-
     // 상세 일정 삭제
     @DELETE("/users/events/{eventId}")
     fun evenscheduledelete(
         @Header("Authorization") token: String,
-        @Body request: RetrofitClient2.RequestEventscheduledelete
+        @Path("eventId") eventId: Int
     ): Call<RetrofitClient2.ResponseEventscheduledelete>
+
+    // 상세 일정 수정
+    @PUT("/users/events/{eventId}")
+    fun evenschedulemodify(
+        @Header("Authorization") token: String,
+        @Path("eventId") eventId: Int,
+        @Body request: RetrofitClient2.RequestEventschedulemodify
+    ): Call<RetrofitClient2.ResponseEventschedulemodify>
 
     // 매물 새로 등록하기 전 주소 입력
     @GET("/brokers/map") // 변경된 주소로 수정
@@ -183,6 +184,7 @@ interface RetrofitAPI {
         @Query("x") x: Double,
         @Query("y") y: Double
     ): Call<RetrofitClient2.ResponseLocationFilter>
+
 
     //매물 수정
     /*@PUT("/brokers/items/{brokerItemId}")

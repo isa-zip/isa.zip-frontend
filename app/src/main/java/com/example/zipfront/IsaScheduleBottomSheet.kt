@@ -20,11 +20,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
+class IsaScheduleBottomSheet(private val eventId: Int) : BottomSheetDialogFragment() {
     private var user = MyApplication.getUser()
     private var token = user.getString("jwt", "").toString()
 
-    private var eventId: Int = 0 // or any default value you prefer
+    // private val eventId = eventId
     private var isRegistration: Boolean = false
 
     override fun onCreateView(
@@ -34,9 +34,10 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.bottomsheet_dialog_component, container, false)
-        val btnModify: ImageButton = view.findViewById(R.id.imageButton4) // 수정하기
+        val btnModify: ImageButton = view.findViewById(R.id.imageButton4)
         val btnDelete: ImageButton = view.findViewById(R.id.imageButton5)
 
+        // 수정하기 버튼
         btnModify.setOnClickListener {
             dismiss() // 현재 다이얼로그를 닫음
 
@@ -44,20 +45,21 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
             startActivity(intent)
         }
 
+        // 삭제하기 버튼
         btnDelete.setOnClickListener {
             dismiss()
 
             // 삭제하기 api
-            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", RetrofitClient2.RequestEventscheduledelete(eventId))
+            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
             call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
                 override fun onResponse(
                     call: Call<RetrofitClient2.ResponseEventscheduledelete>,
                     response: Response<RetrofitClient2.ResponseEventscheduledelete>
                 ) {
-                    Log.d("Retrofit31", response.toString())
+                    Log.d("Retrofit18", response.toString())
                     if (response.isSuccessful) {
                         val responseBody = response.body()
-                        Log.d("Retrofit3", responseBody.toString())
+                        Log.d("Retrofit118", responseBody.toString())
                         if (responseBody != null && responseBody.isSuccess) {
                             // 삭제
                             isRegistration = true

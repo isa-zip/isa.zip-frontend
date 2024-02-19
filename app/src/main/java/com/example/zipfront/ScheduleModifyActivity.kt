@@ -2,14 +2,21 @@ package com.example.zipfront
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CalendarView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -22,6 +29,10 @@ class ScheduleModifyActivity : AppCompatActivity() {
     private lateinit var registerButton: ImageButton
     private lateinit var cancel: ImageButton
     private lateinit var selectedDate: String // 선택된 날짜를 저장할 변수 추가
+
+
+    private var user = MyApplication.getUser()
+    private var token = user.getString("jwt", "").toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,24 +59,53 @@ class ScheduleModifyActivity : AppCompatActivity() {
         }
 
         cancel.setOnClickListener {
-            // 캘린더의 선택된 날짜를 초기화합니다.
             calendarView.date = System.currentTimeMillis()
-            // 선택된 날짜 텍스트를 초기화합니다.
             selectedDateTextView.text = "이사 일정을 선택해 주세요"
-            // 취소 버튼을 숨깁니다.
             cancel.visibility = View.GONE
-            // 등록 버튼 이미지를 업데이트합니다.
             registerButton.setImageResource(R.drawable.btn_register)
-            // 등록 버튼 활성화 상태로 설정합니다.
             registerButton.isEnabled = false
         }
 
         // 이미지 버튼 클릭 시 동작
         registerButton.setOnClickListener {
-            // 선택한 날짜를 IsaScheduleActivityHome 전달
-            val intent = Intent(this, IsaScheduleActivity::class.java)
+            val intent = Intent(this@ScheduleModifyActivity, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
+
+            /*val call = RetrofitObject.getRetrofitService.evenschedulemodify("Bearer $token", RetrofitClient2.Requestschedule(eventId, eventTitle, eventDate))
+            call.enqueue(object : Callback<RetrofitClient2.ResponseEventschedulemodify> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.ResponseEventschedulemodify>,
+                    response: Response<RetrofitClient2.ResponseEventschedulemodify>
+                ) {
+                    Log.d("Retrofit18", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit118", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            val intent = Intent(this@ScheduleModifyActivity, IsaScheduleActivity::class.java)
+                            intent.putExtra("selectedDate", selectedDate)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                responseBody?.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.ResponseEventschedulemodify>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                    Toast.makeText(
+                        applicationContext,
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })*/
         }
 
         // imageView10을 클릭했을 때 액티비티 종료

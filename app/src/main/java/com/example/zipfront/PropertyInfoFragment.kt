@@ -75,15 +75,17 @@ class PropertyInfoFragment : Fragment() {
                         val optionResponse = responseBody.data.optionResponse
 
                         //뷰페이저 설정
-                        val imageUrl = data.detailResponse.itemImages.firstOrNull()?.imageUrl
-                        val imgRes = Picasso.get().load(imageUrl)
-                        propertyImageAdater.addFragment(PropertyBannerFragment(imgRes))
-                        propertyImageAdater.addFragment(PropertyBannerFragment(imgRes))
-                        propertyImageAdater.addFragment(PropertyBannerFragment(imgRes))
+
+                        for (image in data.detailResponse.itemImages) {
+                            val imageUrl = image.imageUrl
+                            val imgRes = Picasso.get().load(imageUrl)
+                            propertyImageAdater.addFragment(PropertyBannerFragment(imgRes))
+                        }
 
                         //부동산 이미지 설정
                         if (data.brokerImage != null) {
-                            binding.estateImage.setImageResource(data.brokerImage)
+                            val brokerImg = Picasso.get().load(data.brokerImage)
+                            brokerImg.into(binding.estateImage)
                         }
 
                         //부동산명 설정

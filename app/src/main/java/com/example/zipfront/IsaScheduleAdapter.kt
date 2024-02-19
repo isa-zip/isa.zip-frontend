@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class IsaScheduleAdapter(
     private val scheduleList: List<IsaScheduleItem>,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
+    private val eventId: Int
 ) : RecyclerView.Adapter<IsaScheduleAdapter.IsaScheduleViewHolder>() {
 
     private var selectedItemPosition: Int = -1
@@ -93,7 +94,7 @@ class IsaScheduleAdapter(
 
         // ViewHolder 내부의 circleImageView에 클릭 리스너 설정
         circleImageView.setOnClickListener {
-            val bottomSheetFragment = IsaScheduleBottomSheet()
+            val bottomSheetFragment = IsaScheduleBottomSheet(eventId)
             bottomSheetFragment.show((holder.itemView.context as AppCompatActivity).supportFragmentManager, bottomSheetFragment.tag)
         }
 
