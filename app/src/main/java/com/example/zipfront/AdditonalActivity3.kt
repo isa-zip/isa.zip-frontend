@@ -32,9 +32,6 @@ import retrofit2.Response
 class AdditonalActivity3: AppCompatActivity() {
     lateinit var binding: ActivityAdditional3Binding
 
-    private lateinit var user: SharedPreferences
-    private lateinit var token: String
-
     val checkArray = BooleanArray(35)
     // 각 버튼에 대한 원래 값 저장 배열
     var originalWidthArray = IntArray(35)
@@ -46,6 +43,25 @@ class AdditonalActivity3: AppCompatActivity() {
     var originalWidthArray2 = IntArray(3)
     var originalBackgroundArray2 = arrayOfNulls<Drawable>(3)
     var originalTextColorArray2 = IntArray(3)
+
+
+    //현재 값이 저장되어 있는지
+    var isChoose = false
+    private val user = MyApplication.getUser()
+    private val token = user.getString("jwt", "").toString()
+
+    private var charterInfo2: RetrofitClient2.CharterInfo2? = null
+    private var tradingInfo2: RetrofitClient2.TradingInfo? = null
+    private val roomTypeList: MutableList<RetrofitClient2.RoomType> = mutableListOf()
+    private val dealTypesList: MutableList<RetrofitClient2.DealType> = mutableListOf()
+    private val roomSizeList: MutableList<RetrofitClient2.RoomSize> = mutableListOf()
+    private val floorList: MutableList<RetrofitClient2.Floor> = mutableListOf()
+    private val managementOptionList: MutableList<RetrofitClient2.ManagementOption> = mutableListOf()
+    private val internalFacilityList: MutableList<RetrofitClient2.InternalFacility> = mutableListOf()
+    private var approveDate: RetrofitClient2.ApproveDate? = null
+    private val extraFilterList: MutableList<RetrofitClient2.ExtraFilter> = mutableListOf()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdditional3Binding.inflate(layoutInflater)
@@ -79,36 +95,6 @@ class AdditonalActivity3: AppCompatActivity() {
             val stackBuilder = TaskStackBuilder.create(this)
             stackBuilder.addNextIntentWithParentStack(intent)
             stackBuilder.startActivities()
-
-
-            /*val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.RequestNewItem(detailsRequest, optionsRequest))
-            call.enqueue(object : Callback<RetrofitClient2.ResponseNewItem> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.ResponseNewItem>,
-                    response: Response<RetrofitClient2.ResponseNewItem>
-                ) {
-                    Log.d("Retrofit31", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        Log.d("Retrofit3", responseBody.toString())
-                        if (responseBody != null && responseBody.isSuccess) {
-                            val intent = Intent(this@AdditonalActivity3, IsaScheduleActivity::class.java)
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                this@AdditonalActivity3,
-                                responseBody?.message ?: "Unknown error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<RetrofitClient2.ResponseNewItem>, t: Throwable) {
-                    val errorMessage = "Call Failed: ${t.message}"
-                    Log.d("Retrofit", errorMessage)
-                }
-            })*/
         }
 
         binding.imageView10.setOnClickListener{

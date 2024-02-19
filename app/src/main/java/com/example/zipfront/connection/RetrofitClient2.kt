@@ -291,11 +291,29 @@ class RetrofitClient2 {
         val maxPrice: String?
     )
 
+    data class CharterInfo2(
+        @SerializedName("price")
+        val price: String?,
+        @SerializedName("deposit")
+        val deposit: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
+    )
+
     data class TradingInfo(
         @SerializedName("minPrice")
         val minPrice: String?,
         @SerializedName("maxPrice")
         val maxPrice: String?
+    )
+
+    data class TradingInfo2(
+        @SerializedName("price")
+        val price: String?,
+        @SerializedName("deposit")
+        val deposit: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
     )
 
     data class MonthlyInfo(
@@ -799,9 +817,9 @@ class RetrofitClient2 {
     // 일정 등록
     data class Requestschedule(
         @SerializedName("period")
-        val email: String,
+        val period: String,
         @SerializedName("moveDate")
-        val password: String
+        val moveDate: String
     )
 
     data class Responseschedule(
@@ -863,15 +881,11 @@ class RetrofitClient2 {
         @SerializedName("message")
         val message: String,
         @SerializedName("data")
-        val data: ScheduledeleteResult,
+        val data: String,
         @SerializedName("isSuccess")
         val isSuccess: Boolean
     )
 
-    data class ScheduledeleteResult(
-        @SerializedName("scheduleId")
-        val scheduleId: Int
-    )
 
     // 일정 조회
     data class Responseschedulelookup(
@@ -903,7 +917,7 @@ class RetrofitClient2 {
         @SerializedName("message")
         val message: String,
         @SerializedName("data")
-        val data: EventSchedulelookupResult,
+        val data: List<EventSchedulelookupResult>,
         @SerializedName("isSuccess")
         val isSuccess: Boolean
     )
@@ -916,7 +930,7 @@ class RetrofitClient2 {
         @SerializedName("eventTitle")
         val eventTitle: String,
         @SerializedName("eventDate")
-        val eventDate: Date
+        val eventDate: String
     )
 
     // 상세 일정 수정

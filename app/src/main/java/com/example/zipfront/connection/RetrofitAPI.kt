@@ -92,39 +92,39 @@ interface RetrofitAPI {
     ): Call<RetrofitClient2.Responseschedule>
 
     // 일정 수정
-    @POST("/users/schedule")
+    @PUT("/users/schedule")
     fun schedulemodify(
         @Header("Authorization") token: String,
         @Body request: RetrofitClient2.Requestschedulemodify
     ): Call<RetrofitClient2.Responseschedulemodify>
 
     // 일정 삭제
-    @POST("/users/schedule")
+    @DELETE("/users/schedule")
     fun scheduledelete(
         @Header("Authorization") token: String
     ): Call<RetrofitClient2.Responsescheduledelete>
 
     // 일정 조회
-    @POST("/users/schedule")
+    @GET("/users/schedule")
     fun schedulelookup(
         @Header("Authorization") token: String
     ): Call<RetrofitClient2.Responseschedulelookup>
 
     // 상세 일정 조회
-    @POST("/users/events")
+    @GET("/users/events")
     fun evenschedulelookup(
         @Header("Authorization") token: String
     ): Call<RetrofitClient2.ResponseEventScheduleLookup>
 
     // 상세 일정 수정
-    @POST("/users/events/{eventId}")
+    @PUT("/users/events/{eventId}")
     fun evenschedulemodify(
         @Header("Authorization") token: String,
         @Body request: RetrofitClient2.RequestEventschedulemodify
     ): Call<RetrofitClient2.ResponseEventschedulemodify>
 
     // 상세 일정 삭제
-    @POST("/users/events/{eventId}")
+    @DELETE("/users/events/{eventId}")
     fun evenscheduledelete(
         @Header("Authorization") token: String,
         @Body request: RetrofitClient2.RequestEventscheduledelete
