@@ -14,9 +14,19 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.viewpager2.widget.ViewPager2
+import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
+    private var user = MyApplication.getUser()
+    private var token = user.getString("jwt", "").toString()
+
+    private var eventId: Int = 0 // or any default value you prefer
+    private var isRegistration: Boolean = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,7 +34,7 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.bottomsheet_dialog_component, container, false)
-        val btnModify: ImageButton = view.findViewById(R.id.imageButton4)
+        val btnModify: ImageButton = view.findViewById(R.id.imageButton4) // 수정하기
         val btnDelete: ImageButton = view.findViewById(R.id.imageButton5)
 
         btnModify.setOnClickListener {
@@ -36,8 +46,42 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
 
         btnDelete.setOnClickListener {
             dismiss()
-        }
 
+            // 삭제하기 api
+            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", RetrofitClient2.RequestEventscheduledelete(eventId))
+            call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.ResponseEventscheduledelete>,
+                    response: Response<RetrofitClient2.ResponseEventscheduledelete>
+                ) {
+                    Log.d("Retrofit31", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit3", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            // 삭제
+                            isRegistration = true
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                responseBody?.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.ResponseEventscheduledelete>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit", errorMessage)
+                    Toast.makeText(
+                        requireContext(),
+                        errorMessage,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+        }
         return view
     }
 

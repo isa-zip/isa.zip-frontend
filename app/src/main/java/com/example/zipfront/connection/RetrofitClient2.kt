@@ -933,6 +933,23 @@ class RetrofitClient2 {
         val eventDate: String
     )
 
+    // 상세 일정 삭제
+    data class RequestEventscheduledelete(
+        @SerializedName("eventId")
+        val eventId: Int
+    )
+
+    data class ResponseEventscheduledelete(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: String,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
     // 상세 일정 수정
     // string은 어떻게 넣는지 모르겠음
     data class RequestEventschedulemodify(
@@ -954,38 +971,6 @@ class RetrofitClient2 {
     data class ScheduleEventmodifyResult(
         @SerializedName("eventId")
         val scheduleId: Int
-    )
-
-    // 상세 일정 삭제
-    data class RequestEventscheduledelete(
-        @SerializedName("eventId")
-        val eventId: Int,
-        @SerializedName("eventTitle")
-        val eventTitle: String,
-        @SerializedName("eventDate")
-        val eventDate: Date
-    )
-
-    data class ResponseEventscheduledelete(
-        @SerializedName("code")
-        val code: String,
-        @SerializedName("message")
-        val message: String,
-        @SerializedName("data")
-        val data: EventScheduledeleteResult,
-        @SerializedName("isSuccess")
-        val isSuccess: Boolean
-    )
-
-    data class EventScheduledeleteResult(
-        @SerializedName("eventId")
-        val eventId: Int,
-        @SerializedName("scheduleId")
-        val scheduleId: Int,
-        @SerializedName("eventTitle")
-        val eventTitle: String,
-        @SerializedName("eventDate")
-        val eventDate: Date
     )
 
     // 매물 새로 등록하기 전 주소 입력

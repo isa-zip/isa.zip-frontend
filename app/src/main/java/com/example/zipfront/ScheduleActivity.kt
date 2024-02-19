@@ -62,45 +62,6 @@ class ScheduleActivity : AppCompatActivity() {
             val intent = Intent(this, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
             startActivity(intent)
-
-
-            /*
-            val period = "ONE_MONTH"
-            Log.d("Retrofit33", period)
-            // 현재 선택된 날짜 가져오기
-            val moveDate = getSelectedDate()
-            Log.d("Retrofit3333", moveDate)
-
-            val call = RetrofitObject.getRetrofitService.schedule("Bearer $token", RetrofitClient2.Requestschedule(period, moveDate))
-            call.enqueue(object : Callback<RetrofitClient2.Responseschedule> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.Responseschedule>,
-                    response: Response<RetrofitClient2.Responseschedule>
-                ) {
-                    Log.d("Retrofit31", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        Log.d("Retrofit3", responseBody.toString())
-                        if (responseBody != null && responseBody.isSuccess) {
-                            val intent = Intent(this@ScheduleActivity, IsaScheduleActivity::class.java)
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                this@ScheduleActivity,
-                                responseBody?.message ?: "Unknown error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<RetrofitClient2.Responseschedule>, t: Throwable) {
-                    val errorMessage = "Call Failed: ${t.message}"
-                    Log.d("Retrofit", errorMessage)
-                }
-            })
-             */
-
         }
 
         // imageView10을 클릭했을 때 액티비티 종료
