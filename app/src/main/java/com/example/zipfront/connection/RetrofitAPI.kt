@@ -143,10 +143,10 @@ interface RetrofitAPI {
     fun NewItem(
         @Header("Authorization") token: String,
         @Query("address") address: String,
-        @Part("detailsRequest") detailsRequest: RequestBody,
-        @Part("optionsRequest") optionsRequest: RequestBody,
+        @Part("detailsRequest") detailsRequest: RetrofitClient2.Introduction,
+        @Part("optionsRequest") optionsRequest: RetrofitClient2.RequestUseritem2,
         @Part multipartFiles: MultipartBody.Part?
-    ): Call<RetrofitClient2.ResponseProfile>
+    ): Call<RetrofitClient2.ResponseMatchbrokeritemadd>
 
     //카카오맵 검색
     @GET("v2/local/search/address.json") // Keyword.json의 정보를 받아옴

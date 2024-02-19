@@ -161,22 +161,22 @@ class RetrofitClient2 {
         val dongCount: Int
     )
 
-    // 매물 새로 등록하기(공인중개사)
-    data class RequestNewItem(
-        @SerializedName("detailsRequest")
-        val detailsRequest: Introduction,
-        @SerializedName("optionsRequest")
-        val optionsRequest: RequestUseritem,
-        // 이미지를 이렇게 하는지 잘 모르겠음
-        @SerializedName("multipartFiles")
-        val multipartFiles: Image
-    )
+//    // 매물 새로 등록하기(공인중개사)
+//    data class RequestNewItem(
+//        @SerializedName("detailsRequest")
+//        val detailsRequest: Introduction,
+//        @SerializedName("optionsRequest")
+//        val optionsRequest: RequestUseritem,
+//        // 이미지를 이렇게 하는지 잘 모르겠음
+//        @SerializedName("multipartFiles")
+//        val multipartFiles: Image
+//    )
 
     data class Introduction(
         @SerializedName("shortIntroduction")
-        val shortIntroduction: String,
+        val shortIntroduction: String?,
         @SerializedName("specificIntroduction")
-        val specificIntroduction: String
+        val specificIntroduction: String?
     )
 
     data class RequestUseritem(
@@ -200,6 +200,28 @@ class RetrofitClient2 {
         val extraFilter: List<ExtraFilter>
     )
 
+    data class RequestUseritem2(
+        @SerializedName("roomType")
+        val roomType: String?,
+        @SerializedName("dealTypes")
+        val dealTypes: List<DealType>,
+        @SerializedName("dealInfoMap")
+        val dealInfoMap: DealInfoMap2,
+        @SerializedName("roomSize")
+        val roomSize: String?,
+        @SerializedName("selectedFloor")
+        val selectedFloor: List<Floor>,
+        @SerializedName("managementOptions")
+        val managementOptions: List<ManagementOption>,
+        @SerializedName("managementPrice")
+        val managementPrice: String?,
+        @SerializedName("internalFacilities")
+        val internalFacilities: List<InternalFacility>,
+        @SerializedName("approveDate")
+        val approveDate: String?,
+        @SerializedName("extraFilters")
+        val extraFilters: List<ExtraFilter>
+    )
     enum class RoomType {
         ONE_ROOM,
         TWO_OR_THREEROOM,
@@ -283,6 +305,15 @@ class RetrofitClient2 {
         @SerializedName("MONTHLY")
         val MONTHLY: MonthlyInfo?
     )
+    data class DealInfoMap2(
+        @SerializedName("CHARTER")
+        val CHARTER: CharterInfo2?,
+        @SerializedName("TRADING")
+        val TRADING: TradingInfo2?,
+        @SerializedName("MONTHLY")
+        val MONTHLY: MonthlyInfo2?
+    )
+
 
     data class CharterInfo(
         @SerializedName("minPrice")
@@ -323,6 +354,14 @@ class RetrofitClient2 {
         val maxMonthPrice: String?
     )
 
+    data class MonthlyInfo2(
+        @SerializedName("price")
+        val price: String?,
+        @SerializedName("deposit")
+        val deposit: String?,
+        @SerializedName("monthPrice")
+        val monthPrice: String?
+    )
     data class ResponseUseritem(
         @SerializedName("code")
         val code: String,
@@ -702,6 +741,18 @@ class RetrofitClient2 {
         val matchListDetails: List<MatchDetail2>
     )
 
+    //매칭전체조회
+    data class ResponseMatchbrokeritemadd(
+        @SerializedName("code")
+        val code: String,
+        @SerializedName("message")
+        val message: String,
+        @SerializedName("data")
+        val data: BrokerItemResponse,
+        @SerializedName("isSuccess")
+        val isSuccess: Boolean
+    )
+
     data class MatchDetail2(
         @SerializedName("matchId")
         val matchId: Int,
@@ -730,6 +781,18 @@ class RetrofitClient2 {
         val optionResponse: OptionResponse
     )
 
+    data class BrokerItemResponseadd(
+        @SerializedName("brokerItemId")
+        val brokerItemId: Int,
+        @SerializedName("itemStatus")
+        val itemStatus: String,
+        @SerializedName("addressResponse")
+        val addressResponse: AddressResponse,
+        @SerializedName("detailResponse")
+        val detailResponse: DetailResponse,
+        @SerializedName("optionResponse")
+        val optionResponse: OptionResponse
+    )
 //    data class ResponseDongitem(
 //        @SerializedName("code")
 //        val code: String,

@@ -39,6 +39,8 @@ class ScheduleActivity : AppCompatActivity() {
         user = getSharedPreferences("user", MODE_PRIVATE)
         token = user.getString("jwt", "").toString() // token 초기화
 
+        val locationDong = intent.getStringExtra("dong") ?: ""
+
         // 선택된 날짜 초기화
         selectedDate = ""
 
@@ -61,6 +63,7 @@ class ScheduleActivity : AppCompatActivity() {
             // 선택한 날짜를 IsaScheduleActivityHome 전달
             val intent = Intent(this, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
+            intent.putExtra("dong", locationDong)
             startActivity(intent)
         }
 

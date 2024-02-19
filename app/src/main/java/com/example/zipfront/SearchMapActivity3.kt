@@ -30,6 +30,7 @@ class SearchMapActivity3 : AppCompatActivity() {
 
         //editText text 바꾸기
         val locationData = intent.getStringExtra("location") ?: ""
+        val locationDong = intent.getStringExtra("dong") ?: ""
         binding.searchEt.setText(locationData)
 
         //현재위치 추적모드 끄기
@@ -48,6 +49,7 @@ class SearchMapActivity3 : AppCompatActivity() {
 
         binding.imageButton11.setOnClickListener {
             val intent = Intent(this, ScheduleActivity::class.java)
+            intent.putExtra("dong", locationDong)
             startActivity(intent)
         }
 

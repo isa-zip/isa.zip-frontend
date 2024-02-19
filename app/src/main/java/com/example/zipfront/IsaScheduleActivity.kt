@@ -68,6 +68,7 @@ class IsaScheduleActivity : AppCompatActivity() {
 
         // ScheduleActivity에서 전달받은 선택된 날짜 가져오기
         val selectedDate = intent.getStringExtra("selectedDate")
+        val locationDong = intent.getStringExtra("dong") ?: ""
 
         // 선택된 날짜가 null이 아니라면, CalendarView에 설정
         selectedDate?.let {
@@ -144,7 +145,8 @@ class IsaScheduleActivity : AppCompatActivity() {
         Button =findViewById(R.id.imageButton5)
 
         Button.setOnClickListener {
-            val intent = Intent(this, MatchingOptionActivity2::class.java)
+            val intent = Intent(this, MatchingOptionActivity::class.java)
+            intent.putExtra("dong", locationDong)
             startActivity(intent)
         }
         // 3개월 전

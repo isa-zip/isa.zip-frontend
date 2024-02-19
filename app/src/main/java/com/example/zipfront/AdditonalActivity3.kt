@@ -51,14 +51,17 @@ class AdditonalActivity3: AppCompatActivity() {
     private val token = user.getString("jwt", "").toString()
 
     private var charterInfo2: RetrofitClient2.CharterInfo2? = null
-    private var tradingInfo2: RetrofitClient2.TradingInfo? = null
-    private val roomTypeList: MutableList<RetrofitClient2.RoomType> = mutableListOf()
+    private var tradingInfo2: RetrofitClient2.TradingInfo2? = null
+    private var monthlyInfo2: RetrofitClient2.MonthlyInfo2? = null
+
+    private var roomTypeList: RetrofitClient2.RoomType? = null
     private val dealTypesList: MutableList<RetrofitClient2.DealType> = mutableListOf()
-    private val roomSizeList: MutableList<RetrofitClient2.RoomSize> = mutableListOf()
+    private var roomSizeList: String? = null
     private val floorList: MutableList<RetrofitClient2.Floor> = mutableListOf()
     private val managementOptionList: MutableList<RetrofitClient2.ManagementOption> = mutableListOf()
+    private var managementPrice: String? = null
     private val internalFacilityList: MutableList<RetrofitClient2.InternalFacility> = mutableListOf()
-    private var approveDate: RetrofitClient2.ApproveDate? = null
+    private var approveDate: String? = null
     private val extraFilterList: MutableList<RetrofitClient2.ExtraFilter> = mutableListOf()
 
 
@@ -66,6 +69,17 @@ class AdditonalActivity3: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdditional3Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val selectedItem = intent.getStringExtra("selectedItem")
+        val parts = selectedItem?.split(" ") // 공백을 기준으로 분할
+        val result = if (parts != null && parts.size >= 4) { // 최소한 4개의 부분으로 나누어진다고 가정
+            "${parts[2]} ${parts[3]}" // [2][3]번째 부분을 추출하여 조합
+        } else {
+            "" // 예외 처리: 부족한 부분이 있거나 null인 경우 빈 문자열 반환
+        }
+        Log.d("Retrofit8322", result.toString())
+        val shortIntroduction = intent.getStringExtra("shortIntroduction")
+        val specificIntroduction = intent.getStringExtra("specificIntroduction")
 
         binding.constraintLayout3.visibility = View.GONE
         binding.constraintLayout4.visibility = View.GONE
@@ -91,10 +105,85 @@ class AdditonalActivity3: AppCompatActivity() {
         }
 
         binding.imageButton7.setOnClickListener{
-            val intent = Intent(this, MainActivity::class.java)
-            val stackBuilder = TaskStackBuilder.create(this)
-            stackBuilder.addNextIntentWithParentStack(intent)
-            stackBuilder.startActivities()
+            // EditText로부터 사용자가 입력한 값을 가져옵니다.
+            val minPriceText = binding.textView16.text.toString()
+
+            val minPrice: String? = if (minPriceText.isNotEmpty()) minPriceText else null
+
+            Log.d("Retrofit832", minPrice.toString())
+            charterInfo2 = RetrofitClient2.CharterInfo2(minPrice,null,null)
+            Log.d("Retrofit8321", charterInfo2.toString())
+
+            // EditText로부터 사용자가 입력한 값을 가져옵니다.
+            val minPriceText2 = binding.editText2.text.toString()
+
+            val minPrice2: String? = if (minPriceText2.isNotEmpty()) minPriceText2 else null
+
+            Log.d("Retrofit822", minPrice2.toString())
+            tradingInfo2 = RetrofitClient2.TradingInfo2(null, minPrice2, null)
+            Log.d("Retrofit8221", tradingInfo2.toString())
+
+            // EditText로부터 사용자가 입력한 값을 가져옵니다.
+            val minPriceText3 = binding.editText4.text.toString()
+
+            val minPrice3: String? = if (minPriceText3.isNotEmpty()) minPriceText3 else null
+
+            Log.d("Retrofit823", minPrice3.toString())
+            monthlyInfo2 = RetrofitClient2.MonthlyInfo2(null,null,minPrice3)
+            Log.d("Retrofit8231", monthlyInfo2.toString())
+
+            val dong = result ?: ""
+
+            val dealInfoMap = RetrofitClient2.DealInfoMap2(charterInfo2, tradingInfo2, monthlyInfo2)
+
+            roomSizeList=binding.tradeButtonEx2.text.toString()
+            managementPrice=binding.tradeButtonEx3.text.toString()
+            approveDate=binding.tradeButtonEx4.text.toString()
+
+            val detailsRequest = RetrofitClient2.Introduction(
+                shortIntroduction = shortIntroduction,
+                specificIntroduction = specificIntroduction
+            )
+
+            val request = RetrofitClient2.RequestUseritem2(
+                roomType = roomTypeList?.toString(),
+                dealTypes = dealTypesList,
+                dealInfoMap = dealInfoMap,
+                roomSize = roomSizeList,
+                selectedFloor = floorList,
+                managementOptions = managementOptionList,
+                managementPrice = managementPrice,
+                internalFacilities = internalFacilityList,
+                approveDate = approveDate,
+                extraFilters = extraFilterList
+            )
+            Log.d("Retrofit811", request.toString())
+
+            val call = RetrofitObject.getRetrofitService.NewItem("Bearer $token", dong, detailsRequest, request,null)
+            call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbrokeritemadd> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>,
+                    response: Response<RetrofitClient2.ResponseMatchbrokeritemadd>
+                ) {
+                    Log.d("Retrofit81", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit8", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            val intent = Intent(this@AdditonalActivity3, MainActivity::class.java)
+                            val stackBuilder = TaskStackBuilder.create(this@AdditonalActivity3)
+                            stackBuilder.addNextIntentWithParentStack(intent)
+                            stackBuilder.startActivities()
+                        } else {
+                            // 요청이 실패했을 때의 처리
+                        }
+                    }
+                }
+                override fun onFailure(call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>, t: Throwable) {
+                    val errorMessage = "Call Failed: ${t.message}"
+                    Log.d("Retrofit82", errorMessage)
+                }
+            })
         }
 
         binding.imageView10.setOnClickListener{
@@ -204,6 +293,60 @@ class AdditonalActivity3: AppCompatActivity() {
 
             // 클릭 시 텍스트 색상 변경
             button.setTextColor(clickedColor)
+
+            when (index) {
+                in 0..3 -> when (index) {
+                    0 -> roomTypeList = RetrofitClient2.RoomType.ONE_ROOM
+                    1 -> roomTypeList = RetrofitClient2.RoomType.TWO_OR_THREEROOM
+                    2 -> roomTypeList = RetrofitClient2.RoomType.OFFICETELS
+                    else -> roomTypeList = RetrofitClient2.RoomType.APARTMENT
+                }
+
+                in 5..13 -> floorList += when (index) {
+                    5 -> RetrofitClient2.Floor.ONE
+                    6 -> RetrofitClient2.Floor.TWO
+                    7 -> RetrofitClient2.Floor.THREE
+                    8 -> RetrofitClient2.Floor.FOUR
+                    9 -> RetrofitClient2.Floor.FIVE
+                    10 -> RetrofitClient2.Floor.SIX
+                    11 -> RetrofitClient2.Floor.OVER_SEVEN
+                    12-> RetrofitClient2.Floor.SEMI_LAYER
+                    else -> RetrofitClient2.Floor.ROOFTOP
+                }
+
+                in 14..18 -> managementOptionList += when (index) {
+                    14 -> RetrofitClient2.ManagementOption.ELECTRONIC_FEE
+                    15 -> RetrofitClient2.ManagementOption.GAS_FEE
+                    16 -> RetrofitClient2.ManagementOption.INTERNET_FEE
+                    17 -> RetrofitClient2.ManagementOption.PARKING_FEE
+                    else -> RetrofitClient2.ManagementOption.WATER_FEE
+                }
+
+                in 19..26 -> internalFacilityList += when (index) {
+                    19 -> RetrofitClient2.InternalFacility.AIR_CONDITIONER
+                    20 -> RetrofitClient2.InternalFacility.REFRIGERATOR
+                    21 -> RetrofitClient2.InternalFacility.WASHING_MACHINE
+                    22 -> RetrofitClient2.InternalFacility.MICROWAVE
+                    23 -> RetrofitClient2.InternalFacility.CLOSET
+                    24 -> RetrofitClient2.InternalFacility.TABLE
+                    25 -> RetrofitClient2.InternalFacility.TV
+                    else -> RetrofitClient2.InternalFacility.BED
+                }
+
+                in 27..34 -> extraFilterList += when (index) {
+                    27 -> RetrofitClient2.ExtraFilter.PARKING
+                    28 -> RetrofitClient2.ExtraFilter.SHORT_LOAN
+                    29 -> RetrofitClient2.ExtraFilter.FULL_OPTION
+                    30 -> RetrofitClient2.ExtraFilter.ELEVATOR
+                    31 -> RetrofitClient2.ExtraFilter.VERANDA
+                    32 -> RetrofitClient2.ExtraFilter.SECURITY
+                    43 -> RetrofitClient2.ExtraFilter.VR
+                    else -> RetrofitClient2.ExtraFilter.NON_FACE_CONTRACT
+                }
+
+                else -> { /* 처리할 로직이 없는 경우 */
+                }
+            }
         } else {
             // 클릭 시 원래의 상태로 복원
             button.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
