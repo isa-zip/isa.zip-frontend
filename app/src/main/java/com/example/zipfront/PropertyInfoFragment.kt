@@ -128,16 +128,19 @@ class PropertyInfoFragment : Fragment() {
                         //관리비
                         binding.administrationPriceTv.text = optionResponse.managementOptions.firstOrNull()?.managementPrice
                         for (managementOption in optionResponse.managementOptions) {
-                            if (managementOption.brokerManagementOptionId == 1) {
+                            if (managementOption.managementOption == "ELECTRONIC_FEE") {
                                 binding.optionBtn1.text = "전기세"
                                 binding.optionBtn1.visibility = View.VISIBLE
-                            } else if (managementOption.brokerManagementOptionId == 2) {
-                                binding.optionBtn2.text = "수도세"
+                            } else if (managementOption.managementOption == "GAS_FEE") {
+                                binding.optionBtn2.text = "가스비"
                                 binding.optionBtn2.visibility = View.VISIBLE
-                            } else if (managementOption.brokerManagementOptionId == 3) {
-                                binding.optionBtn3.text = "전기세"
+                            } else if (managementOption.managementOption == "INTERNET_FEE") {
+                                binding.optionBtn3.text = "인터넷"
                                 binding.optionBtn3.visibility = View.VISIBLE
-                            } else if (managementOption.brokerManagementOptionId == 4) {
+                            } else if (managementOption.managementOption == "PARKING_FEE") {
+                                binding.optionBtn4.text = "주차비"
+                                binding.optionBtn4.visibility = View.VISIBLE
+                            } else if (managementOption.managementOption == "WATER_FEE") {
                                 binding.optionBtn4.text = "수도세"
                                 binding.optionBtn4.visibility = View.VISIBLE
                             }
@@ -159,16 +162,19 @@ class PropertyInfoFragment : Fragment() {
                         binding.registrationDateInfoTv.text = convertedDate
                         //내부 시설
                         for (internalFacility in optionResponse.internalFacilities) {
-                            if (internalFacility.brokerInternalFacilityId == 1) {
+                            if (internalFacility.internalFacility == "") {
                                 binding.facilityBtn1.text = "에어컨"
                                 binding.facilityBtn1.visibility = View.VISIBLE
-                            } else if (internalFacility.brokerInternalFacilityId == 2) {
+                            } else if (internalFacility.internalFacility == "") {
                                 binding.facilityBtn2.text = "세탁기"
                                 binding.facilityBtn2.visibility = View.VISIBLE
-                            } else if (internalFacility.brokerInternalFacilityId == 3) {
+                            } else if (internalFacility.internalFacility == "") {
                                 binding.facilityBtn3.text = "에어컨"
                                 binding.facilityBtn3.visibility = View.VISIBLE
-                            } else if (internalFacility.brokerInternalFacilityId == 4) {
+                            } else if (internalFacility.internalFacility == "") {
+                                binding.facilityBtn4.text = "세탁기"
+                                binding.facilityBtn4.visibility = View.VISIBLE
+                            } else if (internalFacility.internalFacility == "") {
                                 binding.facilityBtn4.text = "세탁기"
                                 binding.facilityBtn4.visibility = View.VISIBLE
                             } else {

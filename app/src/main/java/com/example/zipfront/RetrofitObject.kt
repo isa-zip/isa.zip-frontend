@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitObject {
 
-    private const val BASE_URL = "https://isa-zip-0af7f0b4fc2f.herokuapp.com"
+    private const val BASE_URL = "http://ec2-52-78-35-69.ap-northeast-2.compute.amazonaws.com:8080"
 
     private val getRetrofit by lazy {
 
