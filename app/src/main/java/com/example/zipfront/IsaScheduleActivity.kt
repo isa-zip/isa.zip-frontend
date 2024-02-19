@@ -134,12 +134,6 @@ class IsaScheduleActivity : AppCompatActivity() {
         //이사 일정 상세 조회
         evenschedulelookup()
 
-
-
-
-
-
-
         // 버튼 초기화
         roundtab_3_Button = findViewById(R.id.roundtab3)
         roundtab_2_Button = findViewById(R.id.roundtab2)
@@ -340,7 +334,6 @@ class IsaScheduleActivity : AppCompatActivity() {
             }
         }
     }
-
 
     // 선택된 상태에 따라 적절한 이미지 리소스를 반환하는 메서드
     private fun getRoundTabImage(imageButton: ImageButton, isSelected: Boolean): Int {
