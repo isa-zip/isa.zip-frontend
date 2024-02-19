@@ -48,7 +48,7 @@ class IsaScheduleActivity : AppCompatActivity() {
 
     private var user = MyApplication.getUser()
     private var token = user.getString("jwt", "").toString()
-
+    private var eventId: Int = 0
 
     //period, moveDate
     private lateinit var peroid : String
@@ -119,7 +119,8 @@ class IsaScheduleActivity : AppCompatActivity() {
                 val layout1: ConstraintLayout = findViewById(R.id.layout1)
                 layout1.setBackgroundResource(R.drawable.list3)
             }
-        })
+        }, eventId) // eventId를 어댑터 생성자에 전달
+
         //optionRecyclerView.adapter = adapter
 
 
