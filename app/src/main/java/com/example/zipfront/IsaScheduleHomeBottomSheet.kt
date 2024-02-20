@@ -44,9 +44,9 @@ class IsaScheduleHomeBottomSheet() : BottomSheetDialogFragment() {
         // 수정하기 버튼
         // 상세 일정 삭제 -> 상세 일정 등록 (파란색 버튼?) -> 상세 일정 조회
         btnModify.setOnClickListener {
-            /*val intent = Intent(activity, ScheduleModifyActivity::class.java)
-            startActivity(intent)*/
-            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
+            val intent = Intent(activity, ScheduleModifyActivity::class.java)
+            startActivity(intent)
+            /*val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
             call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
                 override fun onResponse(
                     call: Call<RetrofitClient2.ResponseEventscheduledelete>,
@@ -59,13 +59,13 @@ class IsaScheduleHomeBottomSheet() : BottomSheetDialogFragment() {
                             // 삭제 후 상세일정 등록 -> 다음 화면
                             val intent = Intent(activity, ScheduleModifyActivity::class.java)
                             startActivity(intent)
-                        } /*else {
+                        } *//*else {
                             Toast.makeText(
                                 this@IsaScheduleBottomSheet,
                                 responseBody?.message ?: "Unknown error",
                                 Toast.LENGTH_SHORT
                             ).show()
-                        }*/
+                        }*//*
                     }
                 }
 
@@ -81,8 +81,7 @@ class IsaScheduleHomeBottomSheet() : BottomSheetDialogFragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            })
-
+            })*/
         }
 
         // 삭제하기 버튼
@@ -102,13 +101,13 @@ class IsaScheduleHomeBottomSheet() : BottomSheetDialogFragment() {
                             evenschedulelookup()
                         }
                         // 바텀시트라서 오류 냠
-                        /*else {
-                                Toast.makeText(
+                        else {
+                                /*Toast.makeText(
                                     this@IsaScheduleBottomSheet,
                                     responseBody?.message ?: "Unknown error",
                                     Toast.LENGTH_SHORT
-                                ).show()
-                            }*/
+                                ).show()*/
+                            }
                     }
                 }
 
@@ -118,7 +117,6 @@ class IsaScheduleHomeBottomSheet() : BottomSheetDialogFragment() {
                 }
             })
             dismiss()
-
         }
         return view
     }

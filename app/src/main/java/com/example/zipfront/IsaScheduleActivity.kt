@@ -73,14 +73,15 @@ class IsaScheduleActivity : AppCompatActivity() {
         // 선택된 날짜가 null이 아니라면, CalendarView에 설정
         selectedDate?.let {
             val dateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
-            val calendar = Calendar.getInstance()
-            calendar.time = dateFormat.parse(selectedDate) ?: Date()
-            val milliseconds = calendar.timeInMillis
-            calendarView.date = milliseconds
+            val selectedCalendar = Calendar.getInstance()
+            selectedCalendar.time = dateFormat.parse(selectedDate) ?: Date()
+
+            calendarView.minDate = selectedCalendar.timeInMillis // 선택된 날짜 이전의 날짜 선택을 막음
+            calendarView.maxDate = selectedCalendar.timeInMillis // 선택된 날짜 이후의 날짜 선택을 막음
 
             // moveDate 설정
             val moveDateFormat = SimpleDateFormat("yyyy.MM.dd", Locale.getDefault())
-            moveDate = moveDateFormat.format(calendar.time)
+            moveDate = moveDateFormat.format(selectedCalendar.time)
             Log.d("moveDate", moveDate)
         }
 

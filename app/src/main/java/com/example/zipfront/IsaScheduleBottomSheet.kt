@@ -38,8 +38,6 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val context = requireContext() // Store the context here
-
         val view = inflater.inflate(R.layout.bottomsheet_dialog_component, container, false)
         val btnModify: ImageButton = view.findViewById(R.id.imageButton4)
         val btnDelete: ImageButton = view.findViewById(R.id.imageButton5)
@@ -47,9 +45,9 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
         // 수정하기 버튼
         // 상세 일정 삭제 -> 상세 일정 등록 (파란색 버튼?) -> 상세 일정 조회
         btnModify.setOnClickListener {
-            /*val intent = Intent(activity, ScheduleModifyActivity::class.java)
-            startActivity(intent)*/
-            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
+            val intent = Intent(activity, ScheduleModifyActivity::class.java)
+            startActivity(intent)
+            /*val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
             call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
                 override fun onResponse(
                     call: Call<RetrofitClient2.ResponseEventscheduledelete>,
@@ -62,13 +60,13 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
                             // 삭제 후 상세일정 등록 -> 다음 화면
                             val intent = Intent(activity, ScheduleModifyActivity::class.java)
                             startActivity(intent)
-                        } /*else {
+                        } *//*else {
                             Toast.makeText(
                                 this@IsaScheduleBottomSheet,
                                 responseBody?.message ?: "Unknown error",
                                 Toast.LENGTH_SHORT
                             ).show()
-                        }*/
+                        }*//*
                     }
                 }
 
@@ -84,15 +82,12 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-            })
-
+            })*/
         }
 
         // 삭제하기 버튼
         // 상세 일정 삭제 -> 상세 일정 조회
         btnDelete.setOnClickListener {
-            dismiss()
-
             val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
             call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
                 override fun onResponse(
@@ -122,6 +117,7 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
                     Log.d("Retrofit", errorMessage)
                 }
             })
+            dismiss()
         }
         return view
     }

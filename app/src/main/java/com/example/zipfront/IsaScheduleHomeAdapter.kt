@@ -121,5 +121,4 @@ class IsaScheduleHomeAdapter(
         isEditingMode = isEditing
         notifyDataSetChanged()
     }
-
 }
