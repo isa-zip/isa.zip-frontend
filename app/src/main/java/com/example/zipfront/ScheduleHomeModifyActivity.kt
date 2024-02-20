@@ -2,15 +2,23 @@ package com.example.zipfront
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CalendarView
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
+import java.util.ArrayList
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -22,6 +30,13 @@ class ScheduleHomeModifyActivity : AppCompatActivity() {
     private lateinit var registerButton: ImageButton
     private lateinit var cancel: ImageButton
     private lateinit var selectedDate: String // 선택된 날짜를 저장할 변수 추가
+
+    private var user = MyApplication.getUser()
+    private var token = user.getString("jwt", "").toString()
+
+    private lateinit var optionRecyclerView: RecyclerView
+    var scheduleHomeItems = ArrayList<IsaScheduleHomeItem>()
+    private lateinit var adapter : IsaScheduleHomeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +76,41 @@ class ScheduleHomeModifyActivity : AppCompatActivity() {
         }
 
         // 이미지 버튼 클릭 시 동작
+        // 상세 일정 수정
         registerButton.setOnClickListener {
-            // 선택한 날짜를 IsaScheduleActivityHome 전달
-            val intent = Intent(this, IsaScheduleActivityHome::class.java)
-            intent.putExtra("selectedDate", selectedDate)
-            startActivity(intent)
+            val eventId = 0
+            val eventTitle = ""
+            val eventDate = selectedDate // 이미 선택된 날짜가 있는 경우
+            val request = RetrofitClient2.RequestEventschedulemodify(eventId, eventTitle, eventDate)
+
+            val call = RetrofitObject.getRetrofitService.evenschedulemodify("Bearer $token", eventId, request)
+            call.enqueue(object : Callback<RetrofitClient2.ResponseEventschedulemodify> {
+                override fun onResponse(
+                    call: Call<RetrofitClient2.ResponseEventschedulemodify>,
+                    response: Response<RetrofitClient2.ResponseEventschedulemodify>
+                ) {
+                    Log.d("Retrofit31", response.toString())
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        Log.d("Retrofit3", responseBody.toString())
+                        if (responseBody != null && responseBody.isSuccess) {
+                            // 상세 일정 조회
+                            evenschedulelookup()
+                        } else {
+                            Toast.makeText(
+                                this@ScheduleHomeModifyActivity,
+                                responseBody?.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<RetrofitClient2.ResponseEventschedulemodify>, t: Throwable) {
+                    val errorMessage = "Call Failed1: ${t.message}"
+                    Log.d("RetrofitError", errorMessage)
+                }
+            })
         }
 
         // imageView10을 클릭했을 때 액티비티 종료
@@ -79,6 +124,43 @@ class ScheduleHomeModifyActivity : AppCompatActivity() {
         yearTextView.setOnClickListener {
             showBottomSheetCalendar()
         }
+    }
+
+    // 상세 일정 조회
+    private fun evenschedulelookup() {
+        var date = ""
+        var description = ""
+
+        val call = RetrofitObject.getRetrofitService.evenschedulelookup("Bearer $token")
+        call.enqueue(object : Callback<RetrofitClient2.ResponseEventScheduleLookup> {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseEventScheduleLookup>,
+                response: Response<RetrofitClient2.ResponseEventScheduleLookup>
+            ) {
+                Log.d("Retrofit777", response.toString())
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    Log.d("Retrofit77777", responseBody.toString())
+                    if (responseBody != null && responseBody.isSuccess) {
+                        //여기서 리사이클러뷰 설정
+                        scheduleHomeItems.clear()
+                        for (data in responseBody.data) {
+                            date = data.eventDate
+                            description = data.eventTitle
+                            scheduleHomeItems.add(IsaScheduleHomeItem(date, description))
+                        }
+                        optionRecyclerView.adapter = null
+                        optionRecyclerView.adapter = adapter
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<RetrofitClient2.ResponseEventScheduleLookup>, t: Throwable) {
+                val errorMessage = "Call Failed: ${t.message}"
+                Log.d("Retrofit", errorMessage)
+            }
+        })
+
     }
 
     private fun formatSelectedDate(year: Int, month: Int, dayOfMonth: Int): String {

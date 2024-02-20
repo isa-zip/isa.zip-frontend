@@ -1,16 +1,13 @@
 package com.example.zipfront
 
-import android.app.Dialog
-import android.view.Gravity
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 
 class IsaScheduleAdapter(
@@ -94,7 +91,7 @@ class IsaScheduleAdapter(
 
         // ViewHolder 내부의 circleImageView에 클릭 리스너 설정
         circleImageView.setOnClickListener {
-            val bottomSheetFragment = IsaScheduleBottomSheet(eventId)
+            val bottomSheetFragment = IsaScheduleBottomSheet()
             bottomSheetFragment.show((holder.itemView.context as AppCompatActivity).supportFragmentManager, bottomSheetFragment.tag)
         }
 

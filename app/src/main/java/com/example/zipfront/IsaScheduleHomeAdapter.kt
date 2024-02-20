@@ -16,7 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class IsaScheduleHomeAdapter(
     private val scheduleList: List<IsaScheduleHomeItem>,
-    private val listener: OnItemClickListener
+    private val listener: OnItemClickListener,
+    private val eventId: Int
 ) : RecyclerView.Adapter<IsaScheduleHomeAdapter.IsaScheduleHomeViewHolder>() {
 
     private var selectedItemPosition: Int = -1

@@ -997,6 +997,11 @@ class RetrofitClient2 {
     )
 
     // 상세 일정 삭제
+    data class RequestEventscheduledelete(
+        @SerializedName("eventId")
+        val eventId: Int
+    )
+
     data class ResponseEventscheduledelete(
         @SerializedName("code")
         val code: String,
