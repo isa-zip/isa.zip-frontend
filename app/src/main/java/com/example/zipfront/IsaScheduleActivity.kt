@@ -51,7 +51,7 @@ class IsaScheduleActivity : AppCompatActivity() {
     private var eventId: Int = 0
 
     //period, moveDate
-    private lateinit var peroid : String
+    private lateinit var period : String
     private var moveDate = "2024.02.11"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,8 +130,8 @@ class IsaScheduleActivity : AppCompatActivity() {
             deleteSchedule("ONE_MONTH")
         }
 
-        peroid = "ONE_MONTH"
-        registerSchedule(peroid, moveDate)
+        period = "ONE_MONTH"
+        registerSchedule(period, moveDate)
 
         //이사 일정 상세 조회
         evenschedulelookup()
@@ -565,11 +565,10 @@ class IsaScheduleActivity : AppCompatActivity() {
                 Log.d("RetrofitError", errorMessage)
             }
         })
-
     }
 
     // 일정 삭제
-    private fun deleteSchedule(peroid : String) {
+    private fun deleteSchedule(period : String) {
         val call = RetrofitObject.getRetrofitService.scheduledelete("Bearer $token")
         call.enqueue(object : Callback<RetrofitClient2.Responsescheduledelete> {
             override fun onResponse(
@@ -583,7 +582,7 @@ class IsaScheduleActivity : AppCompatActivity() {
                     if (responseBody != null && responseBody.isSuccess) {
                         //이사일정 등록 완료
                         isRegistration = false
-                        registerSchedule(peroid, moveDate)
+                        registerSchedule(period, moveDate)
                     } else {
                         Toast.makeText(
                             this@IsaScheduleActivity,
