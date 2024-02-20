@@ -84,8 +84,8 @@ class PropertyInfoFragment : Fragment() {
 
                         //부동산 이미지 설정
                         if (data.brokerImage != null) {
-                            val brokerImg = Picasso.get().load(data.brokerImage)
-                            brokerImg.into(binding.estateImage)
+                            //val brokerImg = Picasso.get().load(data.brokerImage)
+                            //brokerImg.into(binding.estateImage)
                         }
 
                         //부동산명 설정
@@ -164,24 +164,30 @@ class PropertyInfoFragment : Fragment() {
                         binding.registrationDateInfoTv.text = convertedDate
                         //내부 시설
                         for (internalFacility in optionResponse.internalFacilities) {
-                            if (internalFacility.internalFacility == "") {
+                            if (internalFacility.internalFacility == "AIR_CONDITIONER") {
                                 binding.facilityBtn1.text = "에어컨"
                                 binding.facilityBtn1.visibility = View.VISIBLE
-                            } else if (internalFacility.internalFacility == "") {
-                                binding.facilityBtn2.text = "세탁기"
+                            } else if (internalFacility.internalFacility == "REFRIGERATOR") {
+                                binding.facilityBtn2.text = "냉장고"
                                 binding.facilityBtn2.visibility = View.VISIBLE
-                            } else if (internalFacility.internalFacility == "") {
-                                binding.facilityBtn3.text = "에어컨"
+                            } else if (internalFacility.internalFacility == "WASHING_MACHINE") {
+                                binding.facilityBtn3.text = "세탁기"
                                 binding.facilityBtn3.visibility = View.VISIBLE
-                            } else if (internalFacility.internalFacility == "") {
-                                binding.facilityBtn4.text = "세탁기"
+                            } else if (internalFacility.internalFacility == "MICROWAVE") {
+                                binding.facilityBtn4.text = "전자레인지"
                                 binding.facilityBtn4.visibility = View.VISIBLE
-                            } else if (internalFacility.internalFacility == "") {
-                                binding.facilityBtn4.text = "세탁기"
-                                binding.facilityBtn4.visibility = View.VISIBLE
-                            } else {
-                                binding.facilityBtn5.text = "옵션5"
+                            } else if (internalFacility.internalFacility == "CLOSET") {
+                                binding.facilityBtn5.text = "옷장"
                                 binding.facilityBtn5.visibility = View.VISIBLE
+                            } else if (internalFacility.internalFacility == "TABLE") {
+                                binding.facilityBtn6.text = "책상"
+                                binding.facilityBtn6.visibility = View.VISIBLE
+                            } else if (internalFacility.internalFacility == "TV") {
+                                binding.facilityBtn7.text = "TV"
+                                binding.facilityBtn7.visibility = View.VISIBLE
+                            } else {
+                                binding.facilityBtn8.text = "침대"
+                                binding.facilityBtn8.visibility = View.VISIBLE
                             }
                         }
                         //상세 설명

@@ -24,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private lateinit var fragmentToLoad: String
+    private var latitude = 0.0
+    private var longitude = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,11 @@ class MainActivity : AppCompatActivity() {
         }
         //var fragmentToLoad = intent.getStringExtra("fragmentToLoad")
         fragmentToLoad = intent.getStringExtra("fragmentToLoad") ?: ""
+        latitude = intent.getDoubleExtra("latitude", 0.0)
+        longitude = intent.getDoubleExtra("longitude", 0.0)
+
+
+
         Log.d("프래그먼트", "$fragmentToLoad")
         initBottomNavigation()
         //getKakaoMapHashKey(this)
@@ -55,11 +62,18 @@ class MainActivity : AppCompatActivity() {
                 .commitAllowingStateLoss()
         }
         else if(fragmentToLoad == "propertyFragment") {
+            val fragment = FragmentProperty().apply {
+                arguments = Bundle().apply {
+                    putDouble("latitude", latitude)
+                    putDouble("longitude", longitude)
+                }
+            }
+
             binding.AmainToolbar.visibility = View.VISIBLE
             bottomNavigationView.selectedItemId = R.id.propertyFragment
             supportFragmentManager
                 .beginTransaction()
-                .replace(binding.AmainFrame.id, FragmentProperty())
+                .replace(binding.AmainFrame.id, fragment)
                 .commitAllowingStateLoss()
             fragmentToLoad = ""
         }

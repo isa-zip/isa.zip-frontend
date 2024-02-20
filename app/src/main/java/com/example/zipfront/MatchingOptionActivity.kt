@@ -209,18 +209,10 @@ class MatchingOptionActivity: AppCompatActivity() {
             val buttonId = resources.getIdentifier("tradeButton${i + 1}", "id", packageName)
             val button = findViewById<Button>(buttonId)
 
-            val extraFilter = when {
-                i == 0 -> RetrofitClient2.DealType.CHARTER
-                i == 1 -> RetrofitClient2.DealType.TRADING
-                i == 2 -> RetrofitClient2.DealType.MONTHLY
-                else -> null
-            }
-
-
             originalWidthArray2[i] = button.layoutParams.width
             originalBackgroundArray2[i] = button.background
             originalTextColorArray2[i] = button.currentTextColor
-            checkArray2[i] = false // 초기값은 모두 false로 설정
+
 
             button.setOnClickListener {
                 toggleButtonClickState2(

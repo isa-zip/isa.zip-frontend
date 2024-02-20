@@ -17,6 +17,8 @@ import retrofit2.Response
 class SearchMapActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchmapBinding
     private val API_KEY = "KakaoAK 752d895cabf8520cd29b4cd34878496f"
+    var latitude : Double = 0.0
+    var longitude : Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,8 @@ class SearchMapActivity : AppCompatActivity() {
             //binding.mapView.onSurfaceDestroyed()
             val intent = Intent(this@SearchMapActivity, MainActivity::class.java)
             intent.putExtra("fragmentToLoad", "propertyFragment")
+            intent.putExtra("latitude", latitude)
+            intent.putExtra("longitude", longitude)
             startActivity(intent)
             finish()
         }
@@ -78,8 +82,8 @@ class SearchMapActivity : AppCompatActivity() {
     private fun setMap(searchResult: RetrofitClient2.ResultSearchKeyword?) {
         if (!searchResult?.documents.isNullOrEmpty()) {
         // 검색 결과 있음
-            val latitude = searchResult?.documents?.firstOrNull()?.x?.toDouble() ?: 0.0
-            val longitude = searchResult?.documents?.firstOrNull()?.y?.toDouble() ?: 0.0
+            latitude = searchResult?.documents?.firstOrNull()?.x?.toDouble() ?: 0.0
+            longitude = searchResult?.documents?.firstOrNull()?.y?.toDouble() ?: 0.0
             Log.d("위도 확인", "latitude:${latitude}, longitude:${longitude}")
             binding.mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(longitude, latitude), 4, true);
 
