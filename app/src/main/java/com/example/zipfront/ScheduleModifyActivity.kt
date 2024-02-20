@@ -77,42 +77,42 @@ class ScheduleModifyActivity : AppCompatActivity() {
         // 상세 일정 삭제 -> 상세 일정 등록 (파란색 버튼?) -> 상세 일정 조회
         // 버튼이 눌리면 상세 일정이 등록 됨 -> 상세 일정 조회까지?
         registerButton.setOnClickListener {
-            /*val intent = Intent(this@ScheduleModifyActivity, IsaScheduleActivity::class.java)
+            val intent = Intent(this@ScheduleModifyActivity, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
-            startActivity(intent)*/
-            val eventId = 0
-            val eventTitle = ""
-            val eventDate = selectedDate // 이미 선택된 날짜가 있는 경우
-            val request = RetrofitClient2.RequestEventschedulemodify(eventId, eventTitle, eventDate)
-
-            val call = RetrofitObject.getRetrofitService.evenschedulemodify("Bearer $token", eventId, request)
-            call.enqueue(object : Callback<RetrofitClient2.ResponseEventschedulemodify> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.ResponseEventschedulemodify>,
-                    response: Response<RetrofitClient2.ResponseEventschedulemodify>
-                ) {
-                    Log.d("Retrofit31", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        Log.d("Retrofit3", responseBody.toString())
-                        if (responseBody != null && responseBody.isSuccess) {
-                            // 상세 일정 조회
-                            evenschedulelookup()
-                        } else {
-                            Toast.makeText(
-                                this@ScheduleModifyActivity,
-                                responseBody?.message ?: "Unknown error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<RetrofitClient2.ResponseEventschedulemodify>, t: Throwable) {
-                    val errorMessage = "Call Failed1: ${t.message}"
-                    Log.d("RetrofitError", errorMessage)
-                }
-            })
+            startActivity(intent)
+//            val eventId = 0
+//            val eventTitle = ""
+//            val eventDate = selectedDate // 이미 선택된 날짜가 있는 경우
+//            val request = RetrofitClient2.RequestEventschedulemodify(eventId, eventTitle, eventDate)
+//
+//            val call = RetrofitObject.getRetrofitService.evenschedulemodify("Bearer $token", eventId, request)
+//            call.enqueue(object : Callback<RetrofitClient2.ResponseEventschedulemodify> {
+//                override fun onResponse(
+//                    call: Call<RetrofitClient2.ResponseEventschedulemodify>,
+//                    response: Response<RetrofitClient2.ResponseEventschedulemodify>
+//                ) {
+//                    Log.d("Retrofit31", response.toString())
+//                    if (response.isSuccessful) {
+//                        val responseBody = response.body()
+//                        Log.d("Retrofit3", responseBody.toString())
+//                        if (responseBody != null && responseBody.isSuccess) {
+//                            // 상세 일정 조회
+//                            evenschedulelookup()
+//                        } else {
+//                            Toast.makeText(
+//                                this@ScheduleModifyActivity,
+//                                responseBody?.message ?: "Unknown error",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        }
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<RetrofitClient2.ResponseEventschedulemodify>, t: Throwable) {
+//                    val errorMessage = "Call Failed1: ${t.message}"
+//                    Log.d("RetrofitError", errorMessage)
+//                }
+//            })
         }
 
         // imageView10을 클릭했을 때 액티비티 종료

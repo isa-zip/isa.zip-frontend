@@ -46,35 +46,35 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
         // 삭제하기 버튼
         // 상세 일정 삭제 -> 상세 일정 조회
         btnDelete.setOnClickListener {
-            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
-            call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.ResponseEventscheduledelete>,
-                    response: Response<RetrofitClient2.ResponseEventscheduledelete>
-                ) {
-                    Log.d("Retrofit797", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        if (responseBody != null && responseBody.isSuccess) {
-                            // 삭제 후 상세일정 조회
-                            evenschedulelookup()
-                        }
-                        // 바텀시트라서 오류 냠
-                    /*else {
-                            Toast.makeText(
-                                this@IsaScheduleBottomSheet,
-                                responseBody?.message ?: "Unknown error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }*/
-                    }
-                }
-
-                override fun onFailure(call: Call<RetrofitClient2.ResponseEventscheduledelete>, t: Throwable) {
-                    val errorMessage = "Call Failed: ${t.message}"
-                    Log.d("Retrofit", errorMessage)
-                }
-            })
+//            val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
+//            call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
+//                override fun onResponse(
+//                    call: Call<RetrofitClient2.ResponseEventscheduledelete>,
+//                    response: Response<RetrofitClient2.ResponseEventscheduledelete>
+//                ) {
+//                    Log.d("Retrofit797", response.toString())
+//                    if (response.isSuccessful) {
+//                        val responseBody = response.body()
+//                        if (responseBody != null && responseBody.isSuccess) {
+//                            // 삭제 후 상세일정 조회
+//                            evenschedulelookup()
+//                        }
+//                        // 바텀시트라서 오류 냠
+//                    /*else {
+//                            Toast.makeText(
+//                                this@IsaScheduleBottomSheet,
+//                                responseBody?.message ?: "Unknown error",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
+//                        }*/
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<RetrofitClient2.ResponseEventscheduledelete>, t: Throwable) {
+//                    val errorMessage = "Call Failed: ${t.message}"
+//                    Log.d("Retrofit", errorMessage)
+//                }
+//            })
             dismiss()
         }
         return view
