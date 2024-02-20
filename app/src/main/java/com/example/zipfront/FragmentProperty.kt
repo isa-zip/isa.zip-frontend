@@ -50,8 +50,8 @@ class FragmentProperty: Fragment() {
     private var mapData = ArrayList<MapData>()
 
     //마커 찍기
-    private var latitude: Double = 0.0
-    private var longitude: Double = 0.0
+    private var latitude: Double = 126.89698111457
+    private var longitude: Double = 37.5122797138519
 
 
     //옵션
@@ -66,8 +66,6 @@ class FragmentProperty: Fragment() {
     private val internalFacilityList: MutableList<RetrofitClient2.InternalFacility> = mutableListOf()
     private var approveDate: RetrofitClient2.ApproveDate? = null
     private val extraFilterList: MutableList<RetrofitClient2.ExtraFilter> = mutableListOf()
-
-
     private val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
 
     /*public var optionRequest = RetrofitClient2.RequestLocationFilter(
@@ -91,6 +89,8 @@ class FragmentProperty: Fragment() {
     var tv : String = ""
     var brokerItemId: Int = 1
     var itemCount = 0
+
+    private var isFirstRun : Boolean = true
 
 
     override fun onResume() {
@@ -127,31 +127,23 @@ class FragmentProperty: Fragment() {
         mapViewContainer = binding.mapView
         mapViewContainer?.addView(mapView)
 
-        arguments?.let {
-            latitude = it.getDouble("latitude", 0.0)
-            longitude = it.getDouble("longitude", 0.0)
+
+        if (checkLocationService() && mapView.currentLocationTrackingMode != MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading) {
+            // GPS가 켜져있을 경우
+            permissionCheck()
+            updateRV()
+        } else {
+            // GPS가 꺼져있을 경우
+            Toast.makeText(requireContext(), "GPS를 켜주세요", Toast.LENGTH_SHORT).show()
         }
-        Log.d("위도 경도", "$latitude $longitude")
+        updateRV()
 
-        val marker = MapPOIItem()
+        arguments?.let {
+            latitude = it.getDouble("latitude", 126.89698111457)
+            longitude = it.getDouble("longitude", 37.5122797138519)
+        }
 
-        updateRV(latitude, longitude)
-
-/*                //마커찍기 테스트
-                marker.itemName = "data.locationName"
-                val mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
-                marker.mapPoint = mapPoint
-                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-                mapView.addPOIItem(marker)
-
-                marker.itemName = "data.locationName2"
-                marker.mapPoint = MapPoint.mapPointWithGeoCoord(longitude+0.3, latitude+0.3)
-                marker.mapPoint = mapPoint
-                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-                mapView.addPOIItem(marker)*/
-
-//                markerType = MapPOIItem.MarkerType.BluePin
-
+        updateRV()
 
 
         //현재위치
@@ -188,25 +180,11 @@ class FragmentProperty: Fragment() {
 
         //리사이클러뷰
 
-        /*list.add(PropertyData(R.drawable.img, "월세 001/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 002/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 003/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 004/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 005/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 006/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 007/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 008/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 009/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-        list.add(PropertyData(R.drawable.img, "월세 010/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
-
-        binding.propertyRv.layoutManager = LinearLayoutManager(requireContext())
+        /*binding.propertyRv.layoutManager = LinearLayoutManager(requireContext())
         binding.propertyRv.adapter = PropertyAdapter(list)
         binding.propertyRv.addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         */
 
-        //리사이클러뷰 API 연동
-
-        val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
 
         /*val request = RetrofitClient2.RequestLocationFilter(
             roomType = roomTypeList,
@@ -226,7 +204,6 @@ class FragmentProperty: Fragment() {
 
 
 
-        updateRV(latitude,longitude)
 
 
 
@@ -269,30 +246,23 @@ class FragmentProperty: Fragment() {
     }
 
 
-    private fun updateRV(x : Double, y : Double) {
+    private fun updateRV() {
         val list = ArrayList<PropertyData>()
-        val call = RetrofitObject.getRetrofitService.showPropertyItem("Bearer $token", x, y, optionRequest ?: RetrofitClient2.RequestLocationFilter(
-            roomType = roomTypeList,
-            dealTypes = dealTypesList,
-            dealInfoMap = dealInfoMap,
-            roomSize = roomSizeList,
-            floor = floorList,
-            managementOption = managementOptionList,
-            internalFacility = internalFacilityList,
-            approveDate = approveDate,
-            extraFilter = extraFilterList
-        ))
-
+        val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
+        val call = RetrofitObject.getRetrofitService.showPropertyItem("Bearer $token", latitude, longitude)
         call.enqueue(object : Callback<RetrofitClient2.ResponseLocationFilter> {
-            override fun onResponse(call: Call<RetrofitClient2.ResponseLocationFilter>, response: Response<RetrofitClient2.ResponseLocationFilter>) {
+            override fun onResponse(
+                call: Call<RetrofitClient2.ResponseLocationFilter>,
+                response: Response<RetrofitClient2.ResponseLocationFilter>
+            ) {
                 Log.d("Retrofit201", call.toString())
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    Log.d("Retrofit220", response.toString())
-                    if(responseBody != null){
-                        if(responseBody.isSuccess) {
+                    Log.d("Retrofit220", responseBody.toString())
+                    if (responseBody != null) {
+                        if (responseBody.isSuccess) {
                             val responseData = responseBody.data.brokerItemListList
-                            var imgRes : RequestCreator
+                            var imgRes: RequestCreator
                             Log.d("Retrofit221", responseData.toString())
 
                             for (data in responseData) {
@@ -303,7 +273,14 @@ class FragmentProperty: Fragment() {
                                     imgRes = Picasso.get().load(imageUrl)
 
                                     //지도 설정
-                                    mapData.add(MapData(data.brokerItemId, data.addressName, data.x, data.y))
+                                    mapData.add(
+                                        MapData(
+                                            data.brokerItemId,
+                                            data.addressName,
+                                            data.x,
+                                            data.y
+                                        )
+                                    )
                                     Log.d("mapdata", mapData.toString())
                                     setMissionMark(mapData)
 
@@ -341,14 +318,21 @@ class FragmentProperty: Fragment() {
                             }
                             bindingRV(list)
                             binding.propertyNumber.text = "${itemCount}개"
-                        }else{
-                            Toast.makeText(requireContext(), responseBody?.message ?: "Unknown error", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                responseBody?.message ?: "Unknown error",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 }
             }
 
-            override fun onFailure(call: Call<RetrofitClient2.ResponseLocationFilter>, t: Throwable) {
+            override fun onFailure(
+                call: Call<RetrofitClient2.ResponseLocationFilter>,
+                t: Throwable
+            ) {
                 val errorMessage = "Call Failed: ${t.message}"
                 Log.d("Retrofit22", errorMessage)
             }
@@ -432,22 +416,18 @@ class FragmentProperty: Fragment() {
 
     // 위치추적 시작
     private fun startTracking() {
-
         mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
         onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
     }
 
-    //private fun startTracking() {
-    //    mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving
-    //   onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
-    //}
     fun onCurrentLocationUpdate(mapView: MapView?, currentLocation: MapPoint) {
         currentLocation?.let { location ->
-            val latitude = location.mapPointGeoCoord.latitude
-            val longitude = location.mapPointGeoCoord.longitude
+            longitude = location.mapPointGeoCoord.latitude
+            latitude = location.mapPointGeoCoord.longitude
             // 현재 위치의 위도와 경도 값을 사용할 수 있습니다.
             // 이 위치 정보를 필요한 곳에 전달하거나 사용할 수 있습니다.
             Log.d("Current Location", "Latitude: $latitude, Longitude: $longitude")
+            updateRV()
         }
     }
 
@@ -548,17 +528,13 @@ class FragmentProperty: Fragment() {
     //마커추가
     private fun setMissionMark(dataList: ArrayList<MapData>) {
         for (data in dataList) {
+            Log.d("gggg", data.toString())
             val marker = MapPOIItem()
-            marker.apply {
-                itemName = data.locationName
-                mapPoint = MapPoint.mapPointWithGeoCoord(data.latitude, data.longitude)
-//                markerType = MapPOIItem.MarkerType.BluePin
-                selectedMarkerType = MapPOIItem.MarkerType.RedPin
-            }
+            marker.itemName = data.locationName
+            marker.mapPoint = MapPoint.mapPointWithGeoCoord(data.longitude, data.latitude)
+            marker.markerType = MapPOIItem.MarkerType.BluePin
             mapView.addPOIItem(marker)
         }
     }
-
-
 
 }
