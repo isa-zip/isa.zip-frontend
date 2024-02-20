@@ -1,20 +1,14 @@
 package com.example.zipfront
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.example.zipfront.connection.RetrofitClient2
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import retrofit2.Call
@@ -47,42 +41,6 @@ class IsaScheduleBottomSheet() : BottomSheetDialogFragment() {
         btnModify.setOnClickListener {
             val intent = Intent(activity, ScheduleModifyActivity::class.java)
             startActivity(intent)
-            /*val call = RetrofitObject.getRetrofitService.evenscheduledelete("Bearer $token", eventId)
-            call.enqueue(object : Callback<RetrofitClient2.ResponseEventscheduledelete> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.ResponseEventscheduledelete>,
-                    response: Response<RetrofitClient2.ResponseEventscheduledelete>
-                ) {
-                    Log.d("Retrofit797", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        if (responseBody != null && responseBody.isSuccess) {
-                            // 삭제 후 상세일정 등록 -> 다음 화면
-                            val intent = Intent(activity, ScheduleModifyActivity::class.java)
-                            startActivity(intent)
-                        } *//*else {
-                            Toast.makeText(
-                                this@IsaScheduleBottomSheet,
-                                responseBody?.message ?: "Unknown error",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }*//*
-                    }
-                }
-
-                override fun onFailure(
-                    call: Call<RetrofitClient2.ResponseEventscheduledelete>,
-                    t: Throwable
-                ) {
-                    val errorMessage = "Call Failed: ${t.message}"
-                    Log.d("Retrofit", errorMessage)
-                    Toast.makeText(
-                        context, // Use the stored context here
-                        errorMessage,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            })*/
         }
 
         // 삭제하기 버튼

@@ -19,7 +19,7 @@ class IsaScheduleAdapter(
     private var selectedItemPosition: Int = -1
     private var isEditingMode: Boolean = false
     private var isEditingClicked: Boolean = false
-
+z
     inner class IsaScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val textViewDate: TextView = itemView.findViewById(R.id.textView22)
         val textViewDescription: TextView = itemView.findViewById(R.id.textView23)
