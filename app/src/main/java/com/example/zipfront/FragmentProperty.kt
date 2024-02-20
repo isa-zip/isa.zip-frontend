@@ -389,8 +389,6 @@ class FragmentProperty: Fragment() {
         val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
-
-
     // 위치 권한 확인
     private fun permissionCheck() {
         val preference = requireContext().getSharedPreferences("isFirstPermissionCheck", Context.MODE_PRIVATE)
@@ -405,7 +403,6 @@ class FragmentProperty: Fragment() {
                     ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
                 }
                 builder.setNegativeButton("취소") { dialog, which ->
-
                 }
                 builder.show()*/
                 val locationPermissionFragment = LocationPermissionFragment()
@@ -424,7 +421,6 @@ class FragmentProperty: Fragment() {
                         startActivity(intent)
                     }
                     builder.setNegativeButton("취소") { dialog, which ->
-
                     }
                     builder.show()*/
                     val locationPermissionFragment = LocationPermissionFragment()
@@ -435,14 +431,18 @@ class FragmentProperty: Fragment() {
             // 권한이 있는 상태
             startTracking()
         }
-        //startTracking()
     }
 
     // 위치추적 시작
     private fun startTracking() {
-        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving
-        onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
+
+        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
     }
+
+    //private fun startTracking() {
+    //    mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving
+    //   onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
+    //}
     fun onCurrentLocationUpdate(mapView: MapView?, currentLocation: MapPoint) {
         currentLocation?.let { location ->
             val latitude = location.mapPointGeoCoord.latitude
