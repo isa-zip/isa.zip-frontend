@@ -28,6 +28,8 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
     private var clickedItemPosition: Int = -1
     private val user = MyApplication.getUser()
     private val token = user.getString("jwt", "").toString()
+
+    private var title: String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMatchinguploadselectBinding.inflate(layoutInflater)
@@ -45,7 +47,7 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
             binding.layout2.visibility = View.GONE
         }
 
-        val title = intent.getStringExtra("title") ?: ""
+        title = intent.getStringExtra("title") ?: ""
         if (!title.isNullOrBlank()) {
             binding.textView9.text = title
         }
@@ -87,11 +89,20 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
                     if (responseBody != null) {
                         if (responseBody.isSuccess) {
                             val userItemResponses = responseBody.data.userItemResponses
-                            // adapter 초기화
-                            adapter = OuterSeconduploadAdapter(userItemResponses)
-                            setupRecyclerView(userItemResponses)
-                            binding.optionRv.visibility = View.VISIBLE
-                            binding.notshwoingtext.visibility = View.GONE
+                            val filteredUserItemResponses = userItemResponses.filter { it.dong == title }
+                            Log.d("Retrofit65", title.toString())
+
+                            Log.d("Retrofit65", filteredUserItemResponses.toString())
+                            if (filteredUserItemResponses.isNotEmpty()) {
+                                // dong matches the title, initialize the adapter and set up RecyclerView
+                                adapter = OuterSeconduploadAdapter(filteredUserItemResponses)
+                                setupRecyclerView(filteredUserItemResponses)
+                                binding.optionRv.visibility = View.VISIBLE
+                                binding.notshwoingtext.visibility = View.GONE
+                            } else {
+                                // No matching dong found
+                                // Handle the case where no items with matching dong are found
+                            }
                         } else {
                             Toast.makeText(
                                 this@MatchingSecondUploadActivity,
@@ -159,8 +170,18 @@ class MatchingSecondUploadActivity : AppCompatActivity() {
                     Log.d("Retrofit8", responseBody.toString())
                     if (responseBody != null && responseBody.isSuccess) {
                         val innerItems = responseBody.data.matchListDetails
-                        thirdAdapter.setItems(innerItems)
-                        binding.optionRv2.adapter = thirdAdapter
+                        val filteredUserItemResponses = innerItems.filter { it.userItemResponse.dong == title }
+                        Log.d("Retrofit652", title.toString())
+
+                        Log.d("Retrofit652", filteredUserItemResponses.toString())
+                        if (filteredUserItemResponses.isNotEmpty()) {
+                            // dong matches the title, initialize the adapter and set up RecyclerView
+                            thirdAdapter.setItems(filteredUserItemResponses)
+                            binding.optionRv2.adapter = thirdAdapter
+                        } else {
+                            // No matching dong found
+                            // Handle the case where no items with matching dong are found
+                        }
                     } else {
                         // 요청이 실패했을 때의 처리
                     }
