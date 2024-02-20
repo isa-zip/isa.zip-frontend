@@ -622,7 +622,8 @@ class IsaScheduleActivity : AppCompatActivity() {
                         for (data in responseBody.data) {
                             date = data.eventDate
                             description = data.eventTitle
-                            scheduleItems.add(IsaScheduleItem(date, description))
+                            eventId = data.eventId
+                            scheduleItems.add(IsaScheduleItem(date, description,eventId))
                         }
                         optionRecyclerView.adapter = null
                         optionRecyclerView.adapter = adapter

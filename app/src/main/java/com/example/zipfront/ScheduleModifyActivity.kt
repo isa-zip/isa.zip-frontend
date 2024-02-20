@@ -34,6 +34,7 @@ class ScheduleModifyActivity : AppCompatActivity() {
 
     private var user = MyApplication.getUser()
     private var token = user.getString("jwt", "").toString()
+    private var eventId: Int = 0
 
     private lateinit var optionRecyclerView: RecyclerView
     var scheduleItems = ArrayList<IsaScheduleItem>()
@@ -149,7 +150,8 @@ class ScheduleModifyActivity : AppCompatActivity() {
                         for (data in responseBody.data) {
                             date = data.eventDate
                             description = data.eventTitle
-                            scheduleItems.add(IsaScheduleItem(date, description))
+                            eventId=data.eventId
+                            scheduleItems.add(IsaScheduleItem(date, description,eventId))
                         }
                         optionRecyclerView.adapter = null
                         optionRecyclerView.adapter = adapter
