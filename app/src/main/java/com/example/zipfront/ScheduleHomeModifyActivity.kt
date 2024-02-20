@@ -78,10 +78,10 @@ class ScheduleHomeModifyActivity : AppCompatActivity() {
         // 이미지 버튼 클릭 시 동작
         // 상세 일정 수정
         registerButton.setOnClickListener {
-            val intent = Intent(this@ScheduleHomeModifyActivity, IsaScheduleActivityHome::class.java)
+            /*val intent = Intent(this@ScheduleHomeModifyActivity, IsaScheduleActivityHome::class.java)
             intent.putExtra("selectedDate", selectedDate)
-            startActivity(intent)
-            /*val eventId = 0
+            startActivity(intent)*/
+            val eventId = 0
             val eventTitle = ""
             val eventDate = selectedDate // 이미 선택된 날짜가 있는 경우
             val request = RetrofitClient2.RequestEventschedulemodify(eventId, eventTitle, eventDate)
@@ -113,7 +113,7 @@ class ScheduleHomeModifyActivity : AppCompatActivity() {
                     val errorMessage = "Call Failed1: ${t.message}"
                     Log.d("RetrofitError", errorMessage)
                 }
-            })*/
+            })
         }
 
         // imageView10을 클릭했을 때 액티비티 종료

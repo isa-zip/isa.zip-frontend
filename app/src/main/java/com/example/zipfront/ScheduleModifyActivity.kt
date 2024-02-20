@@ -77,10 +77,10 @@ class ScheduleModifyActivity : AppCompatActivity() {
         // 상세 일정 삭제 -> 상세 일정 등록 (파란색 버튼?) -> 상세 일정 조회
         // 버튼이 눌리면 상세 일정이 등록 됨 -> 상세 일정 조회까지?
         registerButton.setOnClickListener {
-            val intent = Intent(this@ScheduleModifyActivity, IsaScheduleActivity::class.java)
+            /*val intent = Intent(this@ScheduleModifyActivity, IsaScheduleActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
-            startActivity(intent)
-            /*val eventId = 0
+            startActivity(intent)*/
+            val eventId = 0
             val eventTitle = ""
             val eventDate = selectedDate // 이미 선택된 날짜가 있는 경우
             val request = RetrofitClient2.RequestEventschedulemodify(eventId, eventTitle, eventDate)
@@ -112,7 +112,7 @@ class ScheduleModifyActivity : AppCompatActivity() {
                     val errorMessage = "Call Failed1: ${t.message}"
                     Log.d("RetrofitError", errorMessage)
                 }
-            })*/
+            })
         }
 
         // imageView10을 클릭했을 때 액티비티 종료

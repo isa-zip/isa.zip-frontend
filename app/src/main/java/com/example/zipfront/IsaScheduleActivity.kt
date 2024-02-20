@@ -109,8 +109,12 @@ class IsaScheduleActivity : AppCompatActivity() {
 
         // 어댑터 설정
         adapter = IsaScheduleAdapter(scheduleItems, object : IsaScheduleAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(position: Int, eventId: Int) {
                 // The following variable is not used in the current implementation.
+                val intent = Intent(this@IsaScheduleActivity, IsaScheduleBottomSheet::class.java)
+                intent.putExtra("eventId", eventId)
+                startActivity(intent)
+
                 val selectedItem = scheduleItems[position]
 
                 // point_gray를 point_blue로 변경
@@ -120,6 +124,7 @@ class IsaScheduleActivity : AppCompatActivity() {
                 // layout1의 배경을 list4에서 list3로 변경
                 val layout1: ConstraintLayout = findViewById(R.id.layout1)
                 layout1.setBackgroundResource(R.drawable.list3)
+
             }
         }, eventId) // eventId를 어댑터 생성자에 전달
 
@@ -625,6 +630,10 @@ class IsaScheduleActivity : AppCompatActivity() {
                             description = data.eventTitle
                             eventId = data.eventId
                             scheduleItems.add(IsaScheduleItem(date, description,eventId))
+                            val intent = Intent(this@IsaScheduleActivity, IsaScheduleBottomSheet::class.java)
+                            intent.putExtra("eventId", eventId) // eventId는 여기서 사용할 변수명입니다.
+                            startActivity(intent)
+
                         }
                         optionRecyclerView.adapter = null
                         optionRecyclerView.adapter = adapter

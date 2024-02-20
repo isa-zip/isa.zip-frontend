@@ -1520,5 +1520,10 @@ class RetrofitClient2 {
         val id : Int?
     )
 
+    data class asdf(
+        @SerializedName("eventId")
+        val eventId : Int?
+    )
+
 
 }
