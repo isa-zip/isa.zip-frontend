@@ -51,8 +51,8 @@ class ManagementBottomsheetDialogFragment(brokerId : Int) : BottomSheetDialogFra
         val button1: Button = view.findViewById(R.id.modify_btn)
         button1.setOnClickListener() {
             //수정하기
-            val intent = Intent(requireContext(), ModifyActivity2::class.java)
-            intent.putExtra("brokerItemId", brokerItemId)
+            val intent = Intent(requireContext(), AdditionalActivity2::class.java)
+            intent.putExtra("modifyId", brokerItemId)
             startActivity(intent)
             //수정하기 넘어가면 AdditionalActivity2 뒤로가기 버튼 안먹음
         }

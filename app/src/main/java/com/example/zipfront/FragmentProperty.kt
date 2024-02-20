@@ -13,10 +13,12 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.contains
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -24,6 +26,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zipfront.connection.RetrofitClient2
 import com.example.zipfront.databinding.PropertyFragmentBinding
+import com.google.gson.annotations.SerializedName
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import net.daum.mf.map.api.MapPOIItem
@@ -42,8 +45,43 @@ class FragmentProperty: Fragment() {
     private val token = user.getString("jwt", "").toString()
 
     private val ACCESS_FINE_LOCATION = 1000
-    private lateinit var mapView : MapView
+    private lateinit var mapView: MapView
+    var mapViewContainer: FrameLayout? = null
     private var mapData = ArrayList<MapData>()
+
+    //마커 찍기
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+
+
+    //옵션
+    private var charterInfo: RetrofitClient2.CharterInfo? = null
+    private var tradingInfo: RetrofitClient2.TradingInfo? = null
+    private var monthlyInfo: RetrofitClient2.MonthlyInfo? = null
+    private val roomTypeList: MutableList<RetrofitClient2.RoomType> = mutableListOf()
+    private val dealTypesList: MutableList<RetrofitClient2.DealType> = mutableListOf()
+    private val roomSizeList: MutableList<RetrofitClient2.RoomSize> = mutableListOf()
+    private val floorList: MutableList<RetrofitClient2.Floor> = mutableListOf()
+    private val managementOptionList: MutableList<RetrofitClient2.ManagementOption> = mutableListOf()
+    private val internalFacilityList: MutableList<RetrofitClient2.InternalFacility> = mutableListOf()
+    private var approveDate: RetrofitClient2.ApproveDate? = null
+    private val extraFilterList: MutableList<RetrofitClient2.ExtraFilter> = mutableListOf()
+
+
+    private val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
+
+    /*public var optionRequest = RetrofitClient2.RequestLocationFilter(
+        roomType = roomTypeList,
+        dealTypes = dealTypesList,
+        dealInfoMap = dealInfoMap,
+        roomSize = roomSizeList,
+        floor = floorList,
+        managementOption = managementOptionList,
+        internalFacility = internalFacilityList,
+        approveDate = approveDate,
+        extraFilter = extraFilterList
+    )*/
+    public var optionRequest: RetrofitClient2.RequestLocationFilter? = null
 
     var info1 : String = ""
     var info2 : String = ""
@@ -57,9 +95,16 @@ class FragmentProperty: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        mapView = MapView(requireContext())
-        val mapViewContainer = binding.mapView
-        mapViewContainer.addView(mapView)
+        if (mapViewContainer?.contains(mapView)!!) {
+            try {
+                // 다시 맵뷰 초기화 및 추가
+                mapView = MapView(requireContext())
+                mapViewContainer = binding.mapView
+                mapViewContainer?.addView(mapView)
+            } catch (re: RuntimeException) {
+            }
+        }
+
 
         /*if (checkLocationService()) {
             // GPS가 켜져있을 경우
@@ -78,6 +123,39 @@ class FragmentProperty: Fragment() {
     ): View? {
         binding = PropertyFragmentBinding.inflate(inflater, container, false)
 
+        mapView = MapView(requireContext())
+        mapViewContainer = binding.mapView
+        mapViewContainer?.addView(mapView)
+
+        arguments?.let {
+            latitude = it.getDouble("latitude", 0.0)
+            longitude = it.getDouble("longitude", 0.0)
+        }
+        Log.d("위도 경도", "$latitude $longitude")
+
+        val marker = MapPOIItem()
+        if (latitude != 0.0 && longitude != 0.0) {
+            updateRV(latitude, longitude)
+            Log.d("추가", "추가")
+
+            //마커찍기 테스트
+            marker.itemName = "data.locationName"
+            val mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
+            marker.mapPoint = mapPoint
+            marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+            mapView.addPOIItem(marker)
+
+            marker.itemName = "data.locationName2"
+            marker.mapPoint = MapPoint.mapPointWithGeoCoord(longitude+0.3, latitude+0.3)
+            marker.mapPoint = mapPoint
+            marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+            mapView.addPOIItem(marker)
+
+//                markerType = MapPOIItem.MarkerType.BluePin
+
+        } else {
+            updateRV(126.896981114579, 37.5122797138519)
+        }
 
 
 
@@ -98,6 +176,7 @@ class FragmentProperty: Fragment() {
         //지도 검색했을 때 검색 액티비티로 넘어가도록
         binding.searchImage.setOnClickListener {
             val intent = Intent(requireContext(), SearchLocationActivity::class.java)
+            binding.mapView.removeView(binding.mapView)
             startActivity(intent)
 
         }
@@ -113,7 +192,7 @@ class FragmentProperty: Fragment() {
 
 
         //리사이클러뷰
-        val list = ArrayList<PropertyData>()
+
         /*list.add(PropertyData(R.drawable.img, "월세 001/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
         list.add(PropertyData(R.drawable.img, "월세 002/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
         list.add(PropertyData(R.drawable.img, "월세 003/00", "00.00m", "옥탑방", "동작구 상도동", "설명을 작성해주세요. 설명을 작성해 주.."))
@@ -131,17 +210,89 @@ class FragmentProperty: Fragment() {
         */
 
         //리사이클러뷰 API 연동
-        val x = 126.872465851923
-        val y = 37.4683120540749
 
-        val call = RetrofitObject.getRetrofitService.showPropertyItem("Bearer $token",x, y)
+        val dealInfoMap = RetrofitClient2.DealInfoMap(charterInfo, tradingInfo, monthlyInfo)
+
+        /*val request = RetrofitClient2.RequestLocationFilter(
+            roomType = roomTypeList,
+            dealTypes = dealTypesList,
+            dealInfoMap = dealInfoMap,
+            roomSize = roomSizeList,
+            floor = floorList,
+            managementOption = managementOptionList,
+            internalFacility = internalFacilityList,
+            approveDate = approveDate,
+            extraFilter = extraFilterList
+        )*/
+        val optionActivity = OptionActivity()
+        optionRequest = optionActivity.sendData()
+        Log.d("확인2", optionRequest.toString())
+
+
+
+        updateRV(latitude,longitude)
+
+
+
+
+        //터치 이벤트 처리
+        /*binding.statusImage.setOnTouchListener { v: View, event: MotionEvent ->
+            if (isTouchInsideView(event, binding.searchToolbar, binding.mapView)) {
+                true // 이벤트 소비
+            } else {
+                when (event.action) {
+                    //화면에 손가락이 닿았을 때
+                    MotionEvent.ACTION_DOWN -> {
+                        initialY = event.y
+                    }
+                    //손가락을 이동시킬 때
+                    MotionEvent.ACTION_MOVE -> {
+                        val deltaY = event.y - initialY
+
+                        //화면을 위로 스와이프 했을 때의 동작
+                        if (deltaY < 0) {
+                            moveLayout(deltaY)
+                        }
+                        //화면을 아래로 스와이프 했을 때의 동작
+                        if (deltaY > 0) {
+                            moveLayout(deltaY)
+                        }
+                    }
+
+                    MotionEvent.ACTION_UP -> {
+                        //y좌표 초기화
+                        initialY = 0f
+                    }
+                }
+                true
+            }
+        } */
+
+
+        return binding.root
+    }
+
+
+    private fun updateRV(x : Double, y : Double) {
+        val list = ArrayList<PropertyData>()
+        val call = RetrofitObject.getRetrofitService.showPropertyItem("Bearer $token", x, y, optionRequest ?: RetrofitClient2.RequestLocationFilter(
+            roomType = roomTypeList,
+            dealTypes = dealTypesList,
+            dealInfoMap = dealInfoMap,
+            roomSize = roomSizeList,
+            floor = floorList,
+            managementOption = managementOptionList,
+            internalFacility = internalFacilityList,
+            approveDate = approveDate,
+            extraFilter = extraFilterList
+        ))
 
         call.enqueue(object : Callback<RetrofitClient2.ResponseLocationFilter> {
             override fun onResponse(call: Call<RetrofitClient2.ResponseLocationFilter>, response: Response<RetrofitClient2.ResponseLocationFilter>) {
-                Log.d("Retrofit20", response.toString())
+                Log.d("Retrofit201", response.toString())
                 if (response.isSuccessful) {
                     val responseBody = response.body()
-                    Log.d("Retrofit20", response.toString())
+                    Log.d("Retrofit220", response.toString())
                     if(responseBody != null){
                         if(responseBody.isSuccess) {
                             val responseData = responseBody.data.brokerItemListList
@@ -205,43 +356,6 @@ class FragmentProperty: Fragment() {
                 Log.d("Retrofit22", errorMessage)
             }
         })
-
-
-        //터치 이벤트 처리
-        /*binding.statusImage.setOnTouchListener { v: View, event: MotionEvent ->
-            if (isTouchInsideView(event, binding.searchToolbar, binding.mapView)) {
-                true // 이벤트 소비
-            } else {
-                when (event.action) {
-                    //화면에 손가락이 닿았을 때
-                    MotionEvent.ACTION_DOWN -> {
-                        initialY = event.y
-                    }
-                    //손가락을 이동시킬 때
-                    MotionEvent.ACTION_MOVE -> {
-                        val deltaY = event.y - initialY
-
-                        //화면을 위로 스와이프 했을 때의 동작
-                        if (deltaY < 0) {
-                            moveLayout(deltaY)
-                        }
-                        //화면을 아래로 스와이프 했을 때의 동작
-                        if (deltaY > 0) {
-                            moveLayout(deltaY)
-                        }
-                    }
-
-                    MotionEvent.ACTION_UP -> {
-                        //y좌표 초기화
-                        initialY = 0f
-                    }
-                }
-                true
-            }
-        } */
-
-
-        return binding.root
     }
 
 
@@ -321,13 +435,28 @@ class FragmentProperty: Fragment() {
             // 권한이 있는 상태
             startTracking()
         }
+        //startTracking()
     }
 
     // 위치추적 시작
     private fun startTracking() {
-        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
+        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving
+        onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
+    }
+    fun onCurrentLocationUpdate(mapView: MapView?, currentLocation: MapPoint) {
+        currentLocation?.let { location ->
+            val latitude = location.mapPointGeoCoord.latitude
+            val longitude = location.mapPointGeoCoord.longitude
+            // 현재 위치의 위도와 경도 값을 사용할 수 있습니다.
+            // 이 위치 정보를 필요한 곳에 전달하거나 사용할 수 있습니다.
+            Log.d("Current Location", "Latitude: $latitude, Longitude: $longitude")
+        }
     }
 
+
+
+
+    //fun onCurrentLocationUpdate(MapView mapView, MapPoint currentLocation, float accuracyInMeters)
 
 
     // 권한 요청 후 행동
@@ -431,6 +560,7 @@ class FragmentProperty: Fragment() {
             mapView.addPOIItem(marker)
         }
     }
+
 
 
 }

@@ -1437,6 +1437,27 @@ class RetrofitClient2 {
     )
 
     //매물 정보 동 필터링
+    data class RequestLocationFilter(
+        @SerializedName("roomType")
+        val roomType: List<RoomType>,
+        @SerializedName("dealTypes")
+        val dealTypes: List<DealType>,
+        @SerializedName("dealInfoMap")
+        val dealInfoMap: DealInfoMap,
+        @SerializedName("roomSize")
+        val roomSize: List<RoomSize>,
+        @SerializedName("floor")
+        val floor: List<Floor>,
+        @SerializedName("managementOption")
+        val managementOption: List<ManagementOption>,
+        @SerializedName("internalFacility")
+        val internalFacility: List<InternalFacility>,
+        @SerializedName("approveDate")
+        val approveDate: ApproveDate?,
+        @SerializedName("extraFilter")
+        val extraFilter: List<ExtraFilter>
+    )
+
     data class ResponseLocationFilter(
         @SerializedName("code")
         val code: String,

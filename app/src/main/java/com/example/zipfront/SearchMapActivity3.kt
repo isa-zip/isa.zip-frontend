@@ -48,6 +48,8 @@ class SearchMapActivity3 : AppCompatActivity() {
         }
 
         binding.imageButton11.setOnClickListener {
+            val parentView = binding.parentLayout
+            parentView.removeView(binding.mapView)
             val intent = Intent(this, ScheduleActivity::class.java)
             intent.putExtra("dong", locationDong)
             startActivity(intent)

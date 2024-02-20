@@ -48,6 +48,8 @@ class SearchMapActivity2 : AppCompatActivity() {
         }
 
         binding.imageButton11.setOnClickListener {
+            val parentView = binding.parentLayout
+            parentView.removeView(binding.mapView)
             Log.d("Retrofitdong2", locationDong.toString())
             val intent = Intent(this, MatchingOptionActivity::class.java)
             intent.putExtra("dong", locationDong)

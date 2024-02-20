@@ -149,6 +149,17 @@ interface RetrofitAPI {
         @Part multipartFiles: MultipartBody.Part?
     ): Call<RetrofitClient2.ResponseMatchbrokeritemadd>
 
+    @Multipart
+    @PUT("/brokers/items/{brokerItemId}")
+    fun ModifyItem(
+        @Header("Authorization") token: String,
+        @Path("brokerItemId") brokerItemId: Int,
+        @Query("address") address: String,
+        @Part("detailsRequest") detailsRequest: RetrofitClient2.Introduction,
+        @Part("optionsRequest") optionsRequest: RetrofitClient2.RequestUseritem2,
+        @Part multipartFiles: MultipartBody.Part?
+    ): Call<RetrofitClient2.ResponseMatchbrokeritemadd>
+
     //카카오맵 검색
     @GET("v2/local/search/address.json") // Keyword.json의 정보를 받아옴
     fun getSearchKeyword(
@@ -178,11 +189,12 @@ interface RetrofitAPI {
     ) : Call<RetrofitClient2.ResponseSoldOut>
 
     //매물 탭 메인
-    @GET("/main/item")
+    @POST("/main/item")
     fun showPropertyItem(
         @Header("Authorization") token: String,
         @Query("x") x: Double,
-        @Query("y") y: Double
+        @Query("y") y: Double,
+        @Body request: RetrofitClient2.RequestLocationFilter
     ): Call<RetrofitClient2.ResponseLocationFilter>
 
 

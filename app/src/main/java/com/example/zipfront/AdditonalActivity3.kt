@@ -44,6 +44,8 @@ class AdditonalActivity3: AppCompatActivity() {
     var originalBackgroundArray2 = arrayOfNulls<Drawable>(3)
     var originalTextColorArray2 = IntArray(3)
 
+    private var brokerId = 0
+
 
     //현재 값이 저장되어 있는지
     var isChoose = false
@@ -69,6 +71,9 @@ class AdditonalActivity3: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAdditional3Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        brokerId = intent.getIntExtra("brokerId", 0)
+        Log.d("yes", brokerId.toString())
 
         val selectedItem = intent.getStringExtra("selectedItem")
         val parts = selectedItem?.split(" ") // 공백을 기준으로 분할
@@ -159,31 +164,83 @@ class AdditonalActivity3: AppCompatActivity() {
             )
             Log.d("Retrofit811", request.toString())
 
-            val call = RetrofitObject.getRetrofitService.NewItem("Bearer $token", dong, detailsRequest, request,null)
-            call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbrokeritemadd> {
-                override fun onResponse(
-                    call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>,
-                    response: Response<RetrofitClient2.ResponseMatchbrokeritemadd>
-                ) {
-                    Log.d("Retrofit81", response.toString())
-                    if (response.isSuccessful) {
-                        val responseBody = response.body()
-                        Log.d("Retrofit8", responseBody.toString())
-                        if (responseBody != null && responseBody.isSuccess) {
-                            val intent = Intent(this@AdditonalActivity3, MainActivity::class.java)
-                            val stackBuilder = TaskStackBuilder.create(this@AdditonalActivity3)
-                            stackBuilder.addNextIntentWithParentStack(intent)
-                            stackBuilder.startActivities()
-                        } else {
-                            // 요청이 실패했을 때의 처리
+
+            if (brokerId == 0 ) {
+                val call = RetrofitObject.getRetrofitService.NewItem(
+                    "Bearer $token",
+                    dong,
+                    detailsRequest,
+                    request,
+                    null
+                )
+                call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbrokeritemadd> {
+                    override fun onResponse(
+                        call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>,
+                        response: Response<RetrofitClient2.ResponseMatchbrokeritemadd>
+                    ) {
+                        Log.d("Retrofit81", response.toString())
+                        if (response.isSuccessful) {
+                            val responseBody = response.body()
+                            Log.d("Retrofit8", responseBody.toString())
+                            if (responseBody != null && responseBody.isSuccess) {
+                                val intent =
+                                    Intent(this@AdditonalActivity3, MainActivity::class.java)
+                                val stackBuilder = TaskStackBuilder.create(this@AdditonalActivity3)
+                                stackBuilder.addNextIntentWithParentStack(intent)
+                                stackBuilder.startActivities()
+                            } else {
+                                // 요청이 실패했을 때의 처리
+                            }
                         }
                     }
-                }
-                override fun onFailure(call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>, t: Throwable) {
-                    val errorMessage = "Call Failed: ${t.message}"
-                    Log.d("Retrofit82", errorMessage)
-                }
-            })
+
+                    override fun onFailure(
+                        call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>,
+                        t: Throwable
+                    ) {
+                        val errorMessage = "Call Failed: ${t.message}"
+                        Log.d("Retrofit82", errorMessage)
+                    }
+                })
+            } else {
+                val call = RetrofitObject.getRetrofitService.ModifyItem(
+                    "Bearer $token",
+                    brokerId,
+                    dong,
+                    detailsRequest,
+                    request,
+                    null
+                )
+                call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbrokeritemadd> {
+                    override fun onResponse(
+                        call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>,
+                        response: Response<RetrofitClient2.ResponseMatchbrokeritemadd>
+                    ) {
+                        Log.d("Retrofit81", response.toString())
+                        if (response.isSuccessful) {
+                            val responseBody = response.body()
+                            Log.d("Retrofit8", responseBody.toString())
+                            if (responseBody != null && responseBody.isSuccess) {
+                                val intent =
+                                    Intent(this@AdditonalActivity3, MainActivity::class.java)
+                                val stackBuilder = TaskStackBuilder.create(this@AdditonalActivity3)
+                                stackBuilder.addNextIntentWithParentStack(intent)
+                                stackBuilder.startActivities()
+                            } else {
+                                // 요청이 실패했을 때의 처리
+                            }
+                        }
+                    }
+
+                    override fun onFailure(
+                        call: Call<RetrofitClient2.ResponseMatchbrokeritemadd>,
+                        t: Throwable
+                    ) {
+                        val errorMessage = "Call Failed: ${t.message}"
+                        Log.d("Retrofit82", errorMessage)
+                    }
+                })
+            }
         }
 
         binding.imageView10.setOnClickListener{
