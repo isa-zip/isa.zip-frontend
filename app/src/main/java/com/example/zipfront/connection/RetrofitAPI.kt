@@ -187,12 +187,11 @@ interface RetrofitAPI {
     ) : Call<RetrofitClient2.ResponseSoldOut>
 
     //매물 탭 메인
-    @POST("/main/item")
+    @GET("/main/item")
     fun showPropertyItem(
         @Header("Authorization") token: String,
         @Query("x") x: Double,
         @Query("y") y: Double,
-        @Body request: RetrofitClient2.RequestLocationFilter
     ): Call<RetrofitClient2.ResponseLocationFilter>
 
 
