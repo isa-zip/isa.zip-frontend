@@ -116,13 +116,13 @@ class OuterSeconduploadAdapter(
             val tradingDeal = innerItem.userItemOptionsResponse.userDealTypes.find { it.dealType == "TRADING" }
             val monthlyDeal = innerItem.userItemOptionsResponse.userDealTypes.find { it.dealType == "MONTHLY" }
 
-            userCHARTER.text = "${formatPrice(charterDeal?.minPrice)}~${formatPrice(charterDeal?.maxPrice)}"
-            userTRADING.text = "${formatPrice(tradingDeal?.minPrice)}~${formatPrice(tradingDeal?.maxPrice)}"
+            userCHARTER.text = "${charterDeal?.minPrice}~${charterDeal?.maxPrice}"
+            userTRADING.text = "${tradingDeal?.minPrice}~${tradingDeal?.maxPrice}"
 
             val minMonthlyPrice = monthlyDeal?.minMonthPrice
             val maxMonthlyPrice = monthlyDeal?.maxMonthPrice
 
-            userMONTHLY.text = "${formatPrice(minMonthlyPrice)}~${formatPrice(maxMonthlyPrice)}"
+            userMONTHLY.text = "${minMonthlyPrice}~${maxMonthlyPrice}"
 
 
             val dealTypes2 =
@@ -231,7 +231,7 @@ class OuterSeconduploadAdapter(
     fun translateToKorean(keyword: String?): String {
         return when (keyword) {
             "ONE_ROOM" -> "원룸"
-            "TWO_OR_THREE_ROOM" -> "투룸/쓰리룸"
+            "TWO_OR_THREEROOM" -> "투룸/쓰리룸"
             "OFFICETELS" -> "오피스텔"
             "APARTMENT" -> "아파트"
             "CHARTER" -> "전세"

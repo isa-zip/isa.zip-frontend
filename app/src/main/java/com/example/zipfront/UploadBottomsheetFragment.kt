@@ -34,8 +34,10 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
     private var userItemId: Int = 0 // 이 부분을 추가하여 userItemId를 프래그먼트 내부에서 사용 가능하도록 함
     private val user = MyApplication.getUser()
     private val token = user.getString("jwt", "").toString()
+
     fun updateFragment(selectedItems: List<RetrofitClient2.BrokerItem>) {
         Log.d("Retrofit83", selectedItems.toString())
+        val activity = requireContext() as? MatchingSecondUploadActivity
         val request = RetrofitClient2.RequestMatchbroker(selectedItems.map { it.brokerItemId })
         val call = RetrofitObject.getRetrofitService.matchBrokerItem("Bearer $token", userItemId, request)
         call.enqueue(object : Callback<RetrofitClient2.ResponseMatchbroker> {
@@ -48,7 +50,7 @@ class UploadBottomsheetFragment() : BottomSheetDialogFragment() {
                     val responseBody = response.body()
                     Log.d("Retrofit8", responseBody.toString())
                     if (responseBody != null && responseBody.isSuccess) {
-                        //요청 성공시 화면 띄우기
+                        activity?.setupRecyclerView2()
                     } else {
                         // 요청이 실패했을 때의 처리
                     }

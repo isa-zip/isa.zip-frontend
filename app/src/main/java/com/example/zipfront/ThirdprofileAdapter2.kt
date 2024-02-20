@@ -114,7 +114,7 @@ class ThirdprofileAdapter2(private val itemList: MutableList<RetrofitClient2.Mat
             val textView4: TextView = itemView.findViewById(R.id.textView28)
             val imageView: ImageView = itemView.findViewById(R.id.imageView19)
 
-            val textshow: TextView = itemView.findViewById(R.id.matchingtext)
+            val textshow: TextView = itemView.findViewById(R.id.matchingtext)//매칭중
             val textshow2: TextView = itemView.findViewById(R.id.matchingtext2)
 
             val profileView1: TextView = itemView.findViewById(R.id.textView59)
@@ -124,7 +124,8 @@ class ThirdprofileAdapter2(private val itemList: MutableList<RetrofitClient2.Mat
             val charterDeal = item.brokerItemResponse.optionResponse.dealTypes.firstOrNull { it.dealType == "CHARTER" }
             val monthDeal = item.brokerItemResponse.optionResponse.dealTypes.firstOrNull { it.dealType == "MONTHLY" }
 
-            if(item.brokerItemResponse.itemStatus!="MATCH_COMPLETE")
+            Log.d("retrofitm",item.brokerItemResponse.itemStatus.toString())
+            if(item.brokerItemResponse.itemStatus =="MATCH_COMPLETE")
             {
                 textshow.visibility=View.GONE
                 textshow2.visibility=View.VISIBLE

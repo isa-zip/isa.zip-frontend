@@ -124,6 +124,7 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         // 사용자의 거래 유형 설정
         val dealTypes =
             outerItem.userRequestInfo.userItemOptionsResponse.userDealTypes.joinToString(" / ") { it.dealType }
+        Log.d("retrofitd",dealTypes.toString())
         binding.optionlayout1.visibility = View.GONE
         binding.optionlayout2.visibility = View.GONE
         binding.optionlayout3.visibility = View.GONE
@@ -136,13 +137,13 @@ class MatchingSecondOptionActivity : AppCompatActivity() {
         val tradingDeal = outerItem.userRequestInfo.userItemOptionsResponse.userDealTypes.find { it.dealType == "TRADING" }
         val monthlyDeal = outerItem.userRequestInfo.userItemOptionsResponse.userDealTypes.find { it.dealType == "MONTHLY" }
 
-        binding.textView38.text = "${formatPrice(charterDeal?.minPrice)}~${formatPrice(charterDeal?.maxPrice)}"
-        binding.textView40.text = "${formatPrice(tradingDeal?.minPrice)}~${formatPrice(tradingDeal?.maxPrice)}"
+        binding.textView38.text = "${charterDeal?.minPrice}~${charterDeal?.maxPrice}"
+        binding.textView40.text = "${tradingDeal?.minPrice}~${tradingDeal?.maxPrice}"
 
         val minMonthlyPrice = monthlyDeal?.minMonthPrice
         val maxMonthlyPrice = monthlyDeal?.maxMonthPrice
 
-        binding.textView36.text = "${formatPrice(minMonthlyPrice)}~${formatPrice(maxMonthlyPrice)}"
+        binding.textView36.text = "${minMonthlyPrice}~${maxMonthlyPrice}"
 
 
         val dealTypes2 =
