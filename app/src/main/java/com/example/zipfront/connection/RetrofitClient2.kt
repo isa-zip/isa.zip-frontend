@@ -1515,6 +1515,10 @@ class RetrofitClient2 {
         val itemImage: String
     )
 
+    data class empty(
+        @SerializedName("Id")
+        val id : Int?
+    )
 
 
 }

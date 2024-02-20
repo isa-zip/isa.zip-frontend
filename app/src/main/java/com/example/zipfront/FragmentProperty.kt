@@ -134,28 +134,23 @@ class FragmentProperty: Fragment() {
         Log.d("위도 경도", "$latitude $longitude")
 
         val marker = MapPOIItem()
-        if (latitude != 0.0 && longitude != 0.0) {
-            updateRV(latitude, longitude)
-            Log.d("추가", "추가")
 
-            //마커찍기 테스트
-            marker.itemName = "data.locationName"
-            val mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
-            marker.mapPoint = mapPoint
-            marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-            mapView.addPOIItem(marker)
+        updateRV(latitude, longitude)
 
-            marker.itemName = "data.locationName2"
-            marker.mapPoint = MapPoint.mapPointWithGeoCoord(longitude+0.3, latitude+0.3)
-            marker.mapPoint = mapPoint
-            marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
-            mapView.addPOIItem(marker)
+/*                //마커찍기 테스트
+                marker.itemName = "data.locationName"
+                val mapPoint = MapPoint.mapPointWithGeoCoord(longitude, latitude)
+                marker.mapPoint = mapPoint
+                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+                mapView.addPOIItem(marker)
+
+                marker.itemName = "data.locationName2"
+                marker.mapPoint = MapPoint.mapPointWithGeoCoord(longitude+0.3, latitude+0.3)
+                marker.mapPoint = mapPoint
+                marker.markerType = MapPOIItem.MarkerType.BluePin // 기본으로 제공하는 BluePin 마커 모양.
+                mapView.addPOIItem(marker)*/
 
 //                markerType = MapPOIItem.MarkerType.BluePin
-
-        } else {
-            updateRV(126.896981114579, 37.5122797138519)
-        }
 
 
 
@@ -224,6 +219,7 @@ class FragmentProperty: Fragment() {
             approveDate = approveDate,
             extraFilter = extraFilterList
         )*/
+
         val optionActivity = OptionActivity()
         optionRequest = optionActivity.sendData()
         Log.d("확인2", optionRequest.toString())
@@ -289,7 +285,7 @@ class FragmentProperty: Fragment() {
 
         call.enqueue(object : Callback<RetrofitClient2.ResponseLocationFilter> {
             override fun onResponse(call: Call<RetrofitClient2.ResponseLocationFilter>, response: Response<RetrofitClient2.ResponseLocationFilter>) {
-                Log.d("Retrofit201", response.toString())
+                Log.d("Retrofit201", call.toString())
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     Log.d("Retrofit220", response.toString())
@@ -297,6 +293,7 @@ class FragmentProperty: Fragment() {
                         if(responseBody.isSuccess) {
                             val responseData = responseBody.data.brokerItemListList
                             var imgRes : RequestCreator
+                            Log.d("Retrofit221", responseData.toString())
 
                             for (data in responseData) {
                                 if (data.itemStatus == "ITEM_SELLING") {
@@ -389,8 +386,6 @@ class FragmentProperty: Fragment() {
         val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
-
-
     // 위치 권한 확인
     private fun permissionCheck() {
         val preference = requireContext().getSharedPreferences("isFirstPermissionCheck", Context.MODE_PRIVATE)
@@ -405,7 +400,6 @@ class FragmentProperty: Fragment() {
                     ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), ACCESS_FINE_LOCATION)
                 }
                 builder.setNegativeButton("취소") { dialog, which ->
-
                 }
                 builder.show()*/
                 val locationPermissionFragment = LocationPermissionFragment()
@@ -424,7 +418,6 @@ class FragmentProperty: Fragment() {
                         startActivity(intent)
                     }
                     builder.setNegativeButton("취소") { dialog, which ->
-
                     }
                     builder.show()*/
                     val locationPermissionFragment = LocationPermissionFragment()
@@ -435,14 +428,19 @@ class FragmentProperty: Fragment() {
             // 권한이 있는 상태
             startTracking()
         }
-        //startTracking()
     }
 
     // 위치추적 시작
     private fun startTracking() {
-        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving
+
+        mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
         onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
     }
+
+    //private fun startTracking() {
+    //    mapView.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeadingWithoutMapMoving
+    //   onCurrentLocationUpdate(mapView, mapView.mapCenterPoint)
+    //}
     fun onCurrentLocationUpdate(mapView: MapView?, currentLocation: MapPoint) {
         currentLocation?.let { location ->
             val latitude = location.mapPointGeoCoord.latitude
