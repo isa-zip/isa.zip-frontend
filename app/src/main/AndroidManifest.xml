@@ -72,9 +72,6 @@
             android:name=".MainActivity"
             android:exported="false" />
 
-        <meta-data android:name="com.kakao.sdk.AppKey"
-            android:value="9cb869951d9a97be6fc1a0dd0dc28c42"/>
-
         <activity
             android:name=".MatchingActivity"
             android:exported="false" />
